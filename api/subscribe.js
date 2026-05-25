@@ -1,6 +1,19 @@
 const { Resend } = require('resend');
-
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Cache audience ID so we only fetch it once per cold start
+let cachedAudienceId = process.env.RESEND_AUDIENCE_ID || null;
+
+async function getAudienceId() {
+  if (cachedAudienceId) return cachedAudienceId;
+  // Auto-detect: use the first audience in the account
+  const { data } = await resend.audiences.list();
+  if (data && data.data && data.data.length > 0) {
+    cachedAudienceId = data.data[0].id;
+    return cachedAudienceId;
+  }
+  throw new Error('No se encontró ningún Audience en Resend');
+}
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
@@ -11,14 +24,15 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    // Add to Resend Audience (for email marketing campaigns)
+    const audienceId = await getAudienceId();
+
     await resend.contacts.create({
       email,
-      audienceId: process.env.RESEND_AUDIENCE_ID,
+      audienceId,
       unsubscribed: false,
     });
 
-    // Also send a welcome confirmation email to the subscriber
+    // Welcome email to subscriber
     await resend.emails.send({
       from: 'Fancy Water <hola@fancywater.mx>',
       to:   email,
@@ -48,7 +62,6 @@ module.exports = async function handler(req, res) {
     res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Subscribe error:', err);
-    // If contact already exists, it's not an error for the user
     if (err.message?.includes('already exists') || err.statusCode === 422) {
       return res.status(200).json({ ok: true });
     }
