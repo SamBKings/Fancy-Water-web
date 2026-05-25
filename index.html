@@ -7,6 +7,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Favicon -->
+  <link rel="icon" href="assets/logo-fw.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/logo-fw.png" />
+  <!-- Open Graph (WhatsApp / social sharing) -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://fancywater.mx/" />
+  <meta property="og:title"       content="Fancy Water — Distribuidora Médico-Estética" />
+  <meta property="og:description" content="Distribuidores oficiales VOL:TENA en América. Toxinas botulínicas, rellenos dérmicos, PLLA, lipoenzimas y skin boosters premium." />
+  <meta property="og:image"       content="https://fancywater.mx/assets/products/slam-productos.png" />
+  <meta property="og:locale"      content="es_MX" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Fancy Water — Distribuidora Médico-Estética" />
+  <meta name="twitter:description" content="Distribuidores oficiales VOL:TENA en América. Toxinas botulínicas, rellenos dérmicos, PLLA, lipoenzimas y skin boosters premium." />
+  <meta name="twitter:image"       content="https://fancywater.mx/assets/products/slam-productos.png" />
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
   <style>
     /* ─── TOKENS ─────────────────────────────────────────────────── */
     :root {
@@ -429,7 +445,7 @@
       font-family:'Playfair Display', serif;
       font-size:20px; color:var(--navy);
     }
-    .p-price sup { font-size:13px; color:var(--ash); font-family:'Inter',sans-serif; }
+    .p-price sup { font-size:inherit; color:inherit; font-family:inherit; vertical-align:baseline; }
     .add-btn {
       width:36px; height:36px; border-radius:50%;
       border:1px solid var(--linea);
@@ -498,7 +514,7 @@
       font-family:'Playfair Display', serif;
       font-size:36px; color:var(--navy);
     }
-    .feat-price sup { font-size:16px; color:var(--ash); font-family:'Inter',sans-serif; }
+    .feat-price sup { font-size:inherit; color:inherit; font-family:inherit; vertical-align:baseline; }
     .feat-price small { font-size:13px; color:var(--ash); font-family:'Inter',sans-serif; display:block; }
 
     /* ─── BENEFITS ───────────────────────────────────────────────── */
@@ -715,8 +731,23 @@
     .cart-item-info { flex:1; }
     .cart-item-name { font-size:14px; margin-bottom:4px; }
     .cart-item-sub { font-size:12px; color:var(--ash); }
-    .cart-item-rm { color:var(--ash); font-size:18px; line-height:1; transition:.3s; }
+    .cart-item-rm { color:var(--ash); font-size:18px; line-height:1; transition:.3s; flex-shrink:0; }
     .cart-item-rm:hover { color:var(--tinta); }
+    .cart-qty-ctrl {
+      display:flex; align-items:center; gap:6px;
+      flex-shrink:0; margin-left:4px;
+    }
+    .cart-qty-ctrl button {
+      width:26px; height:26px; border-radius:50%;
+      border:1px solid var(--linea); font-size:16px; line-height:1;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--navy); transition:.2s;
+    }
+    .cart-qty-ctrl button:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .cart-qty-ctrl span {
+      min-width:20px; text-align:center;
+      font-size:13px; font-family:'Playfair Display',serif; color:var(--navy);
+    }
     .cart-ftr {
       padding:20px; border-top:1px solid var(--linea);
     }
@@ -737,6 +768,64 @@
       transition:opacity .3s;
     }
     .btn-checkout:hover { opacity:.85; }
+
+    /* ─── STRIPE CHECKOUT MODAL ─────────────────────────────────── */
+    .checkout-overlay {
+      position:fixed; inset:0; background:rgba(14,14,14,.6);
+      backdrop-filter:blur(4px); z-index:300;
+      opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    .checkout-overlay.open { opacity:1; pointer-events:all; }
+    .checkout-modal {
+      position:fixed; top:50%; left:50%;
+      transform:translate(-50%,-50%) scale(.97);
+      width:min(480px, 94vw);
+      background:var(--snow); border-radius:20px;
+      padding:40px 36px; z-index:301;
+      box-shadow:0 40px 100px rgba(14,14,14,.25);
+      opacity:0; pointer-events:none;
+      transition:opacity .3s, transform .3s;
+    }
+    .checkout-modal.open { opacity:1; pointer-events:all; transform:translate(-50%,-50%) scale(1); }
+    .checkout-modal h3 {
+      font-family:'Playfair Display',serif; font-size:22px;
+      color:var(--navy); margin-bottom:20px;
+    }
+    .checkout-items-list { margin-bottom:20px; }
+    .checkout-line {
+      display:flex; justify-content:space-between;
+      font-size:13px; color:var(--grafito);
+      padding:7px 0; border-bottom:1px solid var(--bone);
+    }
+    .checkout-line:last-child { border-bottom:none; }
+    .checkout-total-row {
+      display:flex; justify-content:space-between; align-items:baseline;
+      padding:14px 0 20px;
+      border-top:2px solid var(--linea); margin-top:4px;
+    }
+    .checkout-total-row span:first-child { font-size:13px; color:var(--grafito); letter-spacing:1px; text-transform:uppercase; }
+    .checkout-total-row span:last-child {
+      font-family:'Playfair Display',serif; font-size:28px; color:var(--navy);
+    }
+    .checkout-note {
+      font-size:11px; color:var(--ash); text-align:center;
+      margin-bottom:20px; letter-spacing:.5px;
+    }
+    #btnStripeGo {
+      width:100%; padding:16px;
+      background:var(--navy); color:#fff;
+      border-radius:12px; font-size:12px;
+      letter-spacing:2px; text-transform:uppercase; font-weight:600;
+      transition:opacity .3s;
+    }
+    #btnStripeGo:hover:not(:disabled) { opacity:.85; }
+    #btnStripeGo:disabled { opacity:.5; cursor:wait; }
+    .checkout-cancel {
+      display:block; text-align:center; margin-top:14px;
+      font-size:12px; color:var(--ash); cursor:pointer;
+      transition:color .2s;
+    }
+    .checkout-cancel:hover { color:var(--tinta); }
 
     /* ─── MOBILE MENU ────────────────────────────────────────────── */
     .mobile-menu {
@@ -1653,11 +1742,24 @@
       <span>Subtotal</span>
       <span class="cart-total-val" id="cartTotal">$0</span>
     </div>
-    <button class="btn-checkout" onclick="window.location='#contacto';toggleCart()">
+    <button class="btn-checkout" id="btnCheckout" onclick="openCheckout()">
       Proceder al Pago
     </button>
-    <p style="text-align:center;font-size:10px;color:var(--ash);margin-top:8px;letter-spacing:1px;">Pasarela de pago próximamente</p>
   </div>
+</div>
+
+<!-- ─── STRIPE CHECKOUT MODAL ─────────────────────────────────────── -->
+<div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckout()"></div>
+<div class="checkout-modal" id="checkoutModal">
+  <h3>Resumen del Pedido</h3>
+  <div class="checkout-items-list" id="checkoutItemsList"></div>
+  <div class="checkout-total-row">
+    <span>Total</span>
+    <span id="checkoutTotal">$0</span>
+  </div>
+  <p class="checkout-note">Pago seguro procesado por Stripe · Visa, Mastercard, AMEX</p>
+  <button id="btnStripeGo" onclick="goToStripe()">Pagar Ahora</button>
+  <span class="checkout-cancel" onclick="closeCheckout()">Cancelar</span>
 </div>
 
 <!-- ─── THREE.JS PARTICLES ────────────────────────────────────────── -->
@@ -1809,7 +1911,12 @@ function renderCart() {
       </div>
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-sub">$${item.price.toLocaleString('es-MX')} × ${item.qty}</div>
+        <div class="cart-item-sub">$${item.price.toLocaleString('es-MX')} c/u</div>
+      </div>
+      <div class="cart-qty-ctrl">
+        <button onclick="changeQty(${idx},-1)">−</button>
+        <span>${item.qty}</span>
+        <button onclick="changeQty(${idx},1)">+</button>
       </div>
       <button class="cart-item-rm" onclick="removeItem(${idx})">×</button>
     `;
@@ -1826,6 +1933,64 @@ function addItem(name, price) {
 }
 
 function removeItem(idx) { cart.splice(idx, 1); renderCart(); }
+
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  renderCart();
+}
+
+// ── STRIPE CHECKOUT ───────────────────────────────────────────────────
+const STRIPE_PK = 'pk_live_REEMPLAZA_CON_TU_CLAVE_PUBLICA'; // ← pon tu clave publicable de Stripe aquí
+
+function openCheckout() {
+  if (!cart.length) return;
+  const list = document.getElementById('checkoutItemsList');
+  const totalEl = document.getElementById('checkoutTotal');
+  list.innerHTML = cart.map(i =>
+    `<div class="checkout-line">
+      <span>${i.name} × ${i.qty}</span>
+      <span>$${(i.price * i.qty).toLocaleString('es-MX')}</span>
+    </div>`
+  ).join('');
+  const sum = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  totalEl.textContent = '$' + sum.toLocaleString('es-MX') + ' MXN';
+  document.getElementById('checkoutOverlay').classList.add('open');
+  document.getElementById('checkoutModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCheckout() {
+  document.getElementById('checkoutOverlay').classList.remove('open');
+  document.getElementById('checkoutModal').classList.remove('open');
+  document.body.style.overflow = '';
+  const btn = document.getElementById('btnStripeGo');
+  btn.textContent = 'Pagar Ahora';
+  btn.disabled = false;
+}
+
+async function goToStripe() {
+  const btn = document.getElementById('btnStripeGo');
+  btn.textContent = 'Redirigiendo…';
+  btn.disabled = true;
+  try {
+    const resp = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: cart })
+    });
+    const data = await resp.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || 'No se pudo crear la sesión de pago');
+    }
+  } catch(err) {
+    alert('Error al conectar con el procesador de pago: ' + err.message);
+    btn.textContent = 'Pagar Ahora';
+    btn.disabled = false;
+  }
+}
 
 document.getElementById('cartBtn').addEventListener('click', toggleCart);
 document.querySelectorAll('.add-to-cart').forEach(btn => {
