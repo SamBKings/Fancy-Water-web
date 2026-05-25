@@ -929,21 +929,25 @@
         overflow:hidden !important;
         scroll-snap-align:none !important;
       }
-      /* Filters: scrollable row, full reach to last button */
-      .filters-wrap {
-        flex-wrap:nowrap;
-        overflow-x:auto;
-        padding-bottom:6px;
-        padding-right:5vw;
-        scrollbar-width:none;
-      }
-      .filters-wrap::-webkit-scrollbar { display:none; }
-      .filter-btn { flex-shrink:0; }
+      /* Filters: scrollable row */
       .products-header {
         flex-direction:column;
         align-items:flex-start;
         gap:20px;
+        overflow:hidden;    /* clip overflowing filters */
       }
+      .filters-wrap {
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        width:100%;         /* stretch to header width */
+        min-width:0;        /* allow flex child to shrink & scroll */
+        padding-bottom:6px;
+        padding-right:20px; /* breathing room after last button */
+        scrollbar-width:none;
+        -webkit-overflow-scrolling:touch;
+      }
+      .filters-wrap::-webkit-scrollbar { display:none; }
+      .filter-btn { flex-shrink:0; }
     }
   </style>
 </head>
