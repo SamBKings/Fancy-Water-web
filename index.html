@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fancy Water — Distribuidora Médico-Estética</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────────── */
+    :root {
+      --paper:   #F4F3EF;
+      --snow:    #FBFAF7;
+      --bone:    #ECEAE4;
+      --tinta:   #0E0E0E;
+      --navy:    #2D3147;
+      --ash:     #B7B4AC;
+      --grafito: #7A7975;
+      --linea:   #D9D8D3;
+      --radius:  10px;
+      --nav-h:   72px;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────────── */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--tinta);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width:100%; display:block; }
+    a { color:inherit; text-decoration:none; }
+    button { cursor:pointer; border:none; background:none; font:inherit; color:inherit; }
+    ::-webkit-scrollbar { width:3px; }
+    ::-webkit-scrollbar-track { background:var(--bone); }
+    ::-webkit-scrollbar-thumb { background:var(--navy); border-radius:2px; }
+
+    /* ─── NAV ────────────────────────────────────────────────────── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      height:var(--nav-h);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 5vw;
+      transition: background .4s, box-shadow .4s;
+    }
+    nav.scrolled {
+      background:rgba(244,243,239,0.92);
+      backdrop-filter:blur(20px);
+      box-shadow:0 1px 0 var(--linea);
+    }
+    .nav-logo { display:flex; align-items:center; }
+    .nav-logo img { height:52px; width:auto; mix-blend-mode:multiply; }
+    .nav-links { display:flex; gap:32px; list-style:none; align-items:center; }
+    .nav-links a {
+      font-size:12px; font-weight:400; letter-spacing:2px;
+      text-transform:uppercase; color:var(--grafito);
+      transition:color .3s; position:relative;
+    }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:-4px; left:0; right:0;
+      height:1px; background:var(--navy); transform:scaleX(0);
+      transition:transform .3s; transform-origin:left;
+    }
+    .nav-links a:hover { color:var(--tinta); }
+    .nav-links a:hover::after { transform:scaleX(1); }
+    .nav-cta {
+      padding:10px 24px;
+      background:var(--navy); color:#fff !important;
+      border-radius:50px; font-size:11px !important;
+      letter-spacing:2px; transition:opacity .3s !important;
+    }
+    .nav-cta:hover { opacity:.85; }
+    .nav-cta::after { display:none !important; }
+    .nav-cart-btn {
+      position:relative; width:40px; height:40px; border-radius:50%;
+      border:1px solid var(--linea);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--grafito); transition:.3s;
+    }
+    .nav-cart-btn:hover { border-color:var(--navy); color:var(--navy); }
+    .cart-count {
+      position:absolute; top:-4px; right:-4px;
+      width:18px; height:18px; border-radius:50%;
+      background:var(--navy); color:#fff;
+      font-size:10px; font-weight:600;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:opacity .3s;
+    }
+    .cart-count.visible { opacity:1; }
+    .hamburger { display:none; flex-direction:column; gap:5px; width:28px; }
+    .hamburger span { height:1px; background:var(--tinta); transition:.3s; }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    .hero {
+      min-height:100svh; padding-top:var(--nav-h);
+      display:grid; grid-template-columns:1fr 1fr;
+      align-items:center; gap:0;
+      position:relative; overflow:hidden;
+    }
+    #hero-canvas {
+      position:absolute; inset:0; width:100%; height:100%;
+      pointer-events:none; z-index:0;
+    }
+    .hero-text {
+      position:relative; z-index:1;
+      padding:80px 40px 80px 5vw;
+      display:flex; flex-direction:column; gap:28px;
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 16px;
+      background:var(--navy); color:#fff;
+      border-radius:50px; font-size:10px;
+      letter-spacing:3px; text-transform:uppercase;
+      width:fit-content;
+      opacity:0; animation:fadeUp .9s .2s forwards;
+    }
+    .badge-dot {
+      width:6px; height:6px; border-radius:50%;
+      background:rgba(255,255,255,.5);
+      animation:pulse 2s infinite;
+    }
+    .hero-eyebrow {
+      font-size:11px; letter-spacing:4px; text-transform:uppercase;
+      color:var(--ash);
+      opacity:0; animation:fadeUp .9s .35s forwards;
+    }
+    .hero-title {
+      font-family:'Playfair Display', serif;
+      font-size:clamp(44px,5.5vw,80px);
+      font-weight:400; line-height:1.05; letter-spacing:-.5px;
+      opacity:0; animation:fadeUp .9s .5s forwards;
+    }
+    .hero-title em { font-style:italic; color:var(--navy); }
+    .hero-sub {
+      max-width:440px; font-size:15px;
+      color:var(--grafito); line-height:1.85;
+      opacity:0; animation:fadeUp .9s .65s forwards;
+    }
+    .hero-actions {
+      display:flex; gap:12px; flex-wrap:wrap;
+      opacity:0; animation:fadeUp .9s .8s forwards;
+    }
+    .btn-primary {
+      padding:14px 36px;
+      background:var(--navy); color:#fff;
+      border-radius:50px; font-size:12px;
+      letter-spacing:2px; text-transform:uppercase; font-weight:500;
+      transition:transform .3s, box-shadow .3s;
+    }
+    .btn-primary:hover {
+      transform:translateY(-2px);
+      box-shadow:0 12px 32px rgba(45,49,71,.3);
+    }
+    .btn-ghost {
+      padding:14px 36px;
+      border:1px solid var(--linea);
+      border-radius:50px; font-size:12px;
+      letter-spacing:2px; text-transform:uppercase;
+      color:var(--grafito);
+      transition:border-color .3s, color .3s, transform .3s;
+    }
+    .btn-ghost:hover {
+      border-color:var(--navy); color:var(--navy);
+      transform:translateY(-2px);
+    }
+    .hero-visual {
+      position:relative; z-index:1;
+      height:100%; min-height:600px;
+      display:flex; align-items:center; justify-content:center;
+      padding:40px 5vw 40px 0;
+      opacity:0; animation:fadeUp .9s .4s forwards;
+    }
+    .voltena-photo-wrap {
+      position:relative; width:100%; max-width:660px;
+    }
+    .voltena-photo-bg {
+      position:absolute; inset:-20px;
+      background:linear-gradient(135deg, var(--bone), var(--linea));
+      border-radius:32px; z-index:0;
+      opacity:.5;
+    }
+    .hero-slideshow {
+      position:relative; z-index:1;
+      width:100%; aspect-ratio:4/3;
+      border-radius:24px; overflow:hidden;
+      box-shadow:0 32px 80px rgba(45,49,71,.15), 0 0 0 1px var(--linea);
+      animation:float 7s ease-in-out infinite;
+      background:var(--bone);
+    }
+    .hero-slide {
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:contain; object-position:center;
+      opacity:0; transition:opacity .6s ease;
+      display:block;
+    }
+    .hero-slide.active { opacity:1; }
+    .voltena-tag {
+      position:absolute; bottom:-16px; right:24px; z-index:2;
+      background:var(--navy); color:#fff;
+      padding:12px 20px; border-radius:50px;
+      font-size:10px; letter-spacing:3px; text-transform:uppercase;
+      box-shadow:0 8px 24px rgba(45,49,71,.3);
+      white-space:nowrap;
+    }
+
+    /* ─── MARQUEE ────────────────────────────────────────────────── */
+    .marquee-wrap {
+      border-top:1px solid var(--linea);
+      border-bottom:1px solid var(--linea);
+      padding:16px 0; overflow:hidden;
+      background:var(--snow);
+    }
+    .marquee-track {
+      display:flex; width:max-content;
+      animation:marquee 35s linear infinite;
+    }
+    .marquee-item {
+      display:flex; align-items:center; gap:20px;
+      padding:0 32px; white-space:nowrap;
+      font-size:10px; letter-spacing:4px; text-transform:uppercase;
+      color:var(--ash);
+    }
+    .marquee-dot { width:3px; height:3px; border-radius:50%; background:var(--navy); }
+
+    /* ─── VOLTENA SHOWCASE ───────────────────────────────────────── */
+    .voltena-showcase {
+      background:var(--navy); color:#fff;
+      padding:100px 5vw; overflow:hidden; position:relative;
+    }
+    .voltena-showcase-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:80px; align-items:center;
+      position:relative; z-index:1;
+    }
+    .voltena-showcase-bg {
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 80% 50%, rgba(255,255,255,.03), transparent 60%),
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,.02), transparent 50%);
+    }
+    .vs-eyebrow {
+      font-size:10px; letter-spacing:5px; text-transform:uppercase;
+      color:rgba(255,255,255,.4); margin-bottom:20px;
+    }
+    .vs-title {
+      font-family:'Playfair Display', serif;
+      font-size:clamp(48px,6vw,80px); font-weight:400;
+      line-height:1; letter-spacing:-2px;
+      margin-bottom:8px;
+    }
+    .vs-title span { font-style:italic; opacity:.4; }
+    .vs-sub {
+      font-family:'Playfair Display', serif;
+      font-size:16px; font-style:italic;
+      color:rgba(255,255,255,.5); margin-bottom:32px;
+      letter-spacing:1px;
+    }
+    .vs-body {
+      font-size:14px; line-height:1.9;
+      color:rgba(255,255,255,.6); max-width:440px; margin-bottom:40px;
+    }
+    .vs-badge {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 20px; border:1px solid rgba(255,255,255,.2);
+      border-radius:50px; font-size:10px; letter-spacing:3px;
+      text-transform:uppercase; color:rgba(255,255,255,.8);
+    }
+    .vs-badge::before {
+      content:''; width:6px; height:6px; border-radius:50%;
+      background:rgba(255,255,255,.6);
+    }
+    .vs-photo {
+      position:relative;
+    }
+    .vs-photo img {
+      width:100%; border-radius:16px;
+      box-shadow:0 40px 80px rgba(0,0,0,.4);
+    }
+    .vs-products-row {
+      display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;
+    }
+    .vs-product-pill {
+      padding:6px 14px; border:1px solid rgba(255,255,255,.15);
+      border-radius:50px; font-size:11px; letter-spacing:1px;
+      color:rgba(255,255,255,.5);
+    }
+
+    /* ─── SECTION COMMONS ────────────────────────────────────────── */
+    section { padding:100px 5vw; }
+    .section-label {
+      font-size:10px; letter-spacing:5px; text-transform:uppercase;
+      color:var(--ash); margin-bottom:16px;
+    }
+    .section-title {
+      font-family:'Playfair Display', serif;
+      font-size:clamp(30px,3.5vw,52px);
+      font-weight:400; line-height:1.2;
+    }
+    .section-title em { font-style:italic; color:var(--navy); }
+    .reveal {
+      opacity:0; transform:translateY(24px);
+      transition:opacity .8s, transform .8s;
+    }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* ─── ABOUT ──────────────────────────────────────────────────── */
+    .about-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:80px; align-items:center;
+    }
+    .about-visual-wrap {
+      position:relative; aspect-ratio:4/5;
+      border-radius:0 0 200px 200px;
+      overflow:hidden;
+      background:var(--bone);
+    }
+    .about-visual-inner {
+      width:100%; height:100%;
+    }
+    .about-visual-inner img {
+      width:100%; height:100%; object-fit:cover; object-position:15% center;
+      display:block;
+    }
+    .about-content { display:flex; flex-direction:column; gap:20px; }
+    .about-body { font-size:15px; color:var(--grafito); line-height:1.9; }
+    .about-stats {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:24px; padding-top:8px;
+    }
+    .stat { border-top:1px solid var(--linea); padding-top:20px; }
+    .stat-num {
+      font-family:'Playfair Display', serif;
+      font-size:36px; color:var(--navy); line-height:1;
+    }
+    .stat-lbl { font-size:12px; color:var(--ash); margin-top:4px; }
+
+    /* ─── PRODUCTS ───────────────────────────────────────────────── */
+    .products-section { background:var(--snow); }
+    .products-header {
+      display:flex; justify-content:space-between; align-items:flex-end;
+      margin-bottom:52px; flex-wrap:wrap; gap:24px;
+    }
+    .price-note {
+      font-size:11px; color:var(--ash); letter-spacing:1px;
+    }
+    .price-note span {
+      display:inline-flex; align-items:center; gap:6px;
+    }
+    .filters-wrap { display:flex; gap:8px; flex-wrap:wrap; }
+    .filter-btn {
+      padding:8px 18px; border:1px solid var(--linea);
+      border-radius:50px; font-size:11px; letter-spacing:1px;
+      color:var(--ash); transition:.25s; background:transparent;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      border-color:var(--navy); color:var(--navy);
+      background:rgba(45,49,71,.05);
+    }
+    .products-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(270px,1fr));
+      gap:20px;
+    }
+    .product-card {
+      background:var(--paper);
+      border:1px solid var(--linea);
+      border-radius:var(--radius);
+      overflow:hidden;
+      transition:transform .4s, box-shadow .4s;
+    }
+    .product-card:hover {
+      transform:translateY(-5px);
+      box-shadow:0 20px 48px rgba(45,49,71,.1);
+    }
+    .product-img {
+      aspect-ratio:1; background:var(--snow);
+      position:relative; overflow:hidden;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .product-img img {
+      width:100%; height:100%; object-fit:contain; padding:20px;
+      transition:transform .5s cubic-bezier(.4,0,.2,1);
+    }
+    .product-card:hover .product-img img { transform:scale(1.06); }
+    .product-img-ph {
+      display:flex; flex-direction:column; align-items:center; gap:10px;
+      color:var(--linea);
+    }
+    .product-img-ph span {
+      font-size:10px; letter-spacing:2px; text-transform:uppercase;
+      color:var(--ash);
+    }
+    .p-badge {
+      position:absolute; top:12px; left:12px; z-index:2;
+      padding:3px 10px;
+      border-radius:50px; font-size:9px;
+      letter-spacing:2px; text-transform:uppercase; font-weight:600;
+    }
+    .p-badge.nuevo { background:var(--navy); color:#fff; }
+    .p-badge.top    { background:var(--tinta); color:#fff; }
+    .p-badge.pedido { background:var(--bone); color:var(--grafito); }
+    .p-badge.kfda   { background:#E8F0FF; color:var(--navy); }
+    .product-info { padding:18px 20px; }
+    .p-cat {
+      font-size:10px; letter-spacing:3px; text-transform:uppercase;
+      color:var(--ash); margin-bottom:6px;
+    }
+    .p-name {
+      font-family:'Playfair Display', serif;
+      font-size:17px; margin-bottom:6px; line-height:1.3;
+    }
+    .p-desc {
+      font-size:12px; color:var(--grafito); line-height:1.6;
+      margin-bottom:14px;
+    }
+    .p-footer {
+      display:flex; align-items:center;
+      justify-content:space-between;
+      padding-top:14px; border-top:1px solid var(--bone);
+    }
+    .p-price {
+      font-family:'Playfair Display', serif;
+      font-size:20px; color:var(--navy);
+    }
+    .p-price sup { font-size:13px; color:var(--ash); font-family:'Inter',sans-serif; }
+    .add-btn {
+      width:36px; height:36px; border-radius:50%;
+      border:1px solid var(--linea);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--navy); transition:.3s;
+    }
+    .add-btn:hover {
+      background:var(--navy); color:#fff; border-color:var(--navy);
+      transform:scale(1.1);
+    }
+
+    /* ─── FEATURED ───────────────────────────────────────────────── */
+    .featured-section { background:var(--paper); }
+    .featured-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      border:1px solid var(--linea); border-radius:20px; overflow:hidden;
+    }
+    .feat-visual {
+      background:var(--bone); min-height:480px;
+      display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden;
+    }
+    .feat-visual-img {
+      width:90%; height:90%; object-fit:contain; padding:24px;
+      animation:float 6s ease-in-out infinite;
+      position:relative; z-index:1;
+    }
+    .feat-orbit {
+      position:absolute; border-radius:50%;
+      border:1px solid rgba(45,49,71,.08);
+      top:50%; left:50%; transform:translate(-50%,-50%);
+    }
+    .feat-info {
+      padding:56px 52px;
+      display:flex; flex-direction:column;
+      justify-content:center; gap:20px;
+      background:var(--snow);
+    }
+    .feat-tag {
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:10px; letter-spacing:4px; text-transform:uppercase;
+      color:var(--navy);
+    }
+    .feat-tag::before {
+      content:''; width:20px; height:1px; background:var(--navy);
+    }
+    .feat-title {
+      font-family:'Playfair Display', serif;
+      font-size:clamp(26px,2.8vw,38px); line-height:1.2;
+    }
+    .feat-desc { font-size:14px; color:var(--grafito); line-height:1.85; }
+    .feat-perks { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .feat-perks li {
+      display:flex; align-items:center; gap:10px;
+      font-size:13px; color:var(--grafito);
+    }
+    .feat-perks li::before {
+      content:''; width:5px; height:5px; border-radius:50%;
+      background:var(--navy); flex-shrink:0;
+    }
+    .feat-footer {
+      padding-top:20px; border-top:1px solid var(--linea);
+      display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+    }
+    .feat-price {
+      font-family:'Playfair Display', serif;
+      font-size:36px; color:var(--navy);
+    }
+    .feat-price sup { font-size:16px; color:var(--ash); font-family:'Inter',sans-serif; }
+    .feat-price small { font-size:13px; color:var(--ash); font-family:'Inter',sans-serif; display:block; }
+
+    /* ─── BENEFITS ───────────────────────────────────────────────── */
+    .benefits-section { background:var(--snow); }
+    .benefits-grid {
+      display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr));
+      gap:1px; background:var(--linea);
+      border:1px solid var(--linea); border-radius:var(--radius);
+      overflow:hidden; margin-top:52px;
+    }
+    .benefit-card {
+      padding:36px 28px;
+      background:var(--snow);
+      display:flex; flex-direction:column; gap:14px;
+      transition:background .3s;
+    }
+    .benefit-card:hover { background:var(--paper); }
+    .benefit-icon {
+      width:44px; height:44px;
+      border:1px solid var(--linea); border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--navy);
+    }
+    .benefit-title { font-size:15px; font-weight:500; color:var(--tinta); }
+    .benefit-desc { font-size:13px; color:var(--grafito); line-height:1.7; }
+
+    /* ─── TESTIMONIALS ───────────────────────────────────────────── */
+    .test-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+      gap:20px; margin-top:52px;
+    }
+    .test-card {
+      padding:28px;
+      background:var(--snow);
+      border:1px solid var(--linea); border-radius:var(--radius);
+      display:flex; flex-direction:column; gap:18px;
+      transition:border-color .3s;
+    }
+    .test-card:hover { border-color:var(--navy); }
+    .stars { color:var(--navy); font-size:13px; letter-spacing:2px; }
+    .test-text {
+      font-family:'Playfair Display', serif;
+      font-size:15px; line-height:1.8; font-style:italic;
+      color:var(--grafito);
+    }
+    .test-author {
+      display:flex; align-items:center; gap:12px;
+      padding-top:16px; border-top:1px solid var(--bone);
+    }
+    .test-avatar {
+      width:40px; height:40px; border-radius:50%;
+      background:var(--navy);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Playfair Display', serif; font-size:15px; color:#fff;
+    }
+    .test-name { font-size:14px; font-weight:500; }
+    .test-role { font-size:12px; color:var(--ash); }
+
+    /* ─── CONTACT ────────────────────────────────────────────────── */
+    .contact-section { background:var(--paper); }
+    .contact-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:80px; align-items:start;
+    }
+    .contact-info { display:flex; flex-direction:column; gap:24px; }
+    .contact-row {
+      display:flex; align-items:center; gap:16px;
+    }
+    .contact-icon {
+      width:44px; height:44px; border-radius:50%;
+      border:1px solid var(--linea);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--navy); flex-shrink:0;
+    }
+    .contact-lbl {
+      font-size:10px; letter-spacing:2px; text-transform:uppercase;
+      color:var(--ash); margin-bottom:3px;
+    }
+    .contact-val { font-size:15px; color:var(--tinta); }
+    .contact-form {
+      background:var(--snow); border:1px solid var(--linea);
+      border-radius:16px; padding:36px;
+      display:flex; flex-direction:column; gap:14px;
+    }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .form-group { display:flex; flex-direction:column; gap:6px; }
+    .form-label {
+      font-size:10px; letter-spacing:2px; text-transform:uppercase;
+      color:var(--ash);
+    }
+    .form-input, .form-textarea {
+      padding:12px 16px;
+      background:var(--paper); border:1px solid var(--linea);
+      border-radius:8px; color:var(--tinta);
+      font-size:14px; font-family:'Inter',sans-serif;
+      outline:none; transition:border-color .3s;
+    }
+    .form-input:focus, .form-textarea:focus { border-color:var(--navy); }
+    .form-input::placeholder, .form-textarea::placeholder { color:var(--ash); }
+    .form-textarea { resize:vertical; }
+
+    /* ─── NEWSLETTER ─────────────────────────────────────────────── */
+    .newsletter-section {
+      background:var(--navy); color:#fff; text-align:center;
+    }
+    .newsletter-section .section-label { color:rgba(255,255,255,.4); }
+    .newsletter-section .section-title { color:#fff; }
+    .newsletter-section .section-title em { color:rgba(255,255,255,.5); }
+    .nl-sub {
+      color:rgba(255,255,255,.5); font-size:14px;
+      max-width:380px; margin:16px auto 36px;
+    }
+    .nl-form {
+      display:flex; gap:10px; max-width:420px;
+      margin:0 auto; flex-wrap:wrap; justify-content:center;
+    }
+    .nl-input {
+      flex:1; min-width:200px; padding:13px 20px;
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15);
+      border-radius:50px; color:#fff; font-size:14px;
+      font-family:'Inter',sans-serif; outline:none;
+      transition:border-color .3s;
+    }
+    .nl-input::placeholder { color:rgba(255,255,255,.35); }
+    .nl-input:focus { border-color:rgba(255,255,255,.4); }
+    .btn-nl {
+      padding:13px 28px; background:#fff; color:var(--navy);
+      border-radius:50px; font-size:11px; letter-spacing:2px;
+      text-transform:uppercase; font-weight:600;
+      transition:opacity .3s;
+    }
+    .btn-nl:hover { opacity:.9; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background:var(--tinta); color:rgba(255,255,255,.5);
+      padding:72px 5vw 36px;
+    }
+    .footer-top {
+      display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
+      gap:48px; padding-bottom:56px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .footer-brand { display:flex; flex-direction:column; gap:18px; }
+    .footer-logo { display:flex; align-items:center; }
+    .footer-logo img { height:52px; width:auto; filter:invert(1); mix-blend-mode:screen; }
+    .footer-tagline { font-size:13px; line-height:1.7; max-width:240px; }
+    .footer-social { display:flex; gap:10px; }
+    .soc-icon {
+      width:34px; height:34px; border-radius:50%;
+      border:1px solid rgba(255,255,255,.1);
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,.4); transition:.3s;
+    }
+    .soc-icon:hover { border-color:rgba(255,255,255,.4); color:rgba(255,255,255,.8); }
+    .footer-col h4 {
+      font-size:10px; letter-spacing:3px; text-transform:uppercase;
+      color:rgba(255,255,255,.5); margin-bottom:20px;
+    }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .footer-col a { font-size:13px; transition:color .3s; }
+    .footer-col a:hover { color:rgba(255,255,255,.9); }
+    .footer-bottom {
+      padding-top:28px;
+      display:flex; justify-content:space-between; align-items:center;
+      flex-wrap:wrap; gap:12px;
+    }
+    .footer-copy { font-size:11px; }
+
+    /* ─── CART ───────────────────────────────────────────────────── */
+    .cart-overlay {
+      position:fixed; inset:0; background:rgba(14,14,14,.4);
+      z-index:200; opacity:0; pointer-events:none;
+      transition:opacity .4s; backdrop-filter:blur(4px);
+    }
+    .cart-overlay.open { opacity:1; pointer-events:all; }
+    .cart-drawer {
+      position:fixed; top:0; right:0; bottom:0;
+      width:min(400px,100vw);
+      background:var(--snow); border-left:1px solid var(--linea);
+      z-index:201; transform:translateX(100%);
+      transition:transform .4s cubic-bezier(.4,0,.2,1);
+      display:flex; flex-direction:column;
+    }
+    .cart-drawer.open { transform:none; }
+    .cart-hdr {
+      padding:24px; border-bottom:1px solid var(--linea);
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .cart-hdr h3 { font-family:'Playfair Display',serif; font-size:20px; }
+    .cart-close-btn {
+      width:34px; height:34px; border-radius:50%;
+      border:1px solid var(--linea);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--ash); transition:.3s;
+    }
+    .cart-close-btn:hover { border-color:var(--navy); color:var(--navy); }
+    .cart-items { flex:1; overflow-y:auto; padding:20px; }
+    .cart-empty {
+      display:flex; flex-direction:column; align-items:center;
+      justify-content:center; height:100%; gap:12px;
+      color:var(--ash); text-align:center;
+    }
+    .cart-item {
+      display:flex; gap:14px; padding:14px 0;
+      border-bottom:1px solid var(--bone);
+    }
+    .cart-item-img {
+      width:64px; height:64px; border-radius:8px;
+      background:var(--bone); border:1px solid var(--linea);
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0;
+    }
+    .cart-item-info { flex:1; }
+    .cart-item-name { font-size:14px; margin-bottom:4px; }
+    .cart-item-sub { font-size:12px; color:var(--ash); }
+    .cart-item-rm { color:var(--ash); font-size:18px; line-height:1; transition:.3s; }
+    .cart-item-rm:hover { color:var(--tinta); }
+    .cart-ftr {
+      padding:20px; border-top:1px solid var(--linea);
+    }
+    .cart-total {
+      display:flex; justify-content:space-between;
+      font-size:14px; color:var(--grafito);
+      margin-bottom:16px;
+    }
+    .cart-total-val {
+      font-family:'Playfair Display',serif;
+      font-size:20px; color:var(--navy);
+    }
+    .btn-checkout {
+      width:100%; padding:14px;
+      background:var(--navy); color:#fff;
+      border-radius:10px; font-size:12px;
+      letter-spacing:2px; text-transform:uppercase; font-weight:500;
+      transition:opacity .3s;
+    }
+    .btn-checkout:hover { opacity:.85; }
+
+    /* ─── MOBILE MENU ────────────────────────────────────────────── */
+    .mobile-menu {
+      position:fixed; inset:0; background:var(--paper);
+      z-index:150; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; gap:28px;
+      transform:translateX(100%); transition:transform .4s;
+    }
+    .mobile-menu.open { transform:none; }
+    .mobile-menu a {
+      font-family:'Playfair Display',serif;
+      font-size:28px; color:var(--grafito); transition:color .3s;
+    }
+    .mobile-menu a:hover { color:var(--tinta); }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:none; }
+    }
+    @keyframes marquee {
+      from { transform:translateX(0); }
+      to   { transform:translateX(-50%); }
+    }
+    @keyframes float {
+      0%,100% { transform:translateY(0); }
+      50%      { transform:translateY(-14px); }
+    }
+    @keyframes pulse {
+      0%,100% { opacity:.5; }
+      50%      { opacity:1; }
+    }
+    @keyframes orbitSpin {
+      from { transform:translate(-50%,-50%) rotate(0deg); }
+      to   { transform:translate(-50%,-50%) rotate(360deg); }
+    }
+    @keyframes orbitSpinR {
+      from { transform:translate(-50%,-50%) rotate(0deg); }
+      to   { transform:translate(-50%,-50%) rotate(-360deg); }
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media(max-width:960px) {
+      .hero { grid-template-columns:1fr; }
+      .hero-text { padding:80px 5vw 40px; }
+      .hero-visual { min-height:360px; padding:0 5vw 60px; }
+      .voltena-showcase-grid { grid-template-columns:1fr; gap:40px; }
+      .about-grid { grid-template-columns:1fr; gap:40px; }
+      .about-visual-wrap { max-height:260px; }
+      .featured-grid { grid-template-columns:1fr; }
+      .feat-info { padding:36px 28px; }
+      .contact-grid { grid-template-columns:1fr; gap:40px; }
+      .footer-top { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:640px) {
+      section { padding:72px 5vw; }
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .about-stats { grid-template-columns:1fr 1fr; }
+      .footer-top { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .hero-title { font-size:40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="assets/logo-fw.png" alt="Fancy Water" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#voltena">VOL:TENA</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li>
+      <a href="#contacto" class="nav-cta">Comprar</a>
+    </li>
+    <li>
+      <button class="nav-cart-btn" id="cartBtn">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </li>
+  </ul>
+  <button class="hamburger" id="hamburgerBtn">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── MOBILE MENU ───────────────────────────────────────────────── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotros"  onclick="closeMobile()">Nosotros</a>
+  <a href="#productos" onclick="closeMobile()">Productos</a>
+  <a href="#voltena"   onclick="closeMobile()">VOL:TENA</a>
+  <a href="#testimonios" onclick="closeMobile()">Testimonios</a>
+  <a href="#contacto"  onclick="closeMobile()">Contacto</a>
+  <a href="#contacto"  onclick="closeMobile()" style="color:var(--navy)">Comprar</a>
+</div>
+
+<!-- ─── HERO ──────────────────────────────────────────────────────── -->
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="hero-text">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Distribuidores Oficiales VOL:TENA en América
+    </div>
+    <p class="hero-eyebrow">Distribuidora Médico-Estética · México</p>
+    <h1 class="hero-title">
+      Insumos que<br>elevan tu <em>práctica</em>
+    </h1>
+    <p class="hero-sub">
+      Distribuidor autorizado de toxinas botulínicas, rellenos dérmicos, mesoterapia y la línea exclusiva VOL:TENA. Productos 100% originales con entrega inmediata para clínicas y médicos.
+    </p>
+    <div class="hero-actions">
+      <a href="#productos" class="btn-primary">Ver Catálogo</a>
+      <a href="#productos" class="btn-ghost">Ver Productos</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="voltena-photo-wrap">
+      <div class="voltena-photo-bg"></div>
+      <div class="hero-slideshow" id="heroSlideshow">
+        <img src="assets/products/slam-productos.png"  class="hero-slide active" alt="Catálogo Fancy Water" style="object-fit:cover;object-position:center;" />
+        <img src="assets/products/toxinas-group.png"   class="hero-slide"        alt="Toxinas Botulínicas"  style="object-fit:cover;object-position:center;" />
+        <img src="assets/products/voltena-line-solo.png" class="hero-slide"      alt="Línea VOL:TENA"       style="object-fit:cover;object-position:15% center;" />
+        <img src="assets/products/lacto-hero.jpg"      class="hero-slide"        alt="VOL:TENA Lacto"       style="object-fit:cover;object-position:center;" />
+        <img src="assets/products/derma-fillers.png"   class="hero-slide"        alt="Derma Fillers"        style="object-fit:cover;object-position:center;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ───────────────────────────────────────────────────── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Toxinas Botulínicas<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Rellenos Dérmicos<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Ácido Poliláctico PLLA<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Lipoenzimas<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Skin Booster<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Línea VOL:TENA<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Distribución Nacional<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Cadena de Frío<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Toxinas Botulínicas<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Rellenos Dérmicos<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Ácido Poliláctico PLLA<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Lipoenzimas<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Skin Booster<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Línea VOL:TENA<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Distribución Nacional<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Cadena de Frío<span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- ─── VOLTENA SHOWCASE ──────────────────────────────────────────── -->
+<section class="voltena-showcase" id="voltena">
+  <div class="voltena-showcase-bg"></div>
+  <div class="voltena-showcase-grid">
+    <div class="reveal">
+      <p class="vs-eyebrow">Distribuidores Exclusivos · América</p>
+      <div class="vs-title">VOL<span>:</span>TENA</div>
+      <p class="vs-sub">Body &amp; Face Contouring Science</p>
+      <p class="vs-body">
+        VOL:TENA es la línea de medicina estética corporal y facial más innovadora desarrollada en Corea. Fancy Water es el distribuidor oficial exclusivo para toda América, llevando tecnología de clase mundial a clínicas y médicos en México y el continente.
+      </p>
+      <div class="vs-badge">Distribución Exclusiva para América</div>
+      <div class="vs-products-row">
+        <span class="vs-product-pill">Voltena N°1 · Body Serum</span>
+        <span class="vs-product-pill">Voltena N°2 · Body Filler</span>
+        <span class="vs-product-pill">Voltena N°3 · Cool Gel</span>
+        <span class="vs-product-pill">Pllagen · PLLA</span>
+        <span class="vs-product-pill">Lacto · Intimate Care</span>
+      </div>
+    </div>
+    <div class="vs-photo reveal">
+      <img src="assets/products/voltena-line-solo.png" alt="Línea completa VOL:TENA" />
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─────────────────────────────────────────────────────── -->
+<section id="nosotros">
+  <div class="about-grid">
+    <div class="about-visual-wrap reveal">
+      <div class="about-visual-inner">
+        <img src="assets/about-visual.png" alt="Fancy Water — Distribuidora médico-estética" />
+      </div>
+    </div>
+    <div class="about-content reveal">
+      <p class="section-label">Quiénes Somos</p>
+      <h2 class="section-title">Tu aliado en<br><em>medicina estética</em></h2>
+      <p class="about-body">
+        Fancy Water es una distribuidora especializada en productos de medicina estética de primer nivel. Trabajamos directamente con las marcas líderes mundiales para garantizar autenticidad, cadena de frío y entrega inmediata para tu clínica o consultorio.
+      </p>
+      <p class="about-body">
+        Como distribuidores exclusivos de VOL:TENA en América, ofrecemos acceso prioritario a la tecnología coreana más avanzada en contouring corporal y facial, respaldada por evidencia clínica.
+      </p>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-num">30+</div>
+          <div class="stat-lbl">Productos en Catálogo</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Originales y Certificados</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">MX</div>
+          <div class="stat-lbl">Entrega Nacional</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRODUCTS ──────────────────────────────────────────────────── -->
+<section id="productos" class="products-section">
+  <div class="products-header reveal">
+    <div>
+      <p class="section-label">Catálogo</p>
+      <h2 class="section-title">Lista de <em>Precios</em></h2>
+      <p class="price-note" style="margin-top:8px;">
+        <span>Precios en MXN · Tarifa Minorista · IVA no incluido</span>
+      </p>
+    </div>
+    <div class="filters-wrap">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="toxinas">Toxinas</button>
+      <button class="filter-btn" data-filter="rellenos">Rellenos</button>
+      <button class="filter-btn" data-filter="plla">PLLA</button>
+      <button class="filter-btn" data-filter="lipoenzimas">Lipoenzimas</button>
+      <button class="filter-btn" data-filter="skinbooster">Skin Booster</button>
+      <button class="filter-btn" data-filter="mesoterapia">Mesoterapia</button>
+      <button class="filter-btn" data-filter="voltena">VOL:TENA</button>
+    </div>
+  </div>
+
+  <div class="products-grid" id="productsGrid">
+
+    <!-- ── TOXINAS ── -->
+    <div class="product-card reveal" data-category="toxinas">
+      <div class="product-img">
+        <img src="assets/products/nabota.png" alt="Nabota 100U" loading="lazy" />
+        <span class="p-badge top">Top Ventas</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Toxina Botulínica</p>
+        <h3 class="p-name">Nabota 100U</h3>
+        <p class="p-desc">Toxina botulínica tipo A de Daewoong. Gold standard en precisión, duración y consistencia clínica.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,500</div>
+          <button class="add-btn add-to-cart" data-name="Nabota 100U" data-price="1500">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="toxinas">
+      <div class="product-img">
+        <img src="assets/products/nabota200-solo.jpg" alt="Nabota 200U" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Toxina Botulínica</p>
+        <h3 class="p-name">Nabota 200U</h3>
+        <p class="p-desc">Presentación de 200 unidades. Ideal para tratamientos de mayor superficie o uso clínico intensivo.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,900</div>
+          <button class="add-btn add-to-cart" data-name="Nabota 200U" data-price="1900">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="toxinas">
+      <div class="product-img">
+        <img src="assets/products/innotox-new.webp" alt="Innotox 100U" loading="lazy" />
+        <span class="p-badge nuevo">Líquido</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Toxina Botulínica</p>
+        <h3 class="p-name">Innotox 100U</h3>
+        <p class="p-desc">Toxina botulínica en solución lista para usar. Sin reconstitución necesaria — máxima practicidad.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,350</div>
+          <button class="add-btn add-to-cart" data-name="Innotox 100U" data-price="1350">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="toxinas">
+      <div class="product-img">
+        <img src="assets/products/listox.png" alt="Liztox 100U" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Toxina Botulínica</p>
+        <h3 class="p-name">Liztox 100U</h3>
+        <p class="p-desc">Toxina botulínica de alta pureza. Formulación profesional para resultados naturales a menor costo.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>900</div>
+          <button class="add-btn add-to-cart" data-name="Liztox 100U" data-price="900">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RELLENOS ── -->
+    <div class="product-card reveal" data-category="rellenos">
+      <div class="product-img">
+        <img src="assets/products/juvederm.webp" alt="Juvéderm Voluma" loading="lazy" />
+        <span class="p-badge top">Premium</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Ácido Hialurónico</p>
+        <h3 class="p-name">Juvéderm Voluma</h3>
+        <p class="p-desc">HA con tecnología VYCROSS de Allergan. El relleno premium de mayor reconocimiento global. 1ml × 2 jeringas.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>4,200</div>
+          <button class="add-btn add-to-cart" data-name="Juvéderm Voluma" data-price="4200">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="rellenos">
+      <div class="product-img">
+        <img src="assets/products/revolax.webp" alt="Revolax" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Ácido Hialurónico</p>
+        <h3 class="p-name">Revolax 1.1ml</h3>
+        <p class="p-desc">HA reticulado con lidocaína en tres densidades: Fine, Deep y Sub-Q para cada indicación clínica.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,020</div>
+          <button class="add-btn add-to-cart" data-name="Revolax" data-price="1020">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="rellenos">
+      <div class="product-img">
+        <img src="assets/products/dermalax.png" alt="Dermalax" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Ácido Hialurónico</p>
+        <h3 class="p-name">Dermalax 1.1ml</h3>
+        <p class="p-desc">Relleno de HA de alta pureza con lidocaína para corrección de arrugas moderadas a profundas.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,100</div>
+          <button class="add-btn add-to-cart" data-name="Dermalax" data-price="1100">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="rellenos">
+      <div class="product-img">
+        <img src="assets/products/dermalax.png" alt="Dermalax Implant" loading="lazy" />
+        <span class="p-badge nuevo">Implant</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Ácido Hialurónico</p>
+        <h3 class="p-name">Dermalax Implant</h3>
+        <p class="p-desc">Alta viscosidad para volumización estructural. Presentación 2 jeringas para zonas de mayor demanda.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,600</div>
+          <button class="add-btn add-to-cart" data-name="Dermalax Implant" data-price="1600">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="rellenos">
+      <div class="product-img">
+        <img src="assets/products/elasty.jpg" alt="Elasty" loading="lazy" />
+        <span class="p-badge pedido">Pedido especial</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Ácido Hialurónico</p>
+        <h3 class="p-name">Elasty 1.1ml</h3>
+        <p class="p-desc">HA de larga duración con propiedades viscoelásticas optimizadas para resultados naturales y duraderos.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,100</div>
+          <button class="add-btn add-to-cart" data-name="Elasty" data-price="1100">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VOLTENA N°2 (rellenos + voltena) ── -->
+    <div class="product-card reveal" data-category="rellenos voltena">
+      <div class="product-img">
+        <img src="assets/products/voltena2-solo.jpg" alt="Voltena N°2 Body Filler" loading="lazy" />
+        <span class="p-badge nuevo">VOL:TENA</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">VOL:TENA · Relleno Corporal</p>
+        <h3 class="p-name">Voltena N°2</h3>
+        <p class="p-desc">Body Filler coreano de alta densidad para modelado corporal y volumización no quirúrgica. Resultado inmediato.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>2,800</div>
+          <button class="add-btn add-to-cart" data-name="Voltena N°2 Body Filler" data-price="2800">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PLLA ── -->
+    <div class="product-card reveal" data-category="plla">
+      <div class="product-img">
+        <img src="assets/products/estella.jpg" alt="Estella PLLA 200" loading="lazy" />
+        <span class="p-badge nuevo">Nuevo</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Ácido Poliláctico · PLLA</p>
+        <h3 class="p-name">Estella PLLA 200</h3>
+        <p class="p-desc">Bioestimulador PLLA 514mg/vial. Inducción progresiva de colágeno con resultados de larga duración.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>3,500</div>
+          <button class="add-btn add-to-cart" data-name="Estella PLLA 200" data-price="3500">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="plla skinbooster voltena">
+      <div class="product-img">
+        <img src="assets/products/pllagen.jpg" alt="Pllagen PLLA" loading="lazy" />
+        <span class="p-badge nuevo">Nuevo</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Ácido Poliláctico · PLLA</p>
+        <h3 class="p-name">Pllagen PLLA</h3>
+        <p class="p-desc">Doble vial PLLA + diluente. Estimulación de neocolagénesis para firmeza y regeneración profunda.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>2,200</div>
+          <button class="add-btn add-to-cart" data-name="Pllagen PLLA" data-price="2200">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── LIPOENZIMAS ── -->
+    <div class="product-card reveal" data-category="lipoenzimas">
+      <div class="product-img">
+        <img src="assets/products/lipolab.jpg" alt="Lipo Lab PPC" loading="lazy" />
+        <span class="p-badge kfda">KFDA</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Lipoenzimas</p>
+        <h3 class="p-name">Lipo Lab PPC</h3>
+        <p class="p-desc">Fosfatidilcolina 1,000mg certificada KFDA. Lipólisis no quirúrgica. 10ml × 10 viales.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,400</div>
+          <button class="add-btn add-to-cart" data-name="Lipo Lab PPC" data-price="1400">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="lipoenzimas voltena">
+      <div class="product-img">
+        <img src="assets/products/voltena1-solo.jpg" alt="Voltena N°1" loading="lazy"
+          style="object-position:left center;" />
+        <span class="p-badge nuevo">VOL:TENA</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Lipoenzimas · VOL:TENA</p>
+        <h3 class="p-name">Voltena N°1</h3>
+        <p class="p-desc">Body &amp; Face Contouring Serum. Lipolisis inyectable de origen coreano. 10ml × 6 viales. Made in Korea.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>2,300</div>
+          <button class="add-btn add-to-cart" data-name="Voltena N°1" data-price="2300">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SKIN BOOSTER / MESOTERAPIA ── -->
+    <div class="product-card reveal" data-category="skinbooster">
+      <div class="product-img">
+        <img src="assets/products/hyaron.jpg" alt="Hyaron Prefilled" loading="lazy" />
+        <span class="p-badge top">Popular</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Skin Booster</p>
+        <h3 class="p-name">Hyaron Prefilled</h3>
+        <p class="p-desc">Ácido hialurónico 25mg/2.5ml pre-cargado × 10 jeringas. Hidratación profunda y efecto radiance inmediato.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,950</div>
+          <button class="add-btn add-to-cart" data-name="Hyaron Prefilled" data-price="1950">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="skinbooster">
+      <div class="product-img">
+        <img src="assets/products/eyebella.webp" alt="Eyebella" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Skin Booster · Periocular</p>
+        <h3 class="p-name">Eyebella 2ml</h3>
+        <p class="p-desc">Tratamiento especializado para zona periocular. Reduce ojeras, bolsas y líneas de expresión con precisión.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>700</div>
+          <button class="add-btn add-to-cart" data-name="Eyebella" data-price="700">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="skinbooster">
+      <div class="product-img">
+        <img src="assets/products/ami-eyes.webp" alt="Ami Eyes 2ml" loading="lazy" />
+        <span class="p-badge nuevo">Nuevo</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Skin Booster · Periocular</p>
+        <h3 class="p-name">Ami Eyes 2ml</h3>
+        <p class="p-desc">Última generación en tratamiento periocular. Polinucleótidos para regeneración y luminosidad en la mirada.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,300</div>
+          <button class="add-btn add-to-cart" data-name="Ami Eyes" data-price="1300">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="mesoterapia">
+      <div class="product-img">
+        <img src="assets/products/liporase.webp" alt="Liporase" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Complemento · Enzima</p>
+        <h3 class="p-name">Liporase 10 vials</h3>
+        <p class="p-desc">Hialuronidasa de alta pureza para disolución de rellenos HA y manejo de complicaciones post-filler.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>1,500</div>
+          <button class="add-btn add-to-cart" data-name="Liporase" data-price="1500">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="mesoterapia">
+      <div class="product-img">
+        <img src="assets/products/muchcaine.webp" alt="Muchcaine" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <p class="p-cat">Complemento · Anestésico</p>
+        <h3 class="p-name">Muchcaine 500g</h3>
+        <p class="p-desc">Anestésico tópico de alta concentración para procedimientos estéticos. Inicio de acción rápido y prolongado.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>750</div>
+          <button class="add-btn add-to-cart" data-name="Muchcaine" data-price="750">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VOLTENA PRODUCTS ── -->
+    <div class="product-card reveal" data-category="voltena mesoterapia">
+      <div class="product-img">
+        <img src="assets/products/voltena3-solo.png" alt="Voltena N°3" loading="lazy" />
+        <span class="p-badge nuevo">VOL:TENA</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">VOL:TENA · Corporal</p>
+        <h3 class="p-name">Voltena N°3</h3>
+        <p class="p-desc">Body Slimming Cool Gel 300ml. Gel reductor y reafirmante coreano de alta efectividad para uso post-procedimiento.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>600</div>
+          <button class="add-btn add-to-cart" data-name="Voltena N°3" data-price="600">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="voltena">
+      <div class="product-img">
+        <img src="assets/products/lacto.jpg" alt="Voltena Lacto" loading="lazy" />
+        <span class="p-badge nuevo">VOL:TENA</span>
+      </div>
+      <div class="product-info">
+        <p class="p-cat">VOL:TENA · Íntimo</p>
+        <h3 class="p-name">Lacto Gel</h3>
+        <p class="p-desc">Gel íntimo femenino con ácido láctico. Cuidado y bienestar para la zona íntima femenina. Uso profesional.</p>
+        <div class="p-footer">
+          <div class="p-price"><sup>$</sup>520</div>
+          <button class="add-btn add-to-cart" data-name="Lacto Gel" data-price="520">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <p style="text-align:center;margin-top:32px;font-size:12px;color:var(--ash);">
+    * Producto sobre pedido — entrega estimada de 3 a 4 semanas. Precios sujetos a cambio sin previo aviso. Para uso exclusivo de profesionales de la salud.
+  </p>
+</section>
+
+<!-- ─── FEATURED PRODUCT ───────────────────────────────────────────── -->
+<section>
+  <div style="margin-bottom:40px;" class="reveal">
+    <p class="section-label">Producto Estrella</p>
+    <h2 class="section-title">VOL:TENA <em>N°2</em></h2>
+  </div>
+  <div class="featured-grid reveal">
+    <div class="feat-visual">
+      <div class="feat-orbit" style="width:340px;height:340px;animation:orbitSpin 16s linear infinite;"></div>
+      <div class="feat-orbit" style="width:240px;height:240px;animation:orbitSpinR 11s linear infinite;border-color:rgba(45,49,71,.12);"></div>
+      <img src="assets/products/voltena2-cristal.jpg" alt="Voltena N°2 Body Filler" class="feat-visual-img" />
+    </div>
+    <div class="feat-info">
+      <span class="feat-tag">Exclusivo VOL:TENA · Distribuidores Oficiales</span>
+      <h2 class="feat-title">Voltena N°2<br>Body Filler</h2>
+      <p class="feat-desc">
+        El Body Filler más avanzado de la línea VOL:TENA. Formulado en Corea para volumización y contorneado corporal no quirúrgico. 60cc por presentación — el producto insignia de nuestra línea exclusiva.
+      </p>
+      <ul class="feat-perks">
+        <li>Tecnología coreana de última generación</li>
+        <li>Contorneado corporal no quirúrgico</li>
+        <li>60cc por vial — alta relación volumen/resultado</li>
+        <li>Aval clínico y certificación de origen</li>
+        <li>Disponible exclusivamente a través de Fancy Water</li>
+      </ul>
+      <div class="feat-footer">
+        <div class="feat-price">
+          <sup>$</sup>2,800
+          <small>MXN · Tarifa Minorista</small>
+        </div>
+        <button class="btn-primary add-to-cart" data-name="Voltena N°2 Body Filler" data-price="2800">
+          Agregar a la Lista
+        </button>
+        <a href="#contacto" class="btn-ghost" style="padding:14px 28px;">Comprar al Mayor</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BENEFITS ──────────────────────────────────────────────────── -->
+<section id="beneficios" class="benefits-section">
+  <p class="section-label reveal">Por qué Fancy Water</p>
+  <h2 class="section-title reveal">La diferencia que<br>se <em>siente</em></h2>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h3 class="benefit-title">100% Originales</h3>
+      <p class="benefit-desc">Distribuidor autorizado con certificado de autenticidad en cada producto. Sin falsificaciones, sin riesgos.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3 class="benefit-title">Cadena de Frío</h3>
+      <p class="benefit-desc">Almacenamiento y transporte con temperatura controlada para preservar la integridad de cada producto.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+      </div>
+      <h3 class="benefit-title">Entrega Inmediata</h3>
+      <p class="benefit-desc">Stock disponible para envío el mismo día. Cobertura nacional con monitoreo en tiempo real.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <h3 class="benefit-title">Asesoría Especializada</h3>
+      <p class="benefit-desc">Equipo con formación en medicina estética para orientarte en cada pedido y protocolo de uso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ───────────────────────────────────────────────── -->
+<section id="testimonios" style="background:var(--paper);">
+  <p class="section-label reveal">Testimonios</p>
+  <h2 class="section-title reveal">Lo que dicen<br>nuestros <em>clientes</em></h2>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="test-text">"Llevamos más de un año con Fancy Water y la diferencia es total. Productos siempre originales, entrega el mismo día y precios muy competitivos. Son el mejor proveedor que hemos tenido."</p>
+      <div class="test-author">
+        <div class="test-avatar">R</div>
+        <div>
+          <div class="test-name">Dr. Rodrigo M.</div>
+          <div class="test-role">Médico Estético · CDMX</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="test-text">"El Nabota y el Juvéderm que nos proveen son 100% auténticos. Mis pacientes notan la diferencia. Y el equipo de Fancy Water siempre resuelve cualquier duda al instante por WhatsApp."</p>
+      <div class="test-author">
+        <div class="test-avatar">V</div>
+        <div>
+          <div class="test-name">Dra. Valeria S.</div>
+          <div class="test-role">Dermatóloga · Guadalajara</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="test-text">"Somos spa médico y Fancy Water nos atiende perfecto. La línea VOL:TENA ha sido un diferenciador enorme para nuestros tratamientos corporales. Excelente proveedor, totalmente recomendado."</p>
+      <div class="test-author">
+        <div class="test-avatar">C</div>
+        <div>
+          <div class="test-name">Claudia R.</div>
+          <div class="test-role">Directora de Spa Médico · Monterrey</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ────────────────────────────────────────────────────── -->
+<section id="contacto" class="contact-section" style="background:var(--snow);">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <p class="section-label">Pedidos</p>
+      <h2 class="section-title">Hablemos de<br>tu <em>pedido</em></h2>
+      <p style="font-size:15px;color:var(--grafito);line-height:1.85;margin-top:4px;max-width:380px;">
+        Atendemos clínicas, médicos y spas con precios preferenciales, stock garantizado y entrega rápida. Escríbenos directamente por WhatsApp o completa el formulario.
+      </p>
+      <div class="contact-row">
+        <div class="contact-icon">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+        </div>
+        <div>
+          <div class="contact-lbl">WhatsApp</div>
+          <div class="contact-val" style="font-size:20px;font-weight:500;letter-spacing:1px;">813 418 8472</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-lbl">Email</div>
+          <div class="contact-val">samuel@fancywater.mx</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div class="contact-lbl">Horario de Atención</div>
+          <div class="contact-val">Lun – Vie · 8:00 – 17:00 hrs</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form class="contact-form" onsubmit="handleContact(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nombre / Dr.</label>
+            <input type="text" class="form-input" placeholder="Dr. Nombre" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Clínica / Spa</label>
+            <input type="text" class="form-input" placeholder="Mi Clínica" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Correo Electrónico</label>
+          <input type="email" class="form-input" placeholder="correo@clinica.com" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">WhatsApp / Teléfono</label>
+          <input type="tel" class="form-input" placeholder="+52 000 000 0000" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Productos de Interés</label>
+          <textarea class="form-textarea" rows="3"
+            placeholder="Ej: Nabota 100U × 10, Juvéderm × 5, Voltena N°2 × 3…"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;padding:14px;border-radius:10px;">
+          Enviar Solicitud
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NEWSLETTER ─────────────────────────────────────────────────── -->
+<section class="newsletter-section">
+  <p class="section-label reveal">Comunidad</p>
+  <h2 class="section-title reveal">Recibe los mejores<br>precios y <em>novedades</em></h2>
+  <p class="nl-sub reveal">Lanzamientos, precios especiales y nuevos productos — directo a tu correo.</p>
+  <form class="nl-form reveal" onsubmit="handleNewsletter(event)">
+    <input type="email" class="nl-input" placeholder="correo@clinica.com" required />
+    <button type="submit" class="btn-nl">Suscribirse</button>
+  </form>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="assets/logo-fw.png" alt="Fancy Water" />
+      </div>
+      <p class="footer-tagline">Distribuidora médico-estética. Productos originales con cadena de frío y entrega inmediata.</p>
+      <p style="font-size:11px;color:rgba(255,255,255,.3);">Distribuidores Oficiales VOL:TENA en América</p>
+      <div class="footer-social">
+        <a href="#" class="soc-icon" aria-label="Instagram">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+        </a>
+        <a href="#" class="soc-icon" aria-label="Facebook">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="soc-icon" aria-label="TikTok">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Catálogo</h4>
+      <ul>
+        <li><a href="#productos">Toxinas Botulínicas</a></li>
+        <li><a href="#productos">Rellenos Dérmicos</a></li>
+        <li><a href="#productos">PLLA / Bioestimuladores</a></li>
+        <li><a href="#productos">Lipoenzimas</a></li>
+        <li><a href="#productos">Skin Booster</a></li>
+        <li><a href="#productos">PLLA &amp; Bioestimuladores</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>VOL:TENA</h4>
+      <ul>
+        <li><a href="#voltena">Voltena N°1</a></li>
+        <li><a href="#voltena">Voltena N°2</a></li>
+        <li><a href="#voltena">Voltena N°3</a></li>
+        <li><a href="#voltena">Pllagen</a></li>
+        <li><a href="#voltena">Lacto Gel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="#contacto">WhatsApp: 813 418 8472</a></li>
+        <li><a href="#contacto">samuel@fancywater.mx</a></li>
+        <li><a href="#productos">Tienda</a></li>
+        <li><a href="#">Aviso de Privacidad</a></li>
+        <li><a href="#">Términos y Condiciones</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Fancy Water · México · Distribución Médico-Estética</p>
+    <p class="footer-copy">Para uso exclusivo de profesionales de la salud</p>
+  </div>
+</footer>
+
+<!-- ─── CART ──────────────────────────────────────────────────────── -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-hdr">
+    <h3>Mi Carrito</h3>
+    <button class="cart-close-btn" onclick="toggleCart()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <svg width="44" height="44" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+      </svg>
+      <p style="font-size:14px;">Tu carrito está vacío</p>
+    </div>
+  </div>
+  <div class="cart-ftr" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span>Subtotal</span>
+      <span class="cart-total-val" id="cartTotal">$0</span>
+    </div>
+    <button class="btn-checkout" onclick="window.location='#contacto';toggleCart()">
+      Proceder al Pago
+    </button>
+    <p style="text-align:center;font-size:10px;color:var(--ash);margin-top:8px;letter-spacing:1px;">Pasarela de pago próximamente</p>
+  </div>
+</div>
+
+<!-- ─── THREE.JS PARTICLES ────────────────────────────────────────── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ── PARTICLES (light theme — subtle navy) ────────────────────────────
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+  camera.position.z = 3.5;
+
+  const count = 1400;
+  const pos = new Float32Array(count * 3);
+  for (let i = 0; i < count; i++) {
+    const r = 2 + Math.random() * 3;
+    const t = Math.random() * Math.PI * 2;
+    const p = Math.acos(2 * Math.random() - 1);
+    pos[i*3]   = r * Math.sin(p) * Math.cos(t);
+    pos[i*3+1] = r * Math.sin(p) * Math.sin(t);
+    pos[i*3+2] = r * Math.cos(p);
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const mat = new THREE.PointsMaterial({ color: 0x2D3147, size: 0.012, transparent: true, opacity: 0.35, sizeAttenuation: true });
+  scene.add(new THREE.Points(geo, mat));
+
+  const rGeo = new THREE.TorusGeometry(1.3, 0.003, 16, 120);
+  const rMat = new THREE.MeshBasicMaterial({ color: 0x2D3147, transparent: true, opacity: 0.08 });
+  const r1 = new THREE.Mesh(rGeo, rMat);
+  r1.rotation.x = Math.PI / 4;
+  scene.add(r1);
+  const r2 = new THREE.Mesh(
+    new THREE.TorusGeometry(1.7, 0.002, 16, 120),
+    new THREE.MeshBasicMaterial({ color: 0x2D3147, transparent: true, opacity: 0.05 })
+  );
+  r2.rotation.x = Math.PI / 6; r2.rotation.y = Math.PI / 5;
+  scene.add(r2);
+
+  function resize() {
+    const h = document.querySelector('.hero');
+    const w = h.offsetWidth, ht = h.offsetHeight;
+    renderer.setSize(w, ht);
+    camera.aspect = w / ht;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => {
+    mx = (e.clientX / innerWidth - .5) * .4;
+    my = (e.clientY / innerHeight - .5) * .3;
+  });
+
+  const pts = scene.children[0];
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.002;
+    pts.rotation.y = t * 0.08 + mx * 0.25;
+    pts.rotation.x = my * 0.15;
+    r1.rotation.z += 0.0015;
+    r2.rotation.y += 0.001;
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+// ── HERO SLIDESHOW ────────────────────────────────────────────────────
+(function() {
+  const slides = document.querySelectorAll('#heroSlideshow .hero-slide');
+  if (!slides.length) return;
+  let cur = 0;
+  setInterval(() => {
+    slides[cur].classList.remove('active');
+    cur = (cur + 1) % slides.length;
+    slides[cur].classList.add('active');
+  }, 2000);
+})();
+
+// ── NAV SCROLL ────────────────────────────────────────────────────────
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+
+// ── REVEAL ────────────────────────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (i * 0.06) + 's';
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ── FILTERS ───────────────────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.product-card').forEach(card => {
+      const cats = card.dataset.category || '';
+      card.style.display = (f === 'all' || cats.includes(f)) ? '' : 'none';
+    });
+  });
+});
+
+// ── CART ──────────────────────────────────────────────────────────────
+let cart = [];
+
+function toggleCart() {
+  document.getElementById('cartOverlay').classList.toggle('open');
+  document.getElementById('cartDrawer').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('cartDrawer').classList.contains('open') ? 'hidden' : '';
+}
+
+function renderCart() {
+  const items   = document.getElementById('cartItems');
+  const empty   = document.getElementById('cartEmpty');
+  const footer  = document.getElementById('cartFooter');
+  const countEl = document.getElementById('cartCount');
+  const totalEl = document.getElementById('cartTotal');
+
+  const qty = cart.reduce((s,i) => s+i.qty, 0);
+  countEl.textContent = qty;
+  countEl.classList.toggle('visible', cart.length > 0);
+
+  if (!cart.length) {
+    empty.style.display = ''; footer.style.display = 'none'; return;
+  }
+  empty.style.display = 'none'; footer.style.display = '';
+
+  const sum = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  totalEl.textContent = '$' + sum.toLocaleString('es-MX') + ' MXN';
+
+  Array.from(items.children).forEach(c => { if (c !== empty) c.remove(); });
+  cart.forEach((item, idx) => {
+    const d = document.createElement('div');
+    d.className = 'cart-item';
+    d.innerHTML = `
+      <div class="cart-item-img">
+        <svg width="18" height="18" fill="none" stroke="var(--navy)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+      </div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-sub">$${item.price.toLocaleString('es-MX')} × ${item.qty}</div>
+      </div>
+      <button class="cart-item-rm" onclick="removeItem(${idx})">×</button>
+    `;
+    items.appendChild(d);
+  });
+}
+
+function addItem(name, price) {
+  const ex = cart.find(i => i.name === name);
+  if (ex) ex.qty++;
+  else cart.push({ name, price: parseInt(price), qty: 1 });
+  renderCart();
+  if (!document.getElementById('cartDrawer').classList.contains('open')) toggleCart();
+}
+
+function removeItem(idx) { cart.splice(idx, 1); renderCart(); }
+
+document.getElementById('cartBtn').addEventListener('click', toggleCart);
+document.querySelectorAll('.add-to-cart').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    addItem(btn.dataset.name, btn.dataset.price);
+  });
+});
+
+// ── MOBILE MENU ───────────────────────────────────────────────────────
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('hamburgerBtn').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+});
+
+// ── FORMS ─────────────────────────────────────────────────────────────
+function handleContact(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.textContent = '¡Solicitud enviada!';
+  btn.style.opacity = '.7';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Enviar Solicitud';
+    btn.style.opacity = '';
+    btn.disabled = false;
+    e.target.reset();
+  }, 4000);
+}
+function handleNewsletter(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = '¡Listo!';
+  setTimeout(() => { btn.textContent = 'Suscribirse'; e.target.reset(); }, 3000);
+}
+</script>
+</body>
+</html>

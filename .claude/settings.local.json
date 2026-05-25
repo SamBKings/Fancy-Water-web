@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/sambr-fw/Documents/FWebsite/.claude)",
+      "mcp__Claude_Preview__preview_start",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/sambr-fw/.nvm/versions/**)",
+      "Bash(ls /usr/local/bin/ 2>/dev/null | grep -E \"node|npx|serve|http\" | head -10; ls /opt/homebrew/bin/ 2>/dev/null | grep -E \"node|npx|serve|http\" | head -10; ls ~/.npm-global/bin/ 2>/dev/null | head -5)",
+      "Bash(find /usr -name \"node\" -type f 2>/dev/null | head -5; find /opt -name \"node\" -type f 2>/dev/null | head -5; find ~/Library -name \"node\" -type f 2>/dev/null | head -3)",
+      "Bash(find \"/Users/sambr-fw/Desktop\" -iname \"*nabo*\" -o -iname \"*nabota*\" 2>/dev/null | head -10 && find \"/Users/sambr-fw/Downloads\" -iname \"*nabo*\" -o -iname \"*nabota*\" 2>/dev/null | head -5)",
+      "Bash(cp \"/Users/sambr-fw/Desktop/Fancy Water/Elementos graficos/Fotos individuales para catalogo/nabota200.png\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/nabota200.png\")",
+      "Bash(cp \"/Users/sambr-fw/Desktop/Fancy Water/Elementos graficos/Fotos individuales para catalogo/voltena1.png\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/voltena1.png\")",
+      "Bash(cp \"/Users/sambr-fw/Desktop/Fancy Water/Elementos graficos/Fotos individuales para catalogo/voltena2.png\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/voltena2.png\")",
+      "Bash(cp \"/Users/sambr-fw/Desktop/Fancy Water/Elementos graficos/Fotos individuales para catalogo/voltena3.png\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/voltena3.png\")",
+      "Bash(cp \"/Users/sambr-fw/Desktop/Fancy Water/Elementos graficos/Fotos de productos sueltas/Toxinas/nabota 200u.jpg\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/nabota200-solo.jpg\")",
+      "Bash(cp \"/Users/sambr-fw/Desktop/Fancy Water/Elementos graficos/Fotos de productos sueltas/Voltena/Linea Voltena.png\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/voltena-line-solo.png\")",
+      "Bash(cp \"/Users/sambr-fw/Downloads/logo-fw-clean-dark.png\" \"/Users/sambr-fw/Documents/FWebsite/assets/logo-fw.png\")",
+      "Bash(open /Users/sambr-fw/Documents/FWebsite/index.html)",
+      "Bash(ls -lh \"/Users/sambr-fw/Downloads/relleno de espacio en blaco.png\" && cp \"/Users/sambr-fw/Downloads/relleno de espacio en blaco.png\" \"/Users/sambr-fw/Documents/FWebsite/assets/about-visual.png\" && echo \"OK\")",
+      "Bash(xargs ls -lt)",
+      "Bash(cp \"/Users/sambr-fw/Desktop/Fancy Water/Elementos graficos/Fotos de productos sueltas/innotox.webp\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/innotox-new.webp\")",
+      "Bash(cp \"/Users/sambr-fw/Desktop/Fancy Water/Elementos graficos/Fotos de productos sueltas/Ami Eyes.webp\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/ami-eyes.webp\")",
+      "Bash(cp \"/Users/sambr-fw/Desktop/Fancy Water/Elementos graficos/Fotos de productos sueltas/Slam de productos.png\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/slam-productos.png\")",
+      "Bash(cp \"/Users/sambr-fw/Desktop/Fancy Water/Elementos graficos/Fotos de productos sueltas/Toxinas/Toxinas.png\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/toxinas-group.png\" && cp \"/Users/sambr-fw/Downloads/WhatsApp Image 2025-01-20 at 08.51.25 \\(1\\).jpeg\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/lacto-hero.jpg\" && cp \"/Users/sambr-fw/Downloads/VOL 2 CRISTAL.jpg\" \"/Users/sambr-fw/Documents/FWebsite/assets/products/voltena2-cristal.jpg\" && echo \"OK\" && ls -lh /Users/sambr-fw/Documents/FWebsite/assets/products/toxinas-group.png /Users/sambr-fw/Documents/FWebsite/assets/products/lacto-hero.jpg /Users/sambr-fw/Documents/FWebsite/assets/products/voltena2-cristal.jpg)"
+    ]
+  }
+}
