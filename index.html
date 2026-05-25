@@ -2145,6 +2145,30 @@ function setFilter(f) {
   if (btn) btn.click();
 }
 
+// ── DYNAMIC FAVICON — white circle + logo (visible in dark mode) ──────
+(function() {
+  const img = new Image();
+  img.onload = function() {
+    const c = document.createElement('canvas');
+    c.width = c.height = 64;
+    const ctx = c.getContext('2d');
+    // white circle background
+    ctx.beginPath();
+    ctx.arc(32, 32, 32, 0, Math.PI * 2);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+    // logo centered with padding
+    ctx.drawImage(img, 8, 8, 48, 48);
+    // replace favicon link
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) { link = document.createElement('link'); document.head.appendChild(link); }
+    link.rel  = 'icon';
+    link.type = 'image/png';
+    link.href = c.toDataURL('image/png');
+  };
+  img.src = 'assets/logo-fw.png';
+})();
+
 // ── PAYMENT SUCCESS TOAST ─────────────────────────────────────────────
 if (new URLSearchParams(location.search).get('payment') === 'success') {
   const toast = document.getElementById('paymentToast');
