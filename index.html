@@ -841,6 +841,20 @@
     }
     .mobile-menu a:hover { color:var(--tinta); }
 
+    /* ─── PAYMENT TOAST ─────────────────────────────────────────── */
+    .payment-toast {
+      position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(120px);
+      background:var(--navy); color:#fff;
+      padding:18px 32px; border-radius:14px;
+      display:flex; align-items:center; gap:14px;
+      font-size:14px; letter-spacing:.3px;
+      box-shadow:0 20px 60px rgba(14,14,14,.3);
+      z-index:500; transition:transform .5s cubic-bezier(.34,1.56,.64,1);
+      white-space:nowrap;
+    }
+    .payment-toast.show { transform:translateX(-50%) translateY(0); }
+    .payment-toast svg { flex-shrink:0; }
+
     /* ─── ANIMATIONS ─────────────────────────────────────────────── */
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(20px); }
@@ -1780,6 +1794,17 @@
   </div>
 </div>
 
+<!-- ─── PAYMENT SUCCESS TOAST ─────────────────────────────────────── -->
+<div class="payment-toast" id="paymentToast">
+  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+  </svg>
+  <div>
+    <div style="font-weight:600;margin-bottom:2px;">¡Pago recibido con éxito!</div>
+    <div style="font-size:12px;opacity:.75;">Te contactaremos pronto para confirmar tu pedido.</div>
+  </div>
+</div>
+
 <!-- ─── STRIPE CHECKOUT MODAL ─────────────────────────────────────── -->
 <div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckout()"></div>
 <div class="checkout-modal" id="checkoutModal">
@@ -2067,6 +2092,15 @@ function handleNewsletter(e) {
   const btn = e.target.querySelector('button');
   btn.textContent = '¡Listo!';
   setTimeout(() => { btn.textContent = 'Suscribirse'; e.target.reset(); }, 3000);
+}
+
+// ── PAYMENT SUCCESS TOAST ─────────────────────────────────────────────
+if (new URLSearchParams(location.search).get('payment') === 'success') {
+  const toast = document.getElementById('paymentToast');
+  setTimeout(() => toast.classList.add('show'), 600);
+  setTimeout(() => toast.classList.remove('show'), 6000);
+  // Clean URL without reloading
+  history.replaceState({}, '', location.pathname);
 }
 </script>
 </body>
