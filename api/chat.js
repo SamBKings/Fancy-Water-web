@@ -79,7 +79,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const response = await client.messages.create({
-      model: 'claude-haiku-4-5',
+      model: 'claude-3-5-haiku-20241022',
       max_tokens: 600,
       system: SYSTEM_PROMPT,
       messages: recentMessages,
@@ -88,7 +88,7 @@ module.exports = async function handler(req, res) {
     const text = response.content[0]?.text || '';
     res.status(200).json({ reply: text });
   } catch (err) {
-    console.error('Chat error:', err);
+    console.error('Chat error:', err.status, err.message, err.error);
     res.status(500).json({ error: 'No se pudo procesar tu mensaje. Intenta de nuevo.' });
   }
 };
