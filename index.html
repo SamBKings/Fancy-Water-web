@@ -76,8 +76,14 @@
       backdrop-filter:blur(20px);
       box-shadow:0 1px 0 var(--linea);
     }
-    .nav-logo { display:flex; align-items:center; }
+    .nav-logo { display:flex; align-items:center; gap:10px; }
     .nav-logo img { height:52px; width:auto; mix-blend-mode:multiply; }
+    .nav-brand {
+      font-family:'Playfair Display', serif;
+      font-size:18px; font-weight:400;
+      letter-spacing:0.3px; color:var(--tinta);
+      white-space:nowrap;
+    }
     .nav-links { display:flex; gap:32px; list-style:none; align-items:center; }
     .nav-links a {
       font-size:12px; font-weight:400; letter-spacing:2px;
@@ -1293,6 +1299,7 @@
 <nav id="navbar">
   <a href="#" class="nav-logo">
     <img src="assets/logo-fw.png" alt="Fancy Water" />
+    <span class="nav-brand">Fancy Water</span>
   </a>
   <ul class="nav-links">
     <li><a href="#nosotros">Nosotros</a></li>
@@ -1357,7 +1364,7 @@
       <div class="hero-slideshow" id="heroSlideshow">
         <img src="assets/products/slam-productos.png"  class="hero-slide active" alt="Catálogo Fancy Water" style="object-fit:cover;object-position:center;" />
         <img src="assets/products/toxinas-group.png"   class="hero-slide"        alt="Toxinas Botulínicas"  style="object-fit:cover;object-position:center;" />
-        <img src="assets/products/voltena-line-solo.png" class="hero-slide"      alt="Línea VOL:TENA"       style="object-fit:cover;object-position:15% center;" />
+        <img src="assets/products/voltena-line-solo.png" class="hero-slide"      alt="Línea VOL:TENA"       style="object-fit:cover;object-position:15% bottom;" />
         <img src="assets/products/lacto-hero.jpg"      class="hero-slide"        alt="VOL:TENA Lacto"       style="object-fit:cover;object-position:center;" />
         <img src="assets/products/derma-fillers.png"   class="hero-slide"        alt="Derma Fillers"        style="object-fit:cover;object-position:center;" />
       </div>
