@@ -846,85 +846,150 @@
     /* ─── FICHA TÉCNICA MODAL ───────────────────────────────────── */
     .ficha-overlay {
       position:fixed; inset:0;
-      background:rgba(14,14,14,.72);
-      backdrop-filter:blur(6px);
-      z-index:400; opacity:0; pointer-events:none;
-      transition:opacity .3s;
+      background:rgba(14,14,14,.72); backdrop-filter:blur(6px);
+      z-index:400; opacity:0; pointer-events:none; transition:opacity .3s;
     }
     .ficha-overlay.open { opacity:1; pointer-events:all; }
     .ficha-modal {
       position:fixed; top:50%; left:50%;
       transform:translate(-50%,-50%) scale(.97);
-      width:min(920px,94vw); max-height:90vh;
+      width:min(1040px,96vw); max-height:92vh;
       background:var(--snow); border-radius:20px;
-      overflow:hidden; display:grid;
-      grid-template-columns:1fr 320px;
+      display:flex; flex-direction:column;
       z-index:401; opacity:0; pointer-events:none;
       transition:opacity .3s, transform .3s;
-      box-shadow:0 40px 100px rgba(14,14,14,.35);
+      box-shadow:0 40px 100px rgba(14,14,14,.4);
+      overflow:hidden;
     }
     .ficha-modal.open { opacity:1; pointer-events:all; transform:translate(-50%,-50%) scale(1); }
-    .ficha-modal-img {
-      background:var(--bone); overflow-y:auto;
-      display:flex; align-items:flex-start; justify-content:center;
-      padding:28px; max-height:90vh;
+    /* Header */
+    .ficha-hdr {
+      background:var(--navy); padding:18px 24px;
+      display:flex; align-items:center; gap:14px; flex-shrink:0;
     }
-    .ficha-modal-img img { width:100%; height:auto; object-fit:contain; border-radius:8px; }
-    .ficha-modal-info {
-      padding:36px 28px; display:flex; flex-direction:column;
-      justify-content:space-between; gap:28px;
-      border-left:1px solid var(--linea); overflow-y:auto; max-height:90vh;
+    .ficha-hdr-cat {
+      font-size:9px; letter-spacing:3px; text-transform:uppercase;
+      color:rgba(255,255,255,.5); background:rgba(255,255,255,.1);
+      padding:4px 10px; border-radius:50px; white-space:nowrap;
     }
+    .ficha-hdr-name {
+      font-family:'Playfair Display',serif;
+      font-size:19px; color:#fff; flex:1; line-height:1.2;
+    }
+    .ficha-hdr-price {
+      font-family:'Playfair Display',serif;
+      font-size:21px; color:#fff; opacity:.9; white-space:nowrap;
+    }
+    .ficha-hdr-price sup { font-size:12px; opacity:.7; vertical-align:super; }
     .ficha-modal-close {
-      position:absolute; top:14px; right:14px;
-      width:34px; height:34px; border-radius:50%;
-      border:1px solid var(--linea); background:var(--snow);
+      width:32px; height:32px; border-radius:50%; flex-shrink:0;
+      border:1px solid rgba(255,255,255,.25); background:transparent;
       display:flex; align-items:center; justify-content:center;
-      color:var(--grafito); transition:.2s; z-index:2; cursor:pointer;
+      color:rgba(255,255,255,.65); transition:.2s; cursor:pointer; font-size:17px;
     }
-    .ficha-modal-close:hover { border-color:var(--navy); color:var(--navy); }
-    .ficha-modal-cat {
-      font-size:10px; letter-spacing:3px; text-transform:uppercase;
-      color:var(--ash); margin-bottom:8px;
+    .ficha-modal-close:hover { border-color:#fff; color:#fff; }
+    /* Body: left + right */
+    .ficha-body {
+      display:grid; grid-template-columns:290px 1fr;
+      flex:1; min-height:0; overflow:hidden;
     }
-    .ficha-modal-name {
-      font-family:'Playfair Display',serif;
-      font-size:22px; color:var(--navy); line-height:1.25; margin-bottom:16px;
+    .ficha-left {
+      background:var(--bone); padding:20px;
+      display:flex; flex-direction:column; gap:16px; overflow-y:auto;
     }
-    .ficha-modal-price {
-      font-family:'Playfair Display',serif;
-      font-size:30px; color:var(--navy); margin-bottom:4px;
+    .ficha-prod-img {
+      background:var(--snow); border-radius:12px;
+      padding:18px; display:flex; align-items:center; justify-content:center;
+      min-height:150px;
     }
-    .ficha-modal-price-note { font-size:11px; color:var(--ash); letter-spacing:1px; }
-    .ficha-qty-row {
-      display:flex; align-items:center; justify-content:space-between;
-      margin:20px 0 14px;
+    .ficha-prod-img img { max-height:148px; width:auto; object-fit:contain; }
+    .ficha-meta-table {
+      border:1px solid var(--linea); border-radius:10px;
+      background:var(--snow); overflow:hidden;
     }
-    .ficha-qty-label { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--ash); }
+    .ficha-meta-row {
+      display:grid; grid-template-columns:82px 1fr;
+      padding:9px 13px; border-bottom:1px solid var(--linea);
+    }
+    .ficha-meta-row:last-child { border-bottom:none; }
+    .ficha-meta-lbl {
+      font-size:9px; letter-spacing:2px; text-transform:uppercase;
+      color:var(--ash); padding-top:2px; line-height:1.4;
+    }
+    .ficha-meta-val { font-size:12px; color:var(--tinta); line-height:1.5; }
+    .ficha-nota {
+      background:var(--navy); border-radius:10px; padding:14px 15px;
+    }
+    .ficha-nota-lbl {
+      font-size:9px; letter-spacing:2px; text-transform:uppercase;
+      color:rgba(255,255,255,.38); margin-bottom:6px;
+    }
+    .ficha-nota p { font-size:11.5px; color:rgba(255,255,255,.78); line-height:1.65; }
+    /* Right panel */
+    .ficha-right {
+      padding:22px 26px; overflow-y:auto;
+      display:flex; flex-direction:column; gap:20px;
+    }
+    .ficha-sec-ttl {
+      font-size:9px; letter-spacing:3px; text-transform:uppercase;
+      color:var(--ash); margin-bottom:10px; display:block;
+    }
+    .ficha-list { list-style:none; }
+    .ficha-list.indic li {
+      font-size:13px; color:var(--tinta); padding:7px 0;
+      border-bottom:1px solid var(--linea);
+      display:flex; align-items:baseline; gap:10px; line-height:1.4;
+    }
+    .ficha-list.indic li:last-child { border-bottom:none; }
+    .ficha-list.indic li::before { content:'—'; color:var(--ash); flex-shrink:0; }
+    .ficha-list.benef { display:flex; flex-direction:column; gap:7px; }
+    .ficha-list.benef li {
+      font-size:13px; color:var(--tinta); line-height:1.45;
+      display:flex; align-items:flex-start; gap:11px;
+    }
+    .fbn {
+      width:21px; height:21px; border-radius:50%; flex-shrink:0;
+      background:var(--navy); color:#fff;
+      font-size:9px; font-weight:600;
+      display:flex; align-items:center; justify-content:center; margin-top:1px;
+    }
+    .ficha-list.uso { display:flex; flex-direction:column; gap:7px; }
+    .ficha-list.uso li {
+      font-size:13px; color:var(--tinta); line-height:1.45;
+      display:flex; align-items:flex-start; gap:9px;
+    }
+    .ficha-list.uso li::before { content:'›'; color:var(--navy); font-size:15px; flex-shrink:0; line-height:1.3; }
+    /* Footer */
+    .ficha-footer {
+      border-top:1px solid var(--linea); padding:14px 24px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      background:var(--snow); flex-shrink:0;
+    }
+    .ficha-qty-wrap { display:flex; align-items:center; gap:12px; }
+    .ficha-qty-lbl { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ash); }
     .ficha-qty-ctrl {
-      display:flex; align-items:center; gap:10px;
-      background:var(--bone); border-radius:50px; padding:4px 10px;
+      display:flex; align-items:center; gap:8px;
+      background:var(--bone); border-radius:50px; padding:3px 10px;
     }
     .ficha-qty-ctrl button {
-      width:28px; height:28px; border-radius:50%;
+      width:27px; height:27px; border-radius:50%;
       border:1px solid var(--linea); background:var(--snow);
-      font-size:16px; display:flex; align-items:center; justify-content:center;
+      font-size:15px; display:flex; align-items:center; justify-content:center;
       color:var(--navy); transition:.2s; cursor:pointer;
     }
     .ficha-qty-ctrl button:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
     .ficha-qty-num {
-      min-width:24px; text-align:center;
-      font-family:'Playfair Display',serif; font-size:17px; color:var(--navy);
+      min-width:22px; text-align:center;
+      font-family:'Playfair Display',serif; font-size:16px; color:var(--navy);
     }
     .btn-ficha-cart {
-      width:100%; padding:15px;
-      background:var(--navy); color:#fff;
-      border-radius:10px; font-size:11px;
-      letter-spacing:2px; text-transform:uppercase; font-weight:600;
-      transition:opacity .3s; cursor:pointer;
+      padding:13px 28px; background:var(--navy); color:#fff;
+      border-radius:10px; font-size:10px; letter-spacing:2px;
+      text-transform:uppercase; font-weight:600;
+      transition:opacity .3s; cursor:pointer; white-space:nowrap;
     }
     .btn-ficha-cart:hover { opacity:.85; }
-    /* Hint on clickable product images */
+    /* Clickable hint */
     .product-img.has-ficha { cursor:pointer; }
     .product-img.has-ficha::after {
       content:'VER FICHA';
@@ -936,10 +1001,14 @@
     .product-img.has-ficha:hover::after { opacity:1; }
     .p-name.has-ficha { cursor:pointer; }
     .p-name.has-ficha:hover { text-decoration:underline; text-underline-offset:3px; }
-    @media(max-width:640px) {
-      .ficha-modal { grid-template-columns:1fr; max-height:92vh; overflow-y:auto; }
-      .ficha-modal-img { max-height:50vw; padding:16px; }
-      .ficha-modal-info { border-left:none; border-top:1px solid var(--linea); max-height:none; }
+    @media(max-width:700px) {
+      .ficha-body { grid-template-columns:1fr; }
+      .ficha-left { max-height:none; }
+      .ficha-prod-img img { max-height:110px; }
+      .ficha-hdr { flex-wrap:wrap; padding:14px 16px; gap:10px; }
+      .ficha-hdr-name { font-size:16px; width:100%; order:-1; }
+      .ficha-footer { flex-direction:column; align-items:stretch; }
+      .btn-ficha-cart { text-align:center; }
     }
 
     /* ─── PAYMENT TOAST ─────────────────────────────────────────── */
@@ -1938,29 +2007,71 @@
 <!-- ─── FICHA TÉCNICA MODAL ───────────────────────────────────────── -->
 <div class="ficha-overlay" id="fichaOverlay" onclick="closeFicha()"></div>
 <div class="ficha-modal" id="fichaModal">
-  <div class="ficha-modal-img" id="fichaModalImg">
-    <img id="fichaImg" src="" alt="" />
+  <!-- Header -->
+  <div class="ficha-hdr">
+    <span class="ficha-hdr-cat" id="fichaHdrCat"></span>
+    <h3 class="ficha-hdr-name" id="fichaHdrName"></h3>
+    <div class="ficha-hdr-price"><sup>$</sup><span id="fichaHdrPrice"></span> <span style="font-size:11px;opacity:.5;letter-spacing:1px;">MXN</span></div>
+    <button class="ficha-modal-close" onclick="closeFicha()">×</button>
   </div>
-  <div class="ficha-modal-info">
-    <div>
-      <p class="ficha-modal-cat" id="fichaModalCat"></p>
-      <h3 class="ficha-modal-name" id="fichaModalName"></h3>
-      <div class="ficha-modal-price">$<span id="fichaModalPrice">0</span></div>
-      <p class="ficha-modal-price-note">MXN · IVA no incluido</p>
-    </div>
-    <div>
-      <div class="ficha-qty-row">
-        <span class="ficha-qty-label">Cantidad</span>
-        <div class="ficha-qty-ctrl">
-          <button onclick="fichaChangeQty(-1)">−</button>
-          <span class="ficha-qty-num" id="fichaQtyNum">1</span>
-          <button onclick="fichaChangeQty(1)">+</button>
+  <!-- Body -->
+  <div class="ficha-body">
+    <!-- Left: photo + metadata + nota -->
+    <div class="ficha-left">
+      <div class="ficha-prod-img">
+        <img id="fichaProductImg" src="" alt="" />
+      </div>
+      <div class="ficha-meta-table">
+        <div class="ficha-meta-row">
+          <span class="ficha-meta-lbl">Fabricante</span>
+          <span class="ficha-meta-val" id="fichaFabricante"></span>
+        </div>
+        <div class="ficha-meta-row">
+          <span class="ficha-meta-lbl">Composición</span>
+          <span class="ficha-meta-val" id="fichaComposicion"></span>
+        </div>
+        <div class="ficha-meta-row">
+          <span class="ficha-meta-lbl">Presentación</span>
+          <span class="ficha-meta-val" id="fichaPresentacion"></span>
+        </div>
+        <div class="ficha-meta-row">
+          <span class="ficha-meta-lbl">Formato</span>
+          <span class="ficha-meta-val" id="fichaFormato"></span>
         </div>
       </div>
-      <button class="btn-ficha-cart" onclick="fichaAddToCart()">Agregar al Carrito</button>
+      <div class="ficha-nota">
+        <p class="ficha-nota-lbl">Nota Técnica</p>
+        <p id="fichaNota"></p>
+      </div>
+    </div>
+    <!-- Right: indications, benefits, usage -->
+    <div class="ficha-right">
+      <div>
+        <span class="ficha-sec-ttl">Indicaciones · Usos Clínicos</span>
+        <ul class="ficha-list indic" id="fichaIndicaciones"></ul>
+      </div>
+      <div>
+        <span class="ficha-sec-ttl">Beneficios</span>
+        <ul class="ficha-list benef" id="fichaBeneficios"></ul>
+      </div>
+      <div>
+        <span class="ficha-sec-ttl">Aplicación & Uso</span>
+        <ul class="ficha-list uso" id="fichaUso"></ul>
+      </div>
     </div>
   </div>
-  <button class="ficha-modal-close" onclick="closeFicha()">×</button>
+  <!-- Footer: qty + add to cart -->
+  <div class="ficha-footer">
+    <div class="ficha-qty-wrap">
+      <span class="ficha-qty-lbl">Cantidad</span>
+      <div class="ficha-qty-ctrl">
+        <button onclick="fichaChangeQty(-1)">−</button>
+        <span class="ficha-qty-num" id="fichaQtyNum">1</span>
+        <button onclick="fichaChangeQty(1)">+</button>
+      </div>
+    </div>
+    <button class="btn-ficha-cart" onclick="fichaAddToCart()">Agregar al Carrito</button>
+  </div>
 </div>
 
 <!-- ─── THREE.JS PARTICLES ────────────────────────────────────────── -->
@@ -2309,43 +2420,238 @@ if (new URLSearchParams(location.search).get('payment') === 'success') {
 
 // ── FICHA TÉCNICA MODAL ───────────────────────────────────────────────
 const FICHAS = {
-  'Innotox 100U':           'assets/fichas/03_Innotox.png',
-  'Liztox 100U':            'assets/fichas/04_Liztox.png',
-  'Nabota 100U':            'assets/fichas/05_Nabota.png',
-  'Voltena N°1':            'assets/fichas/07_Voltena_N1.png',
-  'Voltena N°2 Body Filler':'assets/fichas/08_Voltena_N2.png',
-  'Voltena N°3':            'assets/fichas/09_Voltena_N3.png',
-  'Lacto Gel':              'assets/fichas/10_Lacto.png',
-  'Pllagen PLLA':           'assets/fichas/11_Pllagen.png',
-  'Lipo Lab PPC':           'assets/fichas/13_Lipo_Lab_PPC.png',
-  'Dermalax':               'assets/fichas/15_Dermalax.png',
-  'Elasty':                 'assets/fichas/16_Elasty.png',
-  'Juvéderm Voluma':        'assets/fichas/17_Juvederm_Voluma.png',
-  'Revolax':                'assets/fichas/19_Revolax.png',
-  'Hyaron Prefilled':       'assets/fichas/21_Hyaron.png',
-  'Eyebella':               'assets/fichas/22_Eyebella.png',
-  'Liporase':               'assets/fichas/23_Liporase.png',
-  'Muchcaine':              'assets/fichas/24_Muchcaine.png',
-  'Estella PLLA 200':       'assets/fichas/25_Estella.png',
+  'Nabota 100U': {
+    img: 'assets/products/nabota.png',
+    fabricante: 'Daewoong · Corea',
+    composicion: 'Toxina Botulínica Tipo A (DWP-450)',
+    presentacion: '100 U / Vial · 1 Vial por caja',
+    formato: 'Polvo secado al vacío',
+    nota: 'Una de las toxinas coreanas con mayor reconocimiento global, validada en múltiples mercados regulados. Comercializada como Jeuveau™ en EE.UU. y Nuceiva™ en Europa.',
+    indicaciones: ['Líneas glabelares moderadas a severas','Frente y patas de gallo','Mentón y cuello (técnica Nefertiti)','Sonrisa gingival'],
+    beneficios: ['Tecnología HiPure™ de alta pureza proteica','Comercializada como Jeuveau™ (FDA) y Nuceiva™ (EMA)','Mínima difusión al músculo adyacente','Resultado natural y predecible'],
+    uso: ['Reconstituir con SS 0.9% sin preservantes (1.25 a 2.5 mL)','Aguja de 30G a 33G para precisión','Almacenar entre 2–8 °C','Iniciar con dosis conservadora y titular'],
+  },
+  'Innotox 100U': {
+    img: 'assets/products/innotox-new.webp',
+    fabricante: 'Medytox · Corea',
+    composicion: 'Toxina Botulínica Tipo A',
+    presentacion: '100 U / Vial · 4 U por 0.1 mL',
+    formato: 'Líquido — sin reconstitución',
+    nota: 'Primera toxina botulínica líquida del mundo. Su formulación elimina la variabilidad de la reconstitución manual y mejora la trazabilidad del tratamiento.',
+    indicaciones: ['Líneas glabelares y frontales','Patas de gallo · líneas perioculares','Hiperhidrosis axilar y palmar','Bruxismo y maseteros'],
+    beneficios: ['Sin riesgo de error en la reconstitución','Dosificación más precisa y reproducible','Inicio de acción rápido (3 a 5 días)','Duración promedio de 4 a 6 meses'],
+    uso: ['Aplicación intramuscular con aguja 30G–32G','Refrigerar entre 2–8 °C, no congelar','Una vez abierto utilizar en menos de 24 h','Dosis estándar: 4 U por punto de inyección'],
+  },
+  'Liztox 100U': {
+    img: 'assets/products/listox.png',
+    fabricante: 'Huons · Corea',
+    composicion: 'Clostridium Botulinum Toxin Tipo A',
+    presentacion: '100 U / Vial',
+    formato: 'Polvo liofilizado — reconstituir con SS 0.9%',
+    nota: 'Opción confiable para clínicas de alto volumen. Duración estándar de 3 a 4 meses con resultados naturales.',
+    indicaciones: ['Arrugas dinámicas frontales','Bruxismo · hipertrofia de maseteros','Líneas perioculares y peribucales','Lifting de cejas no quirúrgico'],
+    beneficios: ['Excelente relación costo-eficacia','Aprobada por KFDA','Bajo perfil inmunogénico','Inicio rápido y duración consistente'],
+    uso: ['Reconstituir con 2.5 mL de SS 0.9% sin conservadores','Aplicar dentro de las primeras 4 h post-reconstitución','Aguja 30G a 32G para inyección IM','Almacenar reconstituido en refrigeración'],
+  },
+  'Voltena N°1': {
+    img: 'assets/products/voltena1-solo.jpg',
+    fabricante: 'Voltena · Corea',
+    composicion: 'Complejo lipolítico inyectable',
+    presentacion: '10 mL × 6 viales por caja',
+    formato: 'Suero inyectable',
+    nota: 'Lipolítico que rompe la membrana del adipocito y favorece su eliminación natural. Resultados visibles desde la 2ª sesión.',
+    indicaciones: ['Doble mentón · papada','Abdomen y flancos','Brazos, espalda y rodillas','Modelado facial — bola de Bichat'],
+    beneficios: ['Reducción visible de adiposidad localizada','Mejora del contorno facial y corporal','Estimulación de drenaje linfático','Inflamación post-tratamiento mínima'],
+    uso: ['Protocolo de 4 a 6 sesiones cada 21 días','Inyección subcutánea con cánula o aguja 27G–30G','Marcar áreas y respetar dosis máxima por zona','Combinar con masaje linfático posterior'],
+  },
+  'Voltena N°2 Body Filler': {
+    img: 'assets/products/voltena2-solo.jpg',
+    fabricante: 'Voltena · Corea',
+    composicion: 'Ácido Hialurónico reticulado',
+    presentacion: '60 cc por unidad',
+    formato: 'Gel inyectable de gran volumen',
+    nota: 'Body filler de alta cohesividad para remodelado corporal. Alternativa segura al implante quirúrgico cuando la corrección es moderada.',
+    indicaciones: ['Aumento glúteo no quirúrgico','Modelado de pantorrillas','Corrección de depresiones corporales','Aumento de pectorales masculinos'],
+    beneficios: ['Aumento corporal sin cirugía','Alta cohesividad y proyección sostenida','Baja migración del producto','Resultado inmediato y reversible con hialuronidasa'],
+    uso: ['Aplicación profunda con cánula de gran calibre (18G–21G)','Anestesia tumescente recomendada','Distribución en abanico para naturalidad','Reposo de 7 días posterior al tratamiento'],
+  },
+  'Voltena N°3': {
+    img: 'assets/products/voltena3-solo.png',
+    fabricante: 'Voltena · Corea',
+    composicion: 'Gel cosmético de uso tópico',
+    presentacion: '300 mL / 10.14 fl.oz.',
+    formato: 'Gel reductor — uso domiciliario',
+    nota: 'Producto cosmético complementario que prolonga los resultados de los tratamientos clínicos Voltena.',
+    indicaciones: ['Mantenimiento entre sesiones clínicas','Tonificación post-parto','Sensación reafirmante en abdomen, glúteos y muslos','Coadyuvante en tratamientos de celulitis'],
+    beneficios: ['Sensación inmediata de frescor reafirmante','Prolonga resultados de tratamientos clínicos','Apto para uso diario en casa','Excelente producto de retail en consultorio'],
+    uso: ['Aplicar sobre piel limpia y seca, masajear hasta absorción','2 veces al día en las áreas a tratar','Compatible con post-tratamiento corporal','Evitar contacto con mucosas y heridas abiertas'],
+  },
+  'Lacto Gel': {
+    img: 'assets/products/lacto.jpg',
+    fabricante: 'Voltena · Corea',
+    composicion: 'Filtrado de Lactobacillus fermentum + extractos vegetales',
+    presentacion: '1.8 g × 10 unidades por caja',
+    formato: 'Gel íntimo — aplicador prellenado desechable',
+    nota: 'Cuidado íntimo domiciliario que complementa la línea Voltena. Su fórmula suave hidrata y respeta la microbiota natural.',
+    indicaciones: ['Flujo excesivo con olor fuerte','Sequedad que causa molestias durante la intimidad','Picazón y resequedad de zonas sensibles','Mantenimiento del equilibrio del pH íntimo'],
+    beneficios: ['Ayuda a mantener el equilibrio óptimo del pH','Ingredientes naturales calmantes (Centella, regaliz, manzanilla)','Aplicador individual prellenado, higiénico y práctico','Cuidado suave sin alterar la flora beneficiosa'],
+    uso: ['Lavar bien las manos antes de la aplicación','Retirar el embalaje, sujetar el émbolo y quitar la tapa','Aplicar el gel en las áreas necesarias según se requiera'],
+  },
+  'Pllagen PLLA': {
+    img: 'assets/products/pllagen.jpg',
+    fabricante: 'Voltena · Corea',
+    composicion: 'PLLA 45 mg + Ácido Hialurónico no reticulado 13 mg',
+    presentacion: 'Vial 1: polvo 157 mg + Vial 2: suero booster 5 mL · 5 sets/caja',
+    formato: 'Kit doble vial — microesfera 20–50 μm',
+    nota: 'PLLA de origen natural (maíz fermentado), biocompatible y biodegradable. Combina volumen inicial con regeneración progresiva de colágeno propio.',
+    indicaciones: ['Líneas finas, arrugas profundas y de expresión','Pérdida de volumen y elasticidad facial','Regeneración profunda y nutrición intensa de la piel','Mejora de cicatrices de acné y calidad cutánea'],
+    beneficios: ['Estimula la producción natural de colágeno','Volumen de aparición gradual y sutil','Efectos duraderos — hasta 24 meses','Reconstitución en ~3 min e hidratación intensa con AH'],
+    uso: ['Mezclar polvo liofilizado con el suero booster antes del procedimiento','Mesoterapia con aguja 31–33G / 4 mm a 1–2 mm de profundidad','0.02–0.03 cc por punto · intervalo 0.5–1 cm · máx. 0.3 mL/punto'],
+  },
+  'Lipo Lab PPC': {
+    img: 'assets/products/lipolab.jpg',
+    fabricante: 'KFDA · Corea',
+    composicion: 'Fosfatidilcolina 1,000 mg',
+    presentacion: '10 mL × 10 viales por caja',
+    formato: 'Solución inyectable de uso médico',
+    nota: 'Una de las lipoenzimas más reconocidas a nivel internacional. Aprobada por KFDA con evidencia clínica robusta.',
+    indicaciones: ['Doble mentón · papada','Abdomen, flancos y cintura','Cara interna de brazos y muslos','Espalda y rodillas'],
+    beneficios: ['Reducción focalizada de grasa localizada','Acción dual: emulsifica y elimina el adipocito','Resultados visibles desde la 2ª sesión','Bajo perfil de efectos secundarios'],
+    uso: ['Sesiones cada 21 a 28 días — promedio 4 a 6 sesiones','Inyección subcutánea profunda con aguja 30G','Distribución en cuadrícula con separación de 1.5 cm','Dosis máxima por sesión según área tratada'],
+  },
+  'Dermalax': {
+    img: 'assets/products/dermalax.png',
+    fabricante: 'Across · Corea',
+    composicion: 'Ácido Hialurónico reticulado con lidocaína',
+    presentacion: '1.1 mL por jeringa (Implant Plus 2.2 mL)',
+    formato: 'Jeringa prellenada',
+    nota: 'Familia versátil que cubre desde líneas superficiales hasta volumetría profunda con un solo proveedor.',
+    indicaciones: ['Plus — líneas finas y labios','Deep Plus — surcos nasolabiales','Implant Plus — pómulos y mentón','Perfilado mandibular'],
+    beneficios: ['Tres densidades para todas las indicaciones','Lidocaína integrada para mayor confort','Reticulación BDDE controlada','Resultado natural y duradero'],
+    uso: ['Plus — inyección dérmica superficial','Deep Plus — dérmica profunda / subcutánea','Implant Plus — supraperióstica para volumetría','Aguja 27G–30G o cánula según técnica'],
+  },
+  'Elasty': {
+    img: 'assets/products/elasty.jpg',
+    fabricante: 'Hugel-affiliate · Corea',
+    composicion: 'Ácido Hialurónico monofásico con lidocaína',
+    presentacion: '1.1 mL por jeringa',
+    formato: 'Jeringa prellenada estéril',
+    nota: 'Filler monofásico con tecnología que asegura distribución homogénea y resultado natural en movimiento dinámico.',
+    indicaciones: ['G Plus — pómulos, mentón, mandíbula','D Plus — surcos nasolabiales y marioneta','F Plus — labios y líneas finas','Rejuvenecimiento facial integral'],
+    beneficios: ['Tecnología monofásica — distribución homogénea','Resultado natural en movimiento','Tres densidades complementarias','Excelente integración tisular'],
+    uso: ['G Plus — supraperióstica con cánula 22G','D Plus — dérmica profunda con aguja 27G','F Plus — dérmica superficial con aguja 30G','Masaje suave post-aplicación para moldear'],
+  },
+  'Juvéderm Voluma': {
+    img: 'assets/products/juvederm.webp',
+    fabricante: 'Allergan / AbbVie',
+    composicion: 'Ácido Hialurónico Vycross® con lidocaína',
+    presentacion: '2 × 1 mL por caja',
+    formato: 'Jeringa prellenada',
+    nota: 'El estándar internacional de la volumetría facial. Tecnología Vycross® que combina cadenas largas y cortas de AH para máxima durabilidad.',
+    indicaciones: ['Restauración volumétrica de pómulos','Definición de mentón y mandíbula','Corrección de mediofacial','Volumetría profunda en pacientes maduros'],
+    beneficios: ['Estándar de oro mundial en volumetría','Tecnología Vycross® de alta cohesividad','Duración hasta 24 meses','Lidocaína integrada para confort'],
+    uso: ['Inyección supraperióstica con cánula 22G–25G','Técnica de bolos profundos','Aplicación lenta para evitar irregularidades','Masaje moldeador inmediato'],
+  },
+  'Revolax': {
+    img: 'assets/products/revolax.webp',
+    fabricante: 'Across · Corea',
+    composicion: 'Ácido Hialurónico reticulado con lidocaína',
+    presentacion: '1.1 mL por jeringa',
+    formato: 'Jeringa prellenada',
+    nota: 'Familia coreana de gran reputación internacional. Cubre todas las profundidades con un solo sistema de reticulación.',
+    indicaciones: ['Fine — arrugas finas y peribucales','Deep — surcos profundos y aumento labial','Sub-Q — volumen profundo y contorno facial','Reestructuración facial completa'],
+    beneficios: ['Familia con gran reputación internacional','Reticulación monofásica de alta cohesividad','Bajo riesgo de migración','Resultados duraderos y naturales'],
+    uso: ['Fine — dérmica superficial (aguja 30G)','Deep — dérmica profunda (aguja 27G)','Sub-Q — supraperióstica con cánula 22G','Aplicación lenta y por capas'],
+  },
+  'Hyaron Prefilled': {
+    img: 'assets/products/hyaron.jpg',
+    fabricante: 'Dongkook Pharmaceutical · Corea',
+    composicion: 'Hialuronato de Sodio 25 mg / 2.5 mL',
+    presentacion: '2.5 mL × 10 jeringas prellenadas',
+    formato: 'Jeringa prellenada estéril',
+    nota: 'Skin booster premium con AH de alta pureza. Excelente para pacientes que buscan calidad de piel sin cambio volumétrico.',
+    indicaciones: ['Rejuvenecimiento facial general','Cuello y escote','Dorso de manos','Preparación pre-evento (glow inmediato)'],
+    beneficios: ['Hidratación profunda con AH no reticulado','Mejora textura, elasticidad y luminosidad','Resultado natural sin volumen','Apto para todo tipo de piel'],
+    uso: ['Protocolo de 3 sesiones cada 2 a 4 semanas','Mesoterapia con técnica de pápula o nappage','Aguja 32G o pistola de inyección automática','Recomendado en otoño-invierno para mejores resultados'],
+  },
+  'Eyebella': {
+    img: 'assets/products/eyebella.webp',
+    fabricante: 'Made in Korea',
+    composicion: 'Polynucleotide (PN) 10 mg/mL',
+    presentacion: '2 mL por jeringa',
+    formato: 'Skin booster especializado',
+    nota: 'Polinucleótido formulado específicamente para una de las áreas más delicadas y demandantes del rostro.',
+    indicaciones: ['Contorno de ojos · ojeras','Líneas finas perioculares','Pliegue palpebral inferior','Mejora general de la calidad de piel'],
+    beneficios: ['Regeneración celular específica para zona periocular','Mejora visible de ojeras y líneas finas','Aumento de espesor dérmico','Acción antiinflamatoria y antioxidante'],
+    uso: ['Protocolo de 3 a 4 sesiones cada 15 días','Inyección intradérmica superficial con aguja 32G','Técnica de microbolos o retrotrazado','Refrigerar entre 2–8 °C antes de su uso'],
+  },
+  'Liporase': {
+    img: 'assets/products/liporase.webp',
+    fabricante: 'Daewon Pharm · Corea',
+    composicion: 'Hialuronidasa 1,500 IU',
+    presentacion: '10 viales por caja',
+    formato: 'Polvo liofilizado · IM / SC',
+    nota: 'Producto esencial de seguridad clínica. Su disponibilidad en consultorio es obligatoria para profesionales que aplican rellenos.',
+    indicaciones: ['Disolución de rellenos de ácido hialurónico','Corrección de migraciones y nódulos','Manejo de oclusión vascular (urgencia)','Edema persistente post-filler'],
+    beneficios: ['Disuelve rellenos de AH en minutos','Esencial para manejo de complicaciones vasculares','Permite corregir sobrecorrecciones','Indispensable en cualquier consultorio'],
+    uso: ['Reconstituir con SS 0.9% justo antes del uso','Realizar siempre prueba de sensibilidad previa','Dosis según volumen y tipo de filler a disolver','Tener disponible en cada sesión de filler'],
+  },
+  'Muchcaine': {
+    img: 'assets/products/muchcaine.webp',
+    fabricante: 'Made in Korea',
+    composicion: 'Lidocaína 10.56%',
+    presentacion: 'Bote de 500 g',
+    formato: 'Crema anestésica tópica',
+    nota: 'Anestésico tópico esencial en todo consultorio estético. Su alta concentración garantiza confort durante procedimientos sensibles.',
+    indicaciones: ['Pre-tratamiento con rellenos y toxinas','Microneedling y peelings','Depilación láser','Tatuaje y micropigmentación'],
+    beneficios: ['Alta concentración de lidocaína','Confort del paciente durante el procedimiento','Alto rendimiento — bote de 500 g','Penetración rápida y efectiva'],
+    uso: ['Aplicar capa generosa 30 a 45 min antes','Cubrir con plástico oclusivo para mejor efecto','Retirar y limpiar antes del procedimiento','No aplicar sobre mucosas o piel lesionada'],
+  },
+  'Estella PLLA 200': {
+    img: 'assets/products/estella.jpg',
+    fabricante: 'Kuber Science · Corea',
+    composicion: 'Ácido poli-L-Láctico (PLLA) · PM 70,000–90,000 Da',
+    presentacion: '514 mg / vial · contenido PLLA 200 mg',
+    formato: 'Polvo liofilizado — reconstituir con 8–10 mL SWFI',
+    nota: 'PLLA de cuarta generación. Sus microsferas esféricas uniformes (20–50 μm) reducen la formación de nódulos y estimulan colágeno propio.',
+    indicaciones: ['Regeneración de la piel del rostro','Corrección de arrugas y pliegues faciales','Pérdida de volumen y elasticidad','Cicatrices y mejora de la calidad cutánea'],
+    beneficios: ['Alto contenido de PLLA — 200 mg por vial','Microsferas 20–50 μm — menor formación de nódulos','Reconstitución rápida en ~10 min con vórtex','Volumen y efecto duraderos — más de 24 meses'],
+    uso: ['Reconstituir con 8–10 mL de SWFI (~10 min con vórtex)','Inyección en la capa dérmica del área a tratar','Volumen y efecto evidentes a partir de 4 semanas'],
+  },
 };
 
-let fichaQty  = 1;
-let fichaName = '';
+let fichaQty   = 1;
+let fichaName  = '';
 let fichaPrice = 0;
 
 function openFicha(name, price, cat) {
-  const path = FICHAS[name];
-  if (!path) return;
+  const d = FICHAS[name];
+  if (!d) return;
   fichaName  = name;
   fichaPrice = price;
   fichaQty   = 1;
 
-  document.getElementById('fichaImg').src         = path;
-  document.getElementById('fichaImg').alt         = name;
-  document.getElementById('fichaModalName').textContent  = name;
-  document.getElementById('fichaModalCat').textContent   = cat;
-  document.getElementById('fichaModalPrice').textContent = price.toLocaleString('es-MX');
-  document.getElementById('fichaQtyNum').textContent     = '1';
+  // Header
+  document.getElementById('fichaHdrCat').textContent   = cat;
+  document.getElementById('fichaHdrName').textContent  = name;
+  document.getElementById('fichaHdrPrice').textContent = price.toLocaleString('es-MX');
+  // Left panel
+  document.getElementById('fichaProductImg').src        = d.img;
+  document.getElementById('fichaProductImg').alt        = name;
+  document.getElementById('fichaFabricante').textContent  = d.fabricante;
+  document.getElementById('fichaComposicion').textContent = d.composicion;
+  document.getElementById('fichaPresentacion').textContent= d.presentacion;
+  document.getElementById('fichaFormato').textContent     = d.formato;
+  document.getElementById('fichaNota').textContent        = d.nota;
+  // Right panel lists
+  document.getElementById('fichaIndicaciones').innerHTML =
+    d.indicaciones.map(t => `<li>${t}</li>`).join('');
+  document.getElementById('fichaBeneficios').innerHTML =
+    d.beneficios.map((t,i) => `<li><span class="fbn">${i+1}</span>${t}</li>`).join('');
+  document.getElementById('fichaUso').innerHTML =
+    d.uso.map(t => `<li>${t}</li>`).join('');
+  // Qty
+  document.getElementById('fichaQtyNum').textContent = '1';
 
   document.getElementById('fichaOverlay').classList.add('open');
   document.getElementById('fichaModal').classList.add('open');
@@ -2384,7 +2690,7 @@ document.querySelectorAll('.product-card').forEach(card => {
   const price = parseInt(addBtn.dataset.price);
   const cat   = catEl ? catEl.textContent : '';
 
-  if (!FICHAS[name]) return; // no ficha for this product
+  if (!FICHAS[name]) return;
 
   imgEl.classList.add('has-ficha');
   nameEl.classList.add('has-ficha');
