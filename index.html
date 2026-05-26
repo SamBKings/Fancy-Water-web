@@ -2869,8 +2869,13 @@ document.addEventListener('keydown', e => {
 (function() {
   const WELCOME = '¡Hola! Soy el asistente de Fancy Water 👋 Puedo ayudarte con información sobre nuestros productos, precios, protocolos de uso o cualquier duda. ¿En qué te puedo ayudar?';
 
+  // ── Límite de mensajes por sesión ─────────────────────────────────
+  // Para quitar el límite: cambia MSG_LIMIT a 0 o Infinity
+  const MSG_LIMIT = 10;
+
   let chatHistory = [];
   let isBusy = false;
+  let userMsgCount = 0;
 
   // Build HTML
   const fab = document.createElement('button');
@@ -2944,15 +2949,33 @@ document.addEventListener('keydown', e => {
   });
   sendBtn.addEventListener('click', sendMsg);
 
+  function showLimitReached() {
+    const d = document.createElement('div');
+    d.className = 'chat-msg bot';
+    d.innerHTML = `Has alcanzado el límite de mensajes de esta sesión. Para continuar con tu consulta, escríbenos directamente por WhatsApp — te atendemos al momento 👇<br><br><a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20tengo%20una%20consulta" target="_blank" rel="noopener" style="display:inline-block;margin-top:4px;background:#2D3147;color:#fff;padding:9px 18px;border-radius:8px;font-size:12px;letter-spacing:1px;text-decoration:none;">Abrir WhatsApp →</a>`;
+    msgBox.appendChild(d);
+    msgBox.scrollTop = msgBox.scrollHeight;
+    input.disabled = true;
+    input.placeholder = 'Límite de mensajes alcanzado';
+    sendBtn.disabled = true;
+  }
+
   async function sendMsg() {
     const text = input.value.trim();
     if (!text || isBusy) return;
+
+    // Check limit before sending
+    if (MSG_LIMIT && userMsgCount >= MSG_LIMIT) {
+      showLimitReached();
+      return;
+    }
 
     isBusy = true;
     sendBtn.disabled = true;
     input.value = '';
     input.style.height = 'auto';
 
+    userMsgCount++;
     addMsg('user', text);
     chatHistory.push({ role: 'user', content: text });
 
@@ -2975,6 +2998,22 @@ document.addEventListener('keydown', e => {
 
       // Keep history trimmed
       if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+
+      // Show limit warning on message 8 (2 left)
+      if (MSG_LIMIT && userMsgCount === MSG_LIMIT - 2) {
+        const warn = document.createElement('div');
+        warn.className = 'chat-msg bot';
+        warn.style.cssText = 'font-size:11px;opacity:.7;';
+        warn.textContent = `Te quedan ${MSG_LIMIT - userMsgCount} mensajes en esta sesión.`;
+        msgBox.appendChild(warn);
+        msgBox.scrollTop = msgBox.scrollHeight;
+      }
+
+      // Block input after limit
+      if (MSG_LIMIT && userMsgCount >= MSG_LIMIT) {
+        showLimitReached();
+        return;
+      }
     } catch {
       typing.remove();
       addMsg('bot', 'Sin conexión por el momento. Escríbenos al WhatsApp: 813 418 8472');
