@@ -908,13 +908,12 @@
       background:var(--snow); overflow:hidden;
     }
     .ficha-meta-row {
-      display:grid; grid-template-columns:82px 1fr;
       padding:9px 13px; border-bottom:1px solid var(--linea);
     }
     .ficha-meta-row:last-child { border-bottom:none; }
     .ficha-meta-lbl {
-      font-size:9px; letter-spacing:2px; text-transform:uppercase;
-      color:var(--ash); padding-top:2px; line-height:1.4;
+      display:block; font-size:9px; letter-spacing:2px; text-transform:uppercase;
+      color:var(--ash); margin-bottom:3px;
     }
     .ficha-meta-val { font-size:12px; color:var(--tinta); line-height:1.5; }
     .ficha-nota {
@@ -928,8 +927,10 @@
     /* Right panel */
     .ficha-right {
       padding:22px 26px; overflow-y:auto;
-      display:flex; flex-direction:column; gap:20px;
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:18px 28px; align-content:start;
     }
+    .ficha-right > div:nth-child(3) { grid-column:1 / -1; }
     .ficha-sec-ttl {
       font-size:9px; letter-spacing:3px; text-transform:uppercase;
       color:var(--ash); margin-bottom:10px; display:block;
@@ -1007,6 +1008,8 @@
       .ficha-prod-img img { max-height:110px; }
       .ficha-hdr { flex-wrap:wrap; padding:14px 16px; gap:10px; }
       .ficha-hdr-name { font-size:16px; width:100%; order:-1; }
+      .ficha-right { grid-template-columns:1fr; }
+      .ficha-right > div:nth-child(3) { grid-column:1; }
       .ficha-footer { flex-direction:column; align-items:stretch; }
       .btn-ficha-cart { text-align:center; }
     }
@@ -2430,6 +2433,17 @@ const FICHAS = {
     indicaciones: ['Líneas glabelares moderadas a severas','Frente y patas de gallo','Mentón y cuello (técnica Nefertiti)','Sonrisa gingival'],
     beneficios: ['Tecnología HiPure™ de alta pureza proteica','Comercializada como Jeuveau™ (FDA) y Nuceiva™ (EMA)','Mínima difusión al músculo adyacente','Resultado natural y predecible'],
     uso: ['Reconstituir con SS 0.9% sin preservantes (1.25 a 2.5 mL)','Aguja de 30G a 33G para precisión','Almacenar entre 2–8 °C','Iniciar con dosis conservadora y titular'],
+  },
+  'Nabota 200U': {
+    img: 'assets/products/nabota200-solo.jpg',
+    fabricante: 'Daewoong · Corea',
+    composicion: 'Toxina Botulínica Tipo A (DWP-450)',
+    presentacion: '200 U / Vial · 1 Vial por caja',
+    formato: 'Polvo secado al vacío',
+    nota: 'Presentación de 200 unidades, ideal para tratamientos de mayor superficie o uso clínico intensivo. Misma calidad y pureza HiPure™ que la versión 100U.',
+    indicaciones: ['Líneas glabelares moderadas a severas','Frente y patas de gallo','Mentón y cuello (técnica Nefertiti)','Sonrisa gingival'],
+    beneficios: ['Tecnología HiPure™ de alta pureza proteica','Mayor rendimiento por vial — ideal para alto volumen','Mínima difusión al músculo adyacente','Resultado natural y predecible'],
+    uso: ['Reconstituir con SS 0.9% sin preservantes (2.5 a 5 mL según dilución deseada)','Aguja de 30G a 33G para precisión','Almacenar entre 2–8 °C','Iniciar con dosis conservadora y titular'],
   },
   'Innotox 100U': {
     img: 'assets/products/innotox-new.webp',
