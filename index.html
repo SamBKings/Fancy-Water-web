@@ -891,6 +891,7 @@
     /* Body: left + right */
     .ficha-body {
       display:grid; grid-template-columns:290px 1fr;
+      grid-template-rows:1fr;   /* fuerza altura definida para los hijos */
       flex:1; min-height:0; overflow:hidden;
     }
     .ficha-left {
@@ -901,12 +902,14 @@
     .ficha-prod-img {
       background:var(--snow); border-radius:12px;
       padding:18px; display:flex; align-items:center; justify-content:center;
-      min-height:150px;
+      min-height:150px; flex-shrink:0;
     }
     .ficha-prod-img img { max-height:148px; width:auto; object-fit:contain; }
     .ficha-meta-table {
       border:1px solid var(--linea); border-radius:10px;
-      background:var(--snow); overflow:hidden;
+      background:var(--snow);
+      overflow-y:auto;          /* scroll si el espacio es limitado */
+      flex-shrink:0;            /* nunca se aplasta por el flex padre */
     }
     .ficha-meta-row {
       padding:9px 13px; border-bottom:1px solid var(--linea);
@@ -919,6 +922,7 @@
     .ficha-meta-val { font-size:12px; color:var(--tinta); line-height:1.5; }
     .ficha-nota {
       background:var(--navy); border-radius:10px; padding:14px 15px;
+      flex-shrink:0;
     }
     .ficha-nota-lbl {
       font-size:9px; letter-spacing:2px; text-transform:uppercase;
