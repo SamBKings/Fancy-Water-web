@@ -895,7 +895,8 @@
     }
     .ficha-left {
       background:var(--bone); padding:20px;
-      display:flex; flex-direction:column; gap:16px; overflow-y:auto;
+      display:flex; flex-direction:column; gap:16px;
+      overflow-y:auto; min-height:0;
     }
     .ficha-prod-img {
       background:var(--snow); border-radius:12px;
@@ -926,7 +927,7 @@
     .ficha-nota p { font-size:11.5px; color:rgba(255,255,255,.78); line-height:1.65; }
     /* Right panel */
     .ficha-right {
-      padding:22px 26px; overflow-y:auto;
+      padding:22px 26px; overflow-y:auto; min-height:0;
       display:grid; grid-template-columns:1fr 1fr;
       gap:18px 28px; align-content:start;
     }
@@ -1169,6 +1170,86 @@
       }
       .filters-wrap::-webkit-scrollbar { display:none; }
       .filter-btn { flex-shrink:0; }
+    }
+
+    /* ─── AI CHAT WIDGET ─────────────────────────────────────── */
+    .chat-fab {
+      position:fixed; bottom:28px; right:28px; z-index:500;
+      width:56px; height:56px; border-radius:50%;
+      background:var(--navy); color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 8px 28px rgba(45,49,71,.45);
+      cursor:pointer; border:none; transition:transform .25s, box-shadow .25s;
+    }
+    .chat-fab:hover { transform:scale(1.08); box-shadow:0 12px 36px rgba(45,49,71,.55); }
+    .chat-fab svg { transition:transform .3s; }
+    .chat-fab.open svg.icon-chat { display:none; }
+    .chat-fab.open svg.icon-close { display:block !important; }
+    .chat-window {
+      position:fixed; bottom:96px; right:28px; z-index:499;
+      width:min(380px, calc(100vw - 32px));
+      max-height:520px;
+      background:var(--snow); border-radius:20px;
+      box-shadow:0 20px 60px rgba(14,14,14,.25);
+      display:flex; flex-direction:column; overflow:hidden;
+      opacity:0; pointer-events:none;
+      transform:translateY(16px) scale(.97);
+      transition:opacity .25s, transform .25s;
+    }
+    .chat-window.open { opacity:1; pointer-events:all; transform:none; }
+    .chat-hdr {
+      background:var(--navy); padding:16px 18px;
+      display:flex; align-items:center; gap:12px; flex-shrink:0;
+    }
+    .chat-avatar {
+      width:36px; height:36px; border-radius:50%;
+      background:rgba(255,255,255,.15);
+      display:flex; align-items:center; justify-content:center;
+      font-size:16px; flex-shrink:0;
+    }
+    .chat-hdr-info { flex:1; }
+    .chat-hdr-name { font-size:14px; font-weight:500; color:#fff; }
+    .chat-hdr-status { font-size:11px; color:rgba(255,255,255,.55); }
+    .chat-messages {
+      flex:1; overflow-y:auto; padding:16px;
+      display:flex; flex-direction:column; gap:10px; min-height:0;
+    }
+    .chat-msg {
+      max-width:82%; padding:10px 14px; border-radius:16px;
+      font-size:13px; line-height:1.55;
+    }
+    .chat-msg.bot {
+      background:var(--bone); color:var(--tinta);
+      border-bottom-left-radius:4px; align-self:flex-start;
+    }
+    .chat-msg.user {
+      background:var(--navy); color:#fff;
+      border-bottom-right-radius:4px; align-self:flex-end;
+    }
+    .chat-msg.typing { color:var(--ash); font-style:italic; }
+    .chat-input-row {
+      padding:12px 14px; border-top:1px solid var(--linea);
+      display:flex; gap:8px; align-items:flex-end; flex-shrink:0;
+    }
+    .chat-input {
+      flex:1; border:1px solid var(--linea); border-radius:12px;
+      padding:10px 14px; font-size:13px; font-family:inherit;
+      background:var(--paper); color:var(--tinta); resize:none;
+      max-height:100px; outline:none;
+      transition:border-color .2s;
+    }
+    .chat-input:focus { border-color:var(--navy); }
+    .chat-send-btn {
+      width:38px; height:38px; border-radius:50%; flex-shrink:0;
+      background:var(--navy); color:#fff; border:none;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; transition:opacity .2s;
+    }
+    .chat-send-btn:hover { opacity:.82; }
+    .chat-send-btn:disabled { opacity:.4; cursor:default; }
+    @media(max-width:480px) {
+      .chat-fab { bottom:20px; right:16px; }
+      .chat-window { bottom:88px; right:16px; max-height:70vh; }
     }
   </style>
 </head>
@@ -1465,30 +1546,13 @@
 
     <div class="product-card reveal" data-category="rellenos">
       <div class="product-img">
-        <img src="assets/products/dermalax.png" alt="Dermalax" loading="lazy" />
-      </div>
-      <div class="product-info">
-        <p class="p-cat">Ácido Hialurónico</p>
-        <h3 class="p-name">Dermalax 1.1ml</h3>
-        <p class="p-desc">Relleno de HA de alta pureza con lidocaína para corrección de arrugas moderadas a profundas.</p>
-        <div class="p-footer">
-          <div class="p-price"><sup>$</sup>1,100</div>
-          <button class="add-btn add-to-cart" data-name="Dermalax" data-price="1100">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card reveal" data-category="rellenos">
-      <div class="product-img">
-        <img src="assets/products/dermalax.png" alt="Dermalax Implant" loading="lazy" />
-        <span class="p-badge nuevo">Implant</span>
+        <img src="assets/products/dermalax-implant.webp" alt="Dermalax Implant Plus" loading="lazy" />
+        <span class="p-badge nuevo">Implant Plus</span>
       </div>
       <div class="product-info">
         <p class="p-cat">Ácido Hialurónico</p>
         <h3 class="p-name">Dermalax Implant</h3>
-        <p class="p-desc">Alta viscosidad para volumización estructural. Presentación 2 jeringas para zonas de mayor demanda.</p>
+        <p class="p-desc">Alta viscosidad para volumización estructural. Supraperióstico para pómulos, mentón y mandíbula. 2.2 mL por jeringa.</p>
         <div class="p-footer">
           <div class="p-price"><sup>$</sup>1,600</div>
           <button class="add-btn add-to-cart" data-name="Dermalax Implant" data-price="1600">
@@ -1775,7 +1839,7 @@
         <button class="btn-primary add-to-cart" data-name="Voltena N°2 Body Filler" data-price="2800">
           Agregar a la Lista
         </button>
-        <a href="#contacto" class="btn-ghost" style="padding:14px 28px;">Comprar al Mayor</a>
+        <a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20quiero%20comprar%20Voltena%20N%C2%B02%20al%20mayoreo" target="_blank" rel="noopener" class="btn-ghost" style="padding:14px 28px;">Comprar al Mayoreo</a>
       </div>
     </div>
   </div>
@@ -1813,6 +1877,13 @@
       </div>
       <h3 class="benefit-title">Asesoría Especializada</h3>
       <p class="benefit-desc">Equipo con formación en medicina estética para orientarte en cada pedido y protocolo de uso.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3 class="benefit-title">Distribuidores Oficiales</h3>
+      <p class="benefit-desc">Somos distribuidores oficiales de VOL:TENA en América y representantes autorizados de las marcas más reconocidas en medicina estética coreana. Cada producto llega con trazabilidad completa y garantía de origen.</p>
     </div>
   </div>
 </section>
@@ -1884,7 +1955,7 @@
         </div>
         <div>
           <div class="contact-lbl">Email</div>
-          <div class="contact-val">samuel@fancywater.mx</div>
+          <div class="contact-val"><a href="mailto:samuel@fancywater.mx" style="color:inherit;text-decoration:none;transition:opacity .2s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">samuel@fancywater.mx</a></div>
         </div>
       </div>
       <div class="contact-row">
@@ -2586,16 +2657,16 @@ const FICHAS = {
     beneficios: ['Reducción focalizada de grasa localizada','Acción dual: emulsifica y elimina el adipocito','Resultados visibles desde la 2ª sesión','Bajo perfil de efectos secundarios'],
     uso: ['Sesiones cada 21 a 28 días — promedio 4 a 6 sesiones','Inyección subcutánea profunda con aguja 30G','Distribución en cuadrícula con separación de 1.5 cm','Dosis máxima por sesión según área tratada'],
   },
-  'Dermalax': {
-    img: 'assets/products/dermalax.png',
+  'Dermalax Implant': {
+    img: 'assets/products/dermalax-implant.webp',
     fabricante: 'Across · Corea',
-    composicion: 'Ácido Hialurónico reticulado con lidocaína',
-    presentacion: '1.1 mL por jeringa (Implant Plus 2.2 mL)',
-    formato: 'Jeringa prellenada',
-    nota: 'Familia versátil que cubre desde líneas superficiales hasta volumetría profunda con un solo proveedor.',
-    indicaciones: ['Plus — líneas finas y labios','Deep Plus — surcos nasolabiales','Implant Plus — pómulos y mentón','Perfilado mandibular'],
-    beneficios: ['Tres densidades para todas las indicaciones','Lidocaína integrada para mayor confort','Reticulación BDDE controlada','Resultado natural y duradero'],
-    uso: ['Plus — inyección dérmica superficial','Deep Plus — dérmica profunda / subcutánea','Implant Plus — supraperióstica para volumetría','Aguja 27G–30G o cánula según técnica'],
+    composicion: 'Ácido Hialurónico reticulado con lidocaína · alta cohesividad',
+    presentacion: '2.2 mL por jeringa — presentación Implant Plus',
+    formato: 'Jeringa prellenada estéril',
+    nota: 'El Dermalax Implant Plus está formulado específicamente para volumetría estructural profunda. Su alta viscosidad proporciona proyección y sustento en zonas óseas sin riesgo de migración.',
+    indicaciones: ['Volumización de pómulos y arco cigomático','Definición de mentón y mandíbula','Restauración del triángulo invertido facial','Corrección de deficiencias óseas leves o moderadas'],
+    beneficios: ['Alta cohesividad — ideal para soporte estructural','Lidocaína integrada para mayor confort del paciente','Reticulación BDDE controlada de larga duración','Resultado volumétrico natural y duradero'],
+    uso: ['Técnica supraperióstica con cánula 22G o aguja 23G','Aplicar en bolos profundos sobre el periostio','Masaje inmediato para moldear y distribuir el producto','Evitar inyección intravascular — aspirar antes de cada bolo'],
   },
   'Elasty': {
     img: 'assets/products/elasty.jpg',
@@ -2640,6 +2711,17 @@ const FICHAS = {
     indicaciones: ['Rejuvenecimiento facial general','Cuello y escote','Dorso de manos','Preparación pre-evento (glow inmediato)'],
     beneficios: ['Hidratación profunda con AH no reticulado','Mejora textura, elasticidad y luminosidad','Resultado natural sin volumen','Apto para todo tipo de piel'],
     uso: ['Protocolo de 3 sesiones cada 2 a 4 semanas','Mesoterapia con técnica de pápula o nappage','Aguja 32G o pistola de inyección automática','Recomendado en otoño-invierno para mejores resultados'],
+  },
+  'Ami Eyes': {
+    img: 'assets/products/ami-eyes.webp',
+    fabricante: 'Quiver Medic · Corea',
+    composicion: 'Polinucleótido (PN/PDRN) 1% · 20 mg/2 mL + Glutatión',
+    presentacion: '1 × 2 mL por jeringa prellenada',
+    formato: 'Skin booster periocular — mesoterapia con aguja',
+    nota: 'Formulado específicamente para el área periocular, una de las más delicadas del rostro. El PDRN se obtiene de ADN de salmón purificado y activa la síntesis de colágeno y elastina propios sin generar nódulos ni retención linfática.',
+    indicaciones: ['Ojeras y palidez periocular','Líneas finas y arrugas alrededor del ojo','Pérdida de grosor dérmico en párpados','Puffiness y cansancio del contorno ocular'],
+    beneficios: ['Estimula síntesis de colágeno y elastina de forma celular','Sin AH reticulado — sin riesgo de nódulos ni edema','Acción antiinflamatoria y antioxidante con glutatión','Resultados progresivos y naturales — hasta 6 meses'],
+    uso: ['Protocolo de 3 a 4 sesiones cada 15 días','Inyección intradérmica superficial con aguja 32G','Técnica de microbolos o retrotrazado lineal','Refrigerar entre 2–8 °C · usar antes de 24 h tras abrir'],
   },
   'Eyebella': {
     img: 'assets/products/eyebella.webp',
@@ -2778,6 +2860,127 @@ function closeLightbox() {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeFicha(); closeLightbox(); }
 });
+
+// ── AI CHAT WIDGET ────────────────────────────────────────────────────
+(function() {
+  const WELCOME = '¡Hola! Soy el asistente de Fancy Water 👋 Puedo ayudarte con información sobre nuestros productos, precios, protocolos de uso o cualquier duda. ¿En qué te puedo ayudar?';
+
+  let chatHistory = [];
+  let isBusy = false;
+
+  // Build HTML
+  const fab = document.createElement('button');
+  fab.className = 'chat-fab';
+  fab.setAttribute('aria-label', 'Chat con Fancy Water');
+  fab.innerHTML = `
+    <svg class="icon-chat" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    </svg>
+    <svg class="icon-close" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>`;
+
+  const win = document.createElement('div');
+  win.className = 'chat-window';
+  win.innerHTML = `
+    <div class="chat-hdr">
+      <div class="chat-avatar">✦</div>
+      <div class="chat-hdr-info">
+        <div class="chat-hdr-name">Fancy Water · Asistente</div>
+        <div class="chat-hdr-status">Siempre disponible</div>
+      </div>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input-row">
+      <textarea class="chat-input" id="chatInput" placeholder="Escribe tu pregunta…" rows="1"></textarea>
+      <button class="chat-send-btn" id="chatSend" aria-label="Enviar">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>`;
+
+  document.body.appendChild(fab);
+  document.body.appendChild(win);
+
+  const msgBox  = document.getElementById('chatMessages');
+  const input   = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSend');
+
+  function addMsg(role, text) {
+    const d = document.createElement('div');
+    d.className = 'chat-msg ' + (role === 'user' ? 'user' : 'bot');
+    d.textContent = text;
+    msgBox.appendChild(d);
+    msgBox.scrollTop = msgBox.scrollHeight;
+    return d;
+  }
+
+  // Show welcome
+  addMsg('bot', WELCOME);
+
+  // Toggle open/close
+  let isOpen = false;
+  fab.addEventListener('click', () => {
+    isOpen = !isOpen;
+    fab.classList.toggle('open', isOpen);
+    win.classList.toggle('open', isOpen);
+    if (isOpen) setTimeout(() => input.focus(), 280);
+  });
+
+  // Auto-resize textarea
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+  });
+
+  // Send on Enter (Shift+Enter = new line)
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+  });
+  sendBtn.addEventListener('click', sendMsg);
+
+  async function sendMsg() {
+    const text = input.value.trim();
+    if (!text || isBusy) return;
+
+    isBusy = true;
+    sendBtn.disabled = true;
+    input.value = '';
+    input.style.height = 'auto';
+
+    addMsg('user', text);
+    chatHistory.push({ role: 'user', content: text });
+
+    // Typing indicator
+    const typing = addMsg('bot', '…');
+    typing.classList.add('typing');
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: chatHistory }),
+      });
+      const data = await res.json();
+      const reply = data.reply || data.error || 'Hubo un problema. Intenta de nuevo.';
+
+      typing.remove();
+      addMsg('bot', reply);
+      chatHistory.push({ role: 'assistant', content: reply });
+
+      // Keep history trimmed
+      if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+    } catch {
+      typing.remove();
+      addMsg('bot', 'Sin conexión por el momento. Escríbenos al WhatsApp: 813 418 8472');
+    }
+
+    isBusy = false;
+    sendBtn.disabled = false;
+    input.focus();
+  }
+})();
 </script>
 </body>
 </html>
