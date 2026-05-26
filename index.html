@@ -843,6 +843,105 @@
     }
     .mobile-menu a:hover { color:var(--tinta); }
 
+    /* ─── FICHA TÉCNICA MODAL ───────────────────────────────────── */
+    .ficha-overlay {
+      position:fixed; inset:0;
+      background:rgba(14,14,14,.72);
+      backdrop-filter:blur(6px);
+      z-index:400; opacity:0; pointer-events:none;
+      transition:opacity .3s;
+    }
+    .ficha-overlay.open { opacity:1; pointer-events:all; }
+    .ficha-modal {
+      position:fixed; top:50%; left:50%;
+      transform:translate(-50%,-50%) scale(.97);
+      width:min(920px,94vw); max-height:90vh;
+      background:var(--snow); border-radius:20px;
+      overflow:hidden; display:grid;
+      grid-template-columns:1fr 320px;
+      z-index:401; opacity:0; pointer-events:none;
+      transition:opacity .3s, transform .3s;
+      box-shadow:0 40px 100px rgba(14,14,14,.35);
+    }
+    .ficha-modal.open { opacity:1; pointer-events:all; transform:translate(-50%,-50%) scale(1); }
+    .ficha-modal-img {
+      background:var(--bone); overflow-y:auto;
+      display:flex; align-items:flex-start; justify-content:center;
+      padding:28px; max-height:90vh;
+    }
+    .ficha-modal-img img { width:100%; height:auto; object-fit:contain; border-radius:8px; }
+    .ficha-modal-info {
+      padding:36px 28px; display:flex; flex-direction:column;
+      justify-content:space-between; gap:28px;
+      border-left:1px solid var(--linea); overflow-y:auto; max-height:90vh;
+    }
+    .ficha-modal-close {
+      position:absolute; top:14px; right:14px;
+      width:34px; height:34px; border-radius:50%;
+      border:1px solid var(--linea); background:var(--snow);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--grafito); transition:.2s; z-index:2; cursor:pointer;
+    }
+    .ficha-modal-close:hover { border-color:var(--navy); color:var(--navy); }
+    .ficha-modal-cat {
+      font-size:10px; letter-spacing:3px; text-transform:uppercase;
+      color:var(--ash); margin-bottom:8px;
+    }
+    .ficha-modal-name {
+      font-family:'Playfair Display',serif;
+      font-size:22px; color:var(--navy); line-height:1.25; margin-bottom:16px;
+    }
+    .ficha-modal-price {
+      font-family:'Playfair Display',serif;
+      font-size:30px; color:var(--navy); margin-bottom:4px;
+    }
+    .ficha-modal-price-note { font-size:11px; color:var(--ash); letter-spacing:1px; }
+    .ficha-qty-row {
+      display:flex; align-items:center; justify-content:space-between;
+      margin:20px 0 14px;
+    }
+    .ficha-qty-label { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--ash); }
+    .ficha-qty-ctrl {
+      display:flex; align-items:center; gap:10px;
+      background:var(--bone); border-radius:50px; padding:4px 10px;
+    }
+    .ficha-qty-ctrl button {
+      width:28px; height:28px; border-radius:50%;
+      border:1px solid var(--linea); background:var(--snow);
+      font-size:16px; display:flex; align-items:center; justify-content:center;
+      color:var(--navy); transition:.2s; cursor:pointer;
+    }
+    .ficha-qty-ctrl button:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .ficha-qty-num {
+      min-width:24px; text-align:center;
+      font-family:'Playfair Display',serif; font-size:17px; color:var(--navy);
+    }
+    .btn-ficha-cart {
+      width:100%; padding:15px;
+      background:var(--navy); color:#fff;
+      border-radius:10px; font-size:11px;
+      letter-spacing:2px; text-transform:uppercase; font-weight:600;
+      transition:opacity .3s; cursor:pointer;
+    }
+    .btn-ficha-cart:hover { opacity:.85; }
+    /* Hint on clickable product images */
+    .product-img.has-ficha { cursor:pointer; }
+    .product-img.has-ficha::after {
+      content:'VER FICHA';
+      position:absolute; bottom:0; left:0; right:0;
+      background:rgba(45,49,71,.82); color:#fff;
+      font-size:9px; letter-spacing:2px; text-align:center;
+      padding:8px; opacity:0; transition:opacity .2s;
+    }
+    .product-img.has-ficha:hover::after { opacity:1; }
+    .p-name.has-ficha { cursor:pointer; }
+    .p-name.has-ficha:hover { text-decoration:underline; text-underline-offset:3px; }
+    @media(max-width:640px) {
+      .ficha-modal { grid-template-columns:1fr; max-height:92vh; overflow-y:auto; }
+      .ficha-modal-img { max-height:50vw; padding:16px; }
+      .ficha-modal-info { border-left:none; border-top:1px solid var(--linea); max-height:none; }
+    }
+
     /* ─── PAYMENT TOAST ─────────────────────────────────────────── */
     .payment-toast {
       position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(120px);
@@ -1836,6 +1935,34 @@
   <span class="checkout-cancel" onclick="closeCheckout()">Cancelar</span>
 </div>
 
+<!-- ─── FICHA TÉCNICA MODAL ───────────────────────────────────────── -->
+<div class="ficha-overlay" id="fichaOverlay" onclick="closeFicha()"></div>
+<div class="ficha-modal" id="fichaModal">
+  <div class="ficha-modal-img" id="fichaModalImg">
+    <img id="fichaImg" src="" alt="" />
+  </div>
+  <div class="ficha-modal-info">
+    <div>
+      <p class="ficha-modal-cat" id="fichaModalCat"></p>
+      <h3 class="ficha-modal-name" id="fichaModalName"></h3>
+      <div class="ficha-modal-price">$<span id="fichaModalPrice">0</span></div>
+      <p class="ficha-modal-price-note">MXN · IVA no incluido</p>
+    </div>
+    <div>
+      <div class="ficha-qty-row">
+        <span class="ficha-qty-label">Cantidad</span>
+        <div class="ficha-qty-ctrl">
+          <button onclick="fichaChangeQty(-1)">−</button>
+          <span class="ficha-qty-num" id="fichaQtyNum">1</span>
+          <button onclick="fichaChangeQty(1)">+</button>
+        </div>
+      </div>
+      <button class="btn-ficha-cart" onclick="fichaAddToCart()">Agregar al Carrito</button>
+    </div>
+  </div>
+  <button class="ficha-modal-close" onclick="closeFicha()">×</button>
+</div>
+
 <!-- ─── THREE.JS PARTICLES ────────────────────────────────────────── -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -2179,6 +2306,94 @@ if (new URLSearchParams(location.search).get('payment') === 'success') {
   // Clean URL without reloading
   history.replaceState({}, '', location.pathname);
 }
+
+// ── FICHA TÉCNICA MODAL ───────────────────────────────────────────────
+const FICHAS = {
+  'Innotox 100U':           'assets/fichas/03_Innotox.png',
+  'Liztox 100U':            'assets/fichas/04_Liztox.png',
+  'Nabota 100U':            'assets/fichas/05_Nabota.png',
+  'Voltena N°1':            'assets/fichas/07_Voltena_N1.png',
+  'Voltena N°2 Body Filler':'assets/fichas/08_Voltena_N2.png',
+  'Voltena N°3':            'assets/fichas/09_Voltena_N3.png',
+  'Lacto Gel':              'assets/fichas/10_Lacto.png',
+  'Pllagen PLLA':           'assets/fichas/11_Pllagen.png',
+  'Lipo Lab PPC':           'assets/fichas/13_Lipo_Lab_PPC.png',
+  'Dermalax':               'assets/fichas/15_Dermalax.png',
+  'Elasty':                 'assets/fichas/16_Elasty.png',
+  'Juvéderm Voluma':        'assets/fichas/17_Juvederm_Voluma.png',
+  'Revolax':                'assets/fichas/19_Revolax.png',
+  'Hyaron Prefilled':       'assets/fichas/21_Hyaron.png',
+  'Eyebella':               'assets/fichas/22_Eyebella.png',
+  'Liporase':               'assets/fichas/23_Liporase.png',
+  'Muchcaine':              'assets/fichas/24_Muchcaine.png',
+  'Estella PLLA 200':       'assets/fichas/25_Estella.png',
+};
+
+let fichaQty  = 1;
+let fichaName = '';
+let fichaPrice = 0;
+
+function openFicha(name, price, cat) {
+  const path = FICHAS[name];
+  if (!path) return;
+  fichaName  = name;
+  fichaPrice = price;
+  fichaQty   = 1;
+
+  document.getElementById('fichaImg').src         = path;
+  document.getElementById('fichaImg').alt         = name;
+  document.getElementById('fichaModalName').textContent  = name;
+  document.getElementById('fichaModalCat').textContent   = cat;
+  document.getElementById('fichaModalPrice').textContent = price.toLocaleString('es-MX');
+  document.getElementById('fichaQtyNum').textContent     = '1';
+
+  document.getElementById('fichaOverlay').classList.add('open');
+  document.getElementById('fichaModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFicha() {
+  document.getElementById('fichaOverlay').classList.remove('open');
+  document.getElementById('fichaModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function fichaChangeQty(delta) {
+  fichaQty = Math.max(1, fichaQty + delta);
+  document.getElementById('fichaQtyNum').textContent = fichaQty;
+}
+
+function fichaAddToCart() {
+  const ex = cart.find(item => item.name === fichaName);
+  if (ex) ex.qty += fichaQty;
+  else cart.push({ name: fichaName, price: fichaPrice, qty: fichaQty });
+  renderCart();
+  closeFicha();
+  if (!document.getElementById('cartDrawer').classList.contains('open')) toggleCart();
+}
+
+// Wire up clickable product cards (image + name)
+document.querySelectorAll('.product-card').forEach(card => {
+  const nameEl = card.querySelector('.p-name');
+  const imgEl  = card.querySelector('.product-img');
+  const addBtn = card.querySelector('.add-to-cart');
+  const catEl  = card.querySelector('.p-cat');
+  if (!nameEl || !imgEl || !addBtn) return;
+
+  const name  = addBtn.dataset.name;
+  const price = parseInt(addBtn.dataset.price);
+  const cat   = catEl ? catEl.textContent : '';
+
+  if (!FICHAS[name]) return; // no ficha for this product
+
+  imgEl.classList.add('has-ficha');
+  nameEl.classList.add('has-ficha');
+  imgEl.addEventListener('click',  () => openFicha(name, price, cat));
+  nameEl.addEventListener('click', () => openFicha(name, price, cat));
+});
+
+// Close on Escape key
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFicha(); });
 </script>
 </body>
 </html>
