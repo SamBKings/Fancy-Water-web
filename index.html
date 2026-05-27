@@ -1229,6 +1229,16 @@
       .filters-wrap::-webkit-scrollbar { display:none; }
       .filter-btn { flex-shrink:0; }
 
+      /* ── HERO MÓVIL: badge/eyebrow ocultos, título + slideshow en pantalla ── */
+      .hero-badge    { display:none; }
+      .hero-eyebrow  { display:none; }
+      /* Quitar el padding gigante del hero-text (80px → 8px) para que
+         el título y el slideshow quepan juntos en la primera pantalla */
+      .hero-text { padding:8px 5vw 12px !important; gap:12px !important; }
+      .hero-title { font-size:clamp(26px,8vw,36px); }
+      /* Visual: menos padding inferior */
+      .hero-visual { padding:0 5vw 12px !important; min-height:unset; }
+
       /* ── PERFORMANCE: deshabilitar todo lo GPU-heavy en móvil ──── */
       /* Detener animación float del hero slideshow */
       .hero-slideshow { animation:none !important; }
