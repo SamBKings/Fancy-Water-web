@@ -22,19 +22,20 @@ const ORIGIN = {
 };
 
 // Paquete estándar para productos médico-estéticos
-// Ajusta weight y dimensions según tus empaques reales
+// Peso real: 500g–1.5kg por unidad → usamos 1kg como estimado
+// Dimensiones reales: hasta 30×30×30cm
 function buildPackage(items) {
   const totalQty = (items || []).reduce((s, i) => s + (i.qty || 1), 0);
   return {
     content:       'Productos médico-estéticos',
     amount:        1,
     type:          'box',
-    weight:        Math.max(0.5, totalQty * 0.4), // ~400g por producto
+    weight:        Math.max(0.5, totalQty * 1.0), // ~1kg por producto
     insurance:     0,
     declaredValue: (items || []).reduce((s, i) => s + (i.price || 0) * (i.qty || 1), 0),
     weightUnit:    'KG',
     lengthUnit:    'CM',
-    dimensions:    { length: 25, width: 20, height: 15 },
+    dimensions:    { length: 30, width: 30, height: 30 },
   };
 }
 
