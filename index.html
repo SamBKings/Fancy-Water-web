@@ -1052,16 +1052,24 @@
     .ficha-prod-img:hover::after { opacity:.9; }
 
     @media(max-width:700px) {
-      /* Bottom-sheet siempre constante — nunca aparece "cortado" */
+      /* Bottom-sheet siempre constante */
       .ficha-modal {
-        top:auto; bottom:0; left:0; right:0; width:100%;
-        transform:translateY(100%);    /* empieza fuera de pantalla */
+        top:auto   !important;
+        bottom:0   !important;
+        left:0     !important;
+        right:0    !important;
+        width:100% !important;
+        transform:translateY(110%) !important;  /* completamente fuera de pantalla */
         border-radius:20px 20px 0 0;
-        height:90vh;                   /* altura fija para consistencia */
+        height:90vh;
         max-height:90vh;
-        transition:opacity .28s, transform .32s cubic-bezier(.25,.8,.25,1);
+        box-shadow:0 -8px 40px rgba(14,14,14,.22);
+        transition:opacity .22s ease, transform .34s cubic-bezier(.32,.72,0,1) !important;
+        will-change:transform;
       }
-      .ficha-modal.open { transform:translateY(0); }
+      .ficha-modal.open {
+        transform:translateY(0) !important;
+      }
       .ficha-body { grid-template-columns:1fr; }
       /* Header compacto */
       .ficha-hdr { padding:12px 16px; gap:8px; flex-wrap:nowrap; }
@@ -1167,24 +1175,25 @@
       .feat-info { padding:28px 20px; }
       .feat-title { font-size:clamp(22px,6vw,30px); }
       .feat-desc { font-size:13px; }
-      /* Products: horizontal swipe carousel */
+      /* Products: horizontal swipe carousel centrado */
       .products-grid {
         display:flex !important;
         overflow-x:auto;
         scroll-snap-type:x mandatory;
         gap:14px;
-        padding:4px 5vw 24px;
+        /* 11vw = (100vw - 78vw) / 2 → primer y último card centran */
+        padding:4px 11vw 24px;
         margin:0 -5vw;
         scrollbar-width:none;
         -webkit-overflow-scrolling:touch;
-        touch-action:pan-x;        /* swipe horizontal sin conflicto con tap */
+        touch-action:pan-x;
       }
       .products-grid::-webkit-scrollbar { display:none; }
-      /* card: size only — no display override so filters still work */
+      /* card: snap al centro */
       .product-card {
         flex:0 0 78vw;
         min-width:0;
-        scroll-snap-align:start;
+        scroll-snap-align:center;
       }
       /* hidden cards collapse without breaking snap */
       .product-card[style*="display: none"],
