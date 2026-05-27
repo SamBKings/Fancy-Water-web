@@ -838,6 +838,55 @@
       font-size:11px; color:var(--ash); text-align:center;
       margin-bottom:20px; letter-spacing:.5px;
     }
+    /* Shipping quote section */
+    .checkout-shipping-section {
+      border-top:1px solid var(--linea); padding-top:16px; margin-bottom:16px;
+    }
+    .checkout-shipping-lbl {
+      font-size:10px; letter-spacing:2px; text-transform:uppercase;
+      color:var(--ash); margin-bottom:10px; display:block;
+    }
+    .checkout-cp-row {
+      display:flex; gap:8px; align-items:center; margin-bottom:12px;
+    }
+    .checkout-cp-input {
+      flex:1; padding:10px 14px; border:1px solid var(--linea);
+      border-radius:10px; font-size:14px; font-family:inherit;
+      background:var(--paper); color:var(--tinta); outline:none;
+      transition:border-color .2s; letter-spacing:1px;
+    }
+    .checkout-cp-input:focus { border-color:var(--navy); }
+    .checkout-cp-btn {
+      padding:10px 16px; background:var(--navy); color:#fff;
+      border-radius:10px; font-size:11px; letter-spacing:1px;
+      text-transform:uppercase; font-weight:600;
+      transition:opacity .2s; white-space:nowrap; flex-shrink:0;
+    }
+    .checkout-cp-btn:hover:not(:disabled) { opacity:.82; }
+    .checkout-cp-btn:disabled { opacity:.45; cursor:wait; }
+    .checkout-rates { display:flex; flex-direction:column; gap:8px; }
+    .checkout-rate {
+      display:flex; align-items:center; gap:12px;
+      padding:10px 14px; border:1px solid var(--linea);
+      border-radius:10px; cursor:pointer; transition:border-color .2s, background .2s;
+    }
+    .checkout-rate:hover { border-color:var(--navy); background:var(--bone); }
+    .checkout-rate.selected { border-color:var(--navy); background:var(--bone); }
+    .checkout-rate input[type=radio] { accent-color:var(--navy); width:16px; height:16px; flex-shrink:0; }
+    .checkout-rate-info { flex:1; }
+    .checkout-rate-name { font-size:13px; font-weight:500; color:var(--tinta); }
+    .checkout-rate-days { font-size:11px; color:var(--ash); margin-top:2px; }
+    .checkout-rate-price {
+      font-family:'Inter',sans-serif; font-weight:700;
+      font-size:15px; color:var(--navy); white-space:nowrap;
+    }
+    .checkout-rates-error { font-size:12px; color:#c0392b; padding:8px 0; }
+    .checkout-rates-loading { font-size:12px; color:var(--ash); padding:8px 0; }
+    .checkout-shipping-row {
+      display:flex; justify-content:space-between;
+      font-size:13px; color:var(--grafito);
+      padding:6px 0;
+    }
     #btnStripeGo {
       width:100%; padding:16px;
       background:var(--navy); color:#fff;
@@ -846,7 +895,7 @@
       transition:opacity .3s;
     }
     #btnStripeGo:hover:not(:disabled) { opacity:.85; }
-    #btnStripeGo:disabled { opacity:.5; cursor:wait; }
+    #btnStripeGo:disabled { opacity:.5; cursor:not-allowed; }
     .checkout-cancel {
       display:block; text-align:center; margin-top:14px;
       font-size:12px; color:var(--ash); cursor:pointer;
@@ -2202,12 +2251,45 @@
 <div class="checkout-modal" id="checkoutModal">
   <h3>Resumen del Pedido</h3>
   <div class="checkout-items-list" id="checkoutItemsList"></div>
+
+  <!-- Subtotal -->
+  <div class="checkout-total-row" style="padding-bottom:12px;">
+    <span>Subtotal</span>
+    <span id="checkoutSubtotal">$0</span>
+  </div>
+
+  <!-- Cotizar envío -->
+  <div class="checkout-shipping-section">
+    <span class="checkout-shipping-lbl">Envío</span>
+    <div class="checkout-cp-row">
+      <input
+        class="checkout-cp-input"
+        id="checkoutCpInput"
+        type="tel"
+        inputmode="numeric"
+        maxlength="5"
+        placeholder="Código postal (5 dígitos)"
+        onkeydown="if(event.key==='Enter')cotizarEnvio()"
+      />
+      <button class="checkout-cp-btn" id="btnCotizar" onclick="cotizarEnvio()">Cotizar</button>
+    </div>
+    <div id="checkoutRatesWrap"></div>
+  </div>
+
+  <!-- Shipping cost row (visible once selected) -->
+  <div class="checkout-shipping-row" id="checkoutShippingRow" style="display:none;">
+    <span>Envío</span>
+    <span id="checkoutShippingCost">$0</span>
+  </div>
+
+  <!-- Total -->
   <div class="checkout-total-row">
     <span>Total</span>
     <span id="checkoutTotal">$0</span>
   </div>
+
   <p class="checkout-note">Pago seguro procesado por Stripe · Visa, Mastercard, AMEX</p>
-  <button id="btnStripeGo" onclick="goToStripe()">Pagar Ahora</button>
+  <button id="btnStripeGo" onclick="goToStripe()" disabled>Pagar Ahora</button>
   <span class="checkout-cancel" onclick="closeCheckout()">Cancelar</span>
 </div>
 
@@ -2503,18 +2585,42 @@ function changeQty(idx, delta) {
 // ── STRIPE CHECKOUT ───────────────────────────────────────────────────
 const STRIPE_PK = 'pk_live_51Tb2LnBL8Z6HRvmP95i1JbVVvlpvSINBtao45ta8OhMwmTFd7AvAiaA2G5fBLLV442A0x8rlMoUa1Skduvza7s3b006xwgHUM5';
 
+// Selected shipping rate: { name, price, days }
+let selectedShipping = null;
+
+function checkoutSubtotal() {
+  return cart.reduce((s, i) => s + i.price * i.qty, 0);
+}
+
+function updateCheckoutTotals() {
+  const sub = checkoutSubtotal();
+  const ship = selectedShipping ? selectedShipping.price : 0;
+  document.getElementById('checkoutSubtotal').textContent =
+    '$' + sub.toLocaleString('es-MX') + ' MXN';
+  document.getElementById('checkoutTotal').textContent =
+    '$' + (sub + ship).toLocaleString('es-MX') + ' MXN';
+}
+
 function openCheckout() {
   if (!cart.length) return;
+
+  // Reset shipping state
+  selectedShipping = null;
+  document.getElementById('checkoutCpInput').value = '';
+  document.getElementById('checkoutRatesWrap').innerHTML = '';
+  document.getElementById('checkoutShippingRow').style.display = 'none';
+  document.getElementById('btnStripeGo').disabled = true;
+
+  // Render items
   const list = document.getElementById('checkoutItemsList');
-  const totalEl = document.getElementById('checkoutTotal');
   list.innerHTML = cart.map(i =>
     `<div class="checkout-line">
       <span>${i.name} × ${i.qty}</span>
       <span>$${(i.price * i.qty).toLocaleString('es-MX')}</span>
     </div>`
   ).join('');
-  const sum = cart.reduce((s,i) => s + i.price * i.qty, 0);
-  totalEl.textContent = '$' + sum.toLocaleString('es-MX') + ' MXN';
+
+  updateCheckoutTotals();
   document.getElementById('checkoutOverlay').classList.add('open');
   document.getElementById('checkoutModal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -2526,7 +2632,80 @@ function closeCheckout() {
   document.body.style.overflow = '';
   const btn = document.getElementById('btnStripeGo');
   btn.textContent = 'Pagar Ahora';
-  btn.disabled = false;
+  btn.disabled = true;
+}
+
+async function cotizarEnvio() {
+  const cp = document.getElementById('checkoutCpInput').value.trim();
+  if (!/^\d{5}$/.test(cp)) {
+    document.getElementById('checkoutRatesWrap').innerHTML =
+      '<p class="checkout-rates-error">Ingresa un código postal de 5 dígitos.</p>';
+    return;
+  }
+
+  const wrap = document.getElementById('checkoutRatesWrap');
+  const btn  = document.getElementById('btnCotizar');
+  wrap.innerHTML = '<p class="checkout-rates-loading">Cotizando envío…</p>';
+  btn.disabled = true;
+
+  try {
+    const resp = await fetch('/api/cotizar-envio', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ cp, items: cart }),
+    });
+    const data = await resp.json();
+
+    if (!resp.ok || !data.rates || !data.rates.length) {
+      throw new Error(data.error || 'Sin tarifas disponibles');
+    }
+
+    // Reset previous selection
+    selectedShipping = null;
+    document.getElementById('checkoutShippingRow').style.display = 'none';
+    document.getElementById('btnStripeGo').disabled = true;
+
+    wrap.innerHTML = '<div class="checkout-rates" id="checkoutRatesList">' +
+      data.rates.map(r => {
+        const priceLabel = r.price === 0 ? 'Gratis' : '$' + r.price.toLocaleString('es-MX') + ' MXN';
+        const daysLabel  = r.days ? `${r.days} día${r.days == 1 ? '' : 's'} hábil${r.days == 1 ? '' : 'es'}` : '';
+        return `<label class="checkout-rate" data-id="${r.id}">
+          <input type="radio" name="shipping_rate" value="${r.id}"
+            onchange="selectShipping('${r.id}','${r.name.replace(/'/g,"\\'")}',${r.price},'${r.days}')" />
+          <div class="checkout-rate-info">
+            <div class="checkout-rate-name">${r.name}</div>
+            ${daysLabel ? `<div class="checkout-rate-days">${daysLabel}</div>` : ''}
+          </div>
+          <div class="checkout-rate-price">${priceLabel}</div>
+        </label>`;
+      }).join('') + '</div>';
+
+  } catch(err) {
+    wrap.innerHTML = `<p class="checkout-rates-error">No se pudo cotizar: ${err.message}.<br>
+      <span style="color:var(--grafito)">Puedes continuar y elegir envío al pagar.</span></p>`;
+    // Allow proceeding with Stripe's built-in fallback rates
+    document.getElementById('btnStripeGo').disabled = false;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function selectShipping(id, name, price, days) {
+  selectedShipping = { id, name, price, days };
+
+  // Highlight selected row
+  document.querySelectorAll('.checkout-rate').forEach(el => {
+    el.classList.toggle('selected', el.dataset.id === id);
+  });
+
+  // Show shipping cost row
+  const shipRow = document.getElementById('checkoutShippingRow');
+  shipRow.style.display = 'flex';
+  const costLabel = price === 0 ? 'Gratis' : '$' + price.toLocaleString('es-MX') + ' MXN';
+  document.getElementById('checkoutShippingCost').textContent = costLabel;
+
+  updateCheckoutTotals();
+  document.getElementById('btnStripeGo').disabled = false;
 }
 
 async function goToStripe() {
@@ -2534,10 +2713,18 @@ async function goToStripe() {
   btn.textContent = 'Redirigiendo…';
   btn.disabled = true;
   try {
+    const payload = { items: cart };
+    if (selectedShipping) {
+      payload.shipping = {
+        name:  selectedShipping.name,
+        price: selectedShipping.price,
+        days:  selectedShipping.days,
+      };
+    }
     const resp = await fetch('/api/create-checkout-session', {
-      method: 'POST',
+      method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: cart })
+      body:    JSON.stringify(payload),
     });
     const data = await resp.json();
     if (data.url) {
