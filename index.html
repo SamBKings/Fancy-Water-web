@@ -76,8 +76,18 @@
       backdrop-filter:blur(20px);
       box-shadow:0 1px 0 var(--linea);
     }
-    .nav-logo { display:flex; align-items:center; }
+    .nav-logo { display:flex; align-items:center; gap:12px; }
     .nav-logo img { height:64px; width:auto; mix-blend-mode:multiply; }
+    .nav-brand {
+      font-family:'Inter', sans-serif;
+      font-weight:800;
+      font-size:22px;
+      text-transform:uppercase;
+      letter-spacing:4px;
+      color:var(--tinta);
+      white-space:nowrap;
+      line-height:1;
+    }
     .nav-links { display:flex; gap:32px; list-style:none; align-items:center; }
     .nav-links a {
       font-size:12px; font-weight:400; letter-spacing:2px;
@@ -1381,7 +1391,8 @@
 <!-- ─── NAV ──────────────────────────────────────────────────────── -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
-    <img src="assets/logo-fw.png" alt="Fancy Water" />
+    <img src="assets/logo-fw-new.jpeg" alt="Fancy Water" />
+    <span class="nav-brand">Fancy Water</span>
   </a>
   <ul class="nav-links">
     <li><a href="#nosotros">Nosotros</a></li>
