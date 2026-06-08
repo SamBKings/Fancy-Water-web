@@ -2001,7 +2001,7 @@
         <button class="btn-primary add-to-cart" data-name="Voltena N°2 Body Filler" data-price="2800">
           Agregar a la Lista
         </button>
-        <a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20quiero%20comprar%20Voltena%20N%C2%B02%20al%20mayoreo" target="_blank" rel="noopener" class="btn-ghost" style="padding:14px 28px;">Comprar al Mayoreo</a>
+        <a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20quiero%20comprar%20Voltena%20N%C2%B02%20al%20mayoreo" target="_blank" rel="noopener" class="btn-ghost" style="padding:14px 28px;" onclick="gtag('event','ads_conversion_Contactar_1',{});">Comprar al Mayoreo</a>
       </div>
     </div>
   </div>
@@ -2107,7 +2107,7 @@
         <div>
           <div class="contact-lbl">WhatsApp</div>
           <div class="contact-val" style="font-size:20px;font-weight:500;letter-spacing:1px;">
-            <a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20me%20interesa%20un%20pedido" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">813 418 8472</a>
+            <a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20me%20interesa%20un%20pedido" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" onclick="gtag('event','ads_conversion_Contactar_1',{});">813 418 8472</a>
           </div>
         </div>
       </div>
@@ -2219,7 +2219,7 @@
     <div class="footer-col">
       <h4>Contacto</h4>
       <ul>
-        <li><a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20me%20interesa%20un%20pedido" target="_blank" rel="noopener">WhatsApp: 813 418 8472</a></li>
+        <li><a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20me%20interesa%20un%20pedido" target="_blank" rel="noopener" onclick="gtag('event','ads_conversion_Contactar_1',{});">WhatsApp: 813 418 8472</a></li>
         <li><a href="#contacto">samuel@fancywater.mx</a></li>
         <li><a href="#productos">Tienda</a></li>
         <li><a href="#">Aviso de Privacidad</a></li>
@@ -2871,6 +2871,8 @@ if (new URLSearchParams(location.search).get('payment') === 'success') {
   const toast = document.getElementById('paymentToast');
   setTimeout(() => toast.classList.add('show'), 600);
   setTimeout(() => toast.classList.remove('show'), 6000);
+  // Fire Google Ads purchase conversion
+  gtag('event', 'ads_conversion_Contactar_1', {});
   // Clean URL without reloading
   history.replaceState({}, '', location.pathname);
 }
