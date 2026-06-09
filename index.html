@@ -1410,6 +1410,33 @@
       .chat-fab { bottom:20px; right:16px; }
       .chat-window { bottom:88px; right:16px; max-height:70vh; }
     }
+    /* ── CART FAB (mobile only) ───────────────────────────────────── */
+    .cart-fab-mobile {
+      position:fixed; bottom:96px; right:28px; z-index:500;
+      width:50px; height:50px; border-radius:50%;
+      background:var(--navy); color:#fff;
+      display:none; align-items:center; justify-content:center;
+      box-shadow:0 8px 28px rgba(45,49,71,.45);
+      cursor:pointer; border:none;
+      transition:transform .25s, box-shadow .25s;
+      touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+    }
+    .cart-fab-mobile:hover { transform:scale(1.08); box-shadow:0 12px 36px rgba(45,49,71,.55); }
+    .cart-fab-mobile .cart-fab-badge {
+      position:absolute; top:-4px; right:-4px;
+      width:18px; height:18px; border-radius:50%;
+      background:#e63946; color:#fff;
+      font-size:10px; font-weight:700;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:opacity .3s;
+    }
+    .cart-fab-mobile .cart-fab-badge.visible { opacity:1; }
+    @media(max-width:640px) {
+      .cart-fab-mobile { display:flex; }
+    }
+    @media(max-width:480px) {
+      .cart-fab-mobile { bottom:88px; right:16px; }
+    }
   </style>
   <!-- Vercel Speed Insights -->
   <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -2234,6 +2261,15 @@
 </footer>
 
 <!-- ─── CART ──────────────────────────────────────────────────────── -->
+<!-- Cart FAB mobile -->
+<button class="cart-fab-mobile" id="cartFabMobile" onclick="toggleCart()" aria-label="Ver carrito">
+  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <path d="M16 10a4 4 0 01-8 0"/>
+  </svg>
+  <span class="cart-fab-badge" id="cartFabBadge">0</span>
+</button>
 <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-hdr">
@@ -2562,6 +2598,8 @@ function renderCart() {
   const qty = cart.reduce((s,i) => s+i.qty, 0);
   countEl.textContent = qty;
   countEl.classList.toggle('visible', cart.length > 0);
+  const fabBadge = document.getElementById('cartFabBadge');
+  if (fabBadge) { fabBadge.textContent = qty; fabBadge.classList.toggle('visible', cart.length > 0); }
 
   if (!cart.length) {
     empty.style.display = ''; footer.style.display = 'none'; return;
