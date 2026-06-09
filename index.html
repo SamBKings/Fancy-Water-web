@@ -2871,8 +2871,12 @@ if (new URLSearchParams(location.search).get('payment') === 'success') {
   const toast = document.getElementById('paymentToast');
   setTimeout(() => toast.classList.add('show'), 600);
   setTimeout(() => toast.classList.remove('show'), 6000);
-  // Fire Google Ads purchase conversion
-  gtag('event', 'ads_conversion_Contactar_1', {});
+  // Fire Google Ads purchase conversion with order value
+  const orderValue = parseFloat(new URLSearchParams(location.search).get('value')) || 0;
+  gtag('event', 'ads_conversion_Contactar_1', {
+    value:    orderValue,
+    currency: 'MXN',
+  });
   // Clean URL without reloading
   history.replaceState({}, '', location.pathname);
 }

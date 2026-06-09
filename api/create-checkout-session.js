@@ -65,6 +65,11 @@ module.exports = async function handler(req, res) {
     ];
   }
 
+  // Calcular total para conversión de Google Ads
+  const subtotal    = items.reduce((sum, item) => sum + (item.price || 0) * (item.qty || 1), 0);
+  const shippingAmt = (shipping && typeof shipping.price === 'number') ? shipping.price : 0;
+  const orderTotal  = Math.round(subtotal + shippingAmt);
+
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types:         ['card'],
@@ -81,8 +86,8 @@ module.exports = async function handler(req, res) {
         quantity: item.qty,
       })),
       mode:        'payment',
-      success_url: 'https://fancywater.mx/?payment=success',
-      cancel_url:  'https://fancywater.mx/#productos',
+      success_url: `https://www.fancywater.mx/?payment=success&value=${orderTotal}`,
+      cancel_url:  'https://www.fancywater.mx/#productos',
     });
 
     res.status(200).json({ url: session.url });
