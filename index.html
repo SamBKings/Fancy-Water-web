@@ -2915,6 +2915,12 @@ if (new URLSearchParams(location.search).get('payment') === 'success') {
     value:    orderValue,
     currency: 'MXN',
   });
+  gtag('event', 'conversion', {
+    send_to:        'AW-16457503800/--nhCLG85LwcELioxqc9',
+    value:          orderValue,
+    currency:       'MXN',
+    transaction_id: '',
+  });
   // Clean URL without reloading
   history.replaceState({}, '', location.pathname);
 }
