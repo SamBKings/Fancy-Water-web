@@ -29,7 +29,7 @@
     gtag('config', 'AW-16457503800');
   </script>
   <!-- End Google tag -->
-  <title>Fancy Water — Distribuidora Médico-Estética</title>
+  <title>Fancy Water · Distribuidora Médico-Estética</title>
   <meta name="description" content="Distribuidores oficiales VOL:TENA en América. Toxinas botulínicas, rellenos dérmicos, PLLA y skin boosters 100% originales con cadena de frío y entrega inmediata en México. Compra en línea con pago seguro." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,12 +42,12 @@
   <!-- Open Graph (WhatsApp / social sharing) -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://fancywater.mx/" />
-  <meta property="og:title"       content="Fancy Water — Distribuidora Médico-Estética" />
+  <meta property="og:title"       content="Fancy Water · Distribuidora Médico-Estética" />
   <meta property="og:description" content="Distribuidores oficiales VOL:TENA en América. Toxinas botulínicas, rellenos dérmicos, PLLA, lipoenzimas y skin boosters premium." />
   <meta property="og:image"       content="https://fancywater.mx/assets/products/slam-productos.jpg" />
   <meta property="og:locale"      content="es_MX" />
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Fancy Water — Distribuidora Médico-Estética" />
+  <meta name="twitter:title"       content="Fancy Water · Distribuidora Médico-Estética" />
   <meta name="twitter:description" content="Distribuidores oficiales VOL:TENA en América. Toxinas botulínicas, rellenos dérmicos, PLLA, lipoenzimas y skin boosters premium." />
   <meta name="twitter:image"       content="https://fancywater.mx/assets/products/slam-productos.jpg" />
   <!-- Vercel Analytics -->
@@ -163,7 +163,7 @@
     }
     .cart-count.visible { opacity:1; }
     .hamburger { display:none; flex-direction:column; gap:5px; width:28px; }
-    .hamburger span { height:1px; background:var(--tinta); transition:.3s; }
+    .hamburger span { height:1px; background:var(--tinta); transition:background-color .3s, transform .3s; }
 
     /* ─── HERO ───────────────────────────────────────────────────── */
     .hero {
@@ -190,31 +190,21 @@
       width:fit-content;
       opacity:0; animation:fadeUp .7s var(--ease-out) .2s forwards;
     }
-    .badge-dot {
-      width:6px; height:6px; border-radius:50%;
-      background:rgba(255,255,255,.5);
-      animation:pulse 2s infinite;
-    }
-    .hero-eyebrow {
-      font-size:11px; letter-spacing:4px; text-transform:uppercase;
-      color:var(--ash);
-      opacity:0; animation:fadeUp .7s var(--ease-out) .35s forwards;
-    }
     .hero-title {
       font-family:'Playfair Display', serif;
       font-size:clamp(44px,5.5vw,80px);
       font-weight:400; line-height:1.05; letter-spacing:-.5px;
-      opacity:0; animation:fadeUp .7s var(--ease-out) .5s forwards;
+      opacity:0; animation:fadeUp .7s var(--ease-out) .35s forwards;
     }
     .hero-title em { font-style:italic; color:var(--navy); }
     .hero-sub {
       max-width:440px; font-size:15px;
       color:var(--grafito); line-height:1.85;
-      opacity:0; animation:fadeUp .7s var(--ease-out) .65s forwards;
+      opacity:0; animation:fadeUp .7s var(--ease-out) .5s forwards;
     }
     .hero-actions {
       display:flex; gap:12px; flex-wrap:wrap;
-      opacity:0; animation:fadeUp .7s var(--ease-out) .8s forwards;
+      opacity:0; animation:fadeUp .7s var(--ease-out) .65s forwards;
     }
     .btn-primary {
       padding:14px 36px;
@@ -344,14 +334,10 @@
       color:rgba(255,255,255,.6); max-width:440px; margin-bottom:40px;
     }
     .vs-badge {
-      display:inline-flex; align-items:center; gap:10px;
+      display:inline-flex; align-items:center;
       padding:10px 20px; border:1px solid rgba(255,255,255,.2);
       border-radius:50px; font-size:10px; letter-spacing:3px;
       text-transform:uppercase; color:rgba(255,255,255,.8);
-    }
-    .vs-badge::before {
-      content:''; width:6px; height:6px; border-radius:50%;
-      background:rgba(255,255,255,.6);
     }
     .vs-photo {
       position:relative;
@@ -733,9 +719,11 @@
       width:34px; height:34px; border-radius:50%;
       border:1px solid rgba(255,255,255,.1);
       display:flex; align-items:center; justify-content:center;
-      color:rgba(255,255,255,.4); transition:.3s;
+      color:rgba(255,255,255,.4);
+      transition:border-color .3s, color .3s, transform .16s var(--ease-out);
     }
     .soc-icon:hover { border-color:rgba(255,255,255,.4); color:rgba(255,255,255,.8); }
+    .soc-icon:active { transform:scale(.92); }
     .footer-col h3 {
       font-size:10px; letter-spacing:3px; text-transform:uppercase;
       font-family:'Inter',sans-serif; font-weight:400;
@@ -1043,9 +1031,11 @@
       width:32px; height:32px; border-radius:50%; flex-shrink:0;
       border:1px solid rgba(255,255,255,.25); background:transparent;
       display:flex; align-items:center; justify-content:center;
-      color:rgba(255,255,255,.65); transition:.2s; cursor:pointer; font-size:17px;
+      color:rgba(255,255,255,.65); cursor:pointer; font-size:17px;
+      transition:border-color .2s, color .2s, transform .14s var(--ease-out);
     }
     .ficha-modal-close:hover { border-color:#fff; color:#fff; }
+    .ficha-modal-close:active { transform:scale(.9); }
     /* Body: left + right */
     .ficha-body {
       display:grid; grid-template-columns:290px 1fr;
@@ -1105,7 +1095,7 @@
       display:flex; align-items:baseline; gap:10px; line-height:1.4;
     }
     .ficha-list.indic li:last-child { border-bottom:none; }
-    .ficha-list.indic li::before { content:'—'; color:var(--ash); flex-shrink:0; }
+    .ficha-list.indic li::before { content:'·'; color:var(--ash); flex-shrink:0; }
     .ficha-list.benef { display:flex; flex-direction:column; gap:7px; }
     .ficha-list.benef li {
       font-size:13px; color:var(--tinta); line-height:1.45;
@@ -1265,10 +1255,6 @@
       0%,100% { transform:translateY(0); }
       50%      { transform:translateY(-14px); }
     }
-    @keyframes pulse {
-      0%,100% { opacity:.5; }
-      50%      { opacity:1; }
-    }
     @keyframes orbitSpin {
       from { transform:translate(-50%,-50%) rotate(0deg); }
       to   { transform:translate(-50%,-50%) rotate(360deg); }
@@ -1364,7 +1350,6 @@
 
       /* ── HERO MÓVIL: badge/eyebrow ocultos, título + slideshow en pantalla ── */
       .hero-badge    { display:none; }
-      .hero-eyebrow  { display:none; }
       /* Quitar el padding gigante del hero-text (80px → 8px) para que
          el título y el slideshow quepan juntos en la primera pantalla */
       .hero-text { padding:8px 5vw 12px !important; gap:12px !important; }
@@ -1551,7 +1536,7 @@
       /* La marquesina se detiene; el contenido queda legible en reposo */
       .marquee-track { animation:none !important; transform:none !important; }
       /* Hero y reveals: visibles de inmediato, sin desplazamiento */
-      .hero-badge, .hero-eyebrow, .hero-title, .hero-sub, .hero-actions, .hero-visual {
+      .hero-badge, .hero-title, .hero-sub, .hero-actions, .hero-visual {
         opacity:1 !important; animation:none !important;
       }
       .reveal { opacity:1 !important; transform:none !important; }
@@ -1612,19 +1597,17 @@
 
   <div class="hero-text">
     <div class="hero-badge">
-      <span class="badge-dot"></span>
       Distribuidores Oficiales VOL:TENA en América
     </div>
-    <p class="hero-eyebrow">Distribuidora Médico-Estética · México</p>
     <h1 class="hero-title">
       Insumos que<br>elevan tu <em>práctica</em>
     </h1>
     <p class="hero-sub">
-      Distribuidor autorizado de toxinas botulínicas, rellenos dérmicos, mesoterapia y la línea exclusiva VOL:TENA. Productos 100% originales con entrega inmediata para clínicas y médicos.
+      Toxinas botulínicas, rellenos dérmicos, mesoterapia y la línea exclusiva VOL:TENA. Productos 100% originales con entrega inmediata en todo México.
     </p>
     <div class="hero-actions">
-      <a href="#productos" class="btn-primary">Ver Catálogo</a>
-      <a href="#productos" class="btn-ghost">Ver Productos</a>
+      <a href="#productos" class="btn-primary">Comprar</a>
+      <a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20me%20interesa%20un%20pedido" target="_blank" rel="noopener" class="btn-ghost" onclick="gtag('event','ads_conversion_Contactar_1',{});">Hablar por WhatsApp</a>
     </div>
   </div>
 
@@ -1695,7 +1678,7 @@
   <div class="about-grid">
     <div class="about-visual-wrap reveal">
       <div class="about-visual-inner">
-        <img src="assets/vitrina-voltena.jpg" alt="Vitrina VOL:TENA — Fancy Water" width="911" height="1184" loading="lazy" />
+        <img src="assets/vitrina-voltena.jpg" alt="Vitrina VOL:TENA, Fancy Water" width="911" height="1184" loading="lazy" />
       </div>
     </div>
     <div class="about-content reveal">
@@ -1730,7 +1713,7 @@
     <div>
       <h2 class="section-title">Lista de <em>Precios</em></h2>
       <p class="price-note" style="margin-top:8px;">
-        <span>Precios en MXN · Tarifa Minorista · IVA no incluido</span>
+        <span>Precios en MXN, tarifa minorista, IVA no incluido</span>
       </p>
     </div>
     <div class="filters-wrap">
@@ -1791,7 +1774,7 @@
       <div class="product-info">
         <p class="p-cat">Toxina Botulínica</p>
         <h3 class="p-name">Innotox 100U</h3>
-        <p class="p-desc">Toxina botulínica en solución lista para usar. Sin reconstitución necesaria — máxima practicidad.</p>
+        <p class="p-desc">Toxina botulínica en solución lista para usar. Sin reconstitución necesaria: máxima practicidad.</p>
         <div class="p-footer">
           <div class="p-price"><sup>$</sup>1,350</div>
           <button class="add-btn add-to-cart" data-name="Innotox 100U" data-price="1350">
@@ -2112,7 +2095,7 @@
 
   </div>
   <p style="text-align:center;margin-top:32px;font-size:12px;color:var(--grafito);">
-    * Producto sobre pedido — entrega estimada de 3 a 4 semanas. Precios sujetos a cambio sin previo aviso. Para uso exclusivo de profesionales de la salud.
+    * Producto sobre pedido: entrega estimada de 3 a 4 semanas. Precios sujetos a cambio sin previo aviso. Para uso exclusivo de profesionales de la salud.
   </p>
 </section>
 
@@ -2132,12 +2115,12 @@
       <span class="feat-tag">Exclusivo VOL:TENA · Distribuidores Oficiales</span>
       <h2 class="feat-title">VOL:TENA N°2<br>Body Filler</h2>
       <p class="feat-desc">
-        El Body Filler más avanzado de la línea VOL:TENA. Formulado en Corea para volumización y contorneado corporal no quirúrgico. 60cc por presentación — el producto insignia de nuestra línea exclusiva.
+        El Body Filler más avanzado de la línea VOL:TENA. Formulado en Corea para volumización y contorneado corporal no quirúrgico. 60cc por presentación: el producto insignia de nuestra línea exclusiva.
       </p>
       <ul class="feat-perks">
         <li>Tecnología coreana de última generación</li>
         <li>Contorneado corporal no quirúrgico</li>
-        <li>60cc por vial — alta relación volumen/resultado</li>
+        <li>60cc por vial: alta relación volumen/resultado</li>
         <li>Aval clínico y certificación de origen</li>
         <li>Disponible exclusivamente a través de Fancy Water</li>
       </ul>
@@ -2188,7 +2171,7 @@
   <div class="test-grid">
     <div class="test-card reveal">
       <div class="stars">★★★★★</div>
-      <p class="test-text">"Llevamos más de un año con Fancy Water y la diferencia es total. Productos siempre originales, entrega el mismo día y precios muy competitivos. Son el mejor proveedor que hemos tenido."</p>
+      <p class="test-text">"Productos siempre originales, entrega el mismo día y precios competitivos. El mejor proveedor que hemos tenido."</p>
       <div class="test-author">
         <div class="test-avatar">R</div>
         <div>
@@ -2199,7 +2182,7 @@
     </div>
     <div class="test-card reveal">
       <div class="stars">★★★★★</div>
-      <p class="test-text">"El Nabota y el Juvéderm que nos proveen son 100% auténticos. Mis pacientes notan la diferencia. Y el equipo de Fancy Water siempre resuelve cualquier duda al instante por WhatsApp."</p>
+      <p class="test-text">"El Nabota y el Juvéderm que nos proveen son 100% auténticos. Mis pacientes notan la diferencia."</p>
       <div class="test-author">
         <div class="test-avatar">V</div>
         <div>
@@ -2210,7 +2193,7 @@
     </div>
     <div class="test-card reveal">
       <div class="stars">★★★★★</div>
-      <p class="test-text">"Somos spa médico y Fancy Water nos atiende perfecto. La línea VOL:TENA ha sido un diferenciador enorme para nuestros tratamientos corporales. Excelente proveedor, totalmente recomendado."</p>
+      <p class="test-text">"La línea VOL:TENA ha sido un diferenciador enorme para nuestros tratamientos corporales. Excelente proveedor."</p>
       <div class="test-author">
         <div class="test-avatar">C</div>
         <div>
@@ -2256,7 +2239,7 @@
         </div>
         <div>
           <div class="contact-lbl">Horario de Atención</div>
-          <div class="contact-val">Lun – Vie · 8:00 – 17:00 hrs</div>
+          <div class="contact-val">Lun - Vie · 8:00 - 17:00 hrs</div>
         </div>
       </div>
     </div>
@@ -2296,7 +2279,7 @@
 <!-- ─── NEWSLETTER ─────────────────────────────────────────────────── -->
 <section class="newsletter-section">
   <h2 class="section-title reveal">Recibe los mejores<br>precios y <em>novedades</em></h2>
-  <p class="nl-sub reveal">Lanzamientos, precios especiales y nuevos productos — directo a tu correo.</p>
+  <p class="nl-sub reveal">Lanzamientos, precios especiales y nuevos productos, directo a tu correo.</p>
   <form class="nl-form reveal" onsubmit="handleNewsletter(event)">
     <input type="email" class="nl-input" placeholder="correo@clinica.com" aria-label="Correo electrónico" autocomplete="email" required />
     <button type="submit" class="btn-nl">Suscribirse</button>
@@ -2356,7 +2339,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Fancy Water · México · Distribución Médico-Estética</p>
+    <p class="footer-copy">© 2026 Fancy Water · México</p>
     <p class="footer-copy">Para uso exclusivo de profesionales de la salud</p>
   </div>
 </footer>
@@ -3063,7 +3046,7 @@ async function handleContact(e) {
       form.reset();
     }, 4000);
   } catch(err) {
-    btn.textContent = 'Error — intenta de nuevo';
+    btn.textContent = 'Error, intenta de nuevo';
     btn.style.background = 'var(--error)';
     setTimeout(() => {
       btn.textContent = 'Enviar Solicitud';
@@ -3090,7 +3073,7 @@ async function handleNewsletter(e) {
     announce('Suscripción confirmada');
     setTimeout(() => { btn.textContent = 'Suscribirse'; btn.disabled = false; form.reset(); }, 3000);
   } catch {
-    btn.textContent = 'Error — intenta de nuevo';
+    btn.textContent = 'Error, intenta de nuevo';
     announce('No se pudo completar la suscripción');
     setTimeout(() => { btn.textContent = 'Suscribirse'; btn.disabled = false; }, 3000);
   }
@@ -3162,7 +3145,7 @@ const FICHAS = {
     nota: 'Una de las toxinas coreanas con mayor reconocimiento global, validada en múltiples mercados regulados. Comercializada como Jeuveau™ en EE.UU. y Nuceiva™ en Europa.',
     indicaciones: ['Líneas glabelares moderadas a severas','Frente y patas de gallo','Mentón y cuello (técnica Nefertiti)','Sonrisa gingival'],
     beneficios: ['Tecnología HiPure™ de alta pureza proteica','Comercializada como Jeuveau™ (FDA) y Nuceiva™ (EMA)','Mínima difusión al músculo adyacente','Resultado natural y predecible'],
-    uso: ['Reconstituir con SS 0.9% sin preservantes (1.25 a 2.5 mL)','Aguja de 30G a 33G para precisión','Almacenar entre 2–8 °C','Iniciar con dosis conservadora y titular'],
+    uso: ['Reconstituir con SS 0.9% sin preservantes (1.25 a 2.5 mL)','Aguja de 30G a 33G para precisión','Almacenar entre 2-8 °C','Iniciar con dosis conservadora y titular'],
   },
   'Nabota 200U': {
     img: 'assets/products/nabota200-solo.jpg',
@@ -3172,26 +3155,26 @@ const FICHAS = {
     formato: 'Polvo secado al vacío',
     nota: 'Presentación de 200 unidades, ideal para tratamientos de mayor superficie o uso clínico intensivo. Misma calidad y pureza HiPure™ que la versión 100U.',
     indicaciones: ['Líneas glabelares moderadas a severas','Frente y patas de gallo','Mentón y cuello (técnica Nefertiti)','Sonrisa gingival'],
-    beneficios: ['Tecnología HiPure™ de alta pureza proteica','Mayor rendimiento por vial — ideal para alto volumen','Mínima difusión al músculo adyacente','Resultado natural y predecible'],
-    uso: ['Reconstituir con SS 0.9% sin preservantes (2.5 a 5 mL según dilución deseada)','Aguja de 30G a 33G para precisión','Almacenar entre 2–8 °C','Iniciar con dosis conservadora y titular'],
+    beneficios: ['Tecnología HiPure™ de alta pureza proteica','Mayor rendimiento por vial: ideal para alto volumen','Mínima difusión al músculo adyacente','Resultado natural y predecible'],
+    uso: ['Reconstituir con SS 0.9% sin preservantes (2.5 a 5 mL según dilución deseada)','Aguja de 30G a 33G para precisión','Almacenar entre 2-8 °C','Iniciar con dosis conservadora y titular'],
   },
   'Innotox 100U': {
     img: 'assets/products/innotox-new.webp',
     fabricante: 'Medytox · Corea',
     composicion: 'Toxina Botulínica Tipo A',
     presentacion: '100 U / Vial · 4 U por 0.1 mL',
-    formato: 'Líquido — sin reconstitución',
+    formato: 'Líquido: sin reconstitución',
     nota: 'Primera toxina botulínica líquida del mundo. Su formulación elimina la variabilidad de la reconstitución manual y mejora la trazabilidad del tratamiento.',
     indicaciones: ['Líneas glabelares y frontales','Patas de gallo · líneas perioculares','Hiperhidrosis axilar y palmar','Bruxismo y maseteros'],
     beneficios: ['Sin riesgo de error en la reconstitución','Dosificación más precisa y reproducible','Inicio de acción rápido (3 a 5 días)','Duración promedio de 4 a 6 meses'],
-    uso: ['Aplicación intramuscular con aguja 30G–32G','Refrigerar entre 2–8 °C, no congelar','Una vez abierto utilizar en menos de 24 h','Dosis estándar: 4 U por punto de inyección'],
+    uso: ['Aplicación intramuscular con aguja 30G-32G','Refrigerar entre 2-8 °C, no congelar','Una vez abierto utilizar en menos de 24 h','Dosis estándar: 4 U por punto de inyección'],
   },
   'Liztox 100U': {
     img: 'assets/products/listox.png',
     fabricante: 'Huons · Corea',
     composicion: 'Clostridium Botulinum Toxin Tipo A',
     presentacion: '100 U / Vial',
-    formato: 'Polvo liofilizado — reconstituir con SS 0.9%',
+    formato: 'Polvo liofilizado: reconstituir con SS 0.9%',
     nota: 'Opción confiable para clínicas de alto volumen. Duración estándar de 3 a 4 meses con resultados naturales.',
     indicaciones: ['Arrugas dinámicas frontales','Bruxismo · hipertrofia de maseteros','Líneas perioculares y peribucales','Lifting de cejas no quirúrgico'],
     beneficios: ['Excelente relación costo-eficacia','Aprobada por KFDA','Bajo perfil inmunogénico','Inicio rápido y duración consistente'],
@@ -3204,9 +3187,9 @@ const FICHAS = {
     presentacion: '10 mL × 6 viales por caja',
     formato: 'Suero inyectable',
     nota: 'Lipolítico que rompe la membrana del adipocito y favorece su eliminación natural. Resultados visibles desde la 2ª sesión.',
-    indicaciones: ['Doble mentón · papada','Abdomen y flancos','Brazos, espalda y rodillas','Modelado facial — bola de Bichat'],
+    indicaciones: ['Doble mentón · papada','Abdomen y flancos','Brazos, espalda y rodillas','Modelado facial: bola de Bichat'],
     beneficios: ['Reducción visible de adiposidad localizada','Mejora del contorno facial y corporal','Estimulación de drenaje linfático','Inflamación post-tratamiento mínima'],
-    uso: ['Protocolo de 4 a 6 sesiones cada 21 días','Inyección subcutánea con cánula o aguja 27G–30G','Marcar áreas y respetar dosis máxima por zona','Combinar con masaje linfático posterior'],
+    uso: ['Protocolo de 4 a 6 sesiones cada 21 días','Inyección subcutánea con cánula o aguja 27G-30G','Marcar áreas y respetar dosis máxima por zona','Combinar con masaje linfático posterior'],
   },
   'Voltena N°2 Body Filler': {
     img: 'assets/products/voltena2-solo.jpg',
@@ -3217,14 +3200,14 @@ const FICHAS = {
     nota: 'Body filler de alta cohesividad para remodelado corporal. Alternativa segura al implante quirúrgico cuando la corrección es moderada.',
     indicaciones: ['Aumento glúteo no quirúrgico','Modelado de pantorrillas','Corrección de depresiones corporales','Aumento de pectorales masculinos'],
     beneficios: ['Aumento corporal sin cirugía','Alta cohesividad y proyección sostenida','Baja migración del producto','Resultado inmediato y reversible con hialuronidasa'],
-    uso: ['Aplicación profunda con cánula de gran calibre (18G–21G)','Anestesia tumescente recomendada','Distribución en abanico para naturalidad','Reposo de 7 días posterior al tratamiento'],
+    uso: ['Aplicación profunda con cánula de gran calibre (18G-21G)','Anestesia tumescente recomendada','Distribución en abanico para naturalidad','Reposo de 7 días posterior al tratamiento'],
   },
   'Voltena N°3': {
     img: 'assets/products/voltena3-solo.png',
     fabricante: 'Voltena · Corea',
     composicion: 'Gel cosmético de uso tópico',
     presentacion: '300 mL / 10.14 fl.oz.',
-    formato: 'Gel reductor — uso domiciliario',
+    formato: 'Gel reductor: uso domiciliario',
     nota: 'Producto cosmético complementario que prolonga los resultados de los tratamientos clínicos Voltena.',
     indicaciones: ['Mantenimiento entre sesiones clínicas','Tonificación post-parto','Sensación reafirmante en abdomen, glúteos y muslos','Coadyuvante en tratamientos de celulitis'],
     beneficios: ['Sensación inmediata de frescor reafirmante','Prolonga resultados de tratamientos clínicos','Apto para uso diario en casa','Excelente producto de retail en consultorio'],
@@ -3235,7 +3218,7 @@ const FICHAS = {
     fabricante: 'Voltena · Corea',
     composicion: 'Filtrado de Lactobacillus fermentum + extractos vegetales',
     presentacion: '1.8 g × 10 unidades por caja',
-    formato: 'Gel íntimo — aplicador prellenado desechable',
+    formato: 'Gel íntimo: aplicador prellenado desechable',
     nota: 'Cuidado íntimo domiciliario que complementa la línea Voltena. Su fórmula suave hidrata y respeta la microbiota natural.',
     indicaciones: ['Flujo excesivo con olor fuerte','Sequedad que causa molestias durante la intimidad','Picazón y resequedad de zonas sensibles','Mantenimiento del equilibrio del pH íntimo'],
     beneficios: ['Ayuda a mantener el equilibrio óptimo del pH','Ingredientes naturales calmantes (Centella, regaliz, manzanilla)','Aplicador individual prellenado, higiénico y práctico','Cuidado suave sin alterar la flora beneficiosa'],
@@ -3246,11 +3229,11 @@ const FICHAS = {
     fabricante: 'Voltena · Corea',
     composicion: 'PLLA 45 mg + Ácido Hialurónico no reticulado 13 mg',
     presentacion: 'Vial 1: polvo 157 mg + Vial 2: suero booster 5 mL · 5 sets/caja',
-    formato: 'Kit doble vial — microesfera 20–50 μm',
+    formato: 'Kit doble vial: microesfera 20-50 μm',
     nota: 'PLLA de origen natural (maíz fermentado), biocompatible y biodegradable. Combina volumen inicial con regeneración progresiva de colágeno propio.',
     indicaciones: ['Líneas finas, arrugas profundas y de expresión','Pérdida de volumen y elasticidad facial','Regeneración profunda y nutrición intensa de la piel','Mejora de cicatrices de acné y calidad cutánea'],
-    beneficios: ['Estimula la producción natural de colágeno','Volumen de aparición gradual y sutil','Efectos duraderos — hasta 24 meses','Reconstitución en ~3 min e hidratación intensa con AH'],
-    uso: ['Mezclar polvo liofilizado con el suero booster antes del procedimiento','Mesoterapia con aguja 31–33G / 4 mm a 1–2 mm de profundidad','0.02–0.03 cc por punto · intervalo 0.5–1 cm · máx. 0.3 mL/punto'],
+    beneficios: ['Estimula la producción natural de colágeno','Volumen de aparición gradual y sutil','Efectos duraderos: hasta 24 meses','Reconstitución en ~3 min e hidratación intensa con AH'],
+    uso: ['Mezclar polvo liofilizado con el suero booster antes del procedimiento','Mesoterapia con aguja 31-33G / 4 mm a 1-2 mm de profundidad','0.02-0.03 cc por punto · intervalo 0.5-1 cm · máx. 0.3 mL/punto'],
   },
   'Lipo Lab PPC': {
     img: 'assets/products/lipolab.jpg',
@@ -3261,18 +3244,18 @@ const FICHAS = {
     nota: 'Una de las lipoenzimas más reconocidas a nivel internacional. Aprobada por KFDA con evidencia clínica robusta.',
     indicaciones: ['Doble mentón · papada','Abdomen, flancos y cintura','Cara interna de brazos y muslos','Espalda y rodillas'],
     beneficios: ['Reducción focalizada de grasa localizada','Acción dual: emulsifica y elimina el adipocito','Resultados visibles desde la 2ª sesión','Bajo perfil de efectos secundarios'],
-    uso: ['Sesiones cada 21 a 28 días — promedio 4 a 6 sesiones','Inyección subcutánea profunda con aguja 30G','Distribución en cuadrícula con separación de 1.5 cm','Dosis máxima por sesión según área tratada'],
+    uso: ['Sesiones cada 21 a 28 días: promedio 4 a 6 sesiones','Inyección subcutánea profunda con aguja 30G','Distribución en cuadrícula con separación de 1.5 cm','Dosis máxima por sesión según área tratada'],
   },
   'Dermalax Implant': {
     img: 'assets/products/dermalax-implant.webp',
     fabricante: 'Across · Corea',
     composicion: 'Ácido Hialurónico reticulado con lidocaína · alta cohesividad',
-    presentacion: '2.2 mL por jeringa — presentación Implant Plus',
+    presentacion: '2.2 mL por jeringa: presentación Implant Plus',
     formato: 'Jeringa prellenada estéril',
     nota: 'El Dermalax Implant Plus está formulado específicamente para volumetría estructural profunda. Su alta viscosidad proporciona proyección y sustento en zonas óseas sin riesgo de migración.',
     indicaciones: ['Volumización de pómulos y arco cigomático','Definición de mentón y mandíbula','Restauración del triángulo invertido facial','Corrección de deficiencias óseas leves o moderadas'],
-    beneficios: ['Alta cohesividad — ideal para soporte estructural','Lidocaína integrada para mayor confort del paciente','Reticulación BDDE controlada de larga duración','Resultado volumétrico natural y duradero'],
-    uso: ['Técnica supraperióstica con cánula 22G o aguja 23G','Aplicar en bolos profundos sobre el periostio','Masaje inmediato para moldear y distribuir el producto','Evitar inyección intravascular — aspirar antes de cada bolo'],
+    beneficios: ['Alta cohesividad: ideal para soporte estructural','Lidocaína integrada para mayor confort del paciente','Reticulación BDDE controlada de larga duración','Resultado volumétrico natural y duradero'],
+    uso: ['Técnica supraperióstica con cánula 22G o aguja 23G','Aplicar en bolos profundos sobre el periostio','Masaje inmediato para moldear y distribuir el producto','Evitar inyección intravascular: aspirar antes de cada bolo'],
   },
   'Elasty': {
     img: 'assets/products/elasty.jpg',
@@ -3281,9 +3264,9 @@ const FICHAS = {
     presentacion: '1.1 mL por jeringa',
     formato: 'Jeringa prellenada estéril',
     nota: 'Filler monofásico con tecnología que asegura distribución homogénea y resultado natural en movimiento dinámico.',
-    indicaciones: ['G Plus — pómulos, mentón, mandíbula','D Plus — surcos nasolabiales y marioneta','F Plus — labios y líneas finas','Rejuvenecimiento facial integral'],
-    beneficios: ['Tecnología monofásica — distribución homogénea','Resultado natural en movimiento','Tres densidades complementarias','Excelente integración tisular'],
-    uso: ['G Plus — supraperióstica con cánula 22G','D Plus — dérmica profunda con aguja 27G','F Plus — dérmica superficial con aguja 30G','Masaje suave post-aplicación para moldear'],
+    indicaciones: ['G Plus: pómulos, mentón, mandíbula','D Plus: surcos nasolabiales y marioneta','F Plus: labios y líneas finas','Rejuvenecimiento facial integral'],
+    beneficios: ['Tecnología monofásica: distribución homogénea','Resultado natural en movimiento','Tres densidades complementarias','Excelente integración tisular'],
+    uso: ['G Plus: supraperióstica con cánula 22G','D Plus: dérmica profunda con aguja 27G','F Plus: dérmica superficial con aguja 30G','Masaje suave post-aplicación para moldear'],
   },
   'Juvéderm Voluma': {
     img: 'assets/products/juvederm.webp',
@@ -3294,7 +3277,7 @@ const FICHAS = {
     nota: 'El estándar internacional de la volumetría facial. Tecnología Vycross® que combina cadenas largas y cortas de AH para máxima durabilidad.',
     indicaciones: ['Restauración volumétrica de pómulos','Definición de mentón y mandíbula','Corrección de mediofacial','Volumetría profunda en pacientes maduros'],
     beneficios: ['Estándar de oro mundial en volumetría','Tecnología Vycross® de alta cohesividad','Duración hasta 24 meses','Lidocaína integrada para confort'],
-    uso: ['Inyección supraperióstica con cánula 22G–25G','Técnica de bolos profundos','Aplicación lenta para evitar irregularidades','Masaje moldeador inmediato'],
+    uso: ['Inyección supraperióstica con cánula 22G-25G','Técnica de bolos profundos','Aplicación lenta para evitar irregularidades','Masaje moldeador inmediato'],
   },
   'Revolax': {
     img: 'assets/products/revolax.webp',
@@ -3303,9 +3286,9 @@ const FICHAS = {
     presentacion: '1.1 mL por jeringa',
     formato: 'Jeringa prellenada',
     nota: 'Familia coreana de gran reputación internacional. Cubre todas las profundidades con un solo sistema de reticulación.',
-    indicaciones: ['Fine — arrugas finas y peribucales','Deep — surcos profundos y aumento labial','Sub-Q — volumen profundo y contorno facial','Reestructuración facial completa'],
+    indicaciones: ['Fine: arrugas finas y peribucales','Deep: surcos profundos y aumento labial','Sub-Q: volumen profundo y contorno facial','Reestructuración facial completa'],
     beneficios: ['Familia con gran reputación internacional','Reticulación monofásica de alta cohesividad','Bajo riesgo de migración','Resultados duraderos y naturales'],
-    uso: ['Fine — dérmica superficial (aguja 30G)','Deep — dérmica profunda (aguja 27G)','Sub-Q — supraperióstica con cánula 22G','Aplicación lenta y por capas'],
+    uso: ['Fine: dérmica superficial (aguja 30G)','Deep: dérmica profunda (aguja 27G)','Sub-Q: supraperióstica con cánula 22G','Aplicación lenta y por capas'],
   },
   'Hyaron Prefilled': {
     img: 'assets/products/hyaron.jpg',
@@ -3323,11 +3306,11 @@ const FICHAS = {
     fabricante: 'Quiver Medic · Corea',
     composicion: 'Polinucleótido (PN/PDRN) 1% · 20 mg/2 mL + Glutatión',
     presentacion: '1 × 2 mL por jeringa prellenada',
-    formato: 'Skin booster periocular — mesoterapia con aguja',
+    formato: 'Skin booster periocular: mesoterapia con aguja',
     nota: 'Formulado específicamente para el área periocular, una de las más delicadas del rostro. El PDRN se obtiene de ADN de salmón purificado y activa la síntesis de colágeno y elastina propios sin generar nódulos ni retención linfática.',
     indicaciones: ['Ojeras y palidez periocular','Líneas finas y arrugas alrededor del ojo','Pérdida de grosor dérmico en párpados','Puffiness y cansancio del contorno ocular'],
-    beneficios: ['Estimula síntesis de colágeno y elastina de forma celular','Sin AH reticulado — sin riesgo de nódulos ni edema','Acción antiinflamatoria y antioxidante con glutatión','Resultados progresivos y naturales — hasta 6 meses'],
-    uso: ['Protocolo de 3 a 4 sesiones cada 15 días','Inyección intradérmica superficial con aguja 32G','Técnica de microbolos o retrotrazado lineal','Refrigerar entre 2–8 °C · usar antes de 24 h tras abrir'],
+    beneficios: ['Estimula síntesis de colágeno y elastina de forma celular','Sin AH reticulado: sin riesgo de nódulos ni edema','Acción antiinflamatoria y antioxidante con glutatión','Resultados progresivos y naturales: hasta 6 meses'],
+    uso: ['Protocolo de 3 a 4 sesiones cada 15 días','Inyección intradérmica superficial con aguja 32G','Técnica de microbolos o retrotrazado lineal','Refrigerar entre 2-8 °C · usar antes de 24 h tras abrir'],
   },
   'Eyebella': {
     img: 'assets/products/eyebella.webp',
@@ -3338,7 +3321,7 @@ const FICHAS = {
     nota: 'Polinucleótido formulado específicamente para una de las áreas más delicadas y demandantes del rostro.',
     indicaciones: ['Contorno de ojos · ojeras','Líneas finas perioculares','Pliegue palpebral inferior','Mejora general de la calidad de piel'],
     beneficios: ['Regeneración celular específica para zona periocular','Mejora visible de ojeras y líneas finas','Aumento de espesor dérmico','Acción antiinflamatoria y antioxidante'],
-    uso: ['Protocolo de 3 a 4 sesiones cada 15 días','Inyección intradérmica superficial con aguja 32G','Técnica de microbolos o retrotrazado','Refrigerar entre 2–8 °C antes de su uso'],
+    uso: ['Protocolo de 3 a 4 sesiones cada 15 días','Inyección intradérmica superficial con aguja 32G','Técnica de microbolos o retrotrazado','Refrigerar entre 2-8 °C antes de su uso'],
   },
   'Liporase': {
     img: 'assets/products/liporase.webp',
@@ -3359,19 +3342,19 @@ const FICHAS = {
     formato: 'Crema anestésica tópica',
     nota: 'Anestésico tópico esencial en todo consultorio estético. Su alta concentración garantiza confort durante procedimientos sensibles.',
     indicaciones: ['Pre-tratamiento con rellenos y toxinas','Microneedling y peelings','Depilación láser','Tatuaje y micropigmentación'],
-    beneficios: ['Alta concentración de lidocaína','Confort del paciente durante el procedimiento','Alto rendimiento — bote de 500 g','Penetración rápida y efectiva'],
+    beneficios: ['Alta concentración de lidocaína','Confort del paciente durante el procedimiento','Alto rendimiento: bote de 500 g','Penetración rápida y efectiva'],
     uso: ['Aplicar capa generosa 30 a 45 min antes','Cubrir con plástico oclusivo para mejor efecto','Retirar y limpiar antes del procedimiento','No aplicar sobre mucosas o piel lesionada'],
   },
   'Estella PLLA 200': {
     img: 'assets/products/estella.jpg',
     fabricante: 'Kuber Science · Corea',
-    composicion: 'Ácido poli-L-Láctico (PLLA) · PM 70,000–90,000 Da',
+    composicion: 'Ácido poli-L-Láctico (PLLA) · PM 70,000-90,000 Da',
     presentacion: '514 mg / vial · contenido PLLA 200 mg',
-    formato: 'Polvo liofilizado — reconstituir con 8–10 mL SWFI',
-    nota: 'PLLA de cuarta generación. Sus microsferas esféricas uniformes (20–50 μm) reducen la formación de nódulos y estimulan colágeno propio.',
+    formato: 'Polvo liofilizado: reconstituir con 8-10 mL SWFI',
+    nota: 'PLLA de cuarta generación. Sus microsferas esféricas uniformes (20-50 μm) reducen la formación de nódulos y estimulan colágeno propio.',
     indicaciones: ['Regeneración de la piel del rostro','Corrección de arrugas y pliegues faciales','Pérdida de volumen y elasticidad','Cicatrices y mejora de la calidad cutánea'],
-    beneficios: ['Alto contenido de PLLA — 200 mg por vial','Microsferas 20–50 μm — menor formación de nódulos','Reconstitución rápida en ~10 min con vórtex','Volumen y efecto duraderos — más de 24 meses'],
-    uso: ['Reconstituir con 8–10 mL de SWFI (~10 min con vórtex)','Inyección en la capa dérmica del área a tratar','Volumen y efecto evidentes a partir de 4 semanas'],
+    beneficios: ['Alto contenido de PLLA: 200 mg por vial','Microsferas 20-50 μm: menor formación de nódulos','Reconstitución rápida en ~10 min con vórtex','Volumen y efecto duraderos: más de 24 meses'],
+    uso: ['Reconstituir con 8-10 mL de SWFI (~10 min con vórtex)','Inyección en la capa dérmica del área a tratar','Volumen y efecto evidentes a partir de 4 semanas'],
   },
 };
 
@@ -3588,7 +3571,7 @@ document.addEventListener('keydown', e => {
   function showLimitReached() {
     const d = document.createElement('div');
     d.className = 'chat-msg bot';
-    d.innerHTML = `Has alcanzado el límite de mensajes de esta sesión. Para continuar con tu consulta, escríbenos directamente por WhatsApp — te atendemos al momento 👇<br><br><a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20tengo%20una%20consulta" target="_blank" rel="noopener" style="display:inline-block;margin-top:4px;background:var(--navy);color:#fff;padding:9px 18px;border-radius:8px;font-size:12px;letter-spacing:1px;text-decoration:none;">Abrir WhatsApp →</a>`;
+    d.innerHTML = `Has alcanzado el límite de mensajes de esta sesión. Para continuar con tu consulta, escríbenos directamente por WhatsApp, te atendemos al momento:<br><br><a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20tengo%20una%20consulta" target="_blank" rel="noopener" style="display:inline-block;margin-top:4px;background:var(--navy);color:#fff;padding:9px 18px;border-radius:8px;font-size:12px;letter-spacing:1px;text-decoration:none;">Abrir WhatsApp →</a>`;
     msgBox.appendChild(d);
     msgBox.scrollTop = msgBox.scrollHeight;
     input.disabled = true;
