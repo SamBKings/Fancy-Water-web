@@ -62,7 +62,7 @@
       --tinta:   #0E0E0E;
       --navy:    #2D3147;
       --ash:     #B7B4AC;
-      --grafito: #7A7975;
+      --grafito: #6B6A66;
       --linea:   #D9D8D3;
       --radius:  10px;
       --nav-h:   72px;
@@ -413,7 +413,7 @@
       margin-bottom:52px; flex-wrap:wrap; gap:24px;
     }
     .price-note {
-      font-size:11px; color:var(--ash); letter-spacing:1px;
+      font-size:11px; color:var(--grafito); letter-spacing:1px;
     }
     .price-note span {
       display:inline-flex; align-items:center; gap:6px;
@@ -570,7 +570,7 @@
       font-size:36px; color:var(--navy);
     }
     .feat-price sup { font-size:inherit; color:inherit; font-family:inherit; font-weight:inherit; vertical-align:baseline; }
-    .feat-price small { font-size:13px; color:var(--ash); font-family:'Inter',sans-serif; display:block; }
+    .feat-price small { font-size:13px; color:var(--grafito); font-family:'Inter',sans-serif; display:block; }
 
     /* ─── BENEFITS ───────────────────────────────────────────────── */
     .benefits-section { background:var(--snow); }
@@ -626,7 +626,7 @@
       font-family:'Playfair Display', serif; font-size:15px; color:#fff;
     }
     .test-name { font-size:14px; font-weight:500; }
-    .test-role { font-size:12px; color:var(--ash); }
+    .test-role { font-size:12px; color:var(--grafito); }
 
     /* ─── CONTACT ────────────────────────────────────────────────── */
     .contact-section { background:var(--paper); }
@@ -785,7 +785,7 @@
     }
     .cart-item-info { flex:1; }
     .cart-item-name { font-size:14px; margin-bottom:4px; }
-    .cart-item-sub { font-size:12px; color:var(--ash); }
+    .cart-item-sub { font-size:12px; color:var(--grafito); }
     .cart-item-rm { color:var(--ash); font-size:18px; line-height:1; transition:.3s; flex-shrink:0; }
     .cart-item-rm:hover { color:var(--tinta); }
     .cart-qty-ctrl {
@@ -863,9 +863,15 @@
       font-family:'Playfair Display',serif; font-size:28px; color:var(--navy);
     }
     .checkout-note {
-      font-size:11px; color:var(--ash); text-align:center;
+      font-size:12px; color:var(--grafito); text-align:center;
       margin-bottom:20px; letter-spacing:.5px;
     }
+    .checkout-pay-hint {
+      font-size:12px; color:var(--grafito); text-align:center;
+      margin:-8px 0 14px;
+    }
+    #checkoutStripeError { text-align:center; margin-bottom:10px; }
+    #checkoutStripeError:empty { display:none; }
     /* Shipping quote section */
     .checkout-shipping-section {
       border-top:1px solid var(--linea); padding-top:16px; margin-bottom:16px;
@@ -1439,6 +1445,13 @@
     @media(max-width:480px) {
       .cart-fab-mobile { bottom:88px; right:16px; }
     }
+    /* ── FABs ceden el paso: ocultos mientras carrito o checkout están abiertos ── */
+    .chat-fab, .cart-fab-mobile { transition:transform .25s, box-shadow .25s, opacity .25s, visibility .25s; }
+    body.fw-overlay-open .chat-fab,
+    body.fw-overlay-open .chat-window,
+    body.fw-overlay-open .cart-fab-mobile {
+      opacity:0; visibility:hidden; pointer-events:none;
+    }
   </style>
   <!-- Vercel Speed Insights -->
   <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -1616,7 +1629,8 @@
       </p>
     </div>
     <div class="filters-wrap">
-      <button class="filter-btn active" data-filter="toxinas">Toxinas</button>
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="toxinas">Toxinas</button>
       <button class="filter-btn" data-filter="rellenos">Rellenos</button>
       <button class="filter-btn" data-filter="plla">PLLA</button>
       <button class="filter-btn" data-filter="lipoenzimas">Lipoenzimas</button>
@@ -1992,7 +2006,7 @@
 
 
   </div>
-  <p style="text-align:center;margin-top:32px;font-size:12px;color:var(--ash);">
+  <p style="text-align:center;margin-top:32px;font-size:12px;color:var(--grafito);">
     * Producto sobre pedido — entrega estimada de 3 a 4 semanas. Precios sujetos a cambio sin previo aviso. Para uso exclusivo de profesionales de la salud.
   </p>
 </section>
@@ -2355,6 +2369,8 @@
   </div>
 
   <p class="checkout-note">Pago seguro procesado por Stripe · Visa, Mastercard, AMEX</p>
+  <p class="checkout-pay-hint" id="checkoutPayHint">Cotiza tu envío arriba para habilitar el pago.</p>
+  <div class="checkout-rates-error" id="checkoutStripeError" role="alert"></div>
   <button id="btnStripeGo" onclick="goToStripe()" disabled>Pagar Ahora</button>
   <span class="checkout-cancel" onclick="closeCheckout()">Cancelar</span>
 </div>
@@ -2578,19 +2594,43 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
-// Start with toxinas active
-applyFilter('toxinas');
+// Catálogo completo visible al cargar; "Todos" es el filtro activo
+applyFilter('all');
 
 // ── CART ──────────────────────────────────────────────────────────────
 let cart = [];
+const CART_KEY = 'fw_cart_v1';
+
+// Persistir el carrito: sobrevive recargas, cambio de app en móvil y el regreso de Stripe
+function saveCart() {
+  try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch(e) {}
+}
+
+function loadCart() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+    if (Array.isArray(saved)) {
+      cart = saved.filter(i => i && typeof i.name === 'string' && isFinite(i.price) && i.qty > 0);
+    }
+  } catch(e) {}
+}
+
+// FABs (chat + carrito móvil) se ocultan mientras el carrito o el checkout están abiertos
+function syncFabVisibility() {
+  const open = document.getElementById('cartDrawer').classList.contains('open')
+            || document.getElementById('checkoutModal').classList.contains('open');
+  document.body.classList.toggle('fw-overlay-open', open);
+}
 
 function toggleCart() {
   document.getElementById('cartOverlay').classList.toggle('open');
   document.getElementById('cartDrawer').classList.toggle('open');
   document.body.style.overflow = document.getElementById('cartDrawer').classList.contains('open') ? 'hidden' : '';
+  syncFabVisibility();
 }
 
 function renderCart() {
+  saveCart();
   const items   = document.getElementById('cartItems');
   const empty   = document.getElementById('cartEmpty');
   const footer  = document.getElementById('cartFooter');
@@ -2669,6 +2709,12 @@ function updateCheckoutTotals() {
     '$' + (sub + ship).toLocaleString('es-MX') + ' MXN';
 }
 
+// Habilita/deshabilita "Pagar Ahora" y muestra el porqué cuando está deshabilitado
+function setPayEnabled(on) {
+  document.getElementById('btnStripeGo').disabled = !on;
+  document.getElementById('checkoutPayHint').style.display = on ? 'none' : '';
+}
+
 function openCheckout() {
   if (!cart.length) return;
 
@@ -2677,7 +2723,8 @@ function openCheckout() {
   document.getElementById('checkoutCpInput').value = '';
   document.getElementById('checkoutRatesWrap').innerHTML = '';
   document.getElementById('checkoutShippingRow').style.display = 'none';
-  document.getElementById('btnStripeGo').disabled = true;
+  document.getElementById('checkoutStripeError').textContent = '';
+  setPayEnabled(false);
 
   // Render items
   const list = document.getElementById('checkoutItemsList');
@@ -2692,15 +2739,17 @@ function openCheckout() {
   document.getElementById('checkoutOverlay').classList.add('open');
   document.getElementById('checkoutModal').classList.add('open');
   document.body.style.overflow = 'hidden';
+  syncFabVisibility();
 }
 
 function closeCheckout() {
   document.getElementById('checkoutOverlay').classList.remove('open');
   document.getElementById('checkoutModal').classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.style.overflow = document.getElementById('cartDrawer').classList.contains('open') ? 'hidden' : '';
   const btn = document.getElementById('btnStripeGo');
   btn.textContent = 'Pagar Ahora';
-  btn.disabled = true;
+  setPayEnabled(false);
+  syncFabVisibility();
 }
 
 async function cotizarEnvio() {
@@ -2722,16 +2771,16 @@ async function cotizarEnvio() {
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify({ cp, items: cart }),
     });
-    const data = await resp.json();
+    const data = await resp.json().catch(() => ({}));
 
     if (!resp.ok || !data.rates || !data.rates.length) {
-      throw new Error(data.error || 'Sin tarifas disponibles');
+      throw new Error(data.error || 'sin tarifas disponibles por el momento');
     }
 
     // Reset previous selection
     selectedShipping = null;
     document.getElementById('checkoutShippingRow').style.display = 'none';
-    document.getElementById('btnStripeGo').disabled = true;
+    setPayEnabled(false);
 
     wrap.innerHTML = '<div class="checkout-rates" id="checkoutRatesList">' +
       data.rates.map(r => {
@@ -2752,7 +2801,7 @@ async function cotizarEnvio() {
     wrap.innerHTML = `<p class="checkout-rates-error">No se pudo cotizar: ${err.message}.<br>
       <span style="color:var(--grafito)">Puedes continuar y elegir envío al pagar.</span></p>`;
     // Allow proceeding with Stripe's built-in fallback rates
-    document.getElementById('btnStripeGo').disabled = false;
+    setPayEnabled(true);
   } finally {
     btn.disabled = false;
   }
@@ -2773,11 +2822,12 @@ function selectShipping(id, name, price, days) {
   document.getElementById('checkoutShippingCost').textContent = costLabel;
 
   updateCheckoutTotals();
-  document.getElementById('btnStripeGo').disabled = false;
+  setPayEnabled(true);
 }
 
 async function goToStripe() {
   const btn = document.getElementById('btnStripeGo');
+  document.getElementById('checkoutStripeError').textContent = '';
   btn.textContent = 'Redirigiendo…';
   btn.disabled = true;
   try {
@@ -2801,8 +2851,9 @@ async function goToStripe() {
       throw new Error(data.error || 'No se pudo crear la sesión de pago');
     }
   } catch(err) {
-    alert('Error al conectar con el procesador de pago: ' + err.message);
-    btn.textContent = 'Pagar Ahora';
+    document.getElementById('checkoutStripeError').textContent =
+      'No pudimos conectar con el procesador de pago. Revisa tu conexión e intenta de nuevo.';
+    btn.textContent = 'Reintentar pago';
     btn.disabled = false;
   }
 }
@@ -2814,6 +2865,10 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
     addItem(btn.dataset.name, btn.dataset.price);
   });
 });
+
+// Restaurar carrito guardado (sin abrir el drawer)
+loadCart();
+renderCart();
 
 // ── MOBILE MENU ───────────────────────────────────────────────────────
 function closeMobile() {
@@ -2911,6 +2966,10 @@ if (new URLSearchParams(location.search).get('payment') === 'success') {
   const toast = document.getElementById('paymentToast');
   setTimeout(() => toast.classList.add('show'), 600);
   setTimeout(() => toast.classList.remove('show'), 6000);
+  // Pedido completado: vaciar el carrito persistido
+  cart = [];
+  saveCart();
+  renderCart();
   // Fire Google Ads purchase conversion with order value
   const orderValue = parseFloat(new URLSearchParams(location.search).get('value')) || 0;
   gtag('event', 'ads_conversion_Contactar_1', {
@@ -3238,9 +3297,13 @@ function closeLightbox() {
   document.getElementById('imgLightbox').classList.remove('open');
 }
 
-// Close on Escape key
+// Close on Escape key: lightbox → ficha → checkout → carrito
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeFicha(); closeLightbox(); }
+  if (e.key !== 'Escape') return;
+  if (document.getElementById('imgLightbox').classList.contains('open')) { closeLightbox(); return; }
+  if (document.getElementById('fichaModal').classList.contains('open'))  { closeFicha(); return; }
+  if (document.getElementById('checkoutModal').classList.contains('open')) { closeCheckout(); return; }
+  if (document.getElementById('cartDrawer').classList.contains('open'))  { toggleCart(); }
 });
 
 // ── AI CHAT WIDGET ────────────────────────────────────────────────────

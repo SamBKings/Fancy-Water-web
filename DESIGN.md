@@ -8,7 +8,7 @@ colors:
   tinta: "#0E0E0E"
   navy: "#2D3147"
   ash: "#B7B4AC"
-  grafito: "#7A7975"
+  grafito: "#6B6A66"
   linea: "#D9D8D3"
 typography:
   display:
@@ -106,14 +106,14 @@ A warm paper field, near-black ink, and one deep navy voice — everything else 
 - **Snow** (#FBFAF7): The lighter surface — product sections, cards-on-paper, form panels, marquee band.
 - **Bone** (#ECEAE4): The deepest light neutral — image wells, photo backgrounds, the "pedido" badge.
 - **Tinta** (#0E0E0E): Ink. Headlines, primary text, the footer background, the "top" badge.
-- **Grafito** (#7A7975): Secondary text — body copy, descriptions, ghost-button labels.
+- **Grafito** (#6B6A66): Secondary text — body copy, descriptions, ghost-button labels.
 - **Ash** (#B7B4AC): Tertiary whisper — eyebrows, labels, placeholders, inactive chips. Decorative-label duty only.
 - **Línea** (#D9D8D3): Hairline borders, dividers, scrollbar tracks.
 
 ### Named Rules
 **The One Voice Rule.** Navy is the only chromatic color in the system. Never introduce a second accent; emphasis beyond Navy is achieved with Tinta weight or Playfair italics.
 
-**The Ash Whisper Rule.** Ash is reserved for ≤12px uppercase labels and placeholders. It fails body-text contrast on Paper by design — running paragraphs must use Grafito or darker, never Ash.
+**The Ash Whisper Rule.** Ash is reserved for ≤12px uppercase labels and placeholders. It fails body-text contrast on Paper by design — any real content (prices, notes, disclaimers, running text) must use Grafito (#6B6A66, ≥4.5:1 on Snow and Paper) or darker, never Ash.
 
 **The Dark Interlude Rule.** Full-bleed dark sections (Navy or Tinta) appear at most as punctuation between light sections — showcase, newsletter, footer. On dark, text is white at graded opacities (.4 labels / .5–.6 body / 1.0 headlines), never gray hexes.
 
@@ -189,7 +189,7 @@ Snow image well (1:1, contained product photo with 20px padding), pill badges to
 - **Do** keep Navy (#2D3147) as the only accent — emphasis is Navy, italics, or Tinta weight, nothing else.
 - **Do** separate surfaces with 1px Línea borders and one-step tonal shifts (Paper ↔ Snow ↔ Bone).
 - **Do** use pill shapes (50px) for every interactive element: buttons, chips, badges, dark-section inputs.
-- **Do** write body copy in Grafito (#7A7975) or darker; reserve Ash strictly for small uppercase labels.
+- **Do** write body copy in Grafito (#6B6A66) or darker; reserve Ash strictly for small uppercase labels.
 - **Do** respect mobile performance doctrine: no backdrop-filter, no float animations, no Three.js canvas, simplified shadows under 640px — and keep touch targets ≥44px.
 - **Do** keep section rhythm airy: 100px desktop / 52px mobile vertical padding.
 
