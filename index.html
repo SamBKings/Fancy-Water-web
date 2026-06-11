@@ -30,6 +30,7 @@
   </script>
   <!-- End Google tag -->
   <title>Fancy Water — Distribuidora Médico-Estética</title>
+  <meta name="description" content="Distribuidores oficiales VOL:TENA en América. Toxinas botulínicas, rellenos dérmicos, PLLA y skin boosters 100% originales con cadena de frío y entrega inmediata en México. Compra en línea con pago seguro." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet" />
@@ -43,12 +44,12 @@
   <meta property="og:url"         content="https://fancywater.mx/" />
   <meta property="og:title"       content="Fancy Water — Distribuidora Médico-Estética" />
   <meta property="og:description" content="Distribuidores oficiales VOL:TENA en América. Toxinas botulínicas, rellenos dérmicos, PLLA, lipoenzimas y skin boosters premium." />
-  <meta property="og:image"       content="https://fancywater.mx/assets/products/slam-productos.png" />
+  <meta property="og:image"       content="https://fancywater.mx/assets/products/slam-productos.jpg" />
   <meta property="og:locale"      content="es_MX" />
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Fancy Water — Distribuidora Médico-Estética" />
   <meta name="twitter:description" content="Distribuidores oficiales VOL:TENA en América. Toxinas botulínicas, rellenos dérmicos, PLLA, lipoenzimas y skin boosters premium." />
-  <meta name="twitter:image"       content="https://fancywater.mx/assets/products/slam-productos.png" />
+  <meta name="twitter:image"       content="https://fancywater.mx/assets/products/slam-productos.jpg" />
   <!-- Vercel Analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
   <!-- Stripe.js -->
@@ -64,6 +65,8 @@
       --ash:     #B7B4AC;
       --grafito: #6B6A66;
       --linea:   #D9D8D3;
+      --exito:   #2A7A4B;
+      --error:   #C0392B;
       --radius:  10px;
       --nav-h:   72px;
     }
@@ -138,7 +141,7 @@
     .nav-cta:hover { opacity:.85; }
     .nav-cta::after { display:none !important; }
     .nav-cart-btn {
-      position:relative; width:40px; height:40px; border-radius:50%;
+      position:relative; width:44px; height:44px; border-radius:50%;
       border:1px solid var(--linea);
       display:flex; align-items:center; justify-content:center;
       color:var(--grafito); transition:.3s;
@@ -475,7 +478,7 @@
     .p-badge.nuevo { background:var(--navy); color:#fff; }
     .p-badge.top    { background:var(--tinta); color:#fff; }
     .p-badge.pedido { background:var(--bone); color:var(--grafito); }
-    .p-badge.kfda   { background:#E8F0FF; color:var(--navy); }
+    .p-badge.kfda   { background:rgba(45,49,71,.08); color:var(--navy); }
     .product-info { padding:18px 20px; }
     .p-cat {
       font-size:10px; letter-spacing:3px; text-transform:uppercase;
@@ -501,7 +504,7 @@
     }
     .p-price sup { font-size:inherit; color:inherit; font-family:inherit; font-weight:inherit; vertical-align:baseline; }
     .add-btn {
-      width:36px; height:36px; border-radius:50%;
+      width:44px; height:44px; border-radius:50%;
       border:1px solid var(--linea);
       display:flex; align-items:center; justify-content:center;
       color:var(--navy); transition:.3s;
@@ -713,8 +716,9 @@
       color:rgba(255,255,255,.4); transition:.3s;
     }
     .soc-icon:hover { border-color:rgba(255,255,255,.4); color:rgba(255,255,255,.8); }
-    .footer-col h4 {
+    .footer-col h3 {
       font-size:10px; letter-spacing:3px; text-transform:uppercase;
+      font-family:'Inter',sans-serif; font-weight:400;
       color:rgba(255,255,255,.5); margin-bottom:20px;
     }
     .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
@@ -903,7 +907,7 @@
       font-family:'Inter',sans-serif; font-weight:700;
       font-size:15px; color:var(--navy); white-space:nowrap;
     }
-    .checkout-rates-error { font-size:12px; color:#c0392b; padding:8px 0; }
+    .checkout-rates-error { font-size:12px; color:var(--error); padding:8px 0; }
     .checkout-rates-loading { font-size:12px; color:var(--ash); padding:8px 0; }
     .checkout-shipping-row {
       display:flex; justify-content:space-between;
@@ -920,8 +924,8 @@
     #btnStripeGo:hover:not(:disabled) { opacity:.85; }
     #btnStripeGo:disabled { opacity:.5; cursor:not-allowed; }
     .checkout-cancel {
-      display:block; text-align:center; margin-top:14px;
-      font-size:12px; color:var(--ash); cursor:pointer;
+      display:block; width:100%; text-align:center; margin-top:14px;
+      font-size:12px; color:var(--grafito); cursor:pointer;
       transition:color .2s;
     }
     .checkout-cancel:hover { color:var(--tinta); }
@@ -1441,6 +1445,32 @@
       opacity:0; visibility:hidden; pointer-events:none;
     }
 
+    /* ─── A11Y: foco visible, lectores de pantalla, áreas táctiles ── */
+    :focus-visible {
+      outline:2px solid var(--navy);
+      outline-offset:3px;
+      border-radius:2px;
+    }
+    .newsletter-section :focus-visible,
+    footer :focus-visible,
+    .voltena-showcase :focus-visible { outline-color:#fff; }
+    .sr-only {
+      position:absolute; width:1px; height:1px;
+      padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0 0 0 0); white-space:nowrap; border:0;
+    }
+    /* Área táctil ≥44px sin alterar el tamaño visual */
+    .cart-qty-ctrl button, .ficha-qty-ctrl button,
+    .cart-item-rm, .cart-close-btn, .ficha-modal-close { position:relative; }
+    .cart-qty-ctrl button::before, .ficha-qty-ctrl button::before {
+      content:''; position:absolute; inset:-9px -3px;
+    }
+    .cart-item-rm::before, .cart-close-btn::before, .ficha-modal-close::before {
+      content:''; position:absolute; inset:-5px;
+    }
+    .filter-btn { position:relative; }
+    .filter-btn::before { content:''; position:absolute; inset:-6px 0; }
+
     /* ─── REDUCED MOTION ─────────────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior:auto; }
@@ -1481,7 +1511,7 @@
       <a href="#productos" class="nav-cta">Comprar</a>
     </li>
     <li>
-      <button class="nav-cart-btn" id="cartBtn">
+      <button class="nav-cart-btn" id="cartBtn" aria-label="Ver carrito">
         <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
           <line x1="3" y1="6" x2="21" y2="6"/>
@@ -1491,7 +1521,7 @@
       </button>
     </li>
   </ul>
-  <button class="hamburger" id="hamburgerBtn">
+  <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -1506,6 +1536,7 @@
   <a href="#productos" onclick="closeMobile()" style="color:var(--navy)">Comprar</a>
 </div>
 
+<main>
 <!-- ─── HERO ──────────────────────────────────────────────────────── -->
 <section class="hero">
   <canvas id="hero-canvas"></canvas>
@@ -1532,11 +1563,11 @@
     <div class="voltena-photo-wrap">
       <div class="voltena-photo-bg"></div>
       <div class="hero-slideshow" id="heroSlideshow">
-        <img src="assets/products/slam-productos.png"  class="hero-slide active" alt="Catálogo Fancy Water" style="object-fit:cover;object-position:center;" />
-        <img src="assets/products/toxinas-group.png"   class="hero-slide"        alt="Toxinas Botulínicas"  style="object-fit:cover;object-position:center;" />
-        <img src="assets/products/voltena-line-solo.png" class="hero-slide"      alt="Línea VOL:TENA"       style="object-fit:cover;object-position:15% 65%;" />
-        <img src="assets/products/lacto-hero.jpg"      class="hero-slide"        alt="VOL:TENA Lacto"       style="object-fit:cover;object-position:center;" />
-        <img src="assets/products/derma-fillers.png"   class="hero-slide"        alt="Derma Fillers"        style="object-fit:cover;object-position:center;" />
+        <img src="assets/products/slam-productos.jpg"  class="hero-slide active" alt="Catálogo Fancy Water" width="1024" height="1024" fetchpriority="high" style="object-fit:cover;object-position:center;" />
+        <img src="assets/products/toxinas-group.jpg"   class="hero-slide"        alt="Toxinas Botulínicas"  width="1024" height="1024" loading="lazy" style="object-fit:cover;object-position:center;" />
+        <img src="assets/products/voltena-line-solo.jpg" class="hero-slide"      alt="Línea VOL:TENA"       width="832" height="1273" loading="lazy" style="object-fit:cover;object-position:15% 65%;" />
+        <img src="assets/products/lacto-hero.jpg"      class="hero-slide"        alt="VOL:TENA Lacto"       width="1600" height="1066" loading="lazy" style="object-fit:cover;object-position:center;" />
+        <img src="assets/products/derma-fillers.jpg"   class="hero-slide"        alt="Derma Fillers"        width="1048" height="1024" loading="lazy" style="object-fit:cover;object-position:center;" />
       </div>
     </div>
   </div>
@@ -1585,7 +1616,7 @@
       </div>
     </div>
     <div class="vs-photo reveal">
-      <img src="assets/products/voltena-line-solo.png" alt="Línea completa VOL:TENA" />
+      <img src="assets/products/voltena-line-solo.jpg" alt="Línea completa VOL:TENA" width="832" height="1273" loading="lazy" />
     </div>
   </div>
 </section>
@@ -1595,7 +1626,7 @@
   <div class="about-grid">
     <div class="about-visual-wrap reveal">
       <div class="about-visual-inner">
-        <img src="assets/vitrina-voltena.png" alt="Vitrina VOL:TENA — Fancy Water" />
+        <img src="assets/vitrina-voltena.jpg" alt="Vitrina VOL:TENA — Fancy Water" width="911" height="1184" loading="lazy" />
       </div>
     </div>
     <div class="about-content reveal">
@@ -2026,7 +2057,7 @@
     <div class="feat-visual">
       <div class="feat-orbit" style="width:340px;height:340px;animation:orbitSpin 16s linear infinite;"></div>
       <div class="feat-orbit" style="width:240px;height:240px;animation:orbitSpinR 11s linear infinite;border-color:rgba(45,49,71,.12);"></div>
-      <img src="assets/products/voltena2-cristal.jpg" alt="Voltena N°2 Body Filler" class="feat-visual-img" />
+      <img src="assets/products/voltena2-cristal.jpg" alt="Voltena N°2 Body Filler" class="feat-visual-img" width="1000" height="1000" loading="lazy" />
     </div>
     <div class="feat-info">
       <span class="feat-tag">Exclusivo VOL:TENA · Distribuidores Oficiales</span>
@@ -2164,25 +2195,25 @@
       <form class="contact-form" id="contactForm" onsubmit="handleContact(event)">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Nombre / Dr.</label>
-            <input type="text" name="nombre" class="form-input" placeholder="Dr. Nombre" required />
+            <label class="form-label" for="contactoNombre">Nombre / Dr.</label>
+            <input type="text" name="nombre" id="contactoNombre" class="form-input" placeholder="Dr. Nombre" autocomplete="name" required />
           </div>
           <div class="form-group">
-            <label class="form-label">Clínica / Spa</label>
-            <input type="text" name="empresa" class="form-input" placeholder="Mi Clínica" />
+            <label class="form-label" for="contactoEmpresa">Clínica / Spa</label>
+            <input type="text" name="empresa" id="contactoEmpresa" class="form-input" placeholder="Mi Clínica" autocomplete="organization" />
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Correo Electrónico</label>
-          <input type="email" name="email" class="form-input" placeholder="correo@clinica.com" required />
+          <label class="form-label" for="contactoEmail">Correo Electrónico</label>
+          <input type="email" name="email" id="contactoEmail" class="form-input" placeholder="correo@clinica.com" autocomplete="email" required />
         </div>
         <div class="form-group">
-          <label class="form-label">WhatsApp / Teléfono</label>
-          <input type="tel" name="telefono" class="form-input" placeholder="+52 000 000 0000" />
+          <label class="form-label" for="contactoTelefono">WhatsApp / Teléfono</label>
+          <input type="tel" name="telefono" id="contactoTelefono" class="form-input" placeholder="+52 000 000 0000" autocomplete="tel" />
         </div>
         <div class="form-group">
-          <label class="form-label">Productos de Interés</label>
-          <textarea name="mensaje" class="form-textarea" rows="3"
+          <label class="form-label" for="contactoMensaje">Productos de Interés</label>
+          <textarea name="mensaje" id="contactoMensaje" class="form-textarea" rows="3"
             placeholder="Ej: Nabota 100U × 10, Juvéderm × 5, Voltena N°2 × 3…"></textarea>
         </div>
         <button type="submit" class="btn-primary" style="width:100%;padding:14px;border-radius:10px;">
@@ -2198,10 +2229,11 @@
   <h2 class="section-title reveal">Recibe los mejores<br>precios y <em>novedades</em></h2>
   <p class="nl-sub reveal">Lanzamientos, precios especiales y nuevos productos — directo a tu correo.</p>
   <form class="nl-form reveal" onsubmit="handleNewsletter(event)">
-    <input type="email" class="nl-input" placeholder="correo@clinica.com" required />
+    <input type="email" class="nl-input" placeholder="correo@clinica.com" aria-label="Correo electrónico" autocomplete="email" required />
     <button type="submit" class="btn-nl">Suscribirse</button>
   </form>
 </section>
+</main>
 
 <!-- ─── FOOTER ────────────────────────────────────────────────────── -->
 <footer>
@@ -2225,7 +2257,7 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4>Catálogo</h4>
+      <h3>Catálogo</h3>
       <ul>
         <li><a href="#productos" onclick="setFilter('toxinas')">Toxinas Botulínicas</a></li>
         <li><a href="#productos" onclick="setFilter('rellenos')">Rellenos Dérmicos</a></li>
@@ -2236,7 +2268,7 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>VOL:TENA</h4>
+      <h3>VOL:TENA</h3>
       <ul>
         <li><a href="#productos" onclick="setFilter('voltena')">VOL:TENA N°1</a></li>
         <li><a href="#productos" onclick="setFilter('voltena')">VOL:TENA N°2</a></li>
@@ -2246,7 +2278,7 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h3>Contacto</h3>
       <ul>
         <li><a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20me%20interesa%20un%20pedido" target="_blank" rel="noopener" onclick="gtag('event','ads_conversion_Contactar_1',{});">WhatsApp: 813 418 8472</a></li>
         <li><a href="#contacto">samuel@fancywater.mx</a></li>
@@ -2271,10 +2303,10 @@
   <span class="cart-fab-badge" id="cartFabBadge">0</span>
 </button>
 <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-<div class="cart-drawer" id="cartDrawer">
+<div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" tabindex="-1">
   <div class="cart-hdr">
-    <h3>Mi Carrito</h3>
-    <button class="cart-close-btn" onclick="toggleCart()">
+    <h3 id="cartTitle">Mi Carrito</h3>
+    <button class="cart-close-btn" onclick="toggleCart()" aria-label="Cerrar carrito">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
       </svg>
@@ -2299,6 +2331,9 @@
   </div>
 </div>
 
+<!-- ─── ANUNCIOS PARA LECTORES DE PANTALLA ───────────────────────── -->
+<div id="ariaStatus" class="sr-only" aria-live="polite"></div>
+
 <!-- ─── PAYMENT SUCCESS TOAST ─────────────────────────────────────── -->
 <div class="payment-toast" id="paymentToast">
   <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -2312,8 +2347,8 @@
 
 <!-- ─── STRIPE CHECKOUT MODAL ─────────────────────────────────────── -->
 <div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckout()"></div>
-<div class="checkout-modal" id="checkoutModal">
-  <h3>Resumen del Pedido</h3>
+<div class="checkout-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" tabindex="-1">
+  <h3 id="checkoutTitle">Resumen del Pedido</h3>
   <div class="checkout-items-list" id="checkoutItemsList"></div>
 
   <!-- Subtotal -->
@@ -2333,6 +2368,8 @@
         inputmode="numeric"
         maxlength="5"
         placeholder="Código postal (5 dígitos)"
+        aria-label="Código postal de envío (5 dígitos)"
+        autocomplete="postal-code"
         onkeydown="if(event.key==='Enter')cotizarEnvio()"
       />
       <button class="checkout-cp-btn" id="btnCotizar" onclick="cotizarEnvio()">Cotizar</button>
@@ -2356,18 +2393,18 @@
   <p class="checkout-pay-hint" id="checkoutPayHint">Cotiza tu envío arriba para habilitar el pago.</p>
   <div class="checkout-rates-error" id="checkoutStripeError" role="alert"></div>
   <button id="btnStripeGo" onclick="goToStripe()" disabled>Pagar Ahora</button>
-  <span class="checkout-cancel" onclick="closeCheckout()">Cancelar</span>
+  <button type="button" class="checkout-cancel" onclick="closeCheckout()">Cancelar</button>
 </div>
 
 <!-- ─── FICHA TÉCNICA MODAL ───────────────────────────────────────── -->
 <div class="ficha-overlay" id="fichaOverlay" onclick="closeFicha()"></div>
-<div class="ficha-modal" id="fichaModal">
+<div class="ficha-modal" id="fichaModal" role="dialog" aria-modal="true" aria-labelledby="fichaHdrName" tabindex="-1">
   <!-- Header -->
   <div class="ficha-hdr">
     <span class="ficha-hdr-cat" id="fichaHdrCat"></span>
     <h3 class="ficha-hdr-name" id="fichaHdrName"></h3>
     <div class="ficha-hdr-price"><sup>$</sup><span id="fichaHdrPrice"></span> <span style="font-size:11px;opacity:.5;letter-spacing:1px;">MXN</span></div>
-    <button class="ficha-modal-close" onclick="closeFicha()">×</button>
+    <button class="ficha-modal-close" onclick="closeFicha()" aria-label="Cerrar ficha técnica">×</button>
   </div>
   <!-- Body -->
   <div class="ficha-body">
@@ -2420,9 +2457,9 @@
     <div class="ficha-qty-wrap">
       <span class="ficha-qty-lbl">Cantidad</span>
       <div class="ficha-qty-ctrl">
-        <button onclick="fichaChangeQty(-1)">−</button>
+        <button onclick="fichaChangeQty(-1)" aria-label="Reducir cantidad">−</button>
         <span class="ficha-qty-num" id="fichaQtyNum">1</span>
-        <button onclick="fichaChangeQty(1)">+</button>
+        <button onclick="fichaChangeQty(1)" aria-label="Aumentar cantidad">+</button>
       </div>
     </div>
     <button class="btn-ficha-cart" onclick="fichaAddToCart()">Agregar al Carrito</button>
@@ -2436,12 +2473,9 @@
 
 <!-- ─── THREE.JS PARTICLES ────────────────────────────────────────── -->
 <script>
-// Cargar Three.js solo en desktop — en móvil ahorra ~600KB de descarga
-if (window.innerWidth >= 960) {
-  document.write('<scr'+'ipt src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/scr'+'ipt>');
-}
-</script>
-<script>
+// Cargar Three.js solo en desktop — en móvil ahorra ~600KB de descarga.
+// Inyección async (sin document.write, que bloquea el parser).
+function initHeroParticles(){
 // ── PARTICLES (solo desktop — muy pesado para móvil) ─────────────────
 (function(){
   if (window.innerWidth < 960) return;   // skip completamente en móvil/tablet
@@ -2518,6 +2552,14 @@ if (window.innerWidth >= 960) {
   }
   rafId = requestAnimationFrame(animate);
 })();
+}
+if (window.innerWidth >= 960) {
+  const threeScript = document.createElement('script');
+  threeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  threeScript.async = true;
+  threeScript.onload = initHeroParticles;
+  document.head.appendChild(threeScript);
+}
 
 // ── HERO SLIDESHOW ────────────────────────────────────────────────────
 (function() {
@@ -2606,10 +2648,52 @@ function syncFabVisibility() {
   document.body.classList.toggle('fw-overlay-open', open);
 }
 
+// ── A11Y: foco en diálogos + anuncios para lectores de pantalla ──────
+let fwLastFocus = null;
+
+function dialogOpened(el) {
+  fwLastFocus = document.activeElement;
+  el.focus({ preventScroll: true });
+}
+
+function dialogClosed() {
+  if (fwLastFocus && document.contains(fwLastFocus)) fwLastFocus.focus({ preventScroll: true });
+  fwLastFocus = null;
+}
+
+function announce(msg) {
+  const r = document.getElementById('ariaStatus');
+  if (!r) return;
+  r.textContent = '';
+  setTimeout(() => { r.textContent = msg; }, 50);
+}
+
+// Tab queda atrapado dentro del diálogo abierto (Esc ya cierra)
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const top = ['fichaModal', 'checkoutModal', 'cartDrawer']
+    .map(id => document.getElementById(id))
+    .find(d => d && d.classList.contains('open'));
+  if (!top) return;
+  const focusables = [...top.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled])'
+  )].filter(el => el.offsetParent !== null);
+  if (!focusables.length) return;
+  const first = focusables[0], last = focusables[focusables.length - 1];
+  if (e.shiftKey && (document.activeElement === first || document.activeElement === top)) {
+    e.preventDefault(); last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault(); first.focus();
+  }
+});
+
 function toggleCart() {
   document.getElementById('cartOverlay').classList.toggle('open');
-  document.getElementById('cartDrawer').classList.toggle('open');
-  document.body.style.overflow = document.getElementById('cartDrawer').classList.contains('open') ? 'hidden' : '';
+  const drawer = document.getElementById('cartDrawer');
+  drawer.classList.toggle('open');
+  const isOpen = drawer.classList.contains('open');
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+  if (isOpen) dialogOpened(drawer); else dialogClosed();
   syncFabVisibility();
 }
 
@@ -2648,11 +2732,11 @@ function renderCart() {
         <div class="cart-item-sub">$${item.price.toLocaleString('es-MX')} c/u</div>
       </div>
       <div class="cart-qty-ctrl">
-        <button onclick="changeQty(${idx},-1)">−</button>
+        <button onclick="changeQty(${idx},-1)" aria-label="Reducir cantidad de ${item.name}">−</button>
         <span>${item.qty}</span>
-        <button onclick="changeQty(${idx},1)">+</button>
+        <button onclick="changeQty(${idx},1)" aria-label="Aumentar cantidad de ${item.name}">+</button>
       </div>
-      <button class="cart-item-rm" onclick="removeItem(${idx})">×</button>
+      <button class="cart-item-rm" onclick="removeItem(${idx})" aria-label="Quitar ${item.name} del carrito">×</button>
     `;
     items.appendChild(d);
   });
@@ -2663,6 +2747,7 @@ function addItem(name, price) {
   if (ex) ex.qty++;
   else cart.push({ name, price: parseInt(price), qty: 1 });
   renderCart();
+  announce(name + ' agregado al carrito');
   if (!document.getElementById('cartDrawer').classList.contains('open')) toggleCart();
 }
 
@@ -2721,8 +2806,10 @@ function openCheckout() {
 
   updateCheckoutTotals();
   document.getElementById('checkoutOverlay').classList.add('open');
-  document.getElementById('checkoutModal').classList.add('open');
+  const modal = document.getElementById('checkoutModal');
+  modal.classList.add('open');
   document.body.style.overflow = 'hidden';
+  dialogOpened(modal);
   syncFabVisibility();
 }
 
@@ -2733,6 +2820,7 @@ function closeCheckout() {
   const btn = document.getElementById('btnStripeGo');
   btn.textContent = 'Pagar Ahora';
   setPayEnabled(false);
+  dialogClosed();
   syncFabVisibility();
 }
 
@@ -2844,6 +2932,9 @@ async function goToStripe() {
 
 document.getElementById('cartBtn').addEventListener('click', toggleCart);
 document.querySelectorAll('.add-to-cart').forEach(btn => {
+  if (!btn.hasAttribute('aria-label')) {
+    btn.setAttribute('aria-label', 'Agregar ' + btn.dataset.name + ' al carrito');
+  }
   btn.addEventListener('click', e => {
     e.stopPropagation();
     addItem(btn.dataset.name, btn.dataset.price);
@@ -2857,11 +2948,13 @@ renderCart();
 // ── MOBILE MENU ───────────────────────────────────────────────────────
 function closeMobile() {
   document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
 }
 document.getElementById('hamburgerBtn').addEventListener('click', () => {
-  document.getElementById('mobileMenu').classList.toggle('open');
-  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  const open = document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', String(open));
+  document.body.style.overflow = open ? 'hidden' : '';
 });
 
 // ── FORMS ─────────────────────────────────────────────────────────────
@@ -2879,7 +2972,7 @@ async function handleContact(e) {
     });
     if (!r.ok) throw new Error('Error del servidor');
     btn.textContent = '✓ ¡Solicitud enviada!';
-    btn.style.background = '#2a7a4b';
+    btn.style.background = 'var(--exito)';
     setTimeout(() => {
       btn.textContent = 'Enviar Solicitud';
       btn.style.background = '';
@@ -2888,7 +2981,7 @@ async function handleContact(e) {
     }, 4000);
   } catch(err) {
     btn.textContent = 'Error — intenta de nuevo';
-    btn.style.background = '#b33';
+    btn.style.background = 'var(--error)';
     setTimeout(() => {
       btn.textContent = 'Enviar Solicitud';
       btn.style.background = '';
@@ -2904,15 +2997,19 @@ async function handleNewsletter(e) {
   const email = form.querySelector('input[type="email"]').value;
   btn.textContent = '…'; btn.disabled = true;
   try {
-    await fetch('/api/subscribe', {
+    const r = await fetch('/api/subscribe', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({ email })
     });
+    if (!r.ok) throw new Error('subscribe failed');
     btn.textContent = '✓ Suscrito';
+    announce('Suscripción confirmada');
     setTimeout(() => { btn.textContent = 'Suscribirse'; btn.disabled = false; form.reset(); }, 3000);
   } catch {
-    btn.textContent = 'Suscribirse'; btn.disabled = false;
+    btn.textContent = 'Error — intenta de nuevo';
+    announce('No se pudo completar la suscripción');
+    setTimeout(() => { btn.textContent = 'Suscribirse'; btn.disabled = false; }, 3000);
   }
 }
 
@@ -2950,6 +3047,7 @@ if (new URLSearchParams(location.search).get('payment') === 'success') {
   const toast = document.getElementById('paymentToast');
   setTimeout(() => toast.classList.add('show'), 600);
   setTimeout(() => toast.classList.remove('show'), 6000);
+  announce('Pago recibido con éxito. Te contactaremos pronto para confirmar tu pedido.');
   // Pedido completado: vaciar el carrito persistido
   cart = [];
   saveCart();
@@ -3228,14 +3326,18 @@ function openFicha(name, price, cat) {
   document.getElementById('fichaQtyNum').textContent = '1';
 
   document.getElementById('fichaOverlay').classList.add('open');
-  document.getElementById('fichaModal').classList.add('open');
+  const modal = document.getElementById('fichaModal');
+  modal.classList.add('open');
   document.body.style.overflow = 'hidden';
+  dialogOpened(modal);
 }
 
 function closeFicha() {
   document.getElementById('fichaOverlay').classList.remove('open');
+  const wasOpen = document.getElementById('fichaModal').classList.contains('open');
   document.getElementById('fichaModal').classList.remove('open');
   document.body.style.overflow = '';
+  if (wasOpen) dialogClosed();
 }
 
 function fichaChangeQty(delta) {
@@ -3326,7 +3428,7 @@ document.addEventListener('keydown', e => {
     </div>
     <div class="chat-messages" id="chatMessages"></div>
     <div class="chat-input-row">
-      <textarea class="chat-input" id="chatInput" placeholder="Escribe tu pregunta…" rows="1"></textarea>
+      <textarea class="chat-input" id="chatInput" placeholder="Escribe tu pregunta…" aria-label="Escribe tu pregunta" rows="1"></textarea>
       <button class="chat-send-btn" id="chatSend" aria-label="Enviar">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
           <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -3379,9 +3481,11 @@ document.addEventListener('keydown', e => {
 
   // Toggle open/close
   let isOpen = false;
+  fab.setAttribute('aria-expanded', 'false');
   fab.addEventListener('click', () => {
     isOpen = !isOpen;
     fab.classList.toggle('open', isOpen);
+    fab.setAttribute('aria-expanded', String(isOpen));
     win.classList.toggle('open', isOpen);
     if (isOpen) setTimeout(() => input.focus(), 280);
   });
@@ -3401,7 +3505,7 @@ document.addEventListener('keydown', e => {
   function showLimitReached() {
     const d = document.createElement('div');
     d.className = 'chat-msg bot';
-    d.innerHTML = `Has alcanzado el límite de mensajes de esta sesión. Para continuar con tu consulta, escríbenos directamente por WhatsApp — te atendemos al momento 👇<br><br><a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20tengo%20una%20consulta" target="_blank" rel="noopener" style="display:inline-block;margin-top:4px;background:#2D3147;color:#fff;padding:9px 18px;border-radius:8px;font-size:12px;letter-spacing:1px;text-decoration:none;">Abrir WhatsApp →</a>`;
+    d.innerHTML = `Has alcanzado el límite de mensajes de esta sesión. Para continuar con tu consulta, escríbenos directamente por WhatsApp — te atendemos al momento 👇<br><br><a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20tengo%20una%20consulta" target="_blank" rel="noopener" style="display:inline-block;margin-top:4px;background:var(--navy);color:#fff;padding:9px 18px;border-radius:8px;font-size:12px;letter-spacing:1px;text-decoration:none;">Abrir WhatsApp →</a>`;
     msgBox.appendChild(d);
     msgBox.scrollTop = msgBox.scrollHeight;
     input.disabled = true;
