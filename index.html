@@ -574,27 +574,16 @@
 
     /* ─── BENEFITS ───────────────────────────────────────────────── */
     .benefits-section { background:var(--snow); }
-    .benefits-grid {
-      display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr));
-      gap:1px; background:var(--linea);
-      border:1px solid var(--linea); border-radius:var(--radius);
-      overflow:hidden; margin-top:52px;
+    .benefits-list {
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+      gap:36px 32px; margin-top:52px;
     }
-    .benefit-card {
-      padding:36px 28px;
-      background:var(--snow);
-      display:flex; flex-direction:column; gap:14px;
-      transition:background .3s;
+    .benefit {
+      border-top:1px solid var(--linea);
+      padding-top:18px;
     }
-    .benefit-card:hover { background:var(--paper); }
-    .benefit-icon {
-      width:44px; height:44px;
-      border:1px solid var(--linea); border-radius:10px;
-      display:flex; align-items:center; justify-content:center;
-      color:var(--navy);
-    }
-    .benefit-title { font-size:15px; font-weight:500; color:var(--tinta); }
-    .benefit-desc { font-size:13px; color:var(--grafito); line-height:1.7; }
+    .benefit h3 { font-size:15px; font-weight:500; color:var(--tinta); margin-bottom:8px; }
+    .benefit p { font-size:13px; color:var(--grafito); line-height:1.7; }
 
     /* ─── TESTIMONIALS ───────────────────────────────────────────── */
     .test-grid {
@@ -675,7 +664,6 @@
     .newsletter-section {
       background:var(--navy); color:#fff; text-align:center;
     }
-    .newsletter-section .section-label { color:rgba(255,255,255,.4); }
     .newsletter-section .section-title { color:#fff; }
     .newsletter-section .section-title em { color:rgba(255,255,255,.5); }
     .nl-sub {
@@ -835,6 +823,7 @@
       position:fixed; top:50%; left:50%;
       transform:translate(-50%,-50%) scale(.97);
       width:min(480px, 94vw);
+      max-height:90vh; max-height:90dvh; overflow-y:auto;
       background:var(--snow); border-radius:20px;
       padding:40px 36px; z-index:301;
       box-shadow:0 40px 100px rgba(14,14,14,.25);
@@ -1194,7 +1183,7 @@
       display:flex; align-items:center; gap:14px;
       font-size:14px; letter-spacing:.3px;
       box-shadow:0 20px 60px rgba(14,14,14,.3);
-      z-index:500; transition:transform .5s cubic-bezier(.34,1.56,.64,1);
+      z-index:500; transition:transform .5s cubic-bezier(.22,1,.36,1);
       white-space:nowrap;
     }
     .payment-toast.show { transform:translateX(-50%) translateY(0); }
@@ -1248,15 +1237,13 @@
       .form-row { grid-template-columns:1fr; }
       .hero-title { font-size:40px; }
       /* Benefits: 2 columnas compactas */
-      .benefits-grid {
-        grid-template-columns:1fr 1fr !important;
-        margin-top:28px;
+      .benefits-list {
+        grid-template-columns:1fr 1fr;
+        gap:24px 20px; margin-top:28px;
       }
-      .benefit-card { padding:20px 14px; gap:8px; }
-      .benefit-icon { width:36px; height:36px; border-radius:8px; }
-      .benefit-icon svg { width:16px; height:16px; }
-      .benefit-title { font-size:13px; line-height:1.3; }
-      .benefit-desc { font-size:11.5px; line-height:1.6; }
+      .benefit { padding-top:14px; }
+      .benefit h3 { font-size:13px; line-height:1.3; margin-bottom:6px; }
+      .benefit p { font-size:12px; line-height:1.6; }
       /* Ocultar órbitas animadas en móvil (pesan en CPU) */
       .feat-orbit { display:none; }
       /* Featured section más compacta */
@@ -1433,7 +1420,8 @@
     .cart-fab-mobile .cart-fab-badge {
       position:absolute; top:-4px; right:-4px;
       width:18px; height:18px; border-radius:50%;
-      background:#e63946; color:#fff;
+      background:#fff; color:var(--navy);
+      border:1px solid var(--linea);
       font-size:10px; font-weight:700;
       display:flex; align-items:center; justify-content:center;
       opacity:0; transition:opacity .3s;
@@ -1451,6 +1439,25 @@
     body.fw-overlay-open .chat-window,
     body.fw-overlay-open .cart-fab-mobile {
       opacity:0; visibility:hidden; pointer-events:none;
+    }
+
+    /* ─── REDUCED MOTION ─────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after {
+        animation-duration:0.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important;
+      }
+      /* La marquesina se detiene; el contenido queda legible en reposo */
+      .marquee-track { animation:none !important; transform:none !important; }
+      /* Hero y reveals: visibles de inmediato, sin desplazamiento */
+      .hero-badge, .hero-eyebrow, .hero-title, .hero-sub, .hero-actions, .hero-visual {
+        opacity:1 !important; animation:none !important;
+      }
+      .reveal { opacity:1 !important; transform:none !important; }
+      .feat-visual-img { animation:none !important; }
+      .feat-orbit { display:none !important; }
     }
   </style>
   <!-- Vercel Speed Insights -->
@@ -1592,7 +1599,6 @@
       </div>
     </div>
     <div class="about-content reveal">
-      <p class="section-label">Quiénes Somos</p>
       <h2 class="section-title">Tu aliado en<br><em>medicina estética</em></h2>
       <p class="about-body">
         Fancy Water es una distribuidora especializada en productos de medicina estética de primer nivel. Trabajamos directamente con las marcas líderes mundiales para garantizar autenticidad, cadena de frío y entrega inmediata para tu clínica o consultorio.
@@ -1622,7 +1628,6 @@
 <section id="productos" class="products-section">
   <div class="products-header reveal">
     <div>
-      <p class="section-label">Catálogo</p>
       <h2 class="section-title">Lista de <em>Precios</em></h2>
       <p class="price-note" style="margin-top:8px;">
         <span>Precios en MXN · Tarifa Minorista · IVA no incluido</span>
@@ -2042,7 +2047,7 @@
           <small>MXN · Tarifa Minorista</small>
         </div>
         <button class="btn-primary add-to-cart" data-name="Voltena N°2 Body Filler" data-price="2800">
-          Agregar a la Lista
+          Agregar al Carrito
         </button>
         <a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20quiero%20comprar%20Voltena%20N%C2%B02%20al%20mayoreo" target="_blank" rel="noopener" class="btn-ghost" style="padding:14px 28px;" onclick="gtag('event','ads_conversion_Contactar_1',{});">Comprar al Mayoreo</a>
       </div>
@@ -2052,50 +2057,33 @@
 
 <!-- ─── BENEFITS ──────────────────────────────────────────────────── -->
 <section id="beneficios" class="benefits-section">
-  <p class="section-label reveal">Por qué Fancy Water</p>
   <h2 class="section-title reveal">La diferencia que<br>se <em>siente</em></h2>
-  <div class="benefits-grid">
-    <div class="benefit-card reveal">
-      <div class="benefit-icon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      </div>
-      <h3 class="benefit-title">100% Originales</h3>
-      <p class="benefit-desc">Distribuidor autorizado con certificado de autenticidad en cada producto. Sin falsificaciones, sin riesgos.</p>
+  <div class="benefits-list">
+    <div class="benefit reveal">
+      <h3>100% Originales</h3>
+      <p>Distribuidor autorizado con certificado de autenticidad en cada producto. Sin falsificaciones, sin riesgos.</p>
     </div>
-    <div class="benefit-card reveal">
-      <div class="benefit-icon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      </div>
-      <h3 class="benefit-title">Cadena de Frío</h3>
-      <p class="benefit-desc">Almacenamiento y transporte con temperatura controlada para preservar la integridad de cada producto.</p>
+    <div class="benefit reveal">
+      <h3>Cadena de Frío</h3>
+      <p>Almacenamiento y transporte con temperatura controlada para preservar la integridad de cada producto.</p>
     </div>
-    <div class="benefit-card reveal">
-      <div class="benefit-icon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-      </div>
-      <h3 class="benefit-title">Entrega Inmediata</h3>
-      <p class="benefit-desc">Stock disponible para envío el mismo día. Cobertura nacional con monitoreo en tiempo real.</p>
+    <div class="benefit reveal">
+      <h3>Entrega Inmediata</h3>
+      <p>Stock disponible para envío el mismo día. Cobertura nacional con monitoreo en tiempo real.</p>
     </div>
-    <div class="benefit-card reveal">
-      <div class="benefit-icon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-      </div>
-      <h3 class="benefit-title">Asesoría Especializada</h3>
-      <p class="benefit-desc">Equipo con formación en medicina estética para orientarte en cada pedido y protocolo de uso.</p>
+    <div class="benefit reveal">
+      <h3>Asesoría Especializada</h3>
+      <p>Equipo con formación en medicina estética para orientarte en cada pedido y protocolo de uso.</p>
     </div>
-    <div class="benefit-card reveal">
-      <div class="benefit-icon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h3 class="benefit-title">Distribuidores Oficiales</h3>
-      <p class="benefit-desc">Somos distribuidores oficiales de VOL:TENA en América y representantes autorizados de las marcas más reconocidas en medicina estética coreana. Cada producto llega con trazabilidad completa y garantía de origen.</p>
+    <div class="benefit reveal">
+      <h3>Distribuidores Oficiales</h3>
+      <p>Representantes autorizados de VOL:TENA y de las marcas coreanas líderes. Trazabilidad completa y garantía de origen.</p>
     </div>
   </div>
 </section>
 
 <!-- ─── TESTIMONIALS ───────────────────────────────────────────────── -->
 <section id="testimonios" style="background:var(--paper);">
-  <p class="section-label reveal">Testimonios</p>
   <h2 class="section-title reveal">Lo que dicen<br>nuestros <em>clientes</em></h2>
   <div class="test-grid">
     <div class="test-card reveal">
@@ -2138,7 +2126,6 @@
 <section id="contacto" class="contact-section" style="background:var(--snow);">
   <div class="contact-grid">
     <div class="contact-info reveal">
-      <p class="section-label">Pedidos</p>
       <h2 class="section-title">Hablemos de<br>tu <em>pedido</em></h2>
       <p style="font-size:15px;color:var(--grafito);line-height:1.85;margin-top:4px;max-width:380px;">
         Atendemos clínicas, médicos y spas con precios preferenciales, stock garantizado y entrega rápida. Escríbenos directamente por WhatsApp o completa el formulario.
@@ -2208,7 +2195,6 @@
 
 <!-- ─── NEWSLETTER ─────────────────────────────────────────────────── -->
 <section class="newsletter-section">
-  <p class="section-label reveal">Comunidad</p>
   <h2 class="section-title reveal">Recibe los mejores<br>precios y <em>novedades</em></h2>
   <p class="nl-sub reveal">Lanzamientos, precios especiales y nuevos productos — directo a tu correo.</p>
   <form class="nl-form reveal" onsubmit="handleNewsletter(event)">
@@ -2265,8 +2251,6 @@
         <li><a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20me%20interesa%20un%20pedido" target="_blank" rel="noopener" onclick="gtag('event','ads_conversion_Contactar_1',{});">WhatsApp: 813 418 8472</a></li>
         <li><a href="#contacto">samuel@fancywater.mx</a></li>
         <li><a href="#productos">Tienda</a></li>
-        <li><a href="#">Aviso de Privacidad</a></li>
-        <li><a href="#">Términos y Condiciones</a></li>
       </ul>
     </div>
   </div>
