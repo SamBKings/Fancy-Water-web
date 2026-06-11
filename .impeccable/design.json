@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-11T00:00:00Z",
+  "title": "Design System: Fancy Water",
+  "extensions": {
+    "colorMeta": {
+      "navy":    { "role": "primary", "displayName": "Navy",    "canonical": "#2D3147", "tonalRamp": ["oklch(20% 0.04 277)", "oklch(30% 0.05 277)", "oklch(40% 0.05 277)", "oklch(50% 0.05 277)", "oklch(62% 0.04 277)", "oklch(74% 0.03 277)", "oklch(86% 0.02 277)", "oklch(95% 0.01 277)"] },
+      "tinta":   { "role": "neutral", "displayName": "Tinta",   "canonical": "#0E0E0E", "tonalRamp": ["oklch(15% 0 0)", "oklch(25% 0 0)", "oklch(38% 0 0)", "oklch(50% 0 0)", "oklch(62% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"] },
+      "grafito": { "role": "neutral", "displayName": "Grafito", "canonical": "#7A7975", "tonalRamp": ["oklch(20% 0.004 95)", "oklch(30% 0.004 95)", "oklch(42% 0.004 95)", "oklch(56% 0.004 95)", "oklch(66% 0.004 95)", "oklch(76% 0.004 95)", "oklch(86% 0.004 95)", "oklch(95% 0.004 95)"] },
+      "ash":     { "role": "neutral", "displayName": "Ash",     "canonical": "#B7B4AC", "tonalRamp": ["oklch(25% 0.008 95)", "oklch(38% 0.008 95)", "oklch(50% 0.008 95)", "oklch(62% 0.008 95)", "oklch(76% 0.008 95)", "oklch(84% 0.008 95)", "oklch(90% 0.008 95)", "oklch(96% 0.008 95)"] },
+      "linea":   { "role": "neutral", "displayName": "Línea",   "canonical": "#D9D8D3", "tonalRamp": ["oklch(30% 0.006 95)", "oklch(45% 0.006 95)", "oklch(60% 0.006 95)", "oklch(72% 0.006 95)", "oklch(82% 0.006 95)", "oklch(88% 0.006 95)", "oklch(93% 0.006 95)", "oklch(97% 0.006 95)"] },
+      "bone":    { "role": "neutral", "displayName": "Bone",    "canonical": "#ECEAE4", "tonalRamp": ["oklch(35% 0.007 95)", "oklch(50% 0.007 95)", "oklch(65% 0.007 95)", "oklch(76% 0.007 95)", "oklch(85% 0.007 95)", "oklch(91% 0.007 95)", "oklch(94.5% 0.007 95)", "oklch(98% 0.007 95)"] },
+      "paper":   { "role": "neutral", "displayName": "Paper",   "canonical": "#F4F3EF", "tonalRamp": ["oklch(40% 0.005 95)", "oklch(55% 0.005 95)", "oklch(70% 0.005 95)", "oklch(80% 0.005 95)", "oklch(88% 0.005 95)", "oklch(93% 0.005 95)", "oklch(96.5% 0.005 95)", "oklch(99% 0.005 95)"] },
+      "snow":    { "role": "neutral", "displayName": "Snow",    "canonical": "#FBFAF7", "tonalRamp": ["oklch(45% 0.004 95)", "oklch(60% 0.004 95)", "oklch(74% 0.004 95)", "oklch(84% 0.004 95)", "oklch(91% 0.004 95)", "oklch(95% 0.004 95)", "oklch(98.5% 0.004 95)", "oklch(99.5% 0.004 95)"] }
+    },
+    "typographyMeta": {
+      "display":  { "displayName": "Display",  "purpose": "Hero headline only; italic Navy spans for emphasis." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles, light and dark sections." },
+      "title":    { "displayName": "Title",    "purpose": "Product and card names — Playfair at small size." },
+      "body":     { "displayName": "Body",     "purpose": "Inter 300; Grafito on light, white .5–.6 opacity on dark." },
+      "label":    { "displayName": "Label",    "purpose": "Tracked uppercase whisper: eyebrows, nav, form labels, badges." }
+    },
+    "shadows": [
+      { "name": "hover-lift",    "value": "0 20px 48px rgba(45,49,71,.1)",  "purpose": "Product card hover on pointer devices; paired with translateY(-5px)." },
+      { "name": "button-lift",   "value": "0 12px 32px rgba(45,49,71,.3)",  "purpose": "Primary button hover; paired with translateY(-2px)." },
+      { "name": "floating",      "value": "0 20px 60px rgba(14,14,14,.3)",  "purpose": "Fixed toasts, chat FAB, overlays." },
+      { "name": "photo-on-dark", "value": "0 40px 80px rgba(0,0,0,.4)",     "purpose": "Imagery inside Navy/Tinta sections." }
+    ],
+    "motion": [
+      { "name": "ease-standard",   "value": "cubic-bezier(.4, 0, .2, 1)",      "purpose": "Image zooms and standard transitions." },
+      { "name": "ease-toast",      "value": "cubic-bezier(.34, 1.56, .64, 1)", "purpose": "Payment toast entrance (gentle overshoot — the one exception)." },
+      { "name": "duration-state",  "value": "0.3s",                            "purpose": "Hover/focus state changes (.25–.4s band)." },
+      { "name": "duration-reveal", "value": "0.8s",                            "purpose": "Scroll reveals desktop; .35–.45s on mobile." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "960px" },
+      { "name": "mobile", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Navy pill CTA; lifts with shadow on hover.",
+      "html": "<button class=\"ds-btn-primary\">Ver productos</button>",
+      "css": ".ds-btn-primary { background: var(--navy, #2D3147); color: #fff; padding: 14px 36px; border: none; border-radius: 50px; font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: transform .3s, box-shadow .3s; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(45,49,71,.3); } .ds-btn-primary:focus-visible { outline: 2px solid var(--navy, #2D3147); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Hairline pill; border and text turn Navy on hover.",
+      "html": "<button class=\"ds-btn-ghost\">Contactar</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: var(--grafito, #7A7975); padding: 14px 36px; border: 1px solid var(--linea, #D9D8D3); border-radius: 50px; font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: border-color .3s, color .3s, transform .3s; } .ds-btn-ghost:hover { border-color: var(--navy, #2D3147); color: var(--navy, #2D3147); transform: translateY(-2px); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--navy, #2D3147); outline-offset: 3px; }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip-filter",
+      "description": "Catalog filter pill; active state tints Navy at 5%.",
+      "html": "<div style=\"display:flex; gap:8px;\"><button class=\"ds-chip ds-chip-active\">Todos</button><button class=\"ds-chip\">Toxinas</button><button class=\"ds-chip\">Rellenos</button></div>",
+      "css": ".ds-chip { padding: 8px 18px; border: 1px solid var(--linea, #D9D8D3); border-radius: 50px; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 1px; color: var(--ash, #B7B4AC); background: transparent; cursor: pointer; transition: .25s; } .ds-chip:hover, .ds-chip-active { border-color: var(--navy, #2D3147); color: var(--navy, #2D3147); background: rgba(45,49,71,.05); }"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "card-product",
+      "description": "Signature catalog card: snow image well, badge, serif name, price + circular add button.",
+      "html": "<div class=\"ds-pcard\"><div class=\"ds-pcard-img\"><span class=\"ds-pbadge\">Nuevo</span></div><div class=\"ds-pcard-info\"><div class=\"ds-pcat\">Toxina Botulínica</div><div class=\"ds-pname\">VOL:TENA 100U</div><div class=\"ds-pdesc\">Toxina botulínica tipo A de alta pureza, certificación KFDA.</div><div class=\"ds-pfooter\"><span class=\"ds-pprice\">$2,400</span><button class=\"ds-add\" aria-label=\"Agregar\">+</button></div></div></div>",
+      "css": ".ds-pcard { width: 280px; background: var(--paper, #F4F3EF); border: 1px solid var(--linea, #D9D8D3); border-radius: 10px; overflow: hidden; font-family: 'Inter', sans-serif; transition: transform .4s, box-shadow .4s; } .ds-pcard:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(45,49,71,.1); } .ds-pcard-img { position: relative; aspect-ratio: 2/1; background: var(--snow, #FBFAF7); } .ds-pbadge { position: absolute; top: 12px; left: 12px; padding: 3px 10px; border-radius: 50px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; background: var(--navy, #2D3147); color: #fff; } .ds-pcard-info { padding: 18px 20px; } .ds-pcat { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--ash, #B7B4AC); margin-bottom: 6px; } .ds-pname { font-family: 'Playfair Display', Georgia, serif; font-size: 17px; line-height: 1.3; margin-bottom: 6px; color: var(--tinta, #0E0E0E); } .ds-pdesc { font-size: 12px; color: var(--grafito, #7A7975); line-height: 1.6; margin-bottom: 14px; } .ds-pfooter { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--bone, #ECEAE4); } .ds-pprice { font-weight: 600; font-size: 20px; color: var(--navy, #2D3147); } .ds-add { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--linea, #D9D8D3); background: none; display: flex; align-items: center; justify-content: center; color: var(--navy, #2D3147); font-size: 18px; cursor: pointer; transition: .3s; } .ds-add:hover { background: var(--navy, #2D3147); color: #fff; border-color: var(--navy, #2D3147); transform: scale(1.1); }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Quiet form field; border shifts Navy on focus, no glow.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\">Nombre</label><input class=\"ds-input\" type=\"text\" placeholder=\"Dra. María García\" /></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; width: 280px; font-family: 'Inter', sans-serif; } .ds-field-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ash, #B7B4AC); } .ds-input { padding: 12px 16px; background: var(--paper, #F4F3EF); border: 1px solid var(--linea, #D9D8D3); border-radius: 8px; color: var(--tinta, #0E0E0E); font-size: 14px; font-family: inherit; outline: none; transition: border-color .3s; } .ds-input:focus { border-color: var(--navy, #2D3147); } .ds-input::placeholder { color: var(--ash, #B7B4AC); }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "label",
+      "description": "Uppercase tracked link with Navy underline scaling in from the left.",
+      "html": "<div style=\"display:flex; gap:32px;\"><a class=\"ds-navlink\" href=\"#\">Productos</a><a class=\"ds-navlink\" href=\"#\">Nosotros</a><a class=\"ds-navlink ds-nav-cta\" href=\"#\">Cotizar</a></div>",
+      "css": ".ds-navlink { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--grafito, #7A7975); text-decoration: none; position: relative; transition: color .3s; } .ds-navlink:hover { color: var(--tinta, #0E0E0E); } .ds-navlink::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--navy, #2D3147); transform: scaleX(0); transform-origin: left; transition: transform .3s; } .ds-navlink:hover::after { transform: scaleX(1); } .ds-nav-cta { padding: 10px 24px; background: var(--navy, #2D3147); color: #fff; border-radius: 50px; font-size: 11px; transition: opacity .3s; } .ds-nav-cta:hover { color: #fff; opacity: .85; } .ds-nav-cta::after { display: none; }"
+    },
+    {
+      "name": "Newsletter Input (on dark)",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Pill input for Navy sections; white at graded opacities.",
+      "html": "<div class=\"ds-nl-wrap\"><input class=\"ds-nl-input\" type=\"email\" placeholder=\"tu@correo.com\" /><button class=\"ds-nl-btn\">Suscribirse</button></div>",
+      "css": ".ds-nl-wrap { display: flex; gap: 10px; padding: 24px; background: var(--navy, #2D3147); border-radius: 16px; font-family: 'Inter', sans-serif; } .ds-nl-input { flex: 1; min-width: 180px; padding: 13px 20px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 50px; color: #fff; font-size: 14px; font-family: inherit; outline: none; transition: border-color .3s; } .ds-nl-input::placeholder { color: rgba(255,255,255,.35); } .ds-nl-input:focus { border-color: rgba(255,255,255,.4); } .ds-nl-btn { padding: 13px 28px; background: #fff; color: var(--navy, #2D3147); border: none; border-radius: 50px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: opacity .3s; } .ds-nl-btn:hover { opacity: .9; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Clinical Atelier",
+    "overview": "A couture workshop run with medical precision. The surface is paper and ink — warm editorial neutrals (Paper, Snow, Bone) separated by hairline rules — with a single signature color, Navy, carrying every accent: prices, italics, buttons, badges. Playfair Display speaks in the voice of a prestigious journal; Inter, set light and tracked-out in tiny uppercase labels, does the quiet administrative work around it. Density is low and deliberate: 100px section rhythm on desktop, generous line-height, one idea per section.\n\nThe system explicitly rejects everything PRODUCT.md rejects: gray-market pharma clutter (price badges everywhere, urgency tactics), generic pink-pastel beauty e-commerce, and interchangeable template landing pages. Restraint is the trust signal — the page must always read \"official distributor,\" never \"discount reseller.\" Dark sections (the Navy VOL:TENA showcase, the Tinta footer, the Navy newsletter band) are dramatic interludes in an otherwise light, airy composition.",
+    "keyCharacteristics": [
+      "Paper-and-ink editorial palette; Navy as the only voice of color",
+      "Serif display (Playfair) + light humanist sans (Inter) pairing",
+      "Hairline 1px borders (Línea) instead of shadows for structure",
+      "Pill-shaped interactive elements throughout (buttons, chips, badges)",
+      "Tiny tracked uppercase labels as the system's navigational whisper",
+      "Mobile-first pragmatism: GPU-heavy effects disabled under 640px"
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Navy is the only chromatic color in the system. Never introduce a second accent; emphasis beyond Navy is achieved with Tinta weight or Playfair italics.", "section": "colors" },
+      { "name": "The Ash Whisper Rule", "body": "Ash is reserved for ≤12px uppercase labels and placeholders. It fails body-text contrast on Paper by design — running paragraphs must use Grafito or darker, never Ash.", "section": "colors" },
+      { "name": "The Dark Interlude Rule", "body": "Full-bleed dark sections (Navy or Tinta) appear at most as punctuation between light sections — showcase, newsletter, footer. On dark, text is white at graded opacities (.4 labels / .5–.6 body / 1.0 headlines), never gray hexes.", "section": "colors" },
+      { "name": "The Italic Emphasis Rule", "body": "Emphasis inside a headline is an italic Playfair span (Navy on light, reduced-opacity white on dark) — never bold, never a second color.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest; a shadow always means \"this is hovering or floating right now.\" Decorative resting shadows are prohibited.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Navy (#2D3147) as the only accent — emphasis is Navy, italics, or Tinta weight, nothing else.",
+      "Do separate surfaces with 1px Línea borders and one-step tonal shifts (Paper ↔ Snow ↔ Bone).",
+      "Do use pill shapes (50px) for every interactive element: buttons, chips, badges, dark-section inputs.",
+      "Do write body copy in Grafito (#7A7975) or darker; reserve Ash strictly for small uppercase labels.",
+      "Do respect mobile performance doctrine: no backdrop-filter, no float animations, no Three.js canvas, simplified shadows under 640px — and keep touch targets ≥44px.",
+      "Do keep section rhythm airy: 100px desktop / 52px mobile vertical padding."
+    ],
+    "donts": [
+      "Don't look like a gray-market pharma shop — no urgency timers, no stacked discount badges, no fake trust seals (PRODUCT.md anti-reference).",
+      "Don't drift into generic beauty e-commerce — no pinks, no pastels, no retail-skincare styling (PRODUCT.md anti-reference).",
+      "Don't assemble template landing-page sections with stock icons — every section earns its custom layout (PRODUCT.md anti-reference).",
+      "Don't add resting shadows to cards or decorative glows; flat at rest is doctrine.",
+      "Don't use gradient text, side-stripe borders, or a second accent color under any circumstance.",
+      "Don't set running text in Ash on Paper — it fails contrast; if it's more than a label, it's Grafito or darker."
+    ]
+  }
+}
