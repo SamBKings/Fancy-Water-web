@@ -86,7 +86,7 @@ module.exports = async function handler(req, res) {
         quantity: item.qty,
       })),
       mode:        'payment',
-      success_url: `https://www.fancywater.mx/?payment=success&value=${orderTotal}`,
+      success_url: `https://www.fancywater.mx/?payment=success&value=${orderTotal}&sid={CHECKOUT_SESSION_ID}`,
       cancel_url:  'https://www.fancywater.mx/#productos',
     });
 

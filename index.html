@@ -3118,8 +3118,11 @@ if (new URLSearchParams(location.search).get('payment') === 'success') {
   cart = [];
   saveCart();
   renderCart();
-  // Fire Google Ads purchase conversion with order value
-  const orderValue = parseFloat(new URLSearchParams(location.search).get('value')) || 0;
+  // Fire Google Ads purchase conversion with order value + transaction_id
+  // (el sid es el ID de sesión de Stripe → evita contar la misma compra dos veces)
+  const params     = new URLSearchParams(location.search);
+  const orderValue = parseFloat(params.get('value')) || 0;
+  const orderId    = params.get('sid') || '';
   gtag('event', 'ads_conversion_Contactar_1', {
     value:    orderValue,
     currency: 'MXN',
@@ -3128,7 +3131,7 @@ if (new URLSearchParams(location.search).get('payment') === 'success') {
     send_to:        'AW-16457503800/--nhCLG85LwcELioxqc9',
     value:          orderValue,
     currency:       'MXN',
-    transaction_id: '',
+    transaction_id: orderId,
   });
   // Clean URL without reloading
   history.replaceState({}, '', location.pathname);
