@@ -61,6 +61,48 @@
   <meta name="twitter:title"       content="Fancy Water · Distribuidora Médico-Estética" />
   <meta name="twitter:description" content="Distribuidores oficiales VOL:TENA en América. Toxinas botulínicas, rellenos dérmicos, PLLA, lipoenzimas y skin boosters premium." />
   <meta name="twitter:image"       content="https://fancywater.mx/assets/products/slam-productos.jpg" />
+  <link rel="canonical" href="https://www.fancywater.mx/" />
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": "https://www.fancywater.mx/#organization",
+        "name": "Fancy Water",
+        "url": "https://www.fancywater.mx",
+        "logo": "https://www.fancywater.mx/assets/logo-fw.png",
+        "description": "Distribuidores exclusivos de VOL:TENA en América. Toxinas botulínicas, rellenos dérmicos, PLLA, lipoenzimas y skin boosters 100% originales con entrega inmediata en México.",
+        "telephone": "+528134188472",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Monterrey",
+          "addressRegion": "Nuevo León",
+          "addressCountry": "MX"
+        },
+        "areaServed": { "@type": "Country", "name": "México" },
+        "priceRange": "$$$",
+        "currenciesAccepted": "MXN",
+        "paymentAccepted": "Tarjeta de crédito, Débito",
+        "sameAs": []
+      },
+      {
+        "@type": "ItemList",
+        "name": "Catálogo Fancy Water",
+        "description": "Productos de medicina estética 100% originales",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Nabota 100U", "url": "https://www.fancywater.mx/#productos" },
+          { "@type": "ListItem", "position": 2, "name": "Juvéderm Voluma", "url": "https://www.fancywater.mx/#productos" },
+          { "@type": "ListItem", "position": 3, "name": "VOL:TENA N°1 Body Serum", "url": "https://www.fancywater.mx/#productos" },
+          { "@type": "ListItem", "position": 4, "name": "VOL:TENA N°2 Body Filler", "url": "https://www.fancywater.mx/#productos" },
+          { "@type": "ListItem", "position": 5, "name": "Lipo Lab PPC", "url": "https://www.fancywater.mx/#productos" },
+          { "@type": "ListItem", "position": 6, "name": "Hyaron Prefilled", "url": "https://www.fancywater.mx/#productos" }
+        ]
+      }
+    ]
+  }
+  </script>
   <!-- Vercel Analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
   <!-- Stripe.js -->
@@ -551,6 +593,26 @@
     .p-stock-dot {
       width:6px; height:6px; border-radius:50%;
       background:#25D366; flex-shrink:0;
+    }
+
+    /* ─── BRAND STRIP ───────────────────────────────────────────── */
+    .brands-strip {
+      background:var(--paper); border-bottom:1px solid var(--linea);
+      padding:18px 5vw;
+      display:flex; align-items:center; justify-content:center;
+      gap:10px; flex-wrap:wrap;
+    }
+    .brands-label {
+      font-family:'Inter',sans-serif; font-size:9px;
+      letter-spacing:2px; text-transform:uppercase;
+      color:var(--ash); white-space:nowrap; margin-right:6px;
+    }
+    .brand-pill {
+      font-family:'Inter',sans-serif; font-size:10px;
+      font-weight:500; letter-spacing:1px; text-transform:uppercase;
+      color:var(--grafito); padding:5px 13px;
+      border:1px solid var(--linea); border-radius:50px;
+      white-space:nowrap;
     }
 
     /* ─── FEATURED ───────────────────────────────────────────────── */
@@ -1672,14 +1734,25 @@
       <div class="voltena-photo-bg"></div>
       <div class="hero-slideshow" id="heroSlideshow">
         <img src="assets/products/slam-productos.jpg"  class="hero-slide active" alt="Catálogo Fancy Water" width="1024" height="1024" fetchpriority="high" style="object-fit:cover;object-position:center;" />
-        <img src="assets/products/toxinas-group.jpg"   class="hero-slide"        alt="Toxinas Botulínicas"  width="1024" height="1024" loading="lazy" style="object-fit:cover;object-position:center;" />
-        <img src="assets/products/voltena-line-solo.jpg" class="hero-slide"      alt="Línea VOL:TENA"       width="832" height="1273" loading="lazy" style="object-fit:cover;object-position:15% 65%;" />
-        <img src="assets/products/lacto-hero.jpg"      class="hero-slide"        alt="VOL:TENA Lacto"       width="1600" height="1066" loading="lazy" style="object-fit:cover;object-position:center;" />
-        <img src="assets/products/derma-fillers.jpg"   class="hero-slide"        alt="Derma Fillers"        width="1048" height="1024" loading="lazy" style="object-fit:cover;object-position:center;" />
+        <img src="assets/products/toxinas-group.jpg"   class="hero-slide"        alt="Toxinas Botulínicas"  width="1024" height="1024" style="object-fit:cover;object-position:center;" />
+        <img src="assets/products/voltena-line-solo.jpg" class="hero-slide"      alt="Línea VOL:TENA"       width="832" height="1273" style="object-fit:cover;object-position:15% 65%;" />
+        <img src="assets/products/lacto-hero.jpg"      class="hero-slide"        alt="VOL:TENA Lacto"       width="1600" height="1066" style="object-fit:cover;object-position:center;" />
+        <img src="assets/products/derma-fillers.jpg"   class="hero-slide"        alt="Derma Fillers"        width="1048" height="1024" style="object-fit:cover;object-position:center;" />
       </div>
     </div>
   </div>
 </section>
+
+<!-- ─── BRAND STRIP ──────────────────────────────────────────────── -->
+<div class="brands-strip">
+  <span class="brands-label">Marcas oficiales</span>
+  <span class="brand-pill">Allergan</span>
+  <span class="brand-pill">Daewoong</span>
+  <span class="brand-pill">Medytox</span>
+  <span class="brand-pill">Hugel</span>
+  <span class="brand-pill">Across</span>
+  <span class="brand-pill">VOL:TENA</span>
+</div>
 
 <!-- ─── MARQUEE ───────────────────────────────────────────────────── -->
 <div class="marquee-wrap">
