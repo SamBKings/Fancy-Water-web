@@ -530,6 +530,29 @@
       .add-btn:hover:active { transform:scale(1); }
     }
 
+    /* ─── PRODUCT CARD ENHANCEMENTS ─────────────────────────────── */
+    .p-wa-btn {
+      width:36px; height:36px; border-radius:50%;
+      background:#25D366; color:#fff; border:none;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; text-decoration:none; flex-shrink:0;
+      transition:transform .18s, box-shadow .18s;
+    }
+    .p-wa-btn:active { transform:scale(.9); }
+    @media(hover:hover) and (pointer:fine) {
+      .p-wa-btn:hover { transform:scale(1.08); box-shadow:0 4px 14px rgba(37,211,102,.40); }
+    }
+    .p-stock {
+      display:flex; align-items:center; gap:5px;
+      margin-top:10px; padding-top:10px;
+      border-top:1px solid var(--bone);
+      font-size:10px; letter-spacing:.04em; color:var(--grafito);
+    }
+    .p-stock-dot {
+      width:6px; height:6px; border-radius:50%;
+      background:#25D366; flex-shrink:0;
+    }
+
     /* ─── FEATURED ───────────────────────────────────────────────── */
     .featured-section { background:var(--paper); }
     .featured-grid {
@@ -3690,6 +3713,43 @@ document.addEventListener('keydown', e => {
     input.focus();
   }
 })();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var WA_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.52 13.83c-.23.64-1.33 1.22-1.83 1.3-.46.07-1.05.1-1.69-.1a15.6 15.6 0 01-1.53-.57C10.1 15.44 8.5 13.23 8.37 13.06c-.13-.17-1.06-1.4-1.06-2.68s.67-1.9.91-2.16c.24-.26.52-.32.69-.32h.5c.16 0 .38-.06.6.45.22.52.74 1.8.81 1.93.07.13.11.28.02.45-.09.17-.13.28-.26.43l-.38.45c-.13.14-.26.28-.11.55.15.27.67 1.1 1.43 1.78.98.87 1.81 1.14 2.06 1.27.25.13.4.11.54-.07.15-.18.62-.72.79-.97.17-.25.33-.21.56-.13.23.08 1.47.69 1.72.82.25.13.42.19.48.3.06.1.06.6-.17 1.24z"/></svg>';
+
+  document.querySelectorAll('.add-to-cart').forEach(function(addBtn) {
+    var name = addBtn.dataset.name;
+
+    // WhatsApp cotizar button
+    var msg = encodeURIComponent('Hola Fancy Water, me interesa cotizar: ' + name);
+    var wa = document.createElement('a');
+    wa.className = 'p-wa-btn';
+    wa.href = 'https://wa.me/528134188472?text=' + msg;
+    wa.target = '_blank';
+    wa.rel = 'noopener';
+    wa.setAttribute('aria-label', 'Cotizar ' + name + ' por WhatsApp');
+    wa.innerHTML = WA_SVG;
+    wa.addEventListener('click', function(e) {
+      e.preventDefault();
+      gtagWhatsApp(this.href);
+    });
+
+    // Group add-btn + wa-btn on the right side of .p-footer
+    var group = document.createElement('div');
+    group.style.cssText = 'display:flex;align-items:center;gap:7px;';
+    addBtn.parentNode.insertBefore(group, addBtn);
+    group.appendChild(addBtn);
+    group.appendChild(wa);
+
+    // Stock strip below footer
+    var strip = document.createElement('div');
+    strip.className = 'p-stock';
+    strip.innerHTML = '<span class="p-stock-dot"></span>En stock · Envío desde Monterrey';
+    addBtn.closest('.product-info').appendChild(strip);
+  });
+});
 </script>
 </body>
 </html>
