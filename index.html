@@ -222,13 +222,14 @@
     .nav-dropdown a {
       display:block; padding:9px 14px;
       font-size:11px; letter-spacing:1.5px; text-transform:uppercase;
-      color:var(--grafito); border-radius:8px;
+      color:var(--tinta); border-radius:8px;
       transition:background .15s, color .15s;
+      font-weight:500;
     }
     .nav-dropdown a::after { display:none !important; }
     .nav-dropdown a:hover { background:var(--paper); color:var(--navy); }
     .nav-dropdown a.dd-all {
-      font-weight:600; color:var(--tinta);
+      font-weight:700; color:#000;
       border-bottom:1px solid var(--bone); border-radius:8px 8px 0 0;
       margin-bottom:4px; padding-bottom:12px;
     }
@@ -1761,7 +1762,7 @@
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3.5l3 3 3-3"/></svg>
       </a>
       <div class="nav-dropdown">
-        <a href="/#productos" class="dd-all">Todos los productos</a>
+        <a href="/productos" class="dd-all">Todos los productos</a>
         <a href="/toxinas">Toxinas Botulínicas</a>
         <a href="/acido-hialuronico">Ácido Hialurónico</a>
         <a href="/lipoenzimas">Lipoenzimas</a>
@@ -1796,7 +1797,7 @@
 <!-- ─── MOBILE MENU ───────────────────────────────────────────────── -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#nosotros"  onclick="closeMobile()">Nosotros</a>
-  <a href="/#productos" onclick="closeMobile()">Todos los productos</a>
+  <a href="/productos" onclick="closeMobile()">Todos los productos</a>
   <a href="/toxinas" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ Toxinas</a>
   <a href="/acido-hialuronico" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ Ácido Hialurónico</a>
   <a href="/lipoenzimas" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ Lipoenzimas</a>
@@ -3779,12 +3780,23 @@ document.querySelectorAll('.product-card').forEach(card => {
   if (!nameEl || !imgEl || !addBtn) return;
   const slug = CARD_SLUGS[addBtn.dataset.name];
   if (!slug) return;
+  const url = '/' + slug;
+
+  // Wrap the image div in a real <a> — native links don't block iOS scroll
+  const imgLink = document.createElement('a');
+  imgLink.href = url;
+  imgLink.style.display = 'block';
+  imgEl.parentNode.replaceChild(imgLink, imgEl);
+  imgLink.appendChild(imgEl);
   imgEl.classList.add('has-ficha');
+
+  // Wrap name in <a> too
+  const nameLink = document.createElement('a');
+  nameLink.href = url;
+  nameLink.style.cssText = 'color:inherit;text-decoration:none;display:block;';
+  nameEl.parentNode.replaceChild(nameLink, nameEl);
+  nameLink.appendChild(nameEl);
   nameEl.classList.add('has-ficha');
-  imgEl.style.cursor  = 'pointer';
-  nameEl.style.cursor = 'pointer';
-  imgEl.addEventListener('click',  () => { window.location.href = '/' + slug; });
-  nameEl.addEventListener('click', () => { window.location.href = '/' + slug; });
 });
 
 // ── LIGHTBOX ──────────────────────────────────────────────────────────

@@ -36,6 +36,15 @@ const VOLTENA_EXTRA = ['pllagen-plla', 'voltena-n1-body-serum'];
 
 const CATEGORIES = [
   {
+    slug: 'productos',
+    name: 'Todos los Productos',
+    shortName: 'Todos',
+    desc: 'Catálogo completo de insumos para medicina estética. Toxinas botulínicas, rellenos dérmicos, lipoenzimas, bioestimuladores, skin boosters y la línea exclusiva VOL:TENA.',
+    heroImg: 'nabota.png',
+    metaDesc: 'Catálogo completo Fancy Water — toxinas botulínicas, ácido hialurónico, lipoenzimas, bioestimuladores, skin boosters y VOL:TENA. Distribuidores en Monterrey.',
+    filter: () => true,
+  },
+  {
     slug: 'toxinas',
     name: 'Toxinas Botulínicas',
     shortName: 'Toxinas',
@@ -216,6 +225,20 @@ function generateCategoryPage(cat) {
       display:flex;align-items:center;gap:6px;transition:opacity .2s;
     }
     .btn-wa-sm:hover{opacity:.88}
+    .nav-cart-link{
+      position:relative;width:40px;height:40px;border-radius:50%;
+      border:1px solid var(--linea);display:flex;align-items:center;justify-content:center;
+      color:var(--tinta);transition:border-color .2s,color .2s;flex-shrink:0;
+    }
+    .nav-cart-link:hover{border-color:var(--navy);color:var(--navy)}
+    .nav-cart-badge{
+      position:absolute;top:-3px;right:-3px;
+      width:16px;height:16px;border-radius:50%;
+      background:var(--navy);color:#fff;
+      font-size:9px;font-weight:700;
+      align-items:center;justify-content:center;
+      display:none;
+    }
 
     /* BREADCRUMB */
     .breadcrumb{
@@ -386,6 +409,9 @@ function generateCategoryPage(cat) {
       .cat-grid{grid-template-columns:repeat(2,1fr);gap:12px}
       .cat-btn-ver{display:none}
       .btn-wa-sm span{display:none}
+      .nav-brand{display:none}
+      .btn-ghost-sm{display:none}
+      .site-nav{padding:0 16px}
     }
   </style>
 </head>
@@ -397,7 +423,11 @@ function generateCategoryPage(cat) {
     <span class="nav-brand">Fancy Water</span>
   </a>
   <div class="nav-actions">
-    <a href="/#productos" class="btn-ghost-sm">Ver catálogo</a>
+    <a href="/?cart=1" class="nav-cart-link" aria-label="Ver carrito">
+      <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="nav-cart-badge" id="navCartBadge"></span>
+    </a>
+    <a href="/productos" class="btn-ghost-sm">Ver catálogo</a>
     <a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20me%20interesa%20un%20pedido" class="btn-wa-sm" onclick="gtagWhatsApp(this.href);return false;">
       ${WA_SVG}<span>Cotizar</span>
     </a>
@@ -412,7 +442,7 @@ function generateCategoryPage(cat) {
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <p class="sidebar-heading">Categorías</p>
-    <a href="/#productos" class="sidebar-cat-item">
+    <a href="/productos" class="sidebar-cat-item">
       <div class="sidebar-cat-img" style="background:var(--navy);display:flex;align-items:center;justify-content:center;">
         <svg width="18" height="18" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       </div>
@@ -425,7 +455,7 @@ function generateCategoryPage(cat) {
   <main class="cat-main">
     <div class="cat-header">
       <p class="cat-eyebrow">Catálogo · Fancy Water</p>
-      <h1 class="cat-title">${cat.name.split(' ').slice(0,-1).join(' ')} <em>${cat.name.split(' ').slice(-1)[0]}</em></h1>
+      <h1 class="cat-title">${(()=>{const w=cat.name.split(' ');return w.length>1?w.slice(0,-1).join(' ')+' <em>'+w.slice(-1)[0]+'</em>':cat.name;})()}</h1>
       <p class="cat-desc">${cat.desc}</p>
       <p class="cat-count">${products.length} producto${products.length !== 1 ? 's' : ''}</p>
     </div>
@@ -455,7 +485,9 @@ function generateCategoryPage(cat) {
   </nav>
   <p class="footer-legal">© ${year} Fancy Water · Distribuidores Exclusivos VOL:TENA en América · Monterrey, N.L. México</p>
 </footer>
-
+<script>
+(function(){try{var c=JSON.parse(localStorage.getItem('fw_cart_v1')||'[]');var n=c.reduce(function(s,i){return s+(i.qty||0);},0);if(n>0){var b=document.getElementById('navCartBadge');b.textContent=n;b.style.display='flex';}}catch(e){}})();
+</script>
 </body>
 </html>`;
 }

@@ -51,7 +51,8 @@
       "Bash(mkdir -p ~/.claude/skills/design-taste-frontend)",
       "Bash(cp /tmp/taste-skill/skills/taste-skill/SKILL.md ~/.claude/skills/design-taste-frontend/SKILL.md)",
       "Bash(rm -rf /tmp/taste-skill)",
-      "Read(//Users/sambr-fw/.claude/skills/**)"
+      "Read(//Users/sambr-fw/.claude/skills/**)",
+      "Bash(python3.11 --version)"
     ]
   }
 }
