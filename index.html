@@ -524,6 +524,7 @@
       display:grid;
       grid-template-columns:repeat(auto-fill, minmax(270px,1fr));
       gap:20px;
+      touch-action:pan-y;
     }
     .product-card {
       background:var(--paper);
@@ -531,11 +532,21 @@
       border-radius:var(--radius);
       overflow:hidden;
       contain:layout style;
+      touch-action:pan-y;
+    }
+    /* On touch devices overflow:hidden creates an iOS scroll-container trap.
+       overflow:clip clips visually but does NOT create a scroll container. */
+    @media(hover:none){
+      .product-card { overflow:clip; }
     }
     .product-img {
       aspect-ratio:1; background:var(--snow);
       position:relative; overflow:hidden;
       display:flex; align-items:center; justify-content:center;
+      touch-action:pan-y;
+    }
+    @media(hover:none){
+      .product-img { overflow:clip; }
     }
     .product-img img {
       width:100%; height:100%; object-fit:contain; padding:20px;
