@@ -198,6 +198,39 @@
     .nav-cta:hover { opacity:.85; }
     .nav-cta:active { transform:scale(.96); }
     .nav-cta::after { display:none !important; }
+
+    /* ── PRODUCTS DROPDOWN ───────────────────── */
+    .nav-has-dropdown { position:relative; }
+    .nav-dropdown-toggle { display:flex; align-items:center; gap:5px; }
+    .nav-dropdown-toggle svg { transition:transform .2s; flex-shrink:0; }
+    .nav-has-dropdown:hover .nav-dropdown-toggle svg { transform:rotate(180deg); }
+    .nav-dropdown {
+      position:absolute; top:calc(100% + 14px); left:50%;
+      transform:translateX(-50%) translateY(-6px);
+      background:#fff; border:1px solid var(--linea);
+      border-radius:14px; box-shadow:0 16px 48px rgba(0,0,0,.10);
+      padding:8px; min-width:210px;
+      opacity:0; visibility:hidden;
+      transition:opacity .2s var(--ease-out), transform .2s var(--ease-out), visibility .2s;
+      z-index:200;
+    }
+    .nav-has-dropdown:hover .nav-dropdown {
+      opacity:1; visibility:visible;
+      transform:translateX(-50%) translateY(0);
+    }
+    .nav-dropdown a {
+      display:block; padding:9px 14px;
+      font-size:11px; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--grafito); border-radius:8px;
+      transition:background .15s, color .15s;
+    }
+    .nav-dropdown a::after { display:none !important; }
+    .nav-dropdown a:hover { background:var(--paper); color:var(--navy); }
+    .nav-dropdown a.dd-all {
+      font-weight:600; color:var(--tinta);
+      border-bottom:1px solid var(--bone); border-radius:8px 8px 0 0;
+      margin-bottom:4px; padding-bottom:12px;
+    }
     .nav-cart-btn {
       position:relative; width:44px; height:44px; border-radius:50%;
       border:1px solid var(--linea);
@@ -1721,7 +1754,22 @@
   </a>
   <ul class="nav-links">
     <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#productos">Productos</a></li>
+    <li class="nav-has-dropdown">
+      <a href="#productos" class="nav-dropdown-toggle">
+        Productos
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3.5l3 3 3-3"/></svg>
+      </a>
+      <div class="nav-dropdown">
+        <a href="/#productos" class="dd-all">Todos los productos</a>
+        <a href="/toxinas">Toxinas Botulínicas</a>
+        <a href="/acido-hialuronico">Ácido Hialurónico</a>
+        <a href="/lipoenzimas">Lipoenzimas</a>
+        <a href="/bioestimuladores">Bioestimuladores</a>
+        <a href="/skin-boosters">Skin Boosters</a>
+        <a href="/voltena">Línea VOL:TENA</a>
+        <a href="/otros">Otros</a>
+      </div>
+    </li>
     <li><a href="#voltena">VOL:TENA</a></li>
     <li><a href="#testimonios">Testimonios</a></li>
     <li><a href="#contacto">Contacto</a></li>
@@ -1747,7 +1795,13 @@
 <!-- ─── MOBILE MENU ───────────────────────────────────────────────── -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#nosotros"  onclick="closeMobile()">Nosotros</a>
-  <a href="#productos" onclick="closeMobile()">Productos</a>
+  <a href="/#productos" onclick="closeMobile()">Todos los productos</a>
+  <a href="/toxinas" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ Toxinas</a>
+  <a href="/acido-hialuronico" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ Ácido Hialurónico</a>
+  <a href="/lipoenzimas" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ Lipoenzimas</a>
+  <a href="/bioestimuladores" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ Bioestimuladores</a>
+  <a href="/skin-boosters" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ Skin Boosters</a>
+  <a href="/voltena" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ VOL:TENA</a>
   <a href="#voltena"   onclick="closeMobile()">VOL:TENA</a>
   <a href="#testimonios" onclick="closeMobile()">Testimonios</a>
   <a href="#contacto"  onclick="closeMobile()">Contacto</a>
@@ -3287,6 +3341,10 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
 // Restaurar carrito guardado (sin abrir el drawer)
 loadCart();
 renderCart();
+// Abrir carrito automáticamente si viene de una sub-página de producto
+if (new URLSearchParams(window.location.search).get('cart') === '1') {
+  requestAnimationFrame(() => toggleCart());
+}
 
 // ── MOBILE MENU ───────────────────────────────────────────────────────
 function closeMobile() {
@@ -3700,24 +3758,32 @@ function fichaAddToCart() {
   if (!document.getElementById('cartDrawer').classList.contains('open')) toggleCart();
 }
 
-// Wire up clickable product cards (image + name)
+// Wire up clickable product cards (image + name) → navigate to sub-page
+const CARD_SLUGS = {
+  'Nabota 100U':'nabota-100u','Nabota 200U':'nabota-200u',
+  'Innotox 100U':'innotox-100u','Liztox 100U':'liztox-100u',
+  'Juvéderm Voluma':'juvederm-voluma','Revolax':'revolax',
+  'Dermalax Implant':'dermalax-implant','Elasty':'elasty',
+  'Lipo Lab PPC':'lipo-lab-ppc','Voltena N°1':'voltena-n1-body-serum',
+  'Voltena N°2 Body Filler':'voltena-n2-body-filler','Voltena N°3':'voltena-n3-cool-gel',
+  'Lacto Gel':'lacto-gel','Pllagen PLLA':'pllagen-plla',
+  'Estella PLLA 200':'estella-plla','Hyaron Prefilled':'hyaron-prefilled',
+  'Eyebella':'eyebella','Ami Eyes':'ami-eyes',
+  'Liporase':'liporase','Muchcaine':'muchcaine'
+};
 document.querySelectorAll('.product-card').forEach(card => {
   const nameEl = card.querySelector('.p-name');
   const imgEl  = card.querySelector('.product-img');
   const addBtn = card.querySelector('.add-to-cart');
-  const catEl  = card.querySelector('.p-cat');
   if (!nameEl || !imgEl || !addBtn) return;
-
-  const name  = addBtn.dataset.name;
-  const price = parseInt(addBtn.dataset.price);
-  const cat   = catEl ? catEl.textContent : '';
-
-  if (!FICHAS[name]) return;
-
+  const slug = CARD_SLUGS[addBtn.dataset.name];
+  if (!slug) return;
   imgEl.classList.add('has-ficha');
   nameEl.classList.add('has-ficha');
-  imgEl.addEventListener('click',  () => openFicha(name, price, cat));
-  nameEl.addEventListener('click', () => openFicha(name, price, cat));
+  imgEl.style.cursor  = 'pointer';
+  nameEl.style.cursor = 'pointer';
+  imgEl.addEventListener('click',  () => { window.location.href = '/' + slug; });
+  nameEl.addEventListener('click', () => { window.location.href = '/' + slug; });
 });
 
 // ── LIGHTBOX ──────────────────────────────────────────────────────────
@@ -3991,7 +4057,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var ficha = document.createElement('a');
       ficha.className = 'p-ficha-link';
       ficha.href = '/' + SLUGS[name];
-      ficha.textContent = 'Ver ficha técnica →';
+      ficha.textContent = 'Ver producto →';
       info.appendChild(ficha);
     }
   });
