@@ -144,9 +144,10 @@
     button { cursor:pointer; border:none; background:none; font:inherit; color:inherit; }
     /* ─── TOUCH: eliminar delay 300ms y highlight en todos los elementos interactivos ─ */
     a, button, [role="button"],
-    .add-btn, .filter-btn, .product-img, .p-name,
+    .add-btn, .filter-btn,
     .ficha-modal-close, .chat-fab, .chat-send-btn,
     .hamburger, .cart-btn, .nav-logo { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    .product-img, .p-name { touch-action: pan-y; -webkit-tap-highlight-color: transparent; }
     ::-webkit-scrollbar { width:3px; }
     ::-webkit-scrollbar-track { background:var(--bone); }
     ::-webkit-scrollbar-thumb { background:var(--navy); border-radius:2px; }
@@ -528,7 +529,7 @@
       border:1px solid var(--linea);
       border-radius:var(--radius);
       overflow:hidden;
-      contain:layout style paint;   /* aisla reflow/repaint al card */
+      contain:layout style;
     }
     .product-img {
       aspect-ratio:1; background:var(--snow);

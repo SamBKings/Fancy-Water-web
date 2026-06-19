@@ -653,7 +653,7 @@ function generatePage(p) {
 <!-- NAV -->
 <nav class="site-nav">
   <a href="/" class="nav-logo">
-    <img src="/assets/logo-fw.png" alt="Fancy Water" height="64" />
+    <img src="/assets/logo-fw.svg" alt="Fancy Water" height="64" />
     <span class="nav-brand">Fancy Water</span>
   </a>
   <div class="nav-actions">

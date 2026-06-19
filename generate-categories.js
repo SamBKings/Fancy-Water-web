@@ -254,8 +254,9 @@ function generateCategoryPage(cat) {
     .sidebar-cat-item.active .sidebar-cat-img{background:rgba(255,255,255,.15)}
     .sidebar-cat-img img{width:36px;height:36px;object-fit:contain}
     .sidebar-cat-item span{
-      font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--grafito);
+      font-size:11px;font-weight:600;letter-spacing:.3px;color:var(--tinta);
     }
+    .sidebar-cat-item.active span{color:#fff}
 
     /* MAIN CONTENT */
     .cat-main{padding:40px 40px 80px}
@@ -392,7 +393,7 @@ function generateCategoryPage(cat) {
 
 <nav class="site-nav">
   <a href="/" class="nav-logo">
-    <img src="/assets/logo-fw.png" alt="Fancy Water" height="64" />
+    <img src="/assets/logo-fw.svg" alt="Fancy Water" height="64" />
     <span class="nav-brand">Fancy Water</span>
   </a>
   <div class="nav-actions">
@@ -411,6 +412,12 @@ function generateCategoryPage(cat) {
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <p class="sidebar-heading">Categorías</p>
+    <a href="/#productos" class="sidebar-cat-item">
+      <div class="sidebar-cat-img" style="background:var(--navy);display:flex;align-items:center;justify-content:center;">
+        <svg width="18" height="18" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+      <span>Todos</span>
+    </a>
     ${CATEGORIES.map(c => sidebarCategoryItem(c, cat)).join('')}
   </aside>
 
