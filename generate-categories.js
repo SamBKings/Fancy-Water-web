@@ -199,8 +199,9 @@ function generateCategoryPage(cat) {
     .nav-logo{display:flex;align-items:center;gap:12px}
     .nav-logo img{height:64px;width:auto;mix-blend-mode:multiply}
     .nav-brand{
-      font-family:'Inter',sans-serif;font-size:12px;font-weight:800;
-      letter-spacing:4px;text-transform:uppercase;color:var(--navy);
+      font-family:'Inter',sans-serif;font-size:22px;font-weight:800;
+      letter-spacing:4px;text-transform:uppercase;color:var(--tinta);
+      white-space:nowrap;line-height:1;
     }
     .nav-actions{display:flex;align-items:center;gap:12px}
     .btn-ghost-sm{
