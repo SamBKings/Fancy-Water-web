@@ -595,6 +595,13 @@
       width:6px; height:6px; border-radius:50%;
       background:#25D366; flex-shrink:0;
     }
+    .p-ficha-link {
+      display:inline-block; margin-top:8px;
+      font-size:10px; letter-spacing:.8px; text-transform:uppercase;
+      color:var(--ash); text-decoration:none;
+      transition:color .2s;
+    }
+    .p-ficha-link:hover { color:var(--navy); }
 
     /* ─── BRAND STRIP ───────────────────────────────────────────── */
     .brands-strip {
@@ -3964,7 +3971,29 @@ document.addEventListener('DOMContentLoaded', function() {
     var strip = document.createElement('div');
     strip.className = 'p-stock';
     strip.innerHTML = '<span class="p-stock-dot"></span>En stock · Envío desde Monterrey';
-    addBtn.closest('.product-info').appendChild(strip);
+    var info = addBtn.closest('.product-info');
+    info.appendChild(strip);
+
+    // "Ver ficha técnica" link to product sub-page
+    var SLUGS = {
+      'Nabota 100U':'nabota-100u','Nabota 200U':'nabota-200u',
+      'Innotox 100U':'innotox-100u','Liztox 100U':'liztox-100u',
+      'Juvéderm Voluma':'juvederm-voluma','Revolax':'revolax',
+      'Dermalax Implant':'dermalax-implant','Elasty':'elasty',
+      'Lipo Lab PPC':'lipo-lab-ppc','Voltena N°1':'voltena-n1-body-serum',
+      'Voltena N°2 Body Filler':'voltena-n2-body-filler','Voltena N°3':'voltena-n3-cool-gel',
+      'Lacto Gel':'lacto-gel','Pllagen PLLA':'pllagen-plla',
+      'Estella PLLA 200':'estella-plla','Hyaron Prefilled':'hyaron-prefilled',
+      'Eyebella':'eyebella','Ami Eyes':'ami-eyes',
+      'Liporase':'liporase','Muchcaine':'muchcaine'
+    };
+    if (SLUGS[name]) {
+      var ficha = document.createElement('a');
+      ficha.className = 'p-ficha-link';
+      ficha.href = '/' + SLUGS[name];
+      ficha.textContent = 'Ver ficha técnica →';
+      info.appendChild(ficha);
+    }
   });
 });
 </script>
