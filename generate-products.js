@@ -153,7 +153,7 @@ const PRODUCTS = [
   },
   {
     slug: 'voltena-n1-body-serum',
-    name: 'VOL:TENA N°1 Body Serum',
+    name: 'VOL:TENA N°1',
     category: 'Lipoenzima Corporal · VOL:TENA',
     price: 2300,
     img: 'voltena1-solo.jpg',
@@ -165,7 +165,7 @@ const PRODUCTS = [
     indicaciones: ['Doble mentón · papada','Abdomen y flancos','Brazos, espalda y rodillas','Modelado facial: bola de Bichat'],
     beneficios: ['Reducción visible de adiposidad localizada','Mejora del contorno facial y corporal','Estimulación de drenaje linfático','Inflamación post-tratamiento mínima'],
     uso: ['Protocolo de 4–6 sesiones cada 21 días','Inyección subcutánea con cánula o aguja 27G–30G','Marcar áreas y respetar dosis máxima por zona','Combinar con masaje linfático posterior'],
-    metaDesc: 'Compra VOL:TENA N°1 Body Serum en México. Lipolítico corporal inyectable de Corea. Distribuidores exclusivos para América. Precio mayoreo disponible.',
+    metaDesc: 'Compra VOL:TENA N°1 en México. Lipolítico corporal inyectable de Corea. Distribuidores exclusivos para América. Precio mayoreo disponible.',
   },
   {
     slug: 'voltena-n2-body-filler',
