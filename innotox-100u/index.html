@@ -45,10 +45,15 @@
         "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
         "merchantReturnDays": 30,
         "returnMethod": "https://schema.org/ReturnByMail",
-        "returnFees": "https://schema.org/OriginalShippingFees"
+        "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"
       },
       "shippingDetails": {
         "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "180",
+          "currency": "MXN"
+        },
         "shippingDestination": {
           "@type": "DefinedRegion",
           "addressCountry": "MX"
