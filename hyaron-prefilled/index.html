@@ -77,6 +77,46 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es Hyaron Prefilled y para qué se usa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Skin booster premium con AH de alta pureza. Excelente para pacientes que buscan calidad de piel y luminosidad sin cambio volumétrico. Sus principales indicaciones son: Rejuvenecimiento facial general; Cuello y escote; Dorso de manos; Preparación pre-evento (glow inmediato)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuáles son los beneficios de Hyaron Prefilled?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hidratación profunda con AH no reticulado. Mejora textura, elasticidad y luminosidad. Resultado natural sin volumen adicional. Apto para todo tipo de piel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se aplica Hyaron Prefilled?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Protocolo de 3 sesiones cada 2–4 semanas. Mesoterapia con técnica de pápula o nappage. Aguja 32G o pistola de inyección automática. Recomendado en otoño-invierno para mejores resultados."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Dónde comprar Hyaron Prefilled en México?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hyaron Prefilled está disponible en Fancy Water, distribuidores exclusivos en México y América. Enviamos desde Monterrey, Nuevo León, a toda la República Mexicana con stock permanente y cadena de frío garantizada. Puedes hacer tu pedido en línea en fancywater.mx o contactarnos por WhatsApp al +52 813 418 8472."
+      }
+    }
+  ]
+}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet" />
@@ -333,6 +373,21 @@
     .footer-links a:hover{color:rgba(255,255,255,.8)}
     .footer-legal{font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.5px;width:100%;text-align:center;margin-top:8px}
 
+    /* FAQ */
+    .product-faq{background:var(--paper);padding:72px 5vw}
+    .pfaq-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ash);margin-bottom:12px}
+    .pfaq-heading{font-family:'Playfair Display',serif;font-size:30px;line-height:1.2;margin-bottom:40px}
+    .pfaq-heading em{font-style:italic}
+    .pfaq-list{max-width:720px;margin:0 auto}
+    .pfaq-item{border-bottom:1px solid var(--linea)}
+    .pfaq-q{width:100%;background:none;border:none;text-align:left;padding:18px 0;font-size:14px;font-weight:600;color:var(--tinta);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Inter',sans-serif}
+    .pfaq-icon{flex-shrink:0;transition:transform .3s var(--ease-out)}
+    .pfaq-item.open .pfaq-icon{transform:rotate(45deg)}
+    .pfaq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease-out)}
+    .pfaq-a-inner{overflow:hidden}
+    .pfaq-a-inner p{padding-bottom:18px;font-size:13px;color:var(--grafito);line-height:1.75}
+    .pfaq-item.open .pfaq-a{grid-template-rows:1fr}
+
     /* MOBILE */
     @media(max-width:900px){
       .product-hero{grid-template-columns:1fr}
@@ -480,6 +535,43 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="product-faq">
+  <div class="pfaq-list">
+    <p class="pfaq-eyebrow">Preguntas frecuentes</p>
+    <h2 class="pfaq-heading">Todo sobre<br><em>Hyaron Prefilled</em></h2>
+    
+    <div class="pfaq-item">
+      <button class="pfaq-q" type="button">
+        ¿Qué es Hyaron Prefilled y para qué se usa?
+        <span class="pfaq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="pfaq-a"><div class="pfaq-a-inner"><p>Skin booster premium con AH de alta pureza. Excelente para pacientes que buscan calidad de piel y luminosidad sin cambio volumétrico. Sus principales indicaciones son: Rejuvenecimiento facial general; Cuello y escote; Dorso de manos; Preparación pre-evento (glow inmediato).</p></div></div>
+    </div>
+    <div class="pfaq-item">
+      <button class="pfaq-q" type="button">
+        ¿Cuáles son los beneficios de Hyaron Prefilled?
+        <span class="pfaq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="pfaq-a"><div class="pfaq-a-inner"><p>Hidratación profunda con AH no reticulado. Mejora textura, elasticidad y luminosidad. Resultado natural sin volumen adicional. Apto para todo tipo de piel.</p></div></div>
+    </div>
+    <div class="pfaq-item">
+      <button class="pfaq-q" type="button">
+        ¿Cómo se aplica Hyaron Prefilled?
+        <span class="pfaq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="pfaq-a"><div class="pfaq-a-inner"><p>Protocolo de 3 sesiones cada 2–4 semanas. Mesoterapia con técnica de pápula o nappage. Aguja 32G o pistola de inyección automática. Recomendado en otoño-invierno para mejores resultados.</p></div></div>
+    </div>
+    <div class="pfaq-item">
+      <button class="pfaq-q" type="button">
+        ¿Dónde comprar Hyaron Prefilled en México?
+        <span class="pfaq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="pfaq-a"><div class="pfaq-a-inner"><p>Hyaron Prefilled está disponible en Fancy Water, distribuidores exclusivos en México y América. Enviamos desde Monterrey, Nuevo León, a toda la República Mexicana con stock permanente y cadena de frío garantizada. Puedes hacer tu pedido en línea en fancywater.mx o contactarnos por WhatsApp al +52 813 418 8472.</p></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- BOTTOM CTA -->
 <section class="bottom-cta">
   <p class="eyebrow">Fancy Water · Distribuidores Oficiales</p>
@@ -532,6 +624,13 @@ function addToCart() {
     document.getElementById('cartFeedback').style.display = 'block';
   } catch(e) { window.location.href = '/?cart=1'; }
 }
+</script>
+<script>
+document.querySelectorAll('.pfaq-q').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    this.closest('.pfaq-item').classList.toggle('open');
+  });
+});
 </script>
 </body>
 </html>

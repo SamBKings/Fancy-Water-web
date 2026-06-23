@@ -344,6 +344,51 @@ function waLink(name) {
     encodeURIComponent('Hola Fancy Water, me interesa cotizar: ' + name);
 }
 
+function faqItems(p) {
+  return [
+    {
+      q: `¿Qué es ${p.name} y para qué se usa?`,
+      a: `${p.nota} Sus principales indicaciones son: ${p.indicaciones.join('; ')}.`
+    },
+    {
+      q: `¿Cuáles son los beneficios de ${p.name}?`,
+      a: p.beneficios.join('. ') + '.'
+    },
+    {
+      q: `¿Cómo se aplica ${p.name}?`,
+      a: p.uso.join('. ') + '.'
+    },
+    {
+      q: `¿Dónde comprar ${p.name} en México?`,
+      a: `${p.name} está disponible en Fancy Water, distribuidores exclusivos en México y América. Enviamos desde Monterrey, Nuevo León, a toda la República Mexicana con stock permanente y cadena de frío garantizada. Puedes hacer tu pedido en línea en fancywater.mx o contactarnos por WhatsApp al +52 813 418 8472.`
+    }
+  ];
+}
+
+function faqJsonLd(p) {
+  const items = faqItems(p);
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(item => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a }
+    }))
+  }, null, 2).replace(/`/g, "'");
+}
+
+function faqHtml(p) {
+  return faqItems(p).map(item => `
+    <div class="pfaq-item">
+      <button class="pfaq-q" type="button">
+        ${item.q}
+        <span class="pfaq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="pfaq-a"><div class="pfaq-a-inner"><p>${item.a}</p></div></div>
+    </div>`).join('');
+}
+
 function generatePage(p) {
   const wa = waLink(p.name);
   return `<!DOCTYPE html>
@@ -424,6 +469,9 @@ function generatePage(p) {
       }
     }
   }
+  </script>
+  <script type="application/ld+json">
+  ${faqJsonLd(p)}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -681,6 +729,21 @@ function generatePage(p) {
     .footer-links a:hover{color:rgba(255,255,255,.8)}
     .footer-legal{font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.5px;width:100%;text-align:center;margin-top:8px}
 
+    /* FAQ */
+    .product-faq{background:var(--paper);padding:72px 5vw}
+    .pfaq-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ash);margin-bottom:12px}
+    .pfaq-heading{font-family:'Playfair Display',serif;font-size:30px;line-height:1.2;margin-bottom:40px}
+    .pfaq-heading em{font-style:italic}
+    .pfaq-list{max-width:720px;margin:0 auto}
+    .pfaq-item{border-bottom:1px solid var(--linea)}
+    .pfaq-q{width:100%;background:none;border:none;text-align:left;padding:18px 0;font-size:14px;font-weight:600;color:var(--tinta);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Inter',sans-serif}
+    .pfaq-icon{flex-shrink:0;transition:transform .3s var(--ease-out)}
+    .pfaq-item.open .pfaq-icon{transform:rotate(45deg)}
+    .pfaq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease-out)}
+    .pfaq-a-inner{overflow:hidden}
+    .pfaq-a-inner p{padding-bottom:18px;font-size:13px;color:var(--grafito);line-height:1.75}
+    .pfaq-item.open .pfaq-a{grid-template-rows:1fr}
+
     /* MOBILE */
     @media(max-width:900px){
       .product-hero{grid-template-columns:1fr}
@@ -819,6 +882,15 @@ function generatePage(p) {
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="product-faq">
+  <div class="pfaq-list">
+    <p class="pfaq-eyebrow">Preguntas frecuentes</p>
+    <h2 class="pfaq-heading">Todo sobre<br><em>${p.name}</em></h2>
+    ${faqHtml(p)}
+  </div>
+</section>
+
 <!-- BOTTOM CTA -->
 <section class="bottom-cta">
   <p class="eyebrow">Fancy Water · Distribuidores Oficiales</p>
@@ -871,6 +943,13 @@ function addToCart() {
     document.getElementById('cartFeedback').style.display = 'block';
   } catch(e) { window.location.href = '/?cart=1'; }
 }
+</script>
+<script>
+document.querySelectorAll('.pfaq-q').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    this.closest('.pfaq-item').classList.toggle('open');
+  });
+});
 </script>
 </body>
 </html>`;
