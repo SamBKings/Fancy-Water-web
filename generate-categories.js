@@ -16,7 +16,7 @@ const ALL_PRODUCTS = [
   { slug:'dermalax-implant',      name:'Dermalax Implant Plus',    price:1600,  img:'dermalax-implant.webp',  category:'acido-hialuronico', cat:'AH · Alta Viscosidad',       desc:'2.2 mL para volumetría estructural profunda.' },
   { slug:'elasty',                name:'Elasty 1.1ml',             price:1100,  img:'elasty.jpg',             category:'acido-hialuronico', cat:'Ácido Hialurónico',          desc:'Monofásico en 3 densidades. Distribución homogénea natural.' },
   { slug:'lipo-lab-ppc',          name:'Lipo Lab PPC',             price:1400,  img:'lipolab.jpg',            category:'lipoenzimas',     cat:'Lipoenzima Inyectable',        desc:'Fosfatidilcolina 1,000 mg certificada KFDA. Lipólisis no quirúrgica.' },
-  { slug:'voltena-n1-body-serum', name:'VOL:TENA N°1 Body Serum', price:2300,  img:'voltena1-solo.jpg',      category:'lipoenzimas',     cat:'Lipoenzima · VOL:TENA',        desc:'Lipolítico que rompe la membrana del adipocito. 6 viales × 10 mL.' },
+  { slug:'voltena-n1-body-serum', name:'VOL:TENA N°1', price:2300,  img:'voltena1-solo.jpg',      category:'lipoenzimas',     cat:'Lipoenzima · VOL:TENA',        desc:'Lipolítico que rompe la membrana del adipocito. 6 viales × 10 mL.' },
   { slug:'pllagen-plla',          name:'Pllagen PLLA',             price:2200,  img:'pllagen.jpg',            category:'bioestimuladores', cat:'Bioestimulador · PLLA',       desc:'PLLA 45 mg + AH 13 mg. Estimula colágeno con resultados hasta 24 meses.' },
   { slug:'estella-plla',          name:'Estella PLLA 200',         price:3500,  img:'estella.jpg',            category:'bioestimuladores', cat:'Bioestimulador · PLLA',       desc:'200 mg PLLA por vial. Microesferas 20–50 μm, mínima formación de nódulos.' },
   { slug:'hyaron-prefilled',      name:'Hyaron Prefilled',         price:1950,  img:'hyaron.jpg',             category:'skin-boosters',   cat:'Skin Booster',                 desc:'AH 25 mg / 2.5 mL. 10 jeringas prellenadas. Hidratación profunda.' },
@@ -42,6 +42,7 @@ const CATEGORIES = [
     desc: 'Catálogo completo de insumos para medicina estética. Toxinas botulínicas, rellenos dérmicos, lipoenzimas, bioestimuladores, skin boosters y la línea exclusiva VOL:TENA.',
     heroImg: 'nabota.png',
     metaDesc: 'Catálogo completo Fancy Water — toxinas botulínicas, ácido hialurónico, lipoenzimas, bioestimuladores, skin boosters y VOL:TENA. Distribuidores en Monterrey.',
+    intro: 'Fancy Water distribuye directamente con fabricantes y distribuidores autorizados en Corea, Estados Unidos y Europa. Todo el catálogo llega con número de lote verificable, cadena de frío garantizada y stock permanente en Monterrey para envío express a toda la república.',
     filter: () => true,
   },
   {
@@ -51,6 +52,7 @@ const CATEGORIES = [
     desc: 'Toxinas botulínicas de última generación para neuromodulación estética. Nabota, Innotox, Liztox y más.',
     heroImg: 'nabota.png',
     metaDesc: 'Compra toxinas botulínicas originales en México. Nabota, Innotox, Liztox — distribuidores oficiales en Monterrey. Envío inmediato a toda la república.',
+    intro: 'Las toxinas coreanas como Nabota (Daewoong), Innotox (Medytox) y Liztox (Huons) usan el mismo principio activo que Botox —onabotulinumtoxinA purificada— con tecnologías de purificación modernas y aprobaciones regulatorias en múltiples mercados. Nabota es comercializada como Jeuveau® en EE.UU. e Innotox fue la primera toxina botulínica líquida del mundo.',
     filter: p => p.category === 'toxinas',
   },
   {
@@ -60,6 +62,7 @@ const CATEGORIES = [
     desc: 'Rellenos dérmicos de alta cohesividad para volumetría facial y corrección de arrugas profundas.',
     heroImg: 'juvederm.webp',
     metaDesc: 'Compra rellenos de ácido hialurónico en México. Juvéderm, Revolax, Dermalax, Elasty — distribuidores en Monterrey. Precio especial para clínicas.',
+    intro: 'La diferencia clave entre fillers dérmicos está en el grado de reticulación y cohesividad del ácido hialurónico: fillers de baja viscosidad para arrugas superficiales y labios, media viscosidad para surcos y rejuvenecimiento, y alta cohesividad (como Juvéderm Voluma con tecnología Vycross®) para volumetría estructural de pómulos, mentón y mandíbula.',
     filter: p => p.category === 'acido-hialuronico',
   },
   {
@@ -69,6 +72,7 @@ const CATEGORIES = [
     desc: 'Lipolíticos inyectables para reducción de grasa localizada y modelado corporal sin cirugía.',
     heroImg: 'lipolab.jpg',
     metaDesc: 'Compra lipoenzimas inyectables en México. Lipo Lab PPC, VOL:TENA N°1 — distribuidores en Monterrey. Precio mayoreo disponible.',
+    intro: 'La fosfatidilcolina (PPC) actúa como un detergente biológico que desestabiliza la membrana del adipocito y facilita su eliminación por vía linfática. Lipo Lab PPC tiene certificación KFDA y evidencia clínica robusta; VOL:TENA N°1 es el lipolítico de la línea coreana exclusiva de la que somos distribuidores en América. Protocolo estándar: 4–6 sesiones cada 21 días.',
     filter: p => p.category === 'lipoenzimas',
   },
   {
@@ -78,6 +82,7 @@ const CATEGORIES = [
     desc: 'Ácido poliláctico (PLLA) para estimulación de colágeno propio y rejuvenecimiento profundo de larga duración.',
     heroImg: 'pllagen.jpg',
     metaDesc: 'Compra bioestimuladores PLLA en México. Pllagen y Estella PLLA — distribuidores en Monterrey. Resultados hasta 24 meses.',
+    intro: 'A diferencia de los rellenos convencionales, el PLLA no reemplaza el volumen perdido — estimula la producción propia de colágeno. Las microesferas de PLLA actúan como andamio biológico: generan inflamación controlada que activa fibroblastos, producen colágeno nuevo y se bioabsorben en 9–18 meses. El resultado mejora gradualmente durante meses y puede durar hasta 24 meses.',
     filter: p => p.category === 'bioestimuladores',
   },
   {
@@ -87,15 +92,17 @@ const CATEGORIES = [
     desc: 'Hidratación profunda y regeneración cutánea con ácido hialurónico y polinucleótidos inyectables.',
     heroImg: 'hyaron.jpg',
     metaDesc: 'Compra skin boosters en México. Hyaron, Eyebella, Ami Eyes — polinucleótidos y AH para brillo y regeneración. Distribuidores en Monterrey.',
+    intro: 'Los skin boosters inyectables usan AH no reticulado (Hyaron) o polinucleótidos derivados de ADN de salmón (Eyebella, Ami Eyes) para hidratación dérmica profunda y regeneración celular. A diferencia de los fillers, no aportan volumen sino calidad de piel: mejora de textura, luminosidad y elasticidad desde la 1ª sesión, con efectos acumulativos en el protocolo completo.',
     filter: p => p.category === 'skin-boosters',
   },
   {
     slug: 'voltena',
     name: 'Línea VOL:TENA',
     shortName: 'VOL:TENA',
-    desc: 'Distribuidores exclusivos de la línea completa VOL:TENA en América. Body serums, fillers corporales, geles y más.',
+    desc: 'Distribuidores exclusivos de la línea completa VOL:TENA en América. Lipolíticos, fillers corporales, bioestimulador PLLA, geles y cuidado íntimo.',
     heroImg: 'voltena1-solo.jpg',
-    metaDesc: 'Compra la línea VOL:TENA en México. Distribuidores exclusivos en América — Body Serum, Body Filler, Cool Gel y Lacto Gel. Monterrey.',
+    metaDesc: 'Compra la línea VOL:TENA en México. Distribuidores exclusivos en América — N°1 Lipolítico, N°2 Body Filler, N°3 Cool Gel, Lacto Gel y Pllagen PLLA. Monterrey.',
+    intro: 'VOL:TENA es una línea coreana desarrollada para medicina estética corporal integral. Fancy Water es distribuidor exclusivo para todo el continente americano. La línea abarca desde el lipolítico inyectable N°1 y el body filler de ácido hialurónico N°2, hasta el bioestimulador PLLA (Pllagen), el gel reafirmante tópico N°3 y el cuidado íntimo Lacto Gel.',
     filter: p => p.category === 'voltena' || VOLTENA_EXTRA.includes(p.slug),
   },
   {
@@ -105,6 +112,7 @@ const CATEGORIES = [
     desc: 'Anestésicos tópicos, enzimas de seguridad y complementos esenciales para el consultorio de medicina estética.',
     heroImg: 'muchcaine.webp',
     metaDesc: 'Compra Liporase hialuronidasa y Muchcaine anestésico en México. Distribuidores en Monterrey. Precio especial para clínicas.',
+    intro: 'Liporase (hialuronidasa 1,500 IU) es el antídoto para rellenos de ácido hialurónico y debe estar disponible en CADA sesión de filler — su ausencia en consultorio es un riesgo clínico inaceptable. Muchcaine (lidocaína 10.56%) garantiza el confort del paciente durante procedimientos sensibles con penetración rápida y alto rendimiento por bote.',
     filter: p => p.category === 'otros',
   },
 ];
@@ -180,6 +188,9 @@ function generateCategoryPage(cat) {
   <!-- JSON-LD -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"CollectionPage","name":"${cat.name}","description":"${cat.metaDesc}","url":"https://www.fancywater.mx/${cat.slug}","provider":{"@type":"Organization","name":"Fancy Water","url":"https://www.fancywater.mx"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.fancywater.mx/"},{"@type":"ListItem","position":2,"name":"Catálogo","item":"https://www.fancywater.mx/productos"},{"@type":"ListItem","position":3,"name":"${cat.name}","item":"https://www.fancywater.mx/${cat.slug}"}]}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -295,6 +306,7 @@ function generateCategoryPage(cat) {
     }
     .cat-title em{font-style:italic;color:var(--navy)}
     .cat-desc{font-size:14px;color:var(--grafito);line-height:1.7;max-width:600px}
+    .cat-intro{font-size:13px;color:var(--grafito);line-height:1.75;margin-top:10px;max-width:640px;padding:14px 18px;background:var(--bone);border-radius:8px;border-left:3px solid var(--navy)}
     .cat-count{
       font-size:11px;letter-spacing:1px;color:var(--ash);
       margin-top:8px;
@@ -457,6 +469,7 @@ function generateCategoryPage(cat) {
       <p class="cat-eyebrow">Catálogo · Fancy Water</p>
       <h1 class="cat-title">${(()=>{const w=cat.name.split(' ');return w.length>1?w.slice(0,-1).join(' ')+' <em>'+w.slice(-1)[0]+'</em>':cat.name;})()}</h1>
       <p class="cat-desc">${cat.desc}</p>
+      ${cat.intro ? `<p class="cat-intro">${cat.intro}</p>` : ''}
       <p class="cat-count">${products.length} producto${products.length !== 1 ? 's' : ''}</p>
     </div>
 

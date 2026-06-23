@@ -389,6 +389,38 @@ function faqHtml(p) {
     </div>`).join('');
 }
 
+function getCatGroup(p) {
+  const c = p.category.toLowerCase();
+  if (c.includes('toxina')) return 'toxinas';
+  if (c.includes('hialurónico') || c.includes('hialuronico') || c.includes('relleno corporal')) return 'fillers';
+  if (c.includes('lipoenzima') || c.includes('lipolítico') || c.includes('lipolitico')) return 'lipoenzimas';
+  if (c.includes('plla') || c.includes('bioestimulador')) return 'bioestimuladores';
+  if (c.includes('skin') || c.includes('booster') || c.includes('periocular') || c.includes('pdrn')) return 'skinboosters';
+  if (c.includes('voltena') || c.includes('vol:tena')) return 'voltena';
+  return 'otros';
+}
+
+function getRelated(current) {
+  const group = getCatGroup(current);
+  const same = PRODUCTS.filter(p => p.slug !== current.slug && getCatGroup(p) === group);
+  const others = PRODUCTS.filter(p => p.slug !== current.slug && getCatGroup(p) !== group);
+  return [...same, ...others].slice(0, 3);
+}
+
+function relatedCard(r) {
+  return `
+    <a href="/${r.slug}" class="rel-card">
+      <div class="rel-card-img">
+        <img src="/assets/products/${r.img}" alt="${r.name}" loading="lazy" />
+      </div>
+      <div class="rel-card-body">
+        <p class="rel-card-cat">${r.category.split('·')[0].trim()}</p>
+        <h3 class="rel-card-name">${r.name}</h3>
+        <p class="rel-card-price">$${priceFormat(r.price)} <span>MXN</span></p>
+      </div>
+    </a>`;
+}
+
 function generatePage(p) {
   const wa = waLink(p.name);
   return `<!DOCTYPE html>
@@ -472,6 +504,9 @@ function generatePage(p) {
   </script>
   <script type="application/ld+json">
   ${faqJsonLd(p)}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.fancywater.mx/"},{"@type":"ListItem","position":2,"name":"Catálogo","item":"https://www.fancywater.mx/productos"},{"@type":"ListItem","position":3,"name":"${p.name}","item":"https://www.fancywater.mx/${p.slug}"}]}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -744,6 +779,23 @@ function generatePage(p) {
     .pfaq-a-inner p{padding-bottom:18px;font-size:13px;color:var(--grafito);line-height:1.75}
     .pfaq-item.open .pfaq-a{grid-template-rows:1fr}
 
+    /* RELATED PRODUCTS */
+    .related-section{background:var(--snow);padding:64px 5vw;border-top:1px solid var(--bone)}
+    .related-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ash);margin-bottom:10px}
+    .related-heading{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:32px;line-height:1.2}
+    .related-heading em{font-style:italic}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .rel-card{display:block;border:1px solid var(--linea);border-radius:10px;overflow:hidden;background:var(--paper);transition:transform .25s var(--ease-out),box-shadow .25s}
+    @media(hover:hover){.rel-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(45,49,71,.08)}}
+    .rel-card-img{aspect-ratio:1;background:var(--snow);overflow:clip;display:flex;align-items:center;justify-content:center}
+    .rel-card-img img{width:100%;height:100%;object-fit:contain;padding:16px}
+    .rel-card-body{padding:14px 16px}
+    .rel-card-cat{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ash);margin-bottom:4px}
+    .rel-card-name{font-family:'Playfair Display',serif;font-size:15px;line-height:1.3;margin-bottom:8px}
+    .rel-card-price{font-size:13px;font-weight:700;color:var(--navy)}
+    .rel-card-price span{font-weight:400;color:var(--ash);font-size:10px}
+    @media(max-width:640px){.related-grid{grid-template-columns:repeat(2,1fr)}}
+
     /* MOBILE */
     @media(max-width:900px){
       .product-hero{grid-template-columns:1fr}
@@ -888,6 +940,17 @@ function generatePage(p) {
     <p class="pfaq-eyebrow">Preguntas frecuentes</p>
     <h2 class="pfaq-heading">Todo sobre<br><em>${p.name}</em></h2>
     ${faqHtml(p)}
+  </div>
+</section>
+
+<!-- RELATED PRODUCTS -->
+<section class="related-section">
+  <div>
+    <p class="related-eyebrow">Productos relacionados</p>
+    <h2 class="related-heading">También te puede <em>interesar</em></h2>
+    <div class="related-grid">
+      ${getRelated(p).map(r => relatedCard(r)).join('')}
+    </div>
   </div>
 </section>
 
