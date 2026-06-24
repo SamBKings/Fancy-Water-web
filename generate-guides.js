@@ -269,49 +269,45 @@ Antes de cambiar un tratamiento, eliminar acumulaciones antiguas, o preparar la 
 
   {
     slug: 'como-elegir-toxina-botulinica',
-    title: 'Cómo elegir toxina botulínica en México: Nabota, Innotox, Liztox y Botox',
-    metaDesc: 'Guía comparativa para médicos: cómo elegir entre toxinas botulínicas disponibles en México — Nabota, Innotox, Liztox y Botox según indicación, perfil de paciente y costo.',
+    title: 'Cómo elegir toxina botulínica coreana en México: Nabota, Innotox y Liztox',
+    metaDesc: 'Guía comparativa para médicos: diferencias entre Nabota (Daewoong), Innotox (Medytox) y Liztox (Huons) — las tres principales toxinas botulínicas coreanas disponibles en México.',
     date: '2026-06-23',
-    intro: 'México tiene acceso a cuatro toxinas botulínicas de referencia: Botox (Allergan), Nabota (Daewoong), Innotox (Medytox) y Liztox (Huons). Todas son onabotulinumtoxinA purificada con mecanismo de acción idéntico — la diferencia está en el fabricante, la tecnología de purificación, el formato y el precio.',
+    intro: 'Las toxinas botulínicas coreanas han ganado su lugar como la opción principal para clínicas de medicina estética en México: Nabota (Daewoong), Innotox (Medytox) y Liztox (Huons) ofrecen la misma molécula activa que las marcas de referencia, con aprobaciones regulatorias internacionales y a un precio operativo más eficiente.',
     relatedProducts: [
       { slug:'nabota-100u',  name:'Nabota 100U',  price:1500, img:'nabota.png',       cat:'Toxina Botulínica' },
       { slug:'innotox-100u', name:'Innotox 100U', price:1350, img:'innotox-new.webp', cat:'Toxina Botulínica' },
       { slug:'liztox-100u',  name:'Liztox 100U',  price:1280, img:'liztox.webp',      cat:'Toxina Botulínica' },
     ],
     content: `
-<p>México tiene acceso a cuatro toxinas botulínicas de referencia ampliamente utilizadas: Botox (Allergan/AbbVie), Nabota (Daewoong), Innotox (Medytox) y Liztox (Huons). Todas son <strong>onabotulinumtoxinA purificada</strong> con mecanismo de acción idéntico sobre la placa neuromuscular. La diferencia está en el fabricante, la tecnología de purificación, el formato y el precio.</p>
+<p>Las toxinas botulínicas coreanas disponibles en Fancy Water —Nabota, Innotox y Liztox— comparten el mismo principio activo: <strong>onabotulinumtoxinA purificada</strong>. Las diferencias están en el fabricante, la tecnología de purificación, el formato de presentación y el precio. Elegir bien depende del perfil de la clínica y del tipo de pacientes que atiende.</p>
 
-<h2>Las cuatro toxinas en detalle</h2>
+<h2>Las tres toxinas en detalle</h2>
 
-<p><strong>Botox (Allergan/AbbVie) — EE.UU.</strong><br>
-El estándar de referencia mundial con más de 30 años de evidencia clínica acumulada. La toxina más prescrita globalmente. Disponible en 50U y 100U. Precio más alto del mercado. Indicada cuando el paciente tiene historial documentado de respuesta óptima específica o cuando se requiere para indicaciones terapéuticas complejas (espasticidad, hiperhidrosis severa, bruxismo).</p>
+<p><strong>Nabota 100U / 200U (Daewoong) — la opción de alto volumen</strong><br>
+Aprobada como <em>Jeuveau®</em> por la FDA (EE.UU., 2019) y como <em>Nuceiva®</em> por la EMA (Europa, 2020). Tecnología HiPure™ de alta pureza. La única toxina coreana con doble aprobación FDA + EMA. Disponible en 100U y 200U. Es la opción de mayor evidencia internacional para clínicas que necesitan respaldo regulatorio y volumen alto con precio eficiente.</p>
 
-<p><strong>Nabota (Daewoong) — Corea</strong><br>
-Aprobada como Jeuveau® por la FDA (EE.UU., 2019) y como Nuceiva® por la EMA (Europa, 2020). Tecnología HiPure™ de alta pureza. Resultados clínicamente equivalentes a Botox para indicaciones estéticas. La mejor relación calidad-precio para clínicas de alto volumen. Disponible en 100U y 200U.</p>
+<p><strong>Innotox 100U (Medytox) — la opción de máxima consistencia</strong><br>
+La única toxina en formulación <em>líquida</em> lista para usar (4U/0.1mL). Sin reconstitución, sin variabilidad de dilución. Cada jeringa entrega exactamente la dosis programada. Ideal para médicos que priorizan reproducibilidad absoluta en sus resultados sesión a sesión.</p>
 
-<p><strong>Innotox (Medytox) — Corea</strong><br>
-La única toxina en formulación <em>líquida</em> lista para usar (4U/0.1mL). Elimina el paso de reconstitución y la variabilidad de dilución. Ideal para médicos que priorizan máxima consistencia y reproducibilidad en sus resultados.</p>
-
-<p><strong>Liztox (Huons) — Corea</strong><br>
-Formulación liofilizada con tecnología propia de purificación. MFDS-aprobada. Precio más accesible entre las opciones coreanas. Buena opción para clínicas que buscan reducir costo operativo sin sacrificar calidad clínica.</p>
+<p><strong>Liztox 100U (Huons) — la opción de mayor accesibilidad</strong><br>
+Formulación liofilizada con tecnología propia MFDS-aprobada. El mejor precio por unidad entre las tres opciones. Sólido perfil de seguridad y eficacia clínica comprobada en múltiples mercados. Ideal para clínicas que buscan reducir el costo operativo sin comprometer la calidad.</p>
 
 <h2>Tabla comparativa</h2>
 <table>
   <tr><th>Toxina</th><th>Fabricante</th><th>Formato</th><th>Perfil de uso</th></tr>
-  <tr><td>Botox</td><td>Allergan (EE.UU.)</td><td>Liofilizado 50U/100U</td><td>Referencia histórica, terapéutica</td></tr>
-  <tr><td>Nabota</td><td>Daewoong (KR)</td><td>Liofilizado 100U/200U</td><td>Alto volumen, mejor costo-eficacia</td></tr>
-  <tr><td>Innotox</td><td>Medytox (KR)</td><td>Líquido 100U</td><td>Máxima consistencia, sin reconstitución</td></tr>
-  <tr><td>Liztox</td><td>Huons (KR)</td><td>Liofilizado 100U</td><td>Costo accesible, calidad clínica comprobada</td></tr>
+  <tr><td>Nabota</td><td>Daewoong (KR)</td><td>Liofilizado 100U / 200U</td><td>Alto volumen · FDA + EMA aprobada</td></tr>
+  <tr><td>Innotox</td><td>Medytox (KR)</td><td>Líquido listo 100U</td><td>Máxima consistencia · sin reconstitución</td></tr>
+  <tr><td>Liztox</td><td>Huons (KR)</td><td>Liofilizado 100U</td><td>Menor costo · calidad clínica sólida</td></tr>
 </table>
 
-<h2>Recomendación práctica</h2>
-<p>Para la mayoría de indicaciones estéticas de rutina, <strong>Nabota o Innotox</strong> ofrecen el mejor balance entre evidencia clínica internacional (aprobaciones FDA/EMA) y precio. Liztox es una alternativa sólida para reducir costo. Botox se justifica cuando el paciente lo solicita específicamente o para indicaciones terapéuticas complejas con protocolo establecido.</p>
+<h2>¿Cuál elegir según el perfil de la clínica?</h2>
+<p>Para clínicas con <strong>alto volumen</strong> y pacientes que valoran el respaldo regulatorio internacional: <strong>Nabota</strong>. Para médicos que buscan la mayor <strong>consistencia técnica</strong> y quieren eliminar la variable de reconstitución: <strong>Innotox</strong>. Para consultorios que priorizan <strong>reducir costos</strong> sin sacrificar resultados clínicos: <strong>Liztox</strong>. Las tres opciones están disponibles en Fancy Water con envío desde Monterrey a toda la república.</p>
 `,
     faqs: [
-      { q: '¿Cuál es la diferencia principal entre toxinas coreanas y Botox?', a: 'El principio activo es el mismo: onabotulinumtoxinA purificada. La diferencia está en el fabricante, la tecnología de purificación y el precio. Nabota, Innotox y Liztox tienen aprobaciones regulatorias en múltiples países y resultados clínicamente equivalentes a Botox para uso estético.' },
-      { q: '¿Qué toxina botulínica tiene mejor relación calidad-precio en México?', a: 'Nabota 100U ofrece la mejor relación calidad-precio para uso estético de alto volumen: está aprobada por FDA (como Jeuveau®) y EMA (como Nuceiva®), con resultados equivalentes a Botox. Liztox es la opción más económica. Innotox es premium por su formato líquido sin reconstitución.' },
-      { q: '¿Se puede mezclar toxinas botulínicas en la misma sesión?', a: 'No se recomienda. No existen estudios comparativos de seguridad para el uso simultáneo de distintas marcas de toxina en la misma sesión. Lo adecuado es usar una sola marca por sesión y documentar el producto utilizado.' },
-      { q: '¿Dónde comprar toxinas botulínicas coreanas en México?', a: 'Nabota 100U, Nabota 200U, Innotox 100U y Liztox 100U están disponibles en Fancy Water. Enviamos con cadena de frío garantizada desde Monterrey a toda la República Mexicana.' },
+      { q: '¿Cuál es la diferencia entre Nabota, Innotox y Liztox?', a: 'Las tres son toxinas botulínicas coreanas con onabotulinumtoxinA purificada. Nabota (Daewoong) tiene aprobación FDA + EMA y es ideal para alto volumen. Innotox (Medytox) es la única en formato líquido listo para usar, sin reconstitución. Liztox (Huons) ofrece el mejor precio por unidad. Las tres tienen aprobación MFDS coreana.' },
+      { q: '¿Qué toxina botulínica tiene mejor relación calidad-precio en México?', a: 'Nabota 100U ofrece la mejor relación calidad-precio para alto volumen: aprobada por FDA (Jeuveau®) y EMA (Nuceiva®). Liztox es la opción más económica. Innotox justifica su precio con el formato líquido que elimina la reconstitución y garantiza dosis exacta por jeringa.' },
+      { q: '¿Se puede mezclar toxinas botulínicas en la misma sesión?', a: 'No se recomienda. No existen estudios de seguridad para el uso simultáneo de distintas marcas de toxina. Lo adecuado es usar una sola marca por sesión y documentar el producto utilizado.' },
+      { q: '¿Dónde comprar Nabota, Innotox y Liztox en México?', a: 'Las tres están disponibles en Fancy Water. Enviamos con cadena de frío garantizada desde Monterrey a toda la República Mexicana. Precios especiales para pedidos al mayoreo.' },
     ],
   },
 

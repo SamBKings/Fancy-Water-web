@@ -1968,8 +1968,7 @@
       </p>
     </div>
     <div class="filters-wrap">
-      <button class="filter-btn active" data-filter="all">Todos</button>
-      <button class="filter-btn" data-filter="toxinas">Toxinas</button>
+      <button class="filter-btn active" data-filter="toxinas">Toxinas</button>
       <button class="filter-btn" data-filter="rellenos">Rellenos</button>
       <button class="filter-btn" data-filter="plla">PLLA</button>
       <button class="filter-btn" data-filter="lipoenzimas">Lipoenzimas</button>
@@ -2712,7 +2711,7 @@
         <span class="guide-home-num">02</span>
         <div class="guide-home-body">
           <p class="guide-home-cat">Toxinas botulínicas</p>
-          <h3 class="guide-home-title-card">Cómo elegir toxina botulínica: Nabota, Innotox, Liztox y Botox</h3>
+          <h3 class="guide-home-title-card">Cómo elegir toxina botulínica coreana: Nabota, Innotox y Liztox</h3>
           <p class="guide-home-intro">Guía comparativa para médicos: cuándo usar cada toxina según indicación, perfil de paciente y costo operativo.</p>
         </div>
       </a>
@@ -3190,8 +3189,8 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
-// Catálogo completo visible al cargar; "Todos" es el filtro activo
-applyFilter('all');
+// Toxinas como filtro activo al cargar
+applyFilter('toxinas');
 
 // ── CART ──────────────────────────────────────────────────────────────
 let cart = [];
