@@ -861,6 +861,25 @@
       .faq-question { font-size:13px; }
     }
 
+    /* ─── GUIDES ────────────────────────────────────────────────── */
+    .guides-home { padding:96px 5vw; background:var(--snow); }
+    .guides-home-inner { max-width:1120px; margin:0 auto; }
+    .guides-home-header { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:48px; flex-wrap:wrap; }
+    .guides-home-title { font-family:'Playfair Display',serif; font-size:clamp(28px,3.5vw,42px); line-height:1.15; }
+    .guides-home-title em { font-style:italic; }
+    .guides-home-link { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--navy); border-bottom:1px solid var(--navy); padding-bottom:2px; white-space:nowrap; transition:opacity .2s; }
+    .guides-home-link:hover { opacity:.6; }
+    .guides-home-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+    .guide-home-card { display:flex; gap:20px; align-items:flex-start; padding:28px; background:var(--paper); border:1px solid var(--linea); border-radius:12px; transition:box-shadow .25s,transform .25s; }
+    @media(hover:hover){ .guide-home-card:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(45,49,71,.07); } }
+    .guide-home-num { font-family:'Playfair Display',serif; font-size:38px; font-weight:700; color:var(--bone); line-height:1; flex-shrink:0; width:48px; }
+    .guide-home-body {}
+    .guide-home-cat { font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:var(--navy); font-weight:600; margin-bottom:6px; }
+    .guide-home-title-card { font-family:'Playfair Display',serif; font-size:17px; line-height:1.35; margin-bottom:8px; color:var(--tinta); }
+    .guide-home-intro { font-size:12px; color:var(--grafito); line-height:1.65; }
+    @media(max-width:900px) { .guides-home-grid { grid-template-columns:1fr; } }
+    @media(max-width:640px) { .guides-home { padding:64px 5vw; } .guide-home-card { padding:20px; } .guides-home-header { flex-direction:column; align-items:flex-start; gap:12px; } }
+
     /* ─── CONTACT ────────────────────────────────────────────────── */
     .contact-section { background:var(--paper); }
     .contact-grid {
@@ -1832,6 +1851,7 @@
       </div>
     </li>
     <li><a href="#voltena">VOL:TENA</a></li>
+    <li><a href="/guias">Guías</a></li>
     <li><a href="#testimonios">Testimonios</a></li>
     <li><a href="#contacto">Contacto</a></li>
     <li>
@@ -1864,6 +1884,7 @@
   <a href="/skin-boosters" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ Skin Boosters</a>
   <a href="/voltena" style="padding-left:24px;font-size:10px;letter-spacing:2px;color:var(--ash)">→ VOL:TENA</a>
   <a href="#voltena"   onclick="closeMobile()">VOL:TENA</a>
+  <a href="/guias"     onclick="closeMobile()">Guías</a>
   <a href="#testimonios" onclick="closeMobile()">Testimonios</a>
   <a href="#contacto"  onclick="closeMobile()">Contacto</a>
   <a href="#productos" onclick="closeMobile()" style="color:var(--navy)">Comprar</a>
@@ -2668,6 +2689,101 @@
 </section>
 </main>
 
+<!-- ─── GUÍAS ────────────────────────────────────────────────────── -->
+<section class="guides-home">
+  <div class="guides-home-inner">
+    <div class="guides-home-header reveal">
+      <div>
+        <p class="section-label">Recursos para médicos</p>
+        <h2 class="guides-home-title">Guías de <em>medicina estética</em></h2>
+      </div>
+      <a href="/guias" class="guides-home-link">Ver todas las guías →</a>
+    </div>
+    <div class="guides-home-grid">
+      <a href="/guias/nabota-vs-botox" class="guide-home-card">
+        <span class="guide-home-num">01</span>
+        <div class="guide-home-body">
+          <p class="guide-home-cat">Toxinas botulínicas</p>
+          <h3 class="guide-home-title-card">Nabota vs Botox: diferencias técnicas, precio y dónde comprar</h3>
+          <p class="guide-home-intro">Comparativa clínica entre ambas toxinas: molécula, aprobaciones FDA/EMA, duración y costo por unidad.</p>
+        </div>
+      </a>
+      <a href="/guias/como-elegir-toxina-botulinica" class="guide-home-card">
+        <span class="guide-home-num">02</span>
+        <div class="guide-home-body">
+          <p class="guide-home-cat">Toxinas botulínicas</p>
+          <h3 class="guide-home-title-card">Cómo elegir toxina botulínica: Nabota, Innotox, Liztox y Botox</h3>
+          <p class="guide-home-intro">Guía comparativa para médicos: cuándo usar cada toxina según indicación, perfil de paciente y costo operativo.</p>
+        </div>
+      </a>
+      <a href="/guias/innotox-toxina-liquida" class="guide-home-card">
+        <span class="guide-home-num">03</span>
+        <div class="guide-home-body">
+          <p class="guide-home-cat">Toxinas botulínicas</p>
+          <h3 class="guide-home-title-card">Innotox 100U: la primera toxina botulínica líquida del mundo</h3>
+          <p class="guide-home-intro">Sin reconstitución, dosis exacta 4U/0.1mL. Ventajas clínicas del formato líquido frente a toxinas liofilizadas.</p>
+        </div>
+      </a>
+      <a href="/guias/que-es-lipo-lab-ppc" class="guide-home-card">
+        <span class="guide-home-num">04</span>
+        <div class="guide-home-body">
+          <p class="guide-home-cat">Lipoenzimas</p>
+          <h3 class="guide-home-title-card">Lipo Lab PPC: qué es, cómo funciona y protocolo de aplicación</h3>
+          <p class="guide-home-intro">Mecanismo de fosfatidilcolina, indicaciones por zona, protocolo de 4–6 sesiones y certificación KFDA.</p>
+        </div>
+      </a>
+      <a href="/guias/rellenos-dermicos-acido-hialuronico" class="guide-home-card">
+        <span class="guide-home-num">05</span>
+        <div class="guide-home-body">
+          <p class="guide-home-cat">Ácido hialurónico</p>
+          <h3 class="guide-home-title-card">Rellenos dérmicos de ácido hialurónico: guía para médicos</h3>
+          <p class="guide-home-intro">Reticulación, selección por indicación y profundidad, diferencias entre marcas y reversal con hialuronidasa.</p>
+        </div>
+      </a>
+      <a href="/guias/hialuronidasa-emergencias-esteticas" class="guide-home-card">
+        <span class="guide-home-num">06</span>
+        <div class="guide-home-body">
+          <p class="guide-home-cat">Seguridad clínica</p>
+          <h3 class="guide-home-title-card">Liporase: protocolo de reversal y emergencias estéticas</h3>
+          <p class="guide-home-intro">Uso de hialuronidasa en oclusión vascular y corrección estética. Dosis, reconstitución y cuándo actuar.</p>
+        </div>
+      </a>
+      <a href="/guias/skin-boosters-inyectables" class="guide-home-card">
+        <span class="guide-home-num">07</span>
+        <div class="guide-home-body">
+          <p class="guide-home-cat">Skin boosters</p>
+          <h3 class="guide-home-title-card">Skin boosters inyectables: Hyaron, Eyebella y Ami Eyes</h3>
+          <p class="guide-home-intro">AH no reticulado vs PDRN de salmón: mecanismos distintos, resultados complementarios para calidad de piel.</p>
+        </div>
+      </a>
+      <a href="/guias/bioestimuladores-plla-colageno" class="guide-home-card">
+        <span class="guide-home-num">08</span>
+        <div class="guide-home-body">
+          <p class="guide-home-cat">Bioestimuladores</p>
+          <h3 class="guide-home-title-card">Bioestimuladores PLLA: Pllagen vs Estella para regeneración de colágeno</h3>
+          <p class="guide-home-intro">Cómo el ácido poliláctico estimula colágeno propio. Diferencias entre Pllagen y Estella PLLA 200.</p>
+        </div>
+      </a>
+      <a href="/guias/voltena-linea-corporal" class="guide-home-card">
+        <span class="guide-home-num">09</span>
+        <div class="guide-home-body">
+          <p class="guide-home-cat">VOL:TENA</p>
+          <h3 class="guide-home-title-card">VOL:TENA: la línea coreana completa para remodelación corporal</h3>
+          <p class="guide-home-intro">N°1 lipolítico, N°2 body filler, Pllagen PLLA, N°3 gel y Lacto Gel. Fancy Water es distribuidor exclusivo en América.</p>
+        </div>
+      </a>
+      <a href="/guias/juvederm-voluma-vycross" class="guide-home-card">
+        <span class="guide-home-num">10</span>
+        <div class="guide-home-body">
+          <p class="guide-home-cat">Ácido hialurónico</p>
+          <h3 class="guide-home-title-card">Juvéderm Voluma y tecnología Vycross: volumetría facial estructural</h3>
+          <p class="guide-home-intro">Por qué Vycross logra mayor cohesividad y duración. Indicaciones para pómulos, mentón y mandíbula.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ─── FOOTER ────────────────────────────────────────────────────── -->
 <footer>
   <div class="footer-top">
@@ -2708,6 +2824,16 @@
         <li><a href="#productos" onclick="setFilter('voltena')">VOL:TENA N°3</a></li>
         <li><a href="#productos" onclick="setFilter('voltena')">Pllagen</a></li>
         <li><a href="#productos" onclick="setFilter('voltena')">Lacto Gel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Guías</h3>
+      <ul>
+        <li><a href="/guias/nabota-vs-botox">Nabota vs Botox</a></li>
+        <li><a href="/guias/que-es-lipo-lab-ppc">Lipo Lab PPC</a></li>
+        <li><a href="/guias/rellenos-dermicos-acido-hialuronico">Rellenos de AH</a></li>
+        <li><a href="/guias/skin-boosters-inyectables">Skin Boosters</a></li>
+        <li><a href="/guias">Ver todas →</a></li>
       </ul>
     </div>
     <div class="footer-col">

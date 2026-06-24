@@ -439,6 +439,7 @@ function generateCategoryPage(cat) {
       <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span class="nav-cart-badge" id="navCartBadge"></span>
     </a>
+    <a href="/guias" class="btn-ghost-sm">Guías</a>
     <a href="/productos" class="btn-ghost-sm">Ver catálogo</a>
     <a href="https://wa.me/528134188472?text=Hola%20Fancy%20Water%2C%20me%20interesa%20un%20pedido" class="btn-wa-sm" onclick="gtagWhatsApp(this.href);return false;">
       ${WA_SVG}<span>Cotizar</span>

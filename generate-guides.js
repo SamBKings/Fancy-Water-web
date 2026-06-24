@@ -143,6 +143,221 @@ const GUIDES = [
   },
 
   {
+    slug: 'innotox-toxina-liquida',
+    title: 'Innotox 100U: la primera toxina botulínica líquida del mundo',
+    metaDesc: 'Innotox (Medytox, Corea) es la primera toxina botulínica líquida del mundo. Guía para médicos: ventajas clínicas, comparativa con Botox y Nabota, indicaciones y protocolo.',
+    date: '2026-06-23',
+    intro: 'Innotox 100U, fabricado por Medytox (Corea del Sur), fue la primera toxina botulínica líquida del mundo en obtener aprobación regulatoria. Su formulación en solución lista para usar —sin necesidad de reconstitución— representa una ventaja técnica concreta en el consultorio.',
+    relatedProducts: [
+      { slug:'innotox-100u', name:'Innotox 100U',  price:1350, img:'innotox-new.webp',  cat:'Toxina Botulínica' },
+      { slug:'nabota-100u',  name:'Nabota 100U',   price:1500, img:'nabota.png',         cat:'Toxina Botulínica' },
+      { slug:'liztox-100u',  name:'Liztox 100U',   price:1280, img:'liztox.webp',        cat:'Toxina Botulínica' },
+    ],
+    content: `
+<p>Innotox 100U, fabricado por <strong>Medytox</strong> (Corea del Sur), fue la primera toxina botulínica líquida del mundo en obtener aprobación regulatoria, primero en Corea (MFDS) y luego en varios mercados asiáticos y latinoamericanos. Su formulación sin necesidad de reconstitución la distingue de todas las toxinas liofilizadas del mercado.</p>
+
+<h2>La diferencia técnica: líquida vs liofilizada</h2>
+<p>Las toxinas botulínicas tradicionales —Botox, Nabota, Liztox— se presentan como <strong>polvo liofilizado</strong> que debe reconstituirse con solución salina antes de cada sesión. Esta reconstitución introduce una variable: la concentración final depende del volumen de diluyente que agregue el médico, lo que puede generar inconsistencias entre sesiones o entre clínicas.</p>
+
+<p>Innotox ya viene en <strong>solución lista para usar a 4U/0.1mL</strong>. Esto elimina el paso de reconstitución y la variabilidad asociada, garantizando una dosis consistente en cada inyección.</p>
+
+<h2>Ventajas clínicas concretas</h2>
+<ul>
+  <li><strong>Dosis exacta garantizada:</strong> No hay riesgo de error en la dilución — cada 0.1 mL contiene siempre 4 unidades.</li>
+  <li><strong>Ahorro de tiempo:</strong> No es necesario esperar disolución ni agitar el vial. Se abre y se usa directamente.</li>
+  <li><strong>Menor variabilidad inter-sesión:</strong> La consistencia de la formulación líquida facilita reproducir resultados.</li>
+  <li><strong>Temperatura de almacenamiento:</strong> Refrigeración entre 2–8°C, igual que las toxinas liofilizadas.</li>
+</ul>
+
+<h2>Indicaciones y eficacia</h2>
+<p>Innotox tiene el mismo principio activo que Botox: <strong>onabotulinumtoxinA purificada</strong>. Sus indicaciones estéticas son las mismas: glabela, frente, patas de gallo, cuello (bandas platismales), mentón, labio superior y hiperhidrosis. Los estudios clínicos muestran una duración de efecto comparable a Botox (3–6 meses) con inicio de acción entre 2–5 días.</p>
+
+<h2>¿Para qué perfil de médico es Innotox?</h2>
+<p>Innotox es especialmente valorada por médicos que buscan <strong>máxima consistencia y control</strong> en sus resultados. Clínicas con alto volumen de aplicaciones diarias también se benefician del ahorro de tiempo en preparación. Para consultorios que ya tienen protocolos establecidos con diluciones personalizadas, Nabota o Liztox pueden ser una alternativa más flexible.</p>
+`,
+    faqs: [
+      { q: '¿Qué hace diferente a Innotox de Botox o Nabota?', a: 'Innotox es la única toxina botulínica en formulación líquida lista para usar, sin reconstitución. Botox, Nabota y Liztox son polvos liofilizados que requieren disolución con solución salina antes de aplicar. Innotox garantiza dosis exacta de 4U/0.1mL sin variabilidad en dilución.' },
+      { q: '¿Cuánto dura el efecto de Innotox?', a: 'La duración de Innotox es comparable a Botox: entre 3 y 6 meses según la indicación, dosis y metabolismo del paciente. El inicio de acción es entre 2 y 5 días post-aplicación.' },
+      { q: '¿Innotox requiere refrigeración?', a: 'Sí. Innotox se almacena refrigerado entre 2°C y 8°C, igual que las demás toxinas botulínicas. Fancy Water garantiza cadena de frío desde origen hasta entrega.' },
+      { q: '¿Dónde comprar Innotox 100U en México?', a: 'Innotox 100U está disponible en Fancy Water. Enviamos desde Monterrey a toda la República Mexicana con cadena de frío garantizada. Pedidos por WhatsApp o en línea en fancywater.mx.' },
+    ],
+  },
+
+  {
+    slug: 'skin-boosters-inyectables',
+    title: 'Skin boosters inyectables: Hyaron, Eyebella y Ami Eyes para médicos estéticos',
+    metaDesc: 'Guía completa sobre skin boosters inyectables: Hyaron (AH no reticulado), Eyebella y Ami Eyes (PDRN salmón). Mecanismos, diferencias y protocolos para médicos en México.',
+    date: '2026-06-23',
+    intro: 'Los skin boosters inyectables son una categoría distinta a los rellenos dérmicos: su objetivo no es aportar volumen sino mejorar la calidad intrínseca de la piel — hidratación profunda, luminosidad, elasticidad y regeneración celular — desde adentro.',
+    relatedProducts: [
+      { slug:'hyaron-prefilled', name:'Hyaron Prefilled',  price:1950, img:'hyaron.jpg',      cat:'Skin Booster · AH' },
+      { slug:'eyebella',         name:'Eyebella',          price:2400, img:'eyebella.webp',    cat:'Skin Booster · PDRN' },
+      { slug:'ami-eyes',         name:'Ami Eyes',          price:2100, img:'ami-eyes.webp',    cat:'Skin Booster · PDRN' },
+    ],
+    content: `
+<p>Los skin boosters inyectables son una categoría distinta a los rellenos dérmicos. Su objetivo no es aportar volumen sino mejorar la <strong>calidad intrínseca de la piel</strong>: hidratación profunda, luminosidad, elasticidad y regeneración celular. Existen dos familias según el principio activo: AH no reticulado (Hyaron) y PDRN derivado de ADN de salmón (Eyebella, Ami Eyes).</p>
+
+<h2>Hyaron: ácido hialurónico no reticulado</h2>
+<p>Hyaron (Dongkook Pharma, Corea) contiene <strong>ácido hialurónico estabilizado de alto peso molecular al 2.5%</strong>, sin reticulación. A diferencia de los fillers, no forma un gel rígido ni aporta proyección: se integra con la dermis y actúa como un <em>reservorio de hidratación</em> que activa la producción endógena de AH y colágeno.</p>
+
+<p>Presentación: jeringas prefilled de 2.5mL listas para usar. Técnica: microbolsas intradérmicas a 1–2mm con aguja 30–32G. Protocolo estándar: 3 sesiones cada 3–4 semanas, mantenimiento trimestral. Indicaciones: piel deshidratada, opaca, flácida; fotografía perioral, cuello y escote.</p>
+
+<h2>Eyebella y Ami Eyes: PDRN (polinucleótidos de salmón)</h2>
+<p>Los PDRN (Poly-Deoxyribonucleotides) son fragmentos de ADN extraídos de esperma de salmón, depurados para uso inyectable. Activan los <strong>receptores A2A de adenosina</strong> en los fibroblastos, estimulando la síntesis de colágeno, elastina y factores de crecimiento. El resultado es regeneración tisular real, no solo hidratación.</p>
+
+<p><strong>Eyebella</strong> fue desarrollado específicamente para la zona periocular — área más delicada y compleja del rejuvenecimiento facial. Su formulación PDRN + AH ultra-bajo peso molecular la hace ideal para ojeras, flacidez palpebral y arrugas periorbitales sin riesgo de efecto Tyndall.</p>
+
+<p><strong>Ami Eyes</strong> también es de uso periocular, con alta concentración de PDRN y perfil comprobado de seguridad. Ambos productos se aplican con técnica de papuloterapia o retrotracing con aguja 30–33G.</p>
+
+<h2>Comparativa rápida</h2>
+<table>
+  <tr><th></th><th>Hyaron</th><th>Eyebella / Ami Eyes</th></tr>
+  <tr><td>Activo</td><td>AH no reticulado 2.5%</td><td>PDRN de salmón</td></tr>
+  <tr><td>Mecanismo</td><td>Hidratación + estimulación AH endógeno</td><td>Regeneración celular vía adenosina</td></tr>
+  <tr><td>Zona primaria</td><td>Rostro, cuello, escote</td><td>Periocular (específicamente)</td></tr>
+  <tr><td>Inicio visible</td><td>Desde 1ª sesión</td><td>Desde 2ª–3ª sesión</td></tr>
+</table>
+`,
+    faqs: [
+      { q: '¿Los skin boosters son lo mismo que los rellenos de ácido hialurónico?', a: 'No. Los fillers dérmicos usan AH reticulado de alta viscosidad para aportar volumen y proyección estructural. Los skin boosters usan AH no reticulado (Hyaron) o PDRN (Eyebella, Ami Eyes) para mejorar la calidad de la piel: hidratación profunda, luminosidad y regeneración celular, sin añadir volumen.' },
+      { q: '¿Qué son los PDRN y cómo funcionan?', a: 'Los PDRN (Poly-Deoxyribonucleotides) son fragmentos de ADN de esperma de salmón purificados para uso médico. Activan los receptores A2A de adenosina en fibroblastos, estimulando producción de colágeno, elastina y factores de crecimiento. El resultado es regeneración tisular real en 4–8 semanas.' },
+      { q: '¿Cuántas sesiones de Hyaron o Eyebella se necesitan?', a: 'El protocolo estándar es de 3 sesiones iniciales cada 3–4 semanas, seguidas de mantenimiento cada 3 meses. Los primeros cambios son visibles desde la 1ª sesión con Hyaron; Eyebella muestra resultados más graduales a partir de la 2ª–3ª sesión.' },
+      { q: '¿Dónde comprar Hyaron, Eyebella y Ami Eyes en México?', a: 'Los tres productos están disponibles en Fancy Water. Enviamos desde Monterrey a toda la República con cadena de frío garantizada.' },
+    ],
+  },
+
+  {
+    slug: 'hialuronidasa-emergencias-esteticas',
+    title: 'Liporase (hialuronidasa): protocolo de reversal y emergencias en medicina estética',
+    metaDesc: 'Guía de uso de Liporase (hialuronidasa 1,500 IU) en México: disolución de fillers de ácido hialurónico, protocolo de emergencia vascular y dosis por indicación.',
+    date: '2026-06-23',
+    intro: 'La hialuronidasa es el antídoto específico para los rellenos de ácido hialurónico. Liporase (1,500 IU por vial) debe estar disponible en cada sesión de filler: no tenerla en consultorio es un riesgo clínico inaceptable, independientemente del nivel de experiencia del médico.',
+    relatedProducts: [
+      { slug:'liporase',        name:'Liporase',          price:1500, img:'liporase.webp',         cat:'Seguridad Clínica' },
+      { slug:'juvederm-voluma', name:'Juvéderm Voluma',   price:4200, img:'juvederm.webp',          cat:'Ácido Hialurónico' },
+      { slug:'revolax',         name:'Revolax 1.1ml',      price:1020, img:'revolax.webp',           cat:'Ácido Hialurónico' },
+    ],
+    content: `
+<p>La hialuronidasa es el <strong>antídoto específico para los rellenos de ácido hialurónico</strong>. Liporase (1,500 IU por vial) debe estar disponible en cada sesión de filler: no tenerla en consultorio es un riesgo clínico inaceptable, independientemente del nivel de experiencia del médico o la zona que se trate.</p>
+
+<h2>¿Cómo funciona la hialuronidasa?</h2>
+<p>La hialuronidasa es una enzima que hidroliza el ácido hialurónico —tanto reticulado como no reticulado— rompiendo los enlaces glucosídicos entre las unidades de N-acetilglucosamina y ácido glucurónico. El resultado es la <strong>disolución completa del filler de AH</strong> en minutos a horas, dependiendo de la concentración inyectada y el grado de reticulación del producto.</p>
+
+<h2>Indicaciones clínicas</h2>
+<p><strong>1. Emergencia vascular (prioridad máxima)</strong><br>
+La oclusión vascular por filler es la complicación más grave en medicina estética. Si se sospecha compromiso arterial —blanqueamiento cutáneo, dolor desproporcionado, livideces— se debe inyectar hialuronidasa de inmediato en altas dosis (300–1,500 IU por zona) sin esperar confirmación diagnóstica. El tiempo es crítico: la ventana para prevenir necrosis es de horas.</p>
+
+<p><strong>2. Corrección de resultado estético</strong><br>
+Sobrecorrección, migración de producto, efecto Tyndall, asimetría, nódulos. Dosis menores (15–75 IU por zona) aplicadas con precisión disuelven selectivamente el exceso sin afectar el AH endógeno de forma significativa.</p>
+
+<p><strong>3. Dissolución planificada</strong><br>
+Antes de cambiar un tratamiento, eliminar acumulaciones antiguas, o preparar la zona para un nuevo protocolo.</p>
+
+<h2>Protocolo de reconstitución</h2>
+<p>Disolver Liporase (1,500 IU) en 1–10 mL de solución salina 0.9% según la dosis objetivo. Para emergencia vascular usar alta concentración (1,500 IU en 1–2 mL). Para corrección estética, baja concentración (150–300 IU en 2–5 mL) con técnica de micropapuloterapia lineal sobre el área tratada.</p>
+
+<h2>¿Por qué tener Liporase aunque no hayas tenido complicaciones?</h2>
+<p>Las complicaciones vasculares no se predicen por nivel de experiencia: ocurren incluso con médicos altamente capacitados. La diferencia entre un incidente manejado y una necrosis con secuelas permanentes puede ser tener o no tener hialuronidasa lista en ese momento.</p>
+`,
+    faqs: [
+      { q: '¿Liporase disuelve cualquier filler de ácido hialurónico?', a: 'Sí. La hialuronidasa disuelve todos los fillers de ácido hialurónico, tanto reticulado (Juvéderm, Revolax, Dermalax, Restylane, etc.) como no reticulado (skin boosters como Hyaron). No actúa sobre fillers de PLLA, hidroxiapatita cálcica u otros materiales no-AH.' },
+      { q: '¿Cuánto tiempo tarda Liporase en disolver un filler?', a: 'En emergencias vasculares, la respuesta es rápida: entre 20–60 minutos con dosis altas. Para correcciones estéticas planificadas, el filler se absorbe en 24–72 horas. El resultado final se evalúa a los 7–14 días.' },
+      { q: '¿Dosis de hialuronidasa para emergencia vascular?', a: 'En sospecha de oclusión vascular, la dosis estándar es 300–1,500 IU por zona afectada, inyectadas inmediatamente sin esperar confirmación. Es preferible usar dosis altas y disolver más filler del necesario que sub-dosificar en una emergencia real.' },
+      { q: '¿Dónde comprar Liporase en México?', a: 'Liporase (1,500 IU) está disponible en Fancy Water. Distribución desde Monterrey a toda la república. Es un producto de seguridad clínica fundamental — recomendamos tener siempre stock en consultorio.' },
+    ],
+  },
+
+  {
+    slug: 'como-elegir-toxina-botulinica',
+    title: 'Cómo elegir toxina botulínica en México: Nabota, Innotox, Liztox y Botox',
+    metaDesc: 'Guía comparativa para médicos: cómo elegir entre toxinas botulínicas disponibles en México — Nabota, Innotox, Liztox y Botox según indicación, perfil de paciente y costo.',
+    date: '2026-06-23',
+    intro: 'México tiene acceso a cuatro toxinas botulínicas de referencia: Botox (Allergan), Nabota (Daewoong), Innotox (Medytox) y Liztox (Huons). Todas son onabotulinumtoxinA purificada con mecanismo de acción idéntico — la diferencia está en el fabricante, la tecnología de purificación, el formato y el precio.',
+    relatedProducts: [
+      { slug:'nabota-100u',  name:'Nabota 100U',  price:1500, img:'nabota.png',       cat:'Toxina Botulínica' },
+      { slug:'innotox-100u', name:'Innotox 100U', price:1350, img:'innotox-new.webp', cat:'Toxina Botulínica' },
+      { slug:'liztox-100u',  name:'Liztox 100U',  price:1280, img:'liztox.webp',      cat:'Toxina Botulínica' },
+    ],
+    content: `
+<p>México tiene acceso a cuatro toxinas botulínicas de referencia ampliamente utilizadas: Botox (Allergan/AbbVie), Nabota (Daewoong), Innotox (Medytox) y Liztox (Huons). Todas son <strong>onabotulinumtoxinA purificada</strong> con mecanismo de acción idéntico sobre la placa neuromuscular. La diferencia está en el fabricante, la tecnología de purificación, el formato y el precio.</p>
+
+<h2>Las cuatro toxinas en detalle</h2>
+
+<p><strong>Botox (Allergan/AbbVie) — EE.UU.</strong><br>
+El estándar de referencia mundial con más de 30 años de evidencia clínica acumulada. La toxina más prescrita globalmente. Disponible en 50U y 100U. Precio más alto del mercado. Indicada cuando el paciente tiene historial documentado de respuesta óptima específica o cuando se requiere para indicaciones terapéuticas complejas (espasticidad, hiperhidrosis severa, bruxismo).</p>
+
+<p><strong>Nabota (Daewoong) — Corea</strong><br>
+Aprobada como Jeuveau® por la FDA (EE.UU., 2019) y como Nuceiva® por la EMA (Europa, 2020). Tecnología HiPure™ de alta pureza. Resultados clínicamente equivalentes a Botox para indicaciones estéticas. La mejor relación calidad-precio para clínicas de alto volumen. Disponible en 100U y 200U.</p>
+
+<p><strong>Innotox (Medytox) — Corea</strong><br>
+La única toxina en formulación <em>líquida</em> lista para usar (4U/0.1mL). Elimina el paso de reconstitución y la variabilidad de dilución. Ideal para médicos que priorizan máxima consistencia y reproducibilidad en sus resultados.</p>
+
+<p><strong>Liztox (Huons) — Corea</strong><br>
+Formulación liofilizada con tecnología propia de purificación. MFDS-aprobada. Precio más accesible entre las opciones coreanas. Buena opción para clínicas que buscan reducir costo operativo sin sacrificar calidad clínica.</p>
+
+<h2>Tabla comparativa</h2>
+<table>
+  <tr><th>Toxina</th><th>Fabricante</th><th>Formato</th><th>Perfil de uso</th></tr>
+  <tr><td>Botox</td><td>Allergan (EE.UU.)</td><td>Liofilizado 50U/100U</td><td>Referencia histórica, terapéutica</td></tr>
+  <tr><td>Nabota</td><td>Daewoong (KR)</td><td>Liofilizado 100U/200U</td><td>Alto volumen, mejor costo-eficacia</td></tr>
+  <tr><td>Innotox</td><td>Medytox (KR)</td><td>Líquido 100U</td><td>Máxima consistencia, sin reconstitución</td></tr>
+  <tr><td>Liztox</td><td>Huons (KR)</td><td>Liofilizado 100U</td><td>Costo accesible, calidad clínica comprobada</td></tr>
+</table>
+
+<h2>Recomendación práctica</h2>
+<p>Para la mayoría de indicaciones estéticas de rutina, <strong>Nabota o Innotox</strong> ofrecen el mejor balance entre evidencia clínica internacional (aprobaciones FDA/EMA) y precio. Liztox es una alternativa sólida para reducir costo. Botox se justifica cuando el paciente lo solicita específicamente o para indicaciones terapéuticas complejas con protocolo establecido.</p>
+`,
+    faqs: [
+      { q: '¿Cuál es la diferencia principal entre toxinas coreanas y Botox?', a: 'El principio activo es el mismo: onabotulinumtoxinA purificada. La diferencia está en el fabricante, la tecnología de purificación y el precio. Nabota, Innotox y Liztox tienen aprobaciones regulatorias en múltiples países y resultados clínicamente equivalentes a Botox para uso estético.' },
+      { q: '¿Qué toxina botulínica tiene mejor relación calidad-precio en México?', a: 'Nabota 100U ofrece la mejor relación calidad-precio para uso estético de alto volumen: está aprobada por FDA (como Jeuveau®) y EMA (como Nuceiva®), con resultados equivalentes a Botox. Liztox es la opción más económica. Innotox es premium por su formato líquido sin reconstitución.' },
+      { q: '¿Se puede mezclar toxinas botulínicas en la misma sesión?', a: 'No se recomienda. No existen estudios comparativos de seguridad para el uso simultáneo de distintas marcas de toxina en la misma sesión. Lo adecuado es usar una sola marca por sesión y documentar el producto utilizado.' },
+      { q: '¿Dónde comprar toxinas botulínicas coreanas en México?', a: 'Nabota 100U, Nabota 200U, Innotox 100U y Liztox 100U están disponibles en Fancy Water. Enviamos con cadena de frío garantizada desde Monterrey a toda la República Mexicana.' },
+    ],
+  },
+
+  {
+    slug: 'voltena-linea-corporal',
+    title: 'VOL:TENA: la línea coreana completa para remodelación corporal',
+    metaDesc: 'Guía sobre la línea VOL:TENA (Corea): N°1 lipolítico, N°2 body filler, Pllagen PLLA, N°3 gel reafirmante y Lacto Gel. Fancy Water es distribuidor exclusivo en América.',
+    date: '2026-06-23',
+    intro: 'VOL:TENA es una línea de medicina estética coreana diseñada específicamente para remodelación corporal integral. Fancy Water es distribuidor exclusivo para todo el continente americano. La línea cubre desde lipolíticos inyectables hasta bioestimuladores, fillers corporales y cuidado tópico.',
+    relatedProducts: [
+      { slug:'voltena-n1-body-serum',  name:'VOL:TENA N°1',    price:2300, img:'voltena1-solo.jpg',  cat:'Lipoenzima · VOL:TENA' },
+      { slug:'voltena-n2-body-filler', name:'VOL:TENA N°2',    price:3800, img:'voltena2-solo.jpg',  cat:'Body Filler · VOL:TENA' },
+      { slug:'pllagen-plla',           name:'Pllagen PLLA',     price:2200, img:'pllagen.jpg',         cat:'Bioestimulador · PLLA' },
+    ],
+    content: `
+<p>VOL:TENA es una línea de medicina estética coreana diseñada para <strong>remodelación corporal integral</strong>. Fancy Water es el distribuidor exclusivo para todo el continente americano. La línea cubre el ciclo completo de tratamiento corporal: desde la reducción de adiposidad localizada hasta la restitución de volumen, la estimulación de colágeno y el mantenimiento tópico.</p>
+
+<h2>VOL:TENA N°1 — Lipolítico inyectable</h2>
+<p>El N°1 es un lipolítico basado en fosfatidilcolina (PPC) con deoxicolato de sodio. Actúa sobre adipocitos subcutáneos mediante un mecanismo de lisis de membrana, facilitando la eliminación de grasa localizada por vía linfática. Indicado para doble mentón, abdomen, flancos, cara interna de brazos y muslos.</p>
+
+<p>Protocolo: 4–6 sesiones cada 21 días. Presentación: ampolleta de 10 mL lista para usar.</p>
+
+<h2>VOL:TENA N°2 — Body Filler de ácido hialurónico</h2>
+<p>El N°2 es un filler de ácido hialurónico de alta viscosidad formulado para <strong>volumetría corporal</strong>: glúteos, caderas y corrección de asimetrías. A diferencia de los fillers faciales, su reticulación y cohesividad están optimizadas para soportar el tejido corporal más denso y resistir la compresión mecánica del movimiento.</p>
+
+<h2>Pllagen PLLA — Bioestimulador de la línea VOL:TENA</h2>
+<p>Pllagen combina 45 mg de PLLA con 13 mg de AH como vehículo. Las microesferas de ácido poli-L-láctico actúan como andamio biológico: estimulan fibroblastos para producción de colágeno nuevo. Ideal para restitución de colágeno en zonas tratadas previamente con lipolíticos — cierra el ciclo del protocolo corporal.</p>
+
+<h2>VOL:TENA N°3 — Gel Reafirmante Tópico</h2>
+<p>Formulación tópica complementaria para potenciar y mantener los resultados inyectables. Combina activos reafirmantes con acción drenante. Se aplica entre sesiones como mantenimiento domiciliario.</p>
+
+<h2>Lacto Gel — Cuidado íntimo</h2>
+<p>Gel íntimo de la línea VOL:TENA con activos restauradores de la microbiota y el pH vaginal. Indicado como complemento en procedimientos de rejuvenecimiento íntimo.</p>
+
+<h2>El protocolo corporal completo</h2>
+<p>La potencia de VOL:TENA está en usar la línea como un <strong>protocolo secuencial</strong>: N°1 para reducir adiposidad → N°2 si se requiere restitución de volumen → Pllagen para estimular colágeno → N°3 para mantenimiento. Este enfoque integral diferencia la propuesta de cualquier producto puntual del mercado.</p>
+`,
+    faqs: [
+      { q: '¿Qué incluye la línea VOL:TENA?', a: 'VOL:TENA tiene 5 productos: N°1 (lipolítico inyectable), N°2 (body filler de AH para volumetría corporal), Pllagen PLLA (bioestimulador), N°3 (gel reafirmante tópico) y Lacto Gel (cuidado íntimo). Fancy Water es distribuidor exclusivo en América.' },
+      { q: '¿VOL:TENA N°1 es igual a Lipo Lab PPC?', a: 'Ambos son lipolíticos basados en fosfatidilcolina, pero son formulaciones de laboratorios distintos. Lipo Lab PPC es de Pharmaresearch Products (KFDA). VOL:TENA N°1 es de la línea coreana exclusiva de Fancy Water. El mecanismo de acción es similar; la elección depende de la disponibilidad y preferencia clínica.' },
+      { q: '¿Dónde puedo comprar VOL:TENA en México?', a: 'Fancy Water es el distribuidor exclusivo de VOL:TENA para América. Toda la línea está disponible en fancywater.mx con envío desde Monterrey a toda la República Mexicana.' },
+      { q: '¿Se puede combinar VOL:TENA N°1 con Pllagen en el mismo protocolo?', a: 'Sí, y de hecho es el protocolo recomendado: N°1 reduce la adiposidad localizada y Pllagen estimula colágeno nuevo para reafirmar la zona tratada. Se aplican en sesiones distintas separadas por 3–4 semanas.' },
+    ],
+  },
+
+  {
     slug: 'bioestimuladores-plla-colageno',
     title: 'Bioestimuladores PLLA en México: Pllagen vs Estella para regeneración de colágeno',
     metaDesc: 'Guía sobre bioestimuladores de ácido poliláctico (PLLA) en México: cómo funcionan, diferencias entre Pllagen PLLA y Estella PLLA 200, protocolo y resultados esperados.',
@@ -186,6 +401,58 @@ const GUIDES = [
       { q: '¿Cuántas sesiones de PLLA se necesitan?', a: 'El protocolo estándar es de 2 a 3 sesiones separadas por 4 a 6 semanas, seguidas de una sesión de mantenimiento al año. El número exacto depende del grado de pérdida de colágeno y los objetivos del paciente.' },
       { q: '¿Cuál es la diferencia entre Pllagen y Estella PLLA?', a: 'Pllagen PLLA (45mg + AH 13mg) incluye ácido hialurónico para hidratación inmediata, en 5 sets por caja. Estella PLLA 200 tiene mayor concentración de PLLA (200mg/vial) y microesferas de 4ª generación para menor riesgo de nódulos. Estella es mejor opción para correcciones volumétricas mayores.' },
       { q: '¿Dónde comprar Pllagen PLLA y Estella en México?', a: 'Ambos están disponibles en Fancy Water. Pllagen PLLA pertenece a la línea VOL:TENA de la cual somos distribuidores exclusivos en América. Estella PLLA 200 de Kuber Science. Envío a toda México desde Monterrey.' },
+    ],
+  },
+
+  {
+    slug: 'juvederm-voluma-vycross',
+    title: 'Juvéderm Voluma y tecnología Vycross: volumetría facial estructural para médicos',
+    metaDesc: 'Guía sobre Juvéderm Voluma (Allergan) y tecnología Vycross en México: indicaciones para pómulos, mentón y mandíbula, duración hasta 24 meses y diferencias con otros fillers.',
+    date: '2026-06-23',
+    intro: 'Juvéderm Voluma de Allergan/AbbVie es el filler de ácido hialurónico de referencia para volumetría facial estructural profunda. Su tecnología Vycross® combina cadenas largas y cortas de AH para lograr la mayor cohesividad y duración del mercado — hasta 24 meses en pómulos.',
+    relatedProducts: [
+      { slug:'juvederm-voluma',   name:'Juvéderm Voluma',      price:4200, img:'juvederm.webp',        cat:'Ácido Hialurónico' },
+      { slug:'revolax',           name:'Revolax 1.1ml',         price:1020, img:'revolax.webp',          cat:'Ácido Hialurónico' },
+      { slug:'dermalax-implant',  name:'Dermalax Implant Plus', price:1600, img:'dermalax-implant.webp', cat:'AH · Alta Viscosidad' },
+    ],
+    content: `
+<p>Juvéderm Voluma de Allergan/AbbVie es el filler de ácido hialurónico de referencia para <strong>volumetría facial estructural profunda</strong>. Su tecnología Vycross® lo distingue de cualquier otro filler del mercado: fue el primer HA aprobado por la FDA para restauración de volumen en mejillas (2013) y es el producto con mayor evidencia clínica en esta indicación.</p>
+
+<h2>¿Qué es la tecnología Vycross?</h2>
+<p>La mayoría de los fillers de AH usan reticulación <em>monofásica</em>: se reticulan cadenas de AH del mismo peso molecular para formar una red homogénea. Vycross® usa reticulación <em>cruzada de cadenas largas y cortas</em> en proporción optimizada. Esto produce tres ventajas concretas:</p>
+<ul>
+  <li><strong>Mayor cohesividad:</strong> el gel resiste mejor la deformación mecánica — ideal para zonas con movimiento y presión como pómulos y mentón.</li>
+  <li><strong>Menor cantidad de BDDE:</strong> el agente reticulante (BDDE) queda más eficientemente incorporado, reduciendo el exceso libre y mejorando el perfil de tolerabilidad.</li>
+  <li><strong>Mayor duración:</strong> la estructura reticulada resiste mejor la degradación enzimática. Voluma dura hasta 24 meses en pómulos — la mayor duración documentada entre fillers de AH.</li>
+</ul>
+
+<h2>Indicaciones para Juvéderm Voluma</h2>
+<p>Voluma fue diseñado para inyección supraperióstica o submuscular profunda, donde se requiere soporte estructural real:</p>
+<ul>
+  <li><strong>Pómulos y arco cigomático:</strong> restauración de volumen perdido, proyección y definición del tercio medio.</li>
+  <li><strong>Mentón:</strong> alargamiento, proyección anterior, corrección de asimetría sagital.</li>
+  <li><strong>Mandíbula:</strong> definición del ángulo mandibular, corrección de pérdida de definición en jawline.</li>
+  <li><strong>Sien:</strong> corrección de depresión temporal, factor de envejecimiento frecuentemente ignorado.</li>
+</ul>
+
+<h2>Comparativa con otras opciones de alta viscosidad</h2>
+<table>
+  <tr><th></th><th>Juvéderm Voluma</th><th>Dermalax Implant Plus</th></tr>
+  <tr><td>Tecnología</td><td>Vycross® (Allergan)</td><td>Reticulación monofásica (Across, KR)</td></tr>
+  <tr><td>G prime</td><td>Alto (alta proyección)</td><td>Alto</td></tr>
+  <tr><td>Duración</td><td>Hasta 24 meses</td><td>12–18 meses</td></tr>
+  <tr><td>Evidencia clínica</td><td>Aprobación FDA, estudios de 24m</td><td>KFDA, amplio uso en Asia</td></tr>
+  <tr><td>Perfil de uso</td><td>Referencia histórica, máxima duración</td><td>Excelente alternativa costo-eficaz</td></tr>
+</table>
+
+<h2>Consideraciones técnicas</h2>
+<p>Voluma se aplica con técnica de bolus o fanning supraperióstico con cánula o aguja 27G. La hidratación post-inyección puede hacer que el gel se expanda ligeramente en las primeras 48 horas — considerar al planificar la dosis. Como todo filler de AH, es reversible con hialuronidasa (Liporase) en caso necesario.</p>
+`,
+    faqs: [
+      { q: '¿Cuánto dura Juvéderm Voluma?', a: 'Juvéderm Voluma tiene la mayor duración documentada entre fillers de ácido hialurónico: hasta 24 meses en pómulos en estudios clínicos. La duración real varía según la zona (mentón y mandíbula suelen durar 12–18 meses) y el metabolismo del paciente.' },
+      { q: '¿Qué hace diferente a Vycross de la reticulación convencional?', a: 'Vycross combina cadenas largas y cortas de AH en un proceso de reticulación cruzada. Esto genera mayor cohesividad, mejor incorporación del agente reticulante (BDDE) y mayor resistencia a la degradación enzimática — resultando en mayor duración y proyección frente a fillers de reticulación monofásica.' },
+      { q: '¿Juvéderm Voluma se puede usar en labios?', a: 'No es la indicación de Voluma. Para labios se usan fillers de menor viscosidad y G prime más bajo (Juvéderm Ultra, Revolax Fine/Deep). Voluma está diseñado para volumetría estructural profunda en pómulos, mentón y mandíbula.' },
+      { q: '¿Dónde comprar Juvéderm Voluma en México?', a: 'Juvéderm Voluma (Allergan/AbbVie) está disponible en Fancy Water. Producto original con lote verificable, cadena de frío garantizada y envío desde Monterrey a toda la República.' },
     ],
   },
 ];
