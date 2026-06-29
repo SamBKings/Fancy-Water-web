@@ -116,6 +116,11 @@
     .cta-main{display:inline-flex;align-items:center;gap:12px;background:#25D366;color:#fff;padding:20px 44px;border-radius:50px;font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:opacity .2s;box-shadow:0 12px 40px rgba(37,211,102,.25)}
     .cta-main:hover{opacity:.9}
     .cta-note{margin-top:16px;font-size:12px;color:var(--ash)}
+    .btn-catalogo{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;padding:16px 32px;border-radius:50px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.3);cursor:pointer;transition:border-color .2s,background .2s}
+    .btn-catalogo:hover{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.07)}
+    .btn-catalogo-light{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--navy);padding:16px 32px;border-radius:50px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;border:1.5px solid var(--navy);cursor:pointer;transition:background .2s,color .2s}
+    .btn-catalogo-light:hover{background:var(--navy);color:#fff}
+    .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
     /* ── FOOTER ── */
     .footer{background:var(--tinta);padding:28px 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
@@ -160,10 +165,15 @@
   <p class="hero-label">Distribución B2B · Profesionales de la salud</p>
   <h1 class="hero-title">El proveedor que tu<br>clínica <em>necesitaba</em></h1>
   <p class="hero-sub">Insumos de laboratorios coreanos y europeos certificados. Precios de mayoreo, stock permanente en Monterrey y envíos a toda la república con cadena de frío.</p>
-  <button class="hero-cta" onclick="gtagWhatsApp('https://wa.me/528134188472?text=Hola,%20quiero%20cotizar');return false;">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.52 13.83c-.23.64-1.33 1.22-1.83 1.3-.46.07-1.05.1-1.69-.1a15.6 15.6 0 01-1.53-.57C10.1 15.44 8.5 13.23 8.37 13.06c-.13-.17-1.06-1.4-1.06-2.68s.67-1.9.91-2.16c.24-.26.52-.32.69-.32h.5c.16 0 .38-.06.6.45.22.52.74 1.8.81 1.93.07.13.11.28.02.45-.09.17-.13.28-.26.43l-.38.45c-.13.14-.26.28-.11.55.15.27.67 1.1 1.43 1.78.98.87 1.81 1.14 2.06 1.27.25.13.4.11.54-.07.15-.18.62-.72.79-.97.17-.25.33-.21.56-.13.23.08 1.47.69 1.72.82.25.13.42.19.48.3.06.1.06.6-.17 1.24z"/></svg>
-    Cotizar por WhatsApp
-  </button>
+  <div class="hero-ctas">
+    <button class="hero-cta" onclick="gtagWhatsApp('https://wa.me/528134188472?text=Hola,%20quiero%20cotizar');return false;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.52 13.83c-.23.64-1.33 1.22-1.83 1.3-.46.07-1.05.1-1.69-.1a15.6 15.6 0 01-1.53-.57C10.1 15.44 8.5 13.23 8.37 13.06c-.13-.17-1.06-1.4-1.06-2.68s.67-1.9.91-2.16c.24-.26.52-.32.69-.32h.5c.16 0 .38-.06.6.45.22.52.74 1.8.81 1.93.07.13.11.28.02.45-.09.17-.13.28-.26.43l-.38.45c-.13.14-.26.28-.11.55.15.27.67 1.1 1.43 1.78.98.87 1.81 1.14 2.06 1.27.25.13.4.11.54-.07.15-.18.62-.72.79-.97.17-.25.33-.21.56-.13.23.08 1.47.69 1.72.82.25.13.42.19.48.3.06.1.06.6-.17 1.24z"/></svg>
+      Cotizar por WhatsApp
+    </button>
+    <button class="btn-catalogo" onclick="gtagWhatsApp('https://wa.me/528134188472?text=Hola,%20soy%20profesional%20y%20quiero%20recibir%20su%20cat%C3%A1logo%20completo');return false;">
+      Solicita nuestro catálogo completo
+    </button>
+  </div>
   <div class="hero-badges">
     <span class="hero-badge">Stock permanente</span>
     <span class="hero-badge">Cadena de frío</span>
@@ -298,10 +308,15 @@
   <p class="section-label">Empieza hoy</p>
   <h2 class="cta-title">¿Listo para optimizar los<br>insumos de tu <em>clínica</em>?</h2>
   <p class="cta-sub">Cotización sin compromiso en minutos. Precios de mayoreo desde el primer pedido para profesionales certificados.</p>
-  <button class="cta-main" onclick="gtagWhatsApp('https://wa.me/528134188472?text=Hola,%20quiero%20cotizar');return false;">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.52 13.83c-.23.64-1.33 1.22-1.83 1.3-.46.07-1.05.1-1.69-.1a15.6 15.6 0 01-1.53-.57C10.1 15.44 8.5 13.23 8.37 13.06c-.13-.17-1.06-1.4-1.06-2.68s.67-1.9.91-2.16c.24-.26.52-.32.69-.32h.5c.16 0 .38-.06.6.45.22.52.74 1.8.81 1.93.07.13.11.28.02.45-.09.17-.13.28-.26.43l-.38.45c-.13.14-.26.28-.11.55.15.27.67 1.1 1.43 1.78.98.87 1.81 1.14 2.06 1.27.25.13.4.11.54-.07.15-.18.62-.72.79-.97.17-.25.33-.21.56-.13.23.08 1.47.69 1.72.82.25.13.42.19.48.3.06.1.06.6-.17 1.24z"/></svg>
-    Cotizar por WhatsApp
-  </button>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+    <button class="cta-main" onclick="gtagWhatsApp('https://wa.me/528134188472?text=Hola,%20quiero%20cotizar');return false;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.52 13.83c-.23.64-1.33 1.22-1.83 1.3-.46.07-1.05.1-1.69-.1a15.6 15.6 0 01-1.53-.57C10.1 15.44 8.5 13.23 8.37 13.06c-.13-.17-1.06-1.4-1.06-2.68s.67-1.9.91-2.16c.24-.26.52-.32.69-.32h.5c.16 0 .38-.06.6.45.22.52.74 1.8.81 1.93.07.13.11.28.02.45-.09.17-.13.28-.26.43l-.38.45c-.13.14-.26.28-.11.55.15.27.67 1.1 1.43 1.78.98.87 1.81 1.14 2.06 1.27.25.13.4.11.54-.07.15-.18.62-.72.79-.97.17-.25.33-.21.56-.13.23.08 1.47.69 1.72.82.25.13.42.19.48.3.06.1.06.6-.17 1.24z"/></svg>
+      Cotizar por WhatsApp
+    </button>
+    <button class="btn-catalogo-light" onclick="gtagWhatsApp('https://wa.me/528134188472?text=Hola,%20soy%20profesional%20y%20quiero%20recibir%20su%20cat%C3%A1logo%20completo');return false;">
+      Solicita nuestro catálogo completo
+    </button>
+  </div>
   <p class="cta-note">Atención de lunes a viernes · Monterrey, N.L. · +52 813 418 8472</p>
 </section>
 
