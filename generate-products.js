@@ -296,6 +296,26 @@ const PRODUCTS = [
     metaDesc: 'Compra Ami Eyes 2ml en México. Skin booster periocular PDRN + Glutatión Quiver Medic para ojeras y contorno. Distribuidores en Monterrey.',
   },
   {
+    slug: 'voltena-xpn',
+    name: 'VOL:TENA XPN',
+    category: 'Skin Booster · VOL:TENA',
+    price: 1900,
+    img: 'xpn-jeringa.jpg',
+    imgs: ['xpn-jeringa.jpg', 'xpn-caja.jpg', 'xpn-caja-jeringa.jpg'],
+    imgAlts: ['VOL:TENA XPN — jeringa prellenada', 'VOL:TENA XPN — caja', 'VOL:TENA XPN — presentación completa'],
+    fabricante: 'VOL:TENA · Corea',
+    composicion: 'Polinucleótido (PN) 20 mg/mL 2% + Ácido Hialurónico No Reticulado 5 mg/mL 0.5%',
+    presentacion: 'Jeringa prellenada 2.5 mL · 1 por caja',
+    formato: 'Solución inyectable — dermis superior/media',
+    nota: 'XPN es un potenciador cutáneo premium impulsado por 2% de Polinucleótidos (PN) y 0.5% de Ácido Hialurónico No Reticulado — un dúo diseñado para revitalizar la piel cansada, envejecida o deshidratada desde el interior. Actúa a nivel celular promoviendo la regeneración natural mientras aporta hidratación profunda y duradera. Formulado con pH compatible con la piel y viscosidad optimizada para minimizar molestias durante la aplicación.',
+    indicaciones: ['Textura irregular, líneas finas y pérdida de elasticidad','Opacidad, fatiga o falta de luminosidad','Deshidratación y sequedad cutánea','Reparación post-tratamiento y fotoenvejecimiento'],
+    beneficios: ['PN 2%: estimulación de colágeno y regeneración celular profunda','Hidratación inmediata y duradera — mejora turgencia y suavidad','Acción antiinflamatoria y protección contra radicales libres','Presión osmótica equilibrada: mínimo estrés tisular · fórmula suave'],
+    uso: ['Protocolo de 3 sesiones con intervalo de 2 semanas','Mesoterapia intradérmica con aguja 32G · técnica de pápula','Conservar entre 1–30 °C, proteger de la luz y no congelar','Resultados duraderos: 6–12 meses tras el ciclo completo'],
+    metaDesc: 'Compra VOL:TENA XPN en México. Skin booster Polinucleótido PN 2% + Ácido Hialurónico 0.5%. Lanzamiento 10 de julio. Precio especial para clínicas. Distribuidor exclusivo.',
+    upcoming: true,
+    launchDate: '10 de julio, 2026',
+  },
+  {
     slug: 'liporase',
     name: 'Liporase · Hialuronidasa',
     category: 'Enzima · Seguridad Clínica',
@@ -696,6 +716,30 @@ function generatePage(p) {
       width:5px;height:5px;border-radius:50%;background:var(--navy);
     }
 
+    /* GALLERY */
+    .product-gallery{display:flex;flex-direction:column;align-items:center;gap:12px;padding:40px 5vw 0;position:sticky;top:72px}
+    .gallery-main{width:100%;max-width:460px;aspect-ratio:1;background:var(--paper);border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+    .gallery-main img{width:100%;height:100%;object-fit:contain;padding:32px;transition:opacity .2s}
+    .gallery-thumbs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .gallery-thumb{width:64px;height:64px;border-radius:8px;border:1.5px solid var(--linea);overflow:hidden;cursor:pointer;transition:border-color .2s;background:var(--paper)}
+    .gallery-thumb:hover{border-color:var(--grafito)}
+    .gallery-thumb.active{border-color:var(--navy)}
+    .gallery-thumb img{width:100%;height:100%;object-fit:contain;padding:6px}
+    .badge-launch{position:absolute;top:14px;left:14px;padding:5px 14px;border-radius:50px;font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;background:#C9A96E;color:#fff;z-index:2}
+
+    /* LAUNCH NOTE */
+    .launch-note{display:flex;align-items:center;gap:8px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.3);border-radius:8px;padding:10px 14px;margin-top:8px;font-size:11px;letter-spacing:.5px;color:#A07840}
+    .launch-note svg{flex-shrink:0}
+    .btn-wa-launch{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      background:#25D366;color:#fff;
+      padding:15px 28px;border-radius:50px;border:none;cursor:pointer;
+      font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+      transition:opacity .2s,transform .16s;width:100%;margin-bottom:10px;
+    }
+    .btn-wa-launch:hover{opacity:.88}
+    .btn-wa-launch:active{transform:scale(.97)}
+
     /* QTY + CART */
     .qty-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
     .qty-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ash);flex-shrink:0}
@@ -844,8 +888,16 @@ function generatePage(p) {
 
 <!-- PRODUCT HERO -->
 <section class="product-hero">
-  <div class="product-img-col">
-    <img src="/assets/products/${p.img}" alt="${p.name} — ${p.fabricante}" fetchpriority="high" />
+  <div class="product-img-col${p.imgs ? ' product-gallery' : ''}">
+    ${p.imgs ? `
+    <div class="gallery-main">
+      <img id="galleryMain" src="/assets/products/${p.imgs[0]}" alt="${p.imgAlts ? p.imgAlts[0] : p.name}" fetchpriority="high" />
+      ${p.upcoming ? `<span class="badge-launch">Próximamente · Lanzamiento ${p.launchDate}</span>` : ''}
+    </div>
+    <div class="gallery-thumbs">
+      ${p.imgs.map((img, i) => `<div class="gallery-thumb${i === 0 ? ' active' : ''}" onclick="setGallery(this,'${img}')"><img src="/assets/products/${img}" alt="${p.imgAlts ? p.imgAlts[i] : p.name + ' ' + (i+1)}" loading="lazy" /></div>`).join('')}
+    </div>` : `
+    <img src="/assets/products/${p.img}" alt="${p.name} — ${p.fabricante}" fetchpriority="high" />`}
   </div>
   <div class="product-info-col">
     <p class="product-category">${p.category}</p>
@@ -853,12 +905,17 @@ function generatePage(p) {
     <p class="product-brand">${p.fabricante}</p>
 
     <div class="product-price-block">
-      <p class="price-label">Precio minorista</p>
+      <p class="price-label">${p.upcoming ? 'Precio especial de lanzamiento' : 'Precio minorista'}</p>
       <div class="price-value"><sup>$</sup>${priceFormat(p.price)}<span>MXN</span></div>
-      <p class="price-note">IVA no incluido · Precio sujeto a cambio sin previo aviso</p>
+      ${p.upcoming ? `<div class="launch-note"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Precio especial disponible hasta el ${p.launchDate}. Reserva tu pedido ahora por WhatsApp.</div>` : `<p class="price-note">IVA no incluido · Precio sujeto a cambio sin previo aviso</p>`}
     </div>
 
     <div class="cta-stack">
+      ${p.upcoming ? `
+      <a href="${wa}" class="btn-wa-launch" onclick="gtagWhatsApp(this.href); return false;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.52 13.83c-.23.64-1.33 1.22-1.83 1.3-.46.07-1.05.1-1.69-.1a15.6 15.6 0 01-1.53-.57C10.1 15.44 8.5 13.23 8.37 13.06c-.13-.17-1.06-1.4-1.06-2.68s.67-1.9.91-2.16c.24-.26.52-.32.69-.32h.5c.16 0 .38-.06.6.45.22.52.74 1.8.81 1.93.07.13.11.28.02.45-.09.17-.13.28-.26.43l-.38.45c-.13.14-.26.28-.11.55.15.27.67 1.1 1.43 1.78.98.87 1.81 1.14 2.06 1.27.25.13.4.11.54-.07.15-.18.62-.72.79-.97.17-.25.33-.21.56-.13.23.08 1.47.69 1.72.82.25.13.42.19.48.3.06.1.06.6-.17 1.24z"/></svg>
+        Reservar precio de lanzamiento
+      </a>` : `
       <div class="qty-row">
         <span class="qty-label">Cantidad</span>
         <div class="qty-ctrl">
@@ -873,7 +930,7 @@ function generatePage(p) {
       </button>
       <p class="cart-feedback" id="cartFeedback">
         ✓ Agregado — <a href="/?cart=1">Ver carrito en la tienda →</a>
-      </p>
+      </p>`}
       <a href="${wa}" class="btn-wa-main" onclick="gtagWhatsApp(this.href); return false;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.52 13.83c-.23.64-1.33 1.22-1.83 1.3-.46.07-1.05.1-1.69-.1a15.6 15.6 0 01-1.53-.57C10.1 15.44 8.5 13.23 8.37 13.06c-.13-.17-1.06-1.4-1.06-2.68s.67-1.9.91-2.16c.24-.26.52-.32.69-.32h.5c.16 0 .38-.06.6.45.22.52.74 1.8.81 1.93.07.13.11.28.02.45-.09.17-.13.28-.26.43l-.38.45c-.13.14-.26.28-.11.55.15.27.67 1.1 1.43 1.78.98.87 1.81 1.14 2.06 1.27.25.13.4.11.54-.07.15-.18.62-.72.79-.97.17-.25.33-.21.56-.13.23.08 1.47.69 1.72.82.25.13.42.19.48.3.06.1.06.6-.17 1.24z"/></svg>
         Cotizar por WhatsApp
@@ -1014,6 +1071,16 @@ document.querySelectorAll('.pfaq-q').forEach(function(btn){
     this.closest('.pfaq-item').classList.toggle('open');
   });
 });
+</script>
+<script>
+function setGallery(thumb, img) {
+  var main = document.getElementById('galleryMain');
+  if (!main) return;
+  main.style.opacity = '0';
+  setTimeout(function(){ main.src = '/assets/products/' + img; main.style.opacity = '1'; }, 150);
+  document.querySelectorAll('.gallery-thumb').forEach(function(t){ t.classList.remove('active'); });
+  thumb.classList.add('active');
+}
 </script>
 </body>
 </html>`;

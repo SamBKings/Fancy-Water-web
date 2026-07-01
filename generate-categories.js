@@ -22,6 +22,7 @@ const ALL_PRODUCTS = [
   { slug:'hyaron-prefilled',      name:'Hyaron Prefilled',         price:1950,  img:'hyaron.jpg',             category:'skin-boosters',   cat:'Skin Booster',                 desc:'AH 25 mg / 2.5 mL. 10 jeringas prellenadas. Hidratación profunda.' },
   { slug:'eyebella',              name:'Eyebella 2ml',             price:700,   img:'eyebella.webp',          category:'skin-boosters',   cat:'Skin Booster · Periocular',    desc:'Polynucleotide PN para ojeras y líneas finas perioculares.' },
   { slug:'ami-eyes',              name:'Ami Eyes 2ml',             price:1300,  img:'ami-eyes.webp',          category:'skin-boosters',   cat:'Skin Booster · PDRN',          desc:'PN/PDRN 1% + Glutatión. Regeneración periocular profunda.' },
+  { slug:'voltena-xpn',          name:'VOL:TENA XPN',             price:1900,  img:'xpn-jeringa.jpg',        category:'skin-boosters',   cat:'Skin Booster · VOL:TENA',      desc:'Polinucleótido PN 2% + AH 0.5%. Regeneración y hidratación profunda. Lanzamiento 10 de julio.',  badge:'Próximamente', upcoming:true },
   { slug:'voltena-n2-body-filler',name:'VOL:TENA N°2 Body Filler',price:2800,  img:'voltena2-solo.jpg',      category:'voltena',         cat:'Relleno Corporal · VOL:TENA',  desc:'60 cc. Body filler para aumento glúteo y modelado corporal.' },
   { slug:'voltena-n3-cool-gel',   name:'VOL:TENA N°3 Cool Gel',   price:600,   img:'voltena3-solo.png',      category:'voltena',         cat:'Gel Reafirmante · VOL:TENA',   desc:'300 mL gel reductor tópico. Ideal para retail en consultorio.' },
   { slug:'lacto-gel',             name:'Lacto Gel VOL:TENA',       price:520,   img:'lacto.jpg',              category:'voltena',         cat:'Cuidado Íntimo · VOL:TENA',    desc:'1.8 g × 10 aplicadores. pH íntimo equilibrado.' },
@@ -30,7 +31,7 @@ const ALL_PRODUCTS = [
 ];
 
 // VOL:TENA category also includes pllagen-plla and voltena-n1
-const VOLTENA_EXTRA = ['pllagen-plla', 'voltena-n1-body-serum'];
+const VOLTENA_EXTRA = ['pllagen-plla', 'voltena-n1-body-serum', 'voltena-xpn'];
 
 // ── CATEGORY DEFINITIONS ──────────────────────────────────────────────────────
 
@@ -127,7 +128,8 @@ function productCard(p) {
   const wa = 'https://wa.me/528134188472?text=' + encodeURIComponent('Hola Fancy Water, me interesa cotizar: ' + p.name);
   return `
     <div class="cat-product-card">
-      <a href="/${p.slug}" class="cat-card-img-link">
+      <a href="/${p.slug}" class="cat-card-img-link" style="position:relative;display:block">
+        ${p.badge ? `<span style="position:absolute;top:10px;left:10px;z-index:2;padding:4px 12px;border-radius:50px;font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;background:#C9A96E;color:#fff">${p.badge}</span>` : ''}
         <img src="/assets/products/${p.img}" alt="${p.name}" loading="lazy" />
       </a>
       <div class="cat-card-body">
