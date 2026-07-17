@@ -2311,7 +2311,6 @@
     <div class="product-card reveal" data-category="skinbooster voltena">
       <div class="product-img">
         <img src="assets/products/xpn-jeringa.jpg" alt="VOL:TENA XPN" loading="lazy" style="padding:8px;filter:brightness(1.18)" />
-        <span class="p-badge pronto">Próximamente</span>
       </div>
       <div class="product-info">
         <p class="p-cat">Skin Booster · VOL:TENA</p>
@@ -4326,7 +4325,8 @@ document.addEventListener('DOMContentLoaded', function() {
       'Lacto Gel':'lacto-gel','Pllagen PLLA':'pllagen-plla',
       'Estella PLLA 200':'estella-plla','Hyaron Prefilled':'hyaron-prefilled',
       'Eyebella':'eyebella','Ami Eyes':'ami-eyes',
-      'Liporase':'liporase','Muchcaine':'muchcaine'
+      'Liporase':'liporase','Muchcaine':'muchcaine',
+      'Gouri PCL':'gouri','Priere Lip Filler':'priere','Vita-D Inj':'vita-d'
     };
     if (SLUGS[name]) {
       var ficha = document.createElement('a');
@@ -4335,6 +4335,44 @@ document.addEventListener('DOMContentLoaded', function() {
       ficha.textContent = 'Ver producto →';
       info.appendChild(ficha);
     }
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var CARD_SLUGS = {
+    'Nabota 100U':'nabota-100u','Nabota 200U':'nabota-200u',
+    'Innotox 100U':'innotox-100u','Liztox 100U':'liztox-100u',
+    'Juvéderm Voluma':'juvederm-voluma','Revolax':'revolax',
+    'Dermalax Implant':'dermalax-implant','Elasty':'elasty',
+    'Priere Lip Filler':'priere','Gouri PCL':'gouri','Vita-D Inj':'vita-d',
+    'Voltena N°2 Body Filler':'voltena-n2-body-filler','Estella PLLA 200':'estella-plla',
+    'Pllagen PLLA':'pllagen-plla','Lipo Lab PPC':'lipo-lab-ppc',
+    'Voltena N°1':'voltena-n1-body-serum','Hyaron Prefilled':'hyaron-prefilled',
+    'Eyebella':'eyebella','Ami Eyes':'ami-eyes','Liporase':'liporase',
+    'Muchcaine':'muchcaine','Voltena N°3':'voltena-n3-cool-gel','Lacto Gel':'lacto-gel'
+  };
+
+  document.querySelectorAll('.product-card').forEach(function(card) {
+    var addBtn = card.querySelector('.add-to-cart');
+    var slug = null;
+    if (addBtn) {
+      slug = CARD_SLUGS[addBtn.dataset.name];
+    } else {
+      var link = card.querySelector('a[href^="/"]');
+      if (link) slug = link.getAttribute('href').slice(1);
+    }
+    if (!slug) return;
+
+    var url = '/' + slug;
+    card.querySelectorAll('.product-img, .p-name').forEach(function(el) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function(e) {
+        if (e.target.closest('button') || e.target.closest('a')) return;
+        location.href = url;
+      });
+    });
   });
 });
 </script>
