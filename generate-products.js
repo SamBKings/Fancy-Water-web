@@ -316,6 +316,54 @@ const PRODUCTS = [
     launchDate: '10 de julio, 2026',
   },
   {
+    slug: 'gouri',
+    name: 'Gouri PCL 1ml',
+    category: 'Skin Booster · Bioestimulador PCL',
+    price: 2300,
+    img: 'gouri.jpg',
+    fabricante: 'DEXLEVO Inc. · Corea',
+    composicion: 'Polycaprolactona (PCL) solubilizada 21% (210 mg/mL) · Tecnología CESABP · Sin micropartículas sólidas · Sin HA ni BDDE',
+    presentacion: 'Jeringa prellenada estéril · 1 × 1 mL',
+    formato: 'Implante inyectable líquido biodegradable',
+    nota: 'Gouri es el primer implante de PCL líquido del mundo, desarrollado por DEXLEVO mediante su tecnología propietaria CESABP (Collagenesis-Enabled Solubilized Active and Biodegradable Polymer). A diferencia de los bioestimuladores con micropartículas (Sculptra, Radiesse), su formulación completamente solubilizada permite distribución uniforme en la dermis sin riesgo de nódulos ni granulomas. Activa fibroblastos dérmicos para estimular la síntesis de colágeno tipo I (neocolagénesis), produciendo un lifting y recontouring facial progresivo y natural. Ensayos clínicos Fase 1 y 2 con más de 200 pacientes avalan su seguridad. Certificación CE 2764, GMP coreano e ISO 13485.',
+    indicaciones: ['Laxitud cutánea leve a moderada','Pérdida de firmeza y elasticidad facial','Arrugas finas y pliegues superficiales','Textura irregular, opacidad y fotoenvejecimiento','Rejuvenecimiento facial global (mejillas, periocular, perioral, mandíbula)'],
+    beneficios: ['Primer PCL líquido del mundo: sin partículas, mayor tolerabilidad','Neocolagénesis progresiva: resultados visibles desde la 1ª–2ª semana','Efecto lifting y recontouring natural sin efecto volumizador inmediato','Biodegradación gradual por hidrólisis en 6–24 meses: sin acumulación de residuos','Mínima inflamación y hematomas vs. técnicas multipunción tradicionales'],
+    uso: ['Protocolo de 3 sesiones separadas 4 semanas c/u; mantenimiento cada 3–6 meses','Técnica de cánula (preferida): 2 puntos de entrada por hemicara, 6 vectores direccionales de 0.33 mL','Técnica alternativa: 5 puntos bioestimuladores por hemicara','Plano dérmico profundo o subdérmico; 1 mL (1 jeringa) por sesión facial completa','No requiere masaje post-inyección; dispersión espontánea por naturaleza líquida del PCL'],
+    metaDesc: 'Compra Gouri PCL 1ml en México. Primer PCL líquido del mundo de DEXLEVO. Estimula colágeno sin micropartículas, efecto lifting hasta 12 meses. Distribuidor en Monterrey.',
+  },
+  {
+    slug: 'priere',
+    name: 'Priere Lip Filler',
+    category: 'Ácido Hialurónico · Relleno Labial',
+    price: 1300,
+    img: 'priere.png',
+    fabricante: 'FacePharm Korea Co., Ltd. · Corea',
+    composicion: 'Hialuronato de Sodio 26 mg/mL · Tecnología HLD™ (High-Low molecular Density cross-linking) · Lidocaína 0.3% · BDDE minimizado',
+    presentacion: '1 × 1 mL jeringa prellenada (versión Tulip: 1.1 mL)',
+    formato: 'Gel inyectable monofásico de alta cohesión',
+    nota: 'Priere es un relleno dérmico de FacePharm Korea caracterizado por su tecnología HLD™, que combina HA de alto y bajo peso molecular con reticulación BDDE minimizada para lograr un gel de alta cohesión y densidad superior. La racionalización del agente reticulante mejora el perfil de biocompatibilidad durante la degradación enzimática natural. Con 26 mg/mL de HA y lidocaína al 0.3% integrada, ofrece volumen labial preciso, alta cohesión que previene la migración y un confort notablemente mejorado durante el procedimiento. La versión Priere Tulip incluye una coloración rosada natural. Aprobado KFDA para exportación.',
+    indicaciones: ['Aumento y definición de volumen labial','Perfilado y contorno del arco de Cupido','Corrección de líneas perilabiales finas','Rejuvenecimiento del labio por pérdida de volumen asociada al envejecimiento','Relleno de zonas mediofaciales con alta demanda de cohesión'],
+    beneficios: ['Alta concentración HA 26 mg/mL: mayor durabilidad vs. fillers de baja concentración','Tecnología HLD™: reticulación de HA alto y bajo PM que aumenta cohesión sin exceso de BDDE','Lidocaína 0.3% integrada: reduce significativamente el dolor durante la inyección','Alta cohesión: mantiene la forma deseada y previene migración post-tratamiento','Durabilidad estimada: 6–12 meses según metabolismo individual · Aprobado KFDA'],
+    uso: ['Inyección intradérmica o submucosa con aguja 27G–30G o cánula fina','Técnica retrógrada lineal o multipunción para labios','Cantidad: 0.5–1.1 mL según volumen y simetría deseada','Retoque a las 2–4 semanas si se requiere corrección adicional','Mantenimiento cada 6–12 meses; evitar calor y presión las primeras 48 h'],
+    metaDesc: 'Compra Priere Lip Filler en México. HA 26mg/mL tecnología HLD™ de FacePharm Korea. Alta cohesión, lidocaína 0.3%, labios naturales y duraderos. Distribuidor en Monterrey.',
+  },
+  {
+    slug: 'vita-d',
+    name: 'Vita-D Inj',
+    category: 'Mesoterapia · Vitamina D3',
+    price: 2400,
+    img: 'vita-d.jpg',
+    fabricante: 'Grado Médico Farmacéutico',
+    composicion: 'Colecalciferol (Vitamina D3) 200,000 UI/mL · Triglicéridos de cadena media · dl-alfa-tocoferol (antioxidante)',
+    presentacion: '10 ampollas × 1 mL · 2,000,000 UI total por caja',
+    formato: 'Solución oleosa inyectable intramuscular',
+    nota: 'Vita-D Inj es una preparación inyectable de colecalciferol (Vitamina D3) a alta dosis (200,000 UI/mL) con aplicaciones tanto en corrección de déficit vitamínico como en medicina estética avanzada. Investigaciones recientes demuestran que la vitamina D3 activa receptores nucleares VDR en fibroblastos dérmicos, modulando la síntesis y organización del colágeno, inhibiendo la transición miofibroblástica (con efecto reductor sobre cicatrices hipertróficas y queloides) y reforzando la integridad de la barrera cutánea. La formulación oleosa con triglicéridos de cadena media garantiza alta estabilidad y absorción sostenida. Requiere supervisión médica con monitoreo de niveles séricos de vitamina D y calcio.',
+    indicaciones: ['Corrección de déficit de vitamina D (hipovitaminosis D)','Soporte en neocolagénesis y función fibroblástica dérmica','Adyuvante en tratamiento de cicatrices hipertróficas y queloides','Mejora de barrera cutánea y respuesta inmune de la piel','Pacientes con absorción oral insuficiente que requieren corrección rápida del déficit'],
+    beneficios: ['Alta biodisponibilidad IM: corrección rápida y sostenida de niveles séricos de vitamina D','Activa receptores VDR en fibroblastos: regula síntesis y reorganización del colágeno','Inhibe TGF-β: limita formación excesiva de matriz extracelular y cicatrices hipertróficas','Refuerza barrera epidérmica, equilibrio inmune cutáneo y migración de queratinocitos','Alta dosis (200,000 UI) permite intervalo prolongado entre aplicaciones (mensual)'],
+    uso: ['Vía intramuscular exclusivamente (no IV ni SC)','Adultos: 200,000 UI por dosis · adultos mayores: 100,000 UI con mayor monitoreo','Frecuencia típica: 1 dosis mensual durante 3 meses según déficit diagnosticado','Monitorizar 25-OH vitamina D y calcemia durante el tratamiento','Prescripción y administración exclusiva por profesional médico · precaución en hipercalcemia'],
+    metaDesc: 'Compra Vita-D Inj en México. Colecalciferol 200,000 UI inyectable IM para déficit de vitamina D, síntesis de colágeno y barrera cutánea. 10 ampollas × 1mL.',
+  },
+  {
     slug: 'liporase',
     name: 'Liporase · Hialuronidasa',
     category: 'Enzima · Seguridad Clínica',
@@ -892,7 +940,7 @@ function generatePage(p) {
     ${p.imgs ? `
     <div class="gallery-main">
       <img id="galleryMain" src="/assets/products/${p.imgs[0]}" alt="${p.imgAlts ? p.imgAlts[0] : p.name}" fetchpriority="high" />
-      ${p.upcoming ? `<span class="badge-launch">Próximamente · Lanzamiento ${p.launchDate}</span>` : ''}
+      ${p.upcoming ? `<span class="badge-launch">Próximamente · 10 Jul</span>` : ''}
     </div>
     <div class="gallery-thumbs">
       ${p.imgs.map((img, i) => `<div class="gallery-thumb${i === 0 ? ' active' : ''}" onclick="setGallery(this,'${img}')"><img src="/assets/products/${img}" alt="${p.imgAlts ? p.imgAlts[i] : p.name + ' ' + (i+1)}" loading="lazy" /></div>`).join('')}

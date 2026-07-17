@@ -247,6 +247,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.fancywater.mx/gouri</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.fancywater.mx/priere</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.fancywater.mx/vita-d</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.fancywater.mx/voltena-xpn</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
