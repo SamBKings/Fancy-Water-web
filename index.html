@@ -1827,6 +1827,98 @@
 </head>
 <body>
 
+<!-- ── Newsletter Popup ───────────────────────────────────────────────── -->
+<div id="nl-overlay" aria-modal="true" role="dialog" style="display:none;position:fixed;inset:0;background:rgba(26,26,46,.55);z-index:9000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);">
+  <div style="background:var(--paper);max-width:400px;width:100%;border-radius:20px;overflow:hidden;position:relative;box-shadow:0 28px 64px rgba(0,0,0,.28);">
+    <!-- Close -->
+    <button id="nl-close" aria-label="Cerrar" style="position:absolute;top:14px;right:16px;background:rgba(255,255,255,.15);border:none;cursor:pointer;color:#fff;font-size:16px;line-height:1;padding:6px 9px;border-radius:50%;z-index:2;">✕</button>
+    <!-- Header -->
+    <div style="background:var(--navy);padding:36px 28px 28px;text-align:center;">
+      <p style="color:rgba(255,255,255,.5);font-size:9px;letter-spacing:3px;text-transform:uppercase;margin:0 0 14px;">Oferta de bienvenida</p>
+      <div style="color:#fff;font-family:'Playfair Display',serif;font-size:40px;font-weight:700;line-height:1;margin-bottom:6px;">10%</div>
+      <div style="color:rgba(255,255,255,.85);font-size:13px;letter-spacing:1px;">en tu primera compra</div>
+    </div>
+    <!-- Body -->
+    <div style="padding:28px 24px 24px;text-align:center;">
+      <p style="color:var(--grafito);font-size:13px;line-height:1.65;margin:0 0 20px;">
+        Déjanos tu correo y te enviamos el código de descuento ahora mismo.
+      </p>
+      <form id="nl-form" novalidate style="display:flex;flex-direction:column;gap:10px;">
+        <input id="nl-email" type="email" inputmode="email" autocomplete="email" placeholder="tu@correo.com" required
+          style="width:100%;padding:13px 18px;border:1.5px solid var(--linea);border-radius:50px;font-size:14px;outline:none;background:var(--snow);font-family:Inter,sans-serif;color:var(--tinta);box-sizing:border-box;transition:border-color .2s;" />
+        <button type="submit" id="nl-btn"
+          style="width:100%;padding:14px;background:var(--navy);color:#fff;border:none;border-radius:50px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;transition:opacity .2s;">
+          Quiero mi descuento →
+        </button>
+      </form>
+      <!-- Success state (hidden) -->
+      <div id="nl-success" style="display:none;padding:20px 12px 8px;">
+        <div style="font-size:28px;margin-bottom:10px;">✓</div>
+        <p style="color:var(--navy);font-weight:700;font-size:15px;margin:0 0 6px;">¡Listo! Revisa tu correo.</p>
+        <p style="color:var(--grafito);font-size:12px;margin:0;line-height:1.5;">Te enviamos el código <strong>BIENVENIDO10</strong> para que lo tengas guardado.</p>
+      </div>
+      <button id="nl-dismiss" style="background:none;border:none;color:var(--grafito);font-size:11px;cursor:pointer;margin-top:14px;opacity:.7;">No gracias</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'fw_nl_v1';
+  try {
+    var stored = localStorage.getItem(STORAGE_KEY);
+    if (stored && (Date.now() - parseInt(stored)) < 7 * 86400000) return;
+  } catch(e){}
+
+  var overlay = document.getElementById('nl-overlay');
+
+  function show() {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function hide(remember) {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+    if (remember) {
+      try { localStorage.setItem(STORAGE_KEY, Date.now().toString()); } catch(e){}
+    }
+  }
+
+  setTimeout(show, 3500);
+
+  document.getElementById('nl-close').onclick   = function(){ hide(true); };
+  document.getElementById('nl-dismiss').onclick = function(){ hide(true); };
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) hide(true); });
+
+  document.getElementById('nl-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('nl-email').value.trim();
+    if (!email) return;
+    var btn = document.getElementById('nl-btn');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(){
+      document.getElementById('nl-form').style.display = 'none';
+      document.getElementById('nl-dismiss').style.display = 'none';
+      document.getElementById('nl-success').style.display = 'block';
+      try { localStorage.setItem(STORAGE_KEY, Date.now().toString()); } catch(e){}
+      setTimeout(function(){ hide(false); }, 4000);
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Quiero mi descuento →';
+    });
+  });
+})();
+</script>
+
 <!-- ─── NAV ──────────────────────────────────────────────────────── -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
