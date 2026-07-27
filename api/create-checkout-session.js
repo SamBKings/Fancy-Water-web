@@ -72,7 +72,8 @@ module.exports = async function handler(req, res) {
 
   try {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types:         ['card'],
+      payment_method_types:         ['card', 'oxxo'],
+      payment_method_options:       { oxxo: { expires_after_days: 3 } },
       locale:                       'es',
       shipping_address_collection:  { allowed_countries: ['MX'] },
       phone_number_collection:      { enabled: true },
