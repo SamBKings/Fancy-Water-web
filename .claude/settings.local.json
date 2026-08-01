@@ -52,7 +52,8 @@
       "Bash(cp /tmp/taste-skill/skills/taste-skill/SKILL.md ~/.claude/skills/design-taste-frontend/SKILL.md)",
       "Bash(rm -rf /tmp/taste-skill)",
       "Read(//Users/sambr-fw/.claude/skills/**)",
-      "Bash(python3.11 --version)"
+      "Bash(python3.11 --version)",
+      "Bash(ls /Users/sambr-fw/Documents/FWebsite/node_modules/.bin/ 2>/dev/null | head -10; which http-server 2>/dev/null; ls ~/.npm/_npx/ 2>/dev/null | head -5)"
     ]
   }
 }

@@ -27,6 +27,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'AW-16457503800');
+    gtag('config','G-XEPG44XPGM');
   </script>
   <script>
     function gtagWhatsApp(url) {
@@ -3501,6 +3502,9 @@ function addItem(name, price) {
   renderCart();
   announce(name + ' agregado al carrito');
   if (!document.getElementById('cartDrawer').classList.contains('open')) toggleCart();
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'add_to_cart', { currency: 'MXN', value: parseInt(price), items: [{ item_name: name, price: parseInt(price), quantity: 1 }] });
+  }
 }
 
 function removeItem(idx) { cart.splice(idx, 1); renderCart(); }
@@ -3654,6 +3658,10 @@ async function goToStripe() {
   document.getElementById('checkoutStripeError').textContent = '';
   btn.textContent = 'Redirigiendo…';
   btn.disabled = true;
+  if (typeof gtag !== 'undefined') {
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    gtag('event', 'begin_checkout', { currency: 'MXN', value: total, items: cart.map(i => ({ item_name: i.name, price: i.price, quantity: i.qty })) });
+  }
   try {
     const payload = { items: cart };
     if (selectedShipping) {

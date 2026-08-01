@@ -22,6 +22,7 @@
   <script>
     window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
     gtag('js',new Date());gtag('config','AW-16457503800');
+    gtag('config','G-XEPG44XPGM');
     function gtagWhatsApp(url){var open=function(){window.open(url,'_blank','noopener');};if(typeof gtag==='undefined'){open();return;}gtag('event','ads_conversion_Contactar_1',{});gtag('event','conversion',{send_to:'AW-16457503800/kElMCPK6t8EcELioxqc9',event_callback:open});}
   </script>
   <!-- JSON-LD Product -->
@@ -308,6 +309,30 @@
       width:5px;height:5px;border-radius:50%;background:var(--navy);
     }
 
+    /* GALLERY */
+    .product-gallery{display:flex;flex-direction:column;align-items:center;gap:12px;padding:40px 5vw 0;position:sticky;top:72px}
+    .gallery-main{width:100%;max-width:460px;aspect-ratio:1;background:var(--paper);border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+    .gallery-main img{width:100%;height:100%;object-fit:contain;padding:32px;transition:opacity .2s}
+    .gallery-thumbs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .gallery-thumb{width:64px;height:64px;border-radius:8px;border:1.5px solid var(--linea);overflow:hidden;cursor:pointer;transition:border-color .2s;background:var(--paper)}
+    .gallery-thumb:hover{border-color:var(--grafito)}
+    .gallery-thumb.active{border-color:var(--navy)}
+    .gallery-thumb img{width:100%;height:100%;object-fit:contain;padding:6px}
+    .badge-launch{position:absolute;top:14px;left:14px;padding:5px 14px;border-radius:50px;font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;background:#C9A96E;color:#fff;z-index:2}
+
+    /* LAUNCH NOTE */
+    .launch-note{display:flex;align-items:center;gap:8px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.3);border-radius:8px;padding:10px 14px;margin-top:8px;font-size:11px;letter-spacing:.5px;color:#A07840}
+    .launch-note svg{flex-shrink:0}
+    .btn-wa-launch{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      background:#25D366;color:#fff;
+      padding:15px 28px;border-radius:50px;border:none;cursor:pointer;
+      font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+      transition:opacity .2s,transform .16s;width:100%;margin-bottom:10px;
+    }
+    .btn-wa-launch:hover{opacity:.88}
+    .btn-wa-launch:active{transform:scale(.97)}
+
     /* QTY + CART */
     .qty-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
     .qty-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ash);flex-shrink:0}
@@ -457,6 +482,7 @@
 <!-- PRODUCT HERO -->
 <section class="product-hero">
   <div class="product-img-col">
+    
     <img src="/assets/products/voltena2-solo.jpg" alt="VOL:TENA N°2 Body Filler — VOL:TENA · Corea" fetchpriority="high" />
   </div>
   <div class="product-info-col">
@@ -471,6 +497,7 @@
     </div>
 
     <div class="cta-stack">
+      
       <div class="qty-row">
         <span class="qty-label">Cantidad</span>
         <div class="qty-ctrl">
@@ -693,6 +720,16 @@ document.querySelectorAll('.pfaq-q').forEach(function(btn){
     this.closest('.pfaq-item').classList.toggle('open');
   });
 });
+</script>
+<script>
+function setGallery(thumb, img) {
+  var main = document.getElementById('galleryMain');
+  if (!main) return;
+  main.style.opacity = '0';
+  setTimeout(function(){ main.src = '/assets/products/' + img; main.style.opacity = '1'; }, 150);
+  document.querySelectorAll('.gallery-thumb').forEach(function(t){ t.classList.remove('active'); });
+  thumb.classList.add('active');
+}
 </script>
 </body>
 </html>
