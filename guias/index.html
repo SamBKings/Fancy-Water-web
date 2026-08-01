@@ -10,7 +10,7 @@
   {"@context":"https://schema.org","@type":"CollectionPage","name":"Guías de Medicina Estética","url":"https://www.fancywater.mx/guias","provider":{"@type":"Organization","name":"Fancy Water","url":"https://www.fancywater.mx"}}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.fancywater.mx/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.fancywater.mx/guias"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.fancywater.mx/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.fancywater.mx/guias"}]}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,6 +22,8 @@
     body{font-family:'Inter',sans-serif;background:var(--snow);color:var(--tinta);-webkit-font-smoothing:antialiased}
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%;height:auto}
+
+    /* NAV */
     .site-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:72px;background:rgba(250,250,248,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--linea)}
     .nav-logo{display:flex;align-items:center;gap:12px}
     .nav-logo img{height:64px;width:auto;mix-blend-mode:multiply}
@@ -30,26 +32,55 @@
     .btn-ghost-sm{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--grafito);padding:8px 16px;border:1px solid var(--linea);border-radius:50px;transition:border-color .2s,color .2s}
     .btn-ghost-sm:hover{border-color:var(--navy);color:var(--navy)}
     .btn-wa-sm{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:9px 18px;border-radius:50px;background:#25D366;display:flex;align-items:center;gap:6px;transition:opacity .2s}
+    .btn-wa-sm:hover{opacity:.88}
+
+    /* BREADCRUMB */
     .breadcrumb{padding:14px 5vw;font-size:11px;letter-spacing:.5px;color:var(--ash);border-bottom:1px solid var(--linea);background:var(--paper)}
     .breadcrumb a{color:var(--ash)}.breadcrumb span{color:var(--tinta);font-weight:500}
-    .guides-wrap{max-width:860px;margin:0 auto;padding:56px 5vw 80px}
-    .guides-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ash);margin-bottom:16px}
-    .guides-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);margin-bottom:12px;font-weight:700}
-    .guides-desc{font-size:15px;color:var(--grafito);line-height:1.75;margin-bottom:48px;max-width:560px}
-    .guides-grid{display:grid;gap:24px}
-    .guide-card{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;padding:28px;background:var(--paper);border:1px solid var(--linea);border-radius:12px;transition:box-shadow .25s var(--ease-out),transform .25s var(--ease-out)}
-    @media(hover:hover){.guide-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(45,49,71,.08)}}
-    .guide-cat{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--navy);font-weight:600;margin-bottom:8px}
-    .guide-title{font-family:'Playfair Display',serif;font-size:20px;line-height:1.3;margin-bottom:10px}
-    .guide-intro{font-size:13px;color:var(--grafito);line-height:1.7}
-    .guide-arrow{font-size:22px;color:var(--ash);align-self:center;flex-shrink:0}
-    .site-footer{background:var(--tinta);padding:28px 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:0}
+
+    /* BLOG HEADER */
+    .guides-header{background:var(--navy);padding:52px 5vw}
+    .guides-header-inner{max-width:1120px;margin:0 auto}
+    .guides-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px}
+    .guides-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);color:#fff;font-weight:700;margin-bottom:12px;line-height:1.1}
+    .guides-title em{font-style:italic;color:rgba(255,255,255,.6)}
+    .guides-desc{font-size:14px;color:rgba(255,255,255,.5);line-height:1.75;max-width:480px}
+
+    /* GRID */
+    .guides-wrap{max-width:1140px;margin:0 auto;padding:48px 5vw 80px}
+    .guides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+
+    /* CARD */
+    .guide-card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--linea);border-radius:14px;overflow:hidden;transition:transform .25s var(--ease-out),box-shadow .25s var(--ease-out)}
+    @media(hover:hover){.guide-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(45,49,71,.11)}}
+    .guide-card-img{aspect-ratio:4/3;background:var(--snow);display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--linea)}
+    .guide-card-img img{max-height:110px;width:auto;max-width:62%;object-fit:contain;transition:transform .35s var(--ease-out)}
+    @media(hover:hover){.guide-card:hover .guide-card-img img{transform:scale(1.07)}}
+    .guide-card-body{padding:20px 22px 26px;flex:1;display:flex;flex-direction:column}
+    .guide-cat{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--navy);font-weight:600;margin-bottom:8px}
+    .guide-title{font-family:'Playfair Display',serif;font-size:16px;line-height:1.35;margin-bottom:10px;color:var(--tinta);font-weight:700;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .guide-intro{font-size:12px;color:var(--ash);line-height:1.65;margin-bottom:18px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .guide-cta{font-size:11px;font-weight:600;color:var(--navy);letter-spacing:.5px}
+
+    /* FOOTER */
+    .site-footer{background:var(--tinta);padding:28px 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
     .footer-brand{font-size:13px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:#fff}
     .footer-links{display:flex;gap:20px}
     .footer-links a{font-size:11px;color:rgba(255,255,255,.4);transition:color .2s}
     .footer-links a:hover{color:rgba(255,255,255,.8)}
     .footer-legal{font-size:10px;color:rgba(255,255,255,.22);letter-spacing:.5px;width:100%;text-align:center}
-    @media(max-width:640px){.nav-brand{display:none}.btn-ghost-sm{display:none}.site-nav{padding:0 16px}.guide-card{grid-template-columns:1fr}}
+
+    @media(max-width:960px){.guides-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){
+      .nav-brand{display:none}
+      .btn-ghost-sm{display:none}
+      .site-nav{padding:0 16px}
+      .guides-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+      .guide-card-img{aspect-ratio:1}
+      .guide-card-img img{max-height:80px;max-width:70%}
+      .guide-card-body{padding:14px 14px 18px}
+      .guide-title{font-size:14px}
+    }
   </style>
 </head>
 <body>
@@ -69,127 +100,189 @@
 <div class="breadcrumb">
   <a href="/">Inicio</a> &rsaquo; <span>Blog</span>
 </div>
+
+<div class="guides-header">
+  <div class="guides-header-inner">
+    <p class="guides-eyebrow">Blog clínico</p>
+    <h1 class="guides-title">Blog de<br><em>medicina estética</em></h1>
+    <p class="guides-desc">Guías clínicas, protocolos y comparativas para médicos y profesionales de la estética. Contenido educativo de Fancy Water.</p>
+  </div>
+</div>
+
 <div class="guides-wrap">
-  <p class="guides-eyebrow">Blog clínico</p>
-  <h1 class="guides-title">Blog de<br><em style="font-family:'Playfair Display',serif;font-style:italic">medicina estética</em></h1>
-  <p class="guides-desc">Guías clínicas, protocolos y comparativas para médicos y profesionales de la estética. Contenido educativo de Fancy Water.</p>
   <div class="guides-grid">
 
     <a href="/guias/toxina-botulinica-dosis-por-area" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/toxinas-group.jpg" alt="Dosis toxina botulínica" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Dosis de toxina botulínica por área anatómica: guía práctica para médicos estéticos 2026</h2>
-        <p class="guide-intro">La dosificación de toxina botulínica es uno de los temas de mayor consulta entre médicos que inician o consolidan su práctica. Esta guía cubre rangos de referencia clínicos por zona — glabela, frente, patas de gallo, mentón, cuello, masetero e hiperhidrosis — para Nabota, Innotox y Liztox.</p>
+        <p class="guide-intro">Rangos de referencia clínicos por zona para Nabota, Innotox y Liztox — glabela, frente, patas de gallo, mentón y más.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/gouri-pcl-bioestimulador" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/gouri.jpg" alt="Gouri PCL bioestimulador" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Gouri PCL: el bioestimulador de policaprolactona — qué es y por qué dura hasta 36 meses</h2>
-        <p class="guide-intro">Gouri PCL representa la siguiente generación de bioestimuladores: un gel listo para usar basado en policaprolactona (PCL) que combina efecto inmediato de volumen con estimulación duradera de colágeno hasta 36 meses, sin reconstitución previa.</p>
+        <p class="guide-intro">Gel listo para usar que combina volumen inmediato con estimulación de colágeno hasta 36 meses, sin reconstitución.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/acido-hialuronico-labios-priere" class="guide-card">
-      <div>
-        <p class="guide-cat">Guía clínica</p>
-        <h2 class="guide-title">Relleno de labios con ácido hialurónico en México: Priere Lip Filler, técnicas y resultados esperados</h2>
-        <p class="guide-intro">Priere Lip Filler está formulado específicamente para la dinámica del labio: viscosidad y cohesividad calibradas para integrarse con el tejido blando, moverse de forma natural y mantenerse dentro de la zona anatómica. Técnicas Russian Lip, volumetría y definición del vermilion.</p>
+      <div class="guide-card-img">
+        <img src="/assets/products/priere.png" alt="Priere Lip Filler" loading="lazy" />
       </div>
-      <span class="guide-arrow">→</span>
+      <div class="guide-card-body">
+        <p class="guide-cat">Guía clínica</p>
+        <h2 class="guide-title">Relleno de labios con ácido hialurónico en México: Priere Lip Filler, técnicas y resultados</h2>
+        <p class="guide-intro">Viscosidad calibrada para la dinámica del labio. Técnicas Russian Lip, volumetría y definición del vermilion.</p>
+        <span class="guide-cta">Leer guía →</span>
+      </div>
     </a>
+
     <a href="/guias/lacto-gel-peeling-lactico" class="guide-card">
-      <div>
-        <p class="guide-cat">Guía clínica</p>
-        <h2 class="guide-title">Lacto Gel VOL:TENA: peeling de ácido láctico para consultorio — protocolo y tipos de piel indicados</h2>
-        <p class="guide-intro">El ácido láctico tiene la molécula más grande de los AHA: penetración controlada, menor irritación y efecto hidratante adicional. Lacto Gel de VOL:TENA lleva eso a una formulación en gel para consultorio, con protocolo paso a paso e indicaciones por tipo de piel.</p>
+      <div class="guide-card-img">
+        <img src="/assets/products/lacto-hero.jpg" alt="Lacto Gel VOL:TENA" loading="lazy" />
       </div>
-      <span class="guide-arrow">→</span>
+      <div class="guide-card-body">
+        <p class="guide-cat">Guía clínica</p>
+        <h2 class="guide-title">Lacto Gel VOL:TENA: peeling de ácido láctico para consultorio — protocolo y tipos de piel</h2>
+        <p class="guide-intro">El AHA de mayor molécula: penetración controlada, menor irritación y efecto hidratante. Protocolo paso a paso.</p>
+        <span class="guide-cta">Leer guía →</span>
+      </div>
     </a>
 
     <a href="/guias/nabota-vs-botox" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/nabota.png" alt="Nabota 100U" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Nabota vs Botox en México: diferencias técnicas, precio y dónde comprar</h2>
-        <p class="guide-intro">Cuando un médico estético busca una toxina botulínica coreana en México, Nabota es la primera opción que aparece. La comparación con Botox es inevitable: ambos son onabotulinumtoxinA purificada, con el mismo mecanismo de acción sobre la placa neuromuscular, pero provienen de laboratorios diferentes y se procesan con tecnologías distintas.</p>
+        <p class="guide-intro">Ambos son onabotulinumtoxinA purificada con el mismo mecanismo de acción. Las diferencias están en el origen y el precio.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/que-es-lipo-lab-ppc" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/lipolab.jpg" alt="Lipo Lab PPC" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Lipo Lab PPC: qué es, cómo funciona y protocolo de aplicación para médicos</h2>
-        <p class="guide-intro">Lipo Lab PPC es una de las lipoenzimas inyectables con mayor reconocimiento internacional para el tratamiento de adiposidad localizada. Su principio activo, la fosfatidilcolina (PPC) a 1,000 mg por ampolleta, actúa directamente sobre la membrana del adipocito para facilitar su eliminación natural.</p>
+        <p class="guide-intro">Fosfatidilcolina a 1,000 mg por ampolleta. Actúa directamente sobre la membrana del adipocito.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/rellenos-dermicos-acido-hialuronico" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/derma-fillers.jpg" alt="Rellenos dérmicos" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Rellenos dérmicos de ácido hialurónico: guía para médicos estéticos en México</h2>
-        <p class="guide-intro">Los rellenos dérmicos de ácido hialurónico son la segunda categoría de tratamientos estéticos inyectables más utilizada en el mundo. Su versatilidad — desde arrugas finas hasta volumetría estructural — los convierte en un elemento esencial en cualquier consultorio de medicina estética.</p>
+        <p class="guide-intro">Desde arrugas finas hasta volumetría estructural — el segundo tratamiento inyectable más usado en el mundo.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/innotox-toxina-liquida" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/innotox-new.webp" alt="Innotox 100U toxina líquida" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Innotox 100U: la primera toxina botulínica líquida del mundo</h2>
-        <p class="guide-intro">Innotox 100U, fabricado por Medytox (Corea del Sur), fue la primera toxina botulínica líquida del mundo en obtener aprobación regulatoria. Su formulación en solución lista para usar —sin necesidad de reconstitución— representa una ventaja técnica concreta en el consultorio.</p>
+        <p class="guide-intro">Solución lista para usar sin reconstitución — la ventaja clínica de Medytox para consultorios de alto volumen.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/skin-boosters-inyectables" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/hyaron.jpg" alt="Hyaron skin booster" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Skin boosters inyectables: Hyaron, Eyebella y Ami Eyes para médicos estéticos</h2>
-        <p class="guide-intro">Los skin boosters inyectables son una categoría distinta a los rellenos dérmicos: su objetivo no es aportar volumen sino mejorar la calidad intrínseca de la piel — hidratación profunda, luminosidad, elasticidad y regeneración celular — desde adentro.</p>
+        <p class="guide-intro">Hidratación profunda, luminosidad y elasticidad desde adentro. No es volumen: es calidad de piel.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/hialuronidasa-emergencias-esteticas" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/liporase.webp" alt="Liporase hialuronidasa" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Liporase (hialuronidasa): protocolo de reversal y emergencias en medicina estética</h2>
-        <p class="guide-intro">La hialuronidasa es el antídoto específico para los rellenos de ácido hialurónico. Liporase (1,500 IU por vial) debe estar disponible en cada sesión de filler: no tenerla en consultorio es un riesgo clínico inaceptable, independientemente del nivel de experiencia del médico.</p>
+        <p class="guide-intro">El antídoto específico para rellenos de ácido hialurónico. Debe estar en cada sesión de filler — sin excepción.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/como-elegir-toxina-botulinica" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/toxinas-group.jpg" alt="Toxinas botulínicas coreanas" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Cómo elegir toxina botulínica coreana en México: Nabota, Innotox y Liztox</h2>
-        <p class="guide-intro">Las toxinas botulínicas coreanas han ganado su lugar como la opción principal para clínicas de medicina estética en México: Nabota (Daewoong), Innotox (Medytox) y Liztox (Huons) ofrecen la misma molécula activa que las marcas de referencia, con aprobaciones regulatorias internacionales y a un precio operativo más eficiente.</p>
+        <p class="guide-intro">Las tres toxinas coreanas con aprobaciones internacionales y al precio más eficiente para clínicas de alto volumen.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/voltena-linea-corporal" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/voltena-line-horizontal.jpg" alt="VOL:TENA línea corporal" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">VOL:TENA: la línea coreana completa para remodelación corporal</h2>
-        <p class="guide-intro">VOL:TENA es una línea de medicina estética coreana diseñada específicamente para remodelación corporal integral. Fancy Water es distribuidor exclusivo para todo el continente americano. La línea cubre desde lipolíticos inyectables hasta bioestimuladores, fillers corporales y cuidado tópico.</p>
+        <p class="guide-intro">Desde lipolíticos inyectables hasta bioestimuladores y fillers corporales. Fancy Water, distribuidor exclusivo en América.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/bioestimuladores-plla-colageno" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/pllagen.jpg" alt="Pllagen PLLA bioestimulador" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Bioestimuladores PLLA en México: Pllagen vs Estella para regeneración de colágeno</h2>
-        <p class="guide-intro">El ácido poli-L-láctico (PLLA) representa un cambio de paradigma en el rejuvenecimiento inyectable: en lugar de rellenar directamente, actúa como un bioestimulador que desencadena la producción natural de colágeno y elastina en la dermis. Los resultados son más graduales pero también más duraderos: hasta 24 meses.</p>
+        <p class="guide-intro">El PLLA desencadena producción natural de colágeno y elastina. Resultados graduales y duraderos — hasta 24 meses.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
     <a href="/guias/juvederm-voluma-vycross" class="guide-card">
-      <div>
+      <div class="guide-card-img">
+        <img src="/assets/products/juvederm.webp" alt="Juvéderm Voluma Vycross" loading="lazy" />
+      </div>
+      <div class="guide-card-body">
         <p class="guide-cat">Guía clínica</p>
         <h2 class="guide-title">Juvéderm Voluma y tecnología Vycross: volumetría facial estructural para médicos</h2>
-        <p class="guide-intro">Juvéderm Voluma de Allergan/AbbVie es el filler de ácido hialurónico de referencia para volumetría facial estructural profunda. Su tecnología Vycross® combina cadenas largas y cortas de AH para lograr la mayor cohesividad y duración del mercado — hasta 24 meses en pómulos.</p>
+        <p class="guide-intro">Tecnología Vycross® para la mayor cohesividad del mercado. El filler de referencia para estructuración profunda de pómulos.</p>
+        <span class="guide-cta">Leer guía →</span>
       </div>
-      <span class="guide-arrow">→</span>
     </a>
+
   </div>
 </div>
+
 <footer class="site-footer">
   <span class="footer-brand">Fancy Water</span>
   <nav class="footer-links">

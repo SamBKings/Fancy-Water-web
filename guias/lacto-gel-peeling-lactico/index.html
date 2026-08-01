@@ -111,6 +111,31 @@
     @media(max-width:640px){.nav-brand{display:none}.btn-ghost-sm{display:none}.site-nav{padding:0 16px}.related-grid{grid-template-columns:repeat(2,1fr)}}
     .article-feat-img{background:var(--paper);border:1px solid var(--linea);border-radius:12px;padding:28px;margin-bottom:40px;text-align:center;}
     .article-feat-img img{max-height:220px;width:auto;max-width:240px;object-fit:contain;}
+
+    /* === ARTICLE HERO (redesign) === */
+    .article-hero{background:var(--navy);display:grid;grid-template-columns:1fr 220px;gap:40px;align-items:center;padding:52px 5vw}
+    .article-hero-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);display:block;margin-bottom:16px}
+    .article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(22px,3.2vw,36px);line-height:1.18;color:#fff;font-weight:700;margin-bottom:18px}
+    .article-hero-intro{font-size:14px;color:rgba(255,255,255,.62);line-height:1.78}
+    .article-hero-img{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);border-radius:14px;padding:24px;min-height:180px}
+    .article-hero-img img{max-height:160px;width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(0,0,0,.28))}
+    .article-body-wrap{max-width:760px;margin:0 auto;padding:56px 5vw 80px}
+    .article-body h2{font-family:'Playfair Display',serif;font-size:22px;margin:44px 0 14px!important;font-weight:700;color:var(--navy)!important;padding-left:14px;border-left:3px solid var(--navy)}
+    .article-body h3{font-size:12px;font-weight:700;color:var(--navy);margin:22px 0 10px;text-transform:uppercase;letter-spacing:1.2px}
+    .article-body ul{list-style:none!important;margin:0 0 20px!important}
+    .article-body ul li{font-size:14px;color:var(--grafito);line-height:1.75;margin-bottom:8px;padding-left:18px!important;position:relative;list-style:none!important}
+    .article-body ul li::before{content:'\2014';position:absolute;left:0;color:var(--navy);font-weight:700}
+    .article-body ol{list-style:none!important;counter-reset:item;margin:0 0 20px!important}
+    .article-body ol li{font-size:14px;color:var(--grafito);line-height:1.7;margin-bottom:12px;padding-left:38px;position:relative;counter-increment:item;list-style:none!important}
+    .article-body ol li::before{content:counter(item);position:absolute;left:0;top:1px;width:24px;height:24px;background:var(--navy);color:#fff;border-radius:50%;font-size:11px;font-weight:700;line-height:24px;text-align:center}
+    .article-body table{border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(45,49,71,.07)}
+    .article-body table th{background:var(--navy)!important;color:#fff!important;padding:11px 16px!important;font-size:12px!important;letter-spacing:.5px}
+    .article-body table td{padding:10px 16px!important}
+    .dose-block{background:#fff;border:1px solid var(--linea);border-radius:10px;padding:18px 22px;margin:10px 0 22px;box-shadow:0 2px 8px rgba(45,49,71,.04)}
+    .dose-block strong{display:block;font-size:15px;color:var(--navy);font-weight:700;margin-bottom:4px}
+    .dose-block span{font-size:13px;color:var(--grafito);line-height:1.6}
+    @media(max-width:700px){.article-hero{grid-template-columns:1fr;gap:24px;padding:36px 16px}.article-hero-img{min-height:120px}}
+    @media(max-width:640px){.article-body-wrap{padding:36px 16px 60px}}
   </style>
 </head>
 <body>
@@ -133,15 +158,17 @@
   <a href="/">Inicio</a> &rsaquo; <a href="/guias">Blog</a> &rsaquo; <span>Lacto Gel: peeling láctico profesional</span>
 </div>
 
-<div class="article-wrap">
-  <p class="article-label">Guía clínica · Fancy Water</p>
-  <h1 class="article-title">Lacto Gel VOL:TENA: peeling de ácido láctico para consultorio — protocolo y tipos de piel indicados</h1>
-  <p class="article-intro">El ácido láctico es el alfa-hidroxiácido (AHA) con mayor versatilidad clínica en medicina estética. A diferencia del ácido glicólico — el AHA más utilizado — tiene la molécula más grande de su familia, lo que se traduce en penetración controlada, menor irritación y un efecto hidratante adicional. Lacto Gel de VOL:TENA lleva eso un paso más allá con una formulación en gel que facilita la aplicación uniforme y la dosificación precisa en consultorio.</p>
-
-<div class="article-feat-img">
-  <img src="/assets/products/lacto-hero.jpg" alt="Lacto Gel VOL:TENA" loading="lazy" />
-</div>
-
+<section class="article-hero">
+  <div class="article-hero-content">
+    <span class="article-hero-label">Guía clínica · Fancy Water</span>
+    <h1>Lacto Gel VOL:TENA: peeling de ácido láctico para consultorio — protocolo y tipos de piel indicados</h1>
+    <p class="article-hero-intro">El ácido láctico es el alfa-hidroxiácido (AHA) con mayor versatilidad clínica en medicina estética. A diferencia del ácido glicólico — el AHA más utilizado — tiene la molécula más grande de su familia, lo que se traduce en penetración controlada, menor irritación y un efecto hidratante adicional. Lacto Gel de VOL:TENA lleva eso un paso más allá con una formulación en gel que facilita la aplicación uniforme y la dosificación precisa en consultorio.</p>
+  </div>
+  <div class="article-hero-img">
+    <img src="/assets/products/lacto-hero.jpg" alt="Lacto Gel VOL:TENA" loading="lazy" />
+  </div>
+</section>
+<div class="article-body-wrap">
   <div class="article-body">
 
 <h2>¿Por qué ácido láctico en lugar de glicólico?</h2>
