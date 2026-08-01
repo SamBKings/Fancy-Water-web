@@ -97,16 +97,19 @@ module.exports = async function handler(req, res) {
       currency:   'MXN',
     })).filter(r => r.price > 0).sort((a, b) => a.price - b.price);
 
-    // Agregar siempre opción de recoger en Monterrey gratis
-    rates.push({
-      id:      'pickup_monterrey',
-      carrier: 'pickup',
-      service: 'pickup',
-      name:    'Recoger en almacén — Monterrey',
-      price:   0,
-      days:    '1',
-      currency:'MXN',
-    });
+    // Pickup solo para CPs de Nuevo León (64000–67999)
+    const cpNum = parseInt(cp, 10);
+    if (cpNum >= 64000 && cpNum <= 67999) {
+      rates.push({
+        id:      'pickup_monterrey',
+        carrier: 'pickup',
+        service: 'pickup',
+        name:    'Recoger en almacén — Monterrey',
+        price:   0,
+        days:    '1',
+        currency:'MXN',
+      });
+    }
 
     res.status(200).json({ rates });
   } catch (err) {
