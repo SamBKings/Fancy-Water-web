@@ -69,6 +69,15 @@ module.exports = async function handler(req, res) {
     settings: { currency: 'MXN' },
   };
 
+  const cpNum = parseInt(cp, 10);
+  const isNL  = cpNum >= 64000 && cpNum <= 67999;
+
+  // Tarifas fijas de respaldo (siempre disponibles)
+  const FALLBACK_RATES = [
+    { id: 'std',    carrier: 'paqueteria', service: 'estandar', name: 'Envío Estándar',       price: 150, days: '3–5', currency: 'MXN' },
+    { id: 'express',carrier: 'paqueteria', service: 'express',  name: 'Envío Express 1–2 días', price: 250, days: '1–2', currency: 'MXN' },
+  ];
+
   try {
     const response = await fetch(ENVIA_API_URL, {
       method:  'POST',
@@ -83,23 +92,29 @@ module.exports = async function handler(req, res) {
 
     if (!response.ok) {
       console.error('Envia API error:', JSON.stringify(data));
-      return res.status(502).json({ error: 'No se pudo cotizar el envío', detail: data });
     }
 
     // Normalizar respuesta → array limpio para el frontend
-    const rates = (data.data || []).map(r => ({
-      id:         `${r.carrier}_${r.service}`,
-      carrier:    r.carrier,
-      service:    r.service,
-      name:       `${(r.carrier || '').toUpperCase()} — ${r.serviceDescription || r.service}`,
-      price:      Math.round(r.totalPrice || r.price || 0),
-      days:       r.deliveryEstimate || r.days || '3–5',
-      currency:   'MXN',
-    })).filter(r => r.price > 0).sort((a, b) => a.price - b.price);
+    let rates = response.ok
+      ? (data.data || []).map(r => ({
+          id:       `${r.carrier}_${r.service}`,
+          carrier:  r.carrier,
+          service:  r.service,
+          name:     `${(r.carrier || '').toUpperCase()} — ${r.serviceDescription || r.service}`,
+          price:    Math.round(r.totalPrice || r.price || 0),
+          days:     r.deliveryEstimate || r.days || '3–5',
+          currency: 'MXN',
+        })).filter(r => r.price > 0).sort((a, b) => a.price - b.price)
+      : [];
+
+    // Si envia.com no devolvió tarifas, usar respaldo
+    if (!rates.length) {
+      console.log('Envia.com sin tarifas, usando respaldo para CP:', cp);
+      rates = FALLBACK_RATES;
+    }
 
     // Pickup solo para CPs de Nuevo León (64000–67999)
-    const cpNum = parseInt(cp, 10);
-    if (cpNum >= 64000 && cpNum <= 67999) {
+    if (isNL) {
       rates.push({
         id:      'pickup_monterrey',
         carrier: 'pickup',
@@ -114,6 +129,9 @@ module.exports = async function handler(req, res) {
     res.status(200).json({ rates });
   } catch (err) {
     console.error('Cotizar envío error:', err.message);
-    res.status(500).json({ error: 'Error al cotizar envío' });
+    // En cualquier error de red, devolver tarifas de respaldo
+    const rates = [...FALLBACK_RATES];
+    if (isNL) rates.push({ id:'pickup_monterrey', carrier:'pickup', service:'pickup', name:'Recoger en almacén — Monterrey', price:0, days:'1', currency:'MXN' });
+    res.status(200).json({ rates });
   }
 };
