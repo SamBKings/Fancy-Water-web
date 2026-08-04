@@ -275,6 +275,18 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.fancywater.mx/guias/voltena-n1-lipoenzimas</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.fancywater.mx/guias/voltena-n2-body-filler</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.fancywater.mx/mayoreo</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>

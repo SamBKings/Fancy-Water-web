@@ -37,7 +37,7 @@
     "offers": {
       "@type": "Offer",
       "priceCurrency": "MXN",
-      "price": "3500",
+      "price": "3250",
       "availability": "https://schema.org/InStock",
       "seller": { "@type": "Organization", "name": "Fancy Water" },
       "hasMerchantReturnPolicy": {
@@ -492,7 +492,7 @@
 
     <div class="product-price-block">
       <p class="price-label">Precio minorista</p>
-      <div class="price-value"><sup>$</sup>3,500<span>MXN</span></div>
+      <div class="price-value"><sup>$</sup>3,250<span>MXN</span></div>
       <p class="price-note">IVA no incluido · Precio sujeto a cambio sin previo aviso</p>
     </div>
 
@@ -704,7 +704,7 @@ function addToCart() {
   try {
     var cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
     var existing = cart.find(function(i) { return i.name === 'Estella PLLA 200'; });
-    if (existing) { existing.qty += _qty; } else { cart.push({ name: 'Estella PLLA 200', price: 3500, qty: _qty }); }
+    if (existing) { existing.qty += _qty; } else { cart.push({ name: 'Estella PLLA 200', price: 3250, qty: _qty }); }
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
     var btn = document.getElementById('addCartBtn');
     btn.classList.add('added');
