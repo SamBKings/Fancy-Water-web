@@ -1567,7 +1567,8 @@
         margin:0 -5vw;
         scrollbar-width:none;
         -webkit-overflow-scrolling:touch;
-        touch-action:pan-x;
+        /* pan-x pan-y: horizontal → desliza carrusel, vertical → scroll de página */
+        touch-action:pan-x pan-y;
       }
       .products-grid::-webkit-scrollbar { display:none; }
       /* card: snap al centro */
@@ -1575,6 +1576,21 @@
         flex:0 0 78vw;
         min-width:0;
         scroll-snap-align:center;
+        /* Permitir deslizamiento en cualquier dirección desde dentro de la tarjeta */
+        touch-action:pan-x pan-y;
+      }
+      /* Sobreescribir touch-action:pan-y del CSS base en todos los hijos de la tarjeta */
+      .product-img,
+      .product-img a,
+      .product-info,
+      .p-name,
+      .p-name a,
+      .p-desc,
+      .p-cat,
+      .p-footer,
+      .p-price,
+      .p-body {
+        touch-action:pan-x pan-y;
       }
       /* hidden cards collapse without breaking snap */
       .product-card[style*="display: none"],
